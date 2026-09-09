@@ -1,0 +1,72 @@
+{
+  "title": "学序",
+  "source_files": 149,
+  "source_bytes": 6676172,
+  "production_deployment": "dpl_39k1imZJj4juSoCe4pmoY5CXW6VA",
+  "vercel_history": [
+    {
+      "project": "xuexu-study",
+      "deployments": 10
+    }
+  ],
+  "historical_deployments_total": 10,
+  "attachments": {
+    "object_count": 7,
+    "total_bytes": 156275428,
+    "complete": true
+  },
+  "database_tables": [
+    {
+      "table_schema": "drizzle",
+      "table_name": "__drizzle_migrations",
+      "rows": 4
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_ai_calls",
+      "rows": 18
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_ai_locks",
+      "rows": 0
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_history",
+      "rows": 19
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_login_attempts",
+      "rows": 1
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_material_jobs",
+      "rows": 2
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_material_pages",
+      "rows": 0
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_profiles",
+      "rows": 1
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_receipts",
+      "rows": 22
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_secrets",
+      "rows": 1
+    }
+  ],
+  "redis_key_count": null,
+  "game_save_excluded": false
+}

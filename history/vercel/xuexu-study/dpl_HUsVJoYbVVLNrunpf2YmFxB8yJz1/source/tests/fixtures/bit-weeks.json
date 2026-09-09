@@ -1,0 +1,437 @@
+{
+  "settings": {
+    "semesterStart": "2026-08-31"
+  },
+  "timetable": [
+    {
+      "id": "c0",
+      "name": "课程0",
+      "day": 4,
+      "start": "13:20",
+      "end": "16:50",
+      "weekStart": 3,
+      "weekEnd": 3,
+      "parity": "all"
+    },
+    {
+      "id": "c1",
+      "name": "课程1",
+      "day": 4,
+      "start": "15:15",
+      "end": "16:50",
+      "weekStart": 4,
+      "weekEnd": 4,
+      "parity": "all"
+    },
+    {
+      "id": "c2",
+      "name": "课程2",
+      "day": 4,
+      "start": "15:15",
+      "end": "16:50",
+      "weekStart": 7,
+      "weekEnd": 14,
+      "parity": "all"
+    },
+    {
+      "id": "c3",
+      "name": "课程3",
+      "day": 5,
+      "start": "15:15",
+      "end": "16:50",
+      "weekStart": 6,
+      "weekEnd": 19,
+      "parity": "all"
+    },
+    {
+      "id": "c4",
+      "name": "课程4",
+      "day": 5,
+      "start": "09:55",
+      "end": "11:30",
+      "weekStart": 7,
+      "weekEnd": 13,
+      "parity": "all"
+    },
+    {
+      "id": "c5",
+      "name": "课程5",
+      "day": 5,
+      "start": "09:55",
+      "end": "11:30",
+      "weekStart": 15,
+      "weekEnd": 18,
+      "parity": "all"
+    },
+    {
+      "id": "c6",
+      "name": "课程6",
+      "day": 4,
+      "start": "13:20",
+      "end": "16:50",
+      "weekStart": 2,
+      "weekEnd": 2,
+      "parity": "all"
+    },
+    {
+      "id": "c7",
+      "name": "课程7",
+      "day": 3,
+      "start": "15:15",
+      "end": "16:50",
+      "weekStart": 4,
+      "weekEnd": 5,
+      "parity": "all"
+    },
+    {
+      "id": "c8",
+      "name": "课程8",
+      "day": 3,
+      "start": "15:15",
+      "end": "16:50",
+      "weekStart": 7,
+      "weekEnd": 14,
+      "parity": "all"
+    },
+    {
+      "id": "c9",
+      "name": "课程9",
+      "day": 1,
+      "start": "15:15",
+      "end": "16:50",
+      "weekStart": 8,
+      "weekEnd": 11,
+      "parity": "all"
+    },
+    {
+      "id": "c10",
+      "name": "课程10",
+      "day": 5,
+      "start": "13:20",
+      "end": "16:50",
+      "weekStart": 3,
+      "weekEnd": 3,
+      "parity": "all"
+    },
+    {
+      "id": "c11",
+      "name": "课程11",
+      "day": 2,
+      "start": "09:55",
+      "end": "11:30",
+      "weekStart": 4,
+      "weekEnd": 5,
+      "parity": "all"
+    },
+    {
+      "id": "c12",
+      "name": "课程12",
+      "day": 2,
+      "start": "09:55",
+      "end": "11:30",
+      "weekStart": 7,
+      "weekEnd": 11,
+      "parity": "all"
+    },
+    {
+      "id": "c13",
+      "name": "课程13",
+      "day": 2,
+      "start": "13:20",
+      "end": "16:50",
+      "weekStart": 3,
+      "weekEnd": 3,
+      "parity": "all"
+    },
+    {
+      "id": "c14",
+      "name": "课程14",
+      "day": 1,
+      "start": "13:20",
+      "end": "16:50",
+      "weekStart": 2,
+      "weekEnd": 2,
+      "parity": "all"
+    },
+    {
+      "id": "c15",
+      "name": "课程15",
+      "day": 1,
+      "start": "09:55",
+      "end": "11:30",
+      "weekStart": 4,
+      "weekEnd": 5,
+      "parity": "all"
+    },
+    {
+      "id": "c16",
+      "name": "课程16",
+      "day": 1,
+      "start": "09:55",
+      "end": "11:30",
+      "weekStart": 7,
+      "weekEnd": 11,
+      "parity": "all"
+    },
+    {
+      "id": "c17",
+      "name": "课程17",
+      "day": 2,
+      "start": "08:00",
+      "end": "11:30",
+      "weekStart": 2,
+      "weekEnd": 2,
+      "parity": "all"
+    },
+    {
+      "id": "c18",
+      "name": "课程18",
+      "day": 2,
+      "start": "15:15",
+      "end": "16:50",
+      "weekStart": 4,
+      "weekEnd": 5,
+      "parity": "all"
+    },
+    {
+      "id": "c19",
+      "name": "课程19",
+      "day": 2,
+      "start": "15:15",
+      "end": "16:50",
+      "weekStart": 7,
+      "weekEnd": 19,
+      "parity": "all"
+    },
+    {
+      "id": "c20",
+      "name": "课程20",
+      "day": 6,
+      "start": "13:20",
+      "end": "14:55",
+      "weekStart": 6,
+      "weekEnd": 6,
+      "parity": "all"
+    },
+    {
+      "id": "c21",
+      "name": "课程21",
+      "day": 4,
+      "start": "13:20",
+      "end": "14:55",
+      "weekStart": 4,
+      "weekEnd": 4,
+      "parity": "all"
+    },
+    {
+      "id": "c22",
+      "name": "课程22",
+      "day": 4,
+      "start": "13:20",
+      "end": "14:55",
+      "weekStart": 7,
+      "weekEnd": 15,
+      "parity": "all"
+    },
+    {
+      "id": "c23",
+      "name": "课程23",
+      "day": 3,
+      "start": "13:20",
+      "end": "16:50",
+      "weekStart": 2,
+      "weekEnd": 2,
+      "parity": "all"
+    },
+    {
+      "id": "c24",
+      "name": "课程24",
+      "day": 3,
+      "start": "08:00",
+      "end": "09:35",
+      "weekStart": 4,
+      "weekEnd": 5,
+      "parity": "all"
+    },
+    {
+      "id": "c25",
+      "name": "课程25",
+      "day": 3,
+      "start": "08:00",
+      "end": "09:35",
+      "weekStart": 7,
+      "weekEnd": 19,
+      "parity": "all"
+    },
+    {
+      "id": "c26",
+      "name": "课程26",
+      "day": 4,
+      "start": "18:30",
+      "end": "20:05",
+      "weekStart": 14,
+      "weekEnd": 14,
+      "parity": "all"
+    },
+    {
+      "id": "c27",
+      "name": "课程27",
+      "day": 2,
+      "start": "13:20",
+      "end": "14:55",
+      "weekStart": 4,
+      "weekEnd": 5,
+      "parity": "all"
+    },
+    {
+      "id": "c28",
+      "name": "课程28",
+      "day": 2,
+      "start": "13:20",
+      "end": "14:55",
+      "weekStart": 7,
+      "weekEnd": 15,
+      "parity": "all"
+    },
+    {
+      "id": "c29",
+      "name": "课程29",
+      "day": 3,
+      "start": "09:55",
+      "end": "12:20",
+      "weekStart": 4,
+      "weekEnd": 4,
+      "parity": "all"
+    },
+    {
+      "id": "c30",
+      "name": "课程30",
+      "day": 3,
+      "start": "09:55",
+      "end": "12:20",
+      "weekStart": 7,
+      "weekEnd": 13,
+      "parity": "all"
+    },
+    {
+      "id": "c31",
+      "name": "课程31",
+      "day": 3,
+      "start": "09:55",
+      "end": "12:20",
+      "weekStart": 15,
+      "weekEnd": 18,
+      "parity": "all"
+    },
+    {
+      "id": "c32",
+      "name": "课程32",
+      "day": 1,
+      "start": "13:20",
+      "end": "14:55",
+      "weekStart": 4,
+      "weekEnd": 5,
+      "parity": "all"
+    },
+    {
+      "id": "c33",
+      "name": "课程33",
+      "day": 1,
+      "start": "13:20",
+      "end": "14:55",
+      "weekStart": 7,
+      "weekEnd": 15,
+      "parity": "all"
+    },
+    {
+      "id": "c34",
+      "name": "课程34",
+      "day": 6,
+      "start": "09:55",
+      "end": "12:20",
+      "weekStart": 6,
+      "weekEnd": 6,
+      "parity": "all"
+    },
+    {
+      "id": "c35",
+      "name": "课程35",
+      "day": 4,
+      "start": "09:55",
+      "end": "12:20",
+      "weekStart": 4,
+      "weekEnd": 4,
+      "parity": "all"
+    },
+    {
+      "id": "c36",
+      "name": "课程36",
+      "day": 4,
+      "start": "09:55",
+      "end": "12:20",
+      "weekStart": 7,
+      "weekEnd": 19,
+      "parity": "all"
+    },
+    {
+      "id": "c37",
+      "name": "课程37",
+      "day": 3,
+      "start": "13:20",
+      "end": "14:55",
+      "weekStart": 4,
+      "weekEnd": 5,
+      "parity": "all"
+    },
+    {
+      "id": "c38",
+      "name": "课程38",
+      "day": 3,
+      "start": "13:20",
+      "end": "14:55",
+      "weekStart": 7,
+      "weekEnd": 15,
+      "parity": "all"
+    },
+    {
+      "id": "c39",
+      "name": "课程39",
+      "day": 5,
+      "start": "13:20",
+      "end": "16:50",
+      "weekStart": 2,
+      "weekEnd": 2,
+      "parity": "all"
+    },
+    {
+      "id": "c40",
+      "name": "课程40",
+      "day": 6,
+      "start": "18:30",
+      "end": "20:55",
+      "weekStart": 6,
+      "weekEnd": 6,
+      "parity": "all"
+    },
+    {
+      "id": "c41",
+      "name": "课程41",
+      "day": 4,
+      "start": "18:30",
+      "end": "20:55",
+      "weekStart": 4,
+      "weekEnd": 4,
+      "parity": "all"
+    },
+    {
+      "id": "c42",
+      "name": "课程42",
+      "day": 4,
+      "start": "18:30",
+      "end": "20:55",
+      "weekStart": 7,
+      "weekEnd": 13,
+      "parity": "all"
+    }
+  ]
+}

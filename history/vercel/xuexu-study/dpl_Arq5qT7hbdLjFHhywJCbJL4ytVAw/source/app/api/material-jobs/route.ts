@@ -1,0 +1,7 @@
+import {identity,checkOrigin,respondError,db,AppError} from '@/lib/server';
+import {enqueueMaterial} from '@/lib/material-jobs';
+export async function GET(request:Request){try{const user=await identity();const url=new URL(request.url);if(url.searchParams.get('text')==='1'){
+ const row=await db().prepare("SELECT string_agg('[PDF第'||p.page||'页]'||chr(10)||p.content,chr(10)||chr(10) ORDER BY p.page) AS content FROM study_material_pages p JOIN study_material_jobs j ON p.job_id=j.id WHERE j.user_id=? AND j.material_id=?").bind(user.id,url.searchParams.get('id')).first<{content:string}>();
+ if(!row?.content)throw new AppError('尚未生成识别文字。',404);return new Response(row.content,{headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'private, no-store'}});
+ }const row=await db().prepare('SELECT COALESCE(json_agg(json_build_object(\'id\',id,\'materialId\',material_id,\'status\',status,\'pages\',pages,\'done\',done,\'error\',error)),\'[]\'::json) AS jobs FROM study_material_jobs WHERE user_id=?').bind(user.id).first();return Response.json(row,{headers:{'Cache-Control':'no-store'}});}catch(e){return respondError(e);}}
+export async function POST(request:Request){try{checkOrigin(request);const user=await identity();const {id}=await request.json();if(typeof id!=='string')throw new AppError('请选择资料。');return Response.json(await enqueueMaterial(user.id,id));}catch(e){return respondError(e);}}

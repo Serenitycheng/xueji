@@ -1,0 +1,57 @@
+{
+  "exported_at": "2026-09-09T13:49:00.144Z",
+  "consistent_snapshot": true,
+  "read_only": true,
+  "tables": [
+    {
+      "table_schema": "drizzle",
+      "table_name": "__drizzle_migrations",
+      "rows": 4
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_ai_calls",
+      "rows": 18
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_ai_locks",
+      "rows": 0
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_history",
+      "rows": 19
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_login_attempts",
+      "rows": 1
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_material_jobs",
+      "rows": 2
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_material_pages",
+      "rows": 0
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_profiles",
+      "rows": 1
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_receipts",
+      "rows": 22
+    },
+    {
+      "table_schema": "public",
+      "table_name": "study_secrets",
+      "rows": 1
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"project_id":"appgprj_6a9e2ecb16088191a61a2f86691d6fd1","binding_name":"DB","table_name":"study_ai_calls","columns":["id","user_id","month","created_at","cost","input","output","kind","result","status"],"rows":[],"limit":25,"offset":0,"has_more":false,"model_projection":{"truncated":false,"truncated_values":0,"omitted_columns":0,"omitted_rows":0,"next_offset":null}}

@@ -1,0 +1,415 @@
+[
+  {
+    "schema": "drizzle",
+    "table_name": "__drizzle_migrations",
+    "conname": "__drizzle_migrations_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL id"
+  },
+  {
+    "schema": "drizzle",
+    "table_name": "__drizzle_migrations",
+    "conname": "__drizzle_migrations_hash_not_null",
+    "contype": "n",
+    "definition": "NOT NULL hash"
+  },
+  {
+    "schema": "drizzle",
+    "table_name": "__drizzle_migrations",
+    "conname": "__drizzle_migrations_pkey",
+    "contype": "p",
+    "definition": "PRIMARY KEY (id)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_calls",
+    "conname": "study_ai_calls_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_calls",
+    "conname": "study_ai_calls_user_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL user_id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_calls",
+    "conname": "study_ai_calls_month_not_null",
+    "contype": "n",
+    "definition": "NOT NULL month"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_calls",
+    "conname": "study_ai_calls_created_at_not_null",
+    "contype": "n",
+    "definition": "NOT NULL created_at"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_calls",
+    "conname": "study_ai_calls_cost_not_null",
+    "contype": "n",
+    "definition": "NOT NULL cost"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_calls",
+    "conname": "study_ai_calls_input_not_null",
+    "contype": "n",
+    "definition": "NOT NULL input"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_calls",
+    "conname": "study_ai_calls_output_not_null",
+    "contype": "n",
+    "definition": "NOT NULL output"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_calls",
+    "conname": "study_ai_calls_kind_not_null",
+    "contype": "n",
+    "definition": "NOT NULL kind"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_calls",
+    "conname": "study_ai_calls_status_not_null",
+    "contype": "n",
+    "definition": "NOT NULL status"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_calls",
+    "conname": "study_ai_calls_pkey",
+    "contype": "p",
+    "definition": "PRIMARY KEY (id)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_locks",
+    "conname": "study_ai_locks_user_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL user_id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_locks",
+    "conname": "study_ai_locks_expires_not_null",
+    "contype": "n",
+    "definition": "NOT NULL expires"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_ai_locks",
+    "conname": "study_ai_locks_pkey",
+    "contype": "p",
+    "definition": "PRIMARY KEY (user_id)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_login_attempts",
+    "conname": "study_login_attempts_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_login_attempts",
+    "conname": "study_login_attempts_attempts_not_null",
+    "contype": "n",
+    "definition": "NOT NULL attempts"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_login_attempts",
+    "conname": "study_login_attempts_expires_not_null",
+    "contype": "n",
+    "definition": "NOT NULL expires"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_login_attempts",
+    "conname": "study_login_attempts_pkey",
+    "contype": "p",
+    "definition": "PRIMARY KEY (id)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_profiles",
+    "conname": "study_profiles_user_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL user_id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_profiles",
+    "conname": "study_profiles_data_not_null",
+    "contype": "n",
+    "definition": "NOT NULL data"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_profiles",
+    "conname": "study_profiles_revision_not_null",
+    "contype": "n",
+    "definition": "NOT NULL revision"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_profiles",
+    "conname": "study_profiles_pkey",
+    "contype": "p",
+    "definition": "PRIMARY KEY (user_id)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_secrets",
+    "conname": "study_secrets_user_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL user_id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_secrets",
+    "conname": "study_secrets_cipher_not_null",
+    "contype": "n",
+    "definition": "NOT NULL cipher"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_secrets",
+    "conname": "study_secrets_pkey",
+    "contype": "p",
+    "definition": "PRIMARY KEY (user_id)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_jobs",
+    "conname": "study_material_jobs_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_jobs",
+    "conname": "study_material_jobs_user_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL user_id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_jobs",
+    "conname": "study_material_jobs_material_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL material_id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_jobs",
+    "conname": "study_material_jobs_status_not_null",
+    "contype": "n",
+    "definition": "NOT NULL status"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_jobs",
+    "conname": "study_material_jobs_pages_not_null",
+    "contype": "n",
+    "definition": "NOT NULL pages"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_jobs",
+    "conname": "study_material_jobs_done_not_null",
+    "contype": "n",
+    "definition": "NOT NULL done"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_jobs",
+    "conname": "study_material_jobs_scanned_not_null",
+    "contype": "n",
+    "definition": "NOT NULL scanned"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_jobs",
+    "conname": "study_material_jobs_updated_at_not_null",
+    "contype": "n",
+    "definition": "NOT NULL updated_at"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_jobs",
+    "conname": "study_material_jobs_pkey",
+    "contype": "p",
+    "definition": "PRIMARY KEY (id)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_jobs",
+    "conname": "study_material_jobs_user_id_material_id_key",
+    "contype": "u",
+    "definition": "UNIQUE (user_id, material_id)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_pages",
+    "conname": "study_material_pages_job_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL job_id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_pages",
+    "conname": "study_material_pages_page_not_null",
+    "contype": "n",
+    "definition": "NOT NULL page"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_pages",
+    "conname": "study_material_pages_content_not_null",
+    "contype": "n",
+    "definition": "NOT NULL content"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_pages",
+    "conname": "study_material_pages_method_not_null",
+    "contype": "n",
+    "definition": "NOT NULL method"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_pages",
+    "conname": "study_material_pages_pkey",
+    "contype": "p",
+    "definition": "PRIMARY KEY (job_id, page)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_material_pages",
+    "conname": "study_material_pages_job_id_fkey",
+    "contype": "f",
+    "definition": "FOREIGN KEY (job_id) REFERENCES study_material_jobs(id)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_history",
+    "conname": "study_history_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_history",
+    "conname": "study_history_user_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL user_id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_history",
+    "conname": "study_history_revision_not_null",
+    "contype": "n",
+    "definition": "NOT NULL revision"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_history",
+    "conname": "study_history_data_not_null",
+    "contype": "n",
+    "definition": "NOT NULL data"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_history",
+    "conname": "study_history_reason_not_null",
+    "contype": "n",
+    "definition": "NOT NULL reason"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_history",
+    "conname": "study_history_app_version_not_null",
+    "contype": "n",
+    "definition": "NOT NULL app_version"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_history",
+    "conname": "study_history_created_at_not_null",
+    "contype": "n",
+    "definition": "NOT NULL created_at"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_history",
+    "conname": "study_history_pkey",
+    "contype": "p",
+    "definition": "PRIMARY KEY (id)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_receipts",
+    "conname": "study_receipts_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_receipts",
+    "conname": "study_receipts_user_id_not_null",
+    "contype": "n",
+    "definition": "NOT NULL user_id"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_receipts",
+    "conname": "study_receipts_fingerprint_not_null",
+    "contype": "n",
+    "definition": "NOT NULL fingerprint"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_receipts",
+    "conname": "study_receipts_status_not_null",
+    "contype": "n",
+    "definition": "NOT NULL status"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_receipts",
+    "conname": "study_receipts_status_code_not_null",
+    "contype": "n",
+    "definition": "NOT NULL status_code"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_receipts",
+    "conname": "study_receipts_created_at_not_null",
+    "contype": "n",
+    "definition": "NOT NULL created_at"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_receipts",
+    "conname": "study_receipts_pkey",
+    "contype": "p",
+    "definition": "PRIMARY KEY (id)"
+  },
+  {
+    "schema": "public",
+    "table_name": "study_profiles",
+    "conname": "study_profiles_updated_at_not_null",
+    "contype": "n",
+    "definition": "NOT NULL updated_at"
+  }
+]

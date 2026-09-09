@@ -1,0 +1,200 @@
+[
+  {
+    "id": "owner:12ad4d8a-624e-4a63-b130-f03527080002",
+    "user_id": "owner",
+    "fingerprint": "46cb78067eabba3597da90b2710d606c8f9926ade898738f59c4b77ca842f332",
+    "status": "failed",
+    "status_code": 400,
+    "result": "{\"error\":\"暂不支持这项操作。\"}",
+    "created_at": "1788762739996"
+  },
+  {
+    "id": "owner:b22b32f9-8f1c-4ad3-a580-161fe7a16fac",
+    "user_id": "owner",
+    "fingerprint": "607e68a657ea2e47b08e4c23f61bfa8db9b9d11fb3ff0982976837422350d4ea",
+    "status": "failed",
+    "status_code": 400,
+    "result": "{\"error\":\"暂不支持这项操作。\"}",
+    "created_at": "1788762845196"
+  },
+  {
+    "id": "owner:a1c7941c-7424-4c92-9622-d9fccb727995",
+    "user_id": "owner",
+    "fingerprint": "0fca76924e953238a44659e04ad5ea65abb1de6011e31b8bf85ca0e79a36e952",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"资料已保存。\"}",
+    "created_at": "1788779727794"
+  },
+  {
+    "id": "owner:66bd93c8-79e0-4ca8-879d-2800ce1fddfc",
+    "user_id": "owner",
+    "fingerprint": "776899d50fefd4a9d43a53226c822746036760e06e52ec90fe8d3613842e601c",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"资料已保存。\"}",
+    "created_at": "1788779787722"
+  },
+  {
+    "id": "owner:a4393080-bb5e-4e3c-92cb-42d0fd139dfc",
+    "user_id": "owner",
+    "fingerprint": "9f8bd705b75b6739eb3d8a13ce9ed67a077ff0245876169cd8ebd00d8440441f",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"方案已生成，请比较后选择适合你的路线。\"}",
+    "created_at": "1788779931922"
+  },
+  {
+    "id": "owner:680d6525-ffe2-44c0-a0fd-8b684494bfa2",
+    "user_id": "owner",
+    "fingerprint": "39cea8ca055730694d1944b9dae3eef31a792aa0613a19fc70a6e8f31044d670",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"方案已生成，请比较后选择适合你的路线。\"}",
+    "created_at": "1788779973234"
+  },
+  {
+    "id": "owner:623a4152-e6ba-4f0f-a01d-4e7ff9b85808",
+    "user_id": "owner",
+    "fingerprint": "5d655a021808a38d53c9697fc8ca1a3a67f063774c0196e8210803d61cc2e121",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"课表已导入，并重新计算每天的学习额度。\"}",
+    "created_at": "1788781801951"
+  },
+  {
+    "id": "owner:a5f31174-d2e2-47b0-9266-b061e72e23fb",
+    "user_id": "owner",
+    "fingerprint": "722aea7bd0ab4752b3f782478c8de12bdc791de9d9c5aa6413353b8d1632a556",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"资料所属学科已更新。\"}",
+    "created_at": "1788782364591"
+  },
+  {
+    "id": "owner:6c80803f-9edb-41ec-b0b2-90c5f40e052c",
+    "user_id": "owner",
+    "fingerprint": "66f4ea35091dac38ad86d100e1a1ef769a5d2041222f26fb67c05757aab451cf",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"方案已生成，请比较后选择适合你的路线。\"}",
+    "created_at": "1788782365040"
+  },
+  {
+    "id": "owner:68262b08-5a10-48ce-9445-720028ed2a39",
+    "user_id": "owner",
+    "fingerprint": "9cb425fd57c53da05eef44d32d9f256efe3f1b3a2861a7041bca9d52d252ca92",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"方案已生成，请比较后选择适合你的路线。\"}",
+    "created_at": "1788782984712"
+  },
+  {
+    "id": "owner:9f7e63bf-c019-49c3-9cdc-28ed6e3359a0",
+    "user_id": "owner",
+    "fingerprint": "53331c5c0bf35e326f64eba52b3d559f4c7c90db7a18ec44d806cc190781af6a",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"方案已生成，请比较后选择适合你的路线。\"}",
+    "created_at": "1788826155286"
+  },
+  {
+    "id": "owner:344f8f86-49f1-4aa1-b78e-72d5a0df8855",
+    "user_id": "owner",
+    "fingerprint": "72a5079cfa52ebdc8c3a7471ba4f21ca2eeefe11d4a1754a5ecc3d87d423afee",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"方案已生成，请比较后选择适合你的路线。\"}",
+    "created_at": "1788826168957"
+  },
+  {
+    "id": "owner:c3106626-e607-4617-99a3-9f6af1981b4e",
+    "user_id": "owner",
+    "fingerprint": "86a5b977aac907ee9014636f83a579f8c3a1ff549d3ef88502297e2119c37d07",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"方案已生成，请比较后选择适合你的路线。\"}",
+    "created_at": "1788826273341"
+  },
+  {
+    "id": "owner:b6e49a24-b4fb-488a-bca7-1abc0424e6e0",
+    "user_id": "owner",
+    "fingerprint": "c8f5a7399e91fe28c80895efa63b8743f8056406fd6f00131b0fbbb5999d3cda",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"资料已整理，目录和知识点可用于规划。\"}",
+    "created_at": "1788832912937"
+  },
+  {
+    "id": "owner:7a76c920-f4f6-45a4-8b3f-bb99356bb321",
+    "user_id": "owner",
+    "fingerprint": "eca5f4acd2bf097d156b2d95e2d8388a4527d5ed8a4bcd01125e3ec332892ab9",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"资料已整理，目录和知识点可用于规划。\"}",
+    "created_at": "1788832916287"
+  },
+  {
+    "id": "owner:2a5af43e-6104-491a-b562-db90d7d435f0",
+    "user_id": "owner",
+    "fingerprint": "54c31e330a3e8a4326acc7131a8178f0738a9543967222a478b2c0cd4f647a65",
+    "status": "failed",
+    "status_code": 400,
+    "result": "{\"error\":\"路线比较只描述学习阶段，不指定未经核验的课号、单元号或固定第几周完成。改用主题和进入下一阶段的条件；具体内容留给有资料依据的每日任务。\"}",
+    "created_at": "1788833467969"
+  },
+  {
+    "id": "owner:64748285-aa05-4e2d-85f9-59a13984d0e8",
+    "user_id": "owner",
+    "fingerprint": "d2cef0bddd0afa67abbd784cb8511f353a1156baaf13f8185664fd9c8de9bbe7",
+    "status": "failed",
+    "status_code": 400,
+    "result": "{\"error\":\"路线比较只描述学习阶段，不指定未经核验的课号、单元号或固定第几周完成。改用主题和进入下一阶段的条件；具体内容留给有资料依据的每日任务。\"}",
+    "created_at": "1788833490011"
+  },
+  {
+    "id": "owner:5c93a8e2-c8b2-49d1-8426-33b2a0b5e30c",
+    "user_id": "owner",
+    "fingerprint": "fbf5a574d2fc772e901b312891c9d2e18a362342b09d2c7aed5fdc7f4cf3ecc3",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"已生成调整方案，变化已列出；选用后才会应用。\"}",
+    "created_at": "1788833506286"
+  },
+  {
+    "id": "owner:13e9c161-2a0b-4f7c-9738-fe1cf2df6933",
+    "user_id": "owner",
+    "fingerprint": "0b2fc9b1e9bde07b2d9131c8f558072d04b58093a3d32073a03b48f4a2a31b43",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"已生成调整方案，变化已列出；选用后才会应用。\"}",
+    "created_at": "1788834249339"
+  },
+  {
+    "id": "owner:1868a3fa-e5b6-4857-8bbd-6d62ee9fcf3c",
+    "user_id": "owner",
+    "fingerprint": "519c7fcfcdfd52b148c911dd8b2cc83a94ce8c8584297ae6221ec5925536c9a4",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"方案已生成，选用后可直接安排第一步。\"}",
+    "created_at": "1788834257492"
+  },
+  {
+    "id": "owner:96d6bada-61d1-4fd5-9359-6405f56aed37",
+    "user_id": "owner",
+    "fingerprint": "33e99d64c90c65d90826e548c9a7af59a969c7bc577807313adf0424094e511a",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"已生成调整方案，变化已列出；选用后才会应用。\"}",
+    "created_at": "1788835244685"
+  },
+  {
+    "id": "owner:ce88c6dd-f0e8-4d51-ad10-a92591748e39",
+    "user_id": "owner",
+    "fingerprint": "52bf1230c60e6a2ec7653fe333e0ee32049911ac81d4b17ca41e5ce5d5616959",
+    "status": "done",
+    "status_code": 200,
+    "result": "{\"message\":\"已生成调整方案，变化已列出；选用后才会应用。\"}",
+    "created_at": "1788835246079"
+  }
+]

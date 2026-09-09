@@ -1,0 +1,13 @@
+.git
+.openai
+.dev.vars*
+.env*
+node_modules
+.wrangler
+dist
+outputs
+work
+drizzle/
+scripts/test.mjs
+.setup-key.json
+scripts/connect-secrets.mjs

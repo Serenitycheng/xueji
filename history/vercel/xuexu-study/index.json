@@ -1,0 +1,91 @@
+{
+  "project": {
+    "id": "prj_zheZbxE2zkBfC8AhrgNmq3pn0SLn",
+    "name": "xuexu-study",
+    "production": {
+      "id": "dpl_39k1imZJj4juSoCe4pmoY5CXW6VA",
+      "url": "xuexu-study-kn96awkj1-sereni1.vercel.app",
+      "createdAt": 1788835014427,
+      "state": "READY"
+    },
+    "latest": [
+      {
+        "id": "dpl_39k1imZJj4juSoCe4pmoY5CXW6VA",
+        "url": "xuexu-study-kn96awkj1-sereni1.vercel.app",
+        "createdAt": 1788835014427,
+        "state": "READY"
+      },
+      {
+        "id": "dpl_3a3iViS2n9kDBJX22tjR11yD2MFJ",
+        "url": "xuexu-study-i9918lin8-sereni1.vercel.app",
+        "createdAt": 1788834899677,
+        "state": "READY"
+      }
+    ]
+  },
+  "retrieved_at": "2026-09-09T13:56:43.959Z",
+  "deployments": [
+    {
+      "id": "dpl_39k1imZJj4juSoCe4pmoY5CXW6VA",
+      "url": "xuexu-study-kn96awkj1-sereni1.vercel.app",
+      "createdAt": 1788835014427,
+      "state": "READY",
+      "target": "production",
+      "current_source": "source/"
+    },
+    {
+      "id": "dpl_3a3iViS2n9kDBJX22tjR11yD2MFJ",
+      "files": 149,
+      "excluded": 0,
+      "complete": true
+    },
+    {
+      "id": "dpl_HgrLaDXmP1LPQfqRzVdt1tEcPncn",
+      "files": 148,
+      "excluded": 0,
+      "complete": true
+    },
+    {
+      "id": "dpl_Fpjs2zRNhyMQvR5VjaszXsv2TjLE",
+      "files": 147,
+      "excluded": 0,
+      "complete": true
+    },
+    {
+      "id": "dpl_HUsVJoYbVVLNrunpf2YmFxB8yJz1",
+      "files": 147,
+      "excluded": 0,
+      "complete": true
+    },
+    {
+      "id": "dpl_Arq5qT7hbdLjFHhywJCbJL4ytVAw",
+      "files": 150,
+      "excluded": 0,
+      "complete": true
+    },
+    {
+      "id": "dpl_FZoTsm6FWCYrCYr1vG34Ms5b8sb8",
+      "files": 129,
+      "excluded": 0,
+      "complete": true
+    },
+    {
+      "id": "dpl_6Rg6rNWJKFoL7u7qGNnWS7kTGsMd",
+      "files": 129,
+      "excluded": 0,
+      "complete": true
+    },
+    {
+      "id": "dpl_7U6JfCgPCHPVxHhGuSUz8cPduNJN",
+      "files": 128,
+      "excluded": 0,
+      "complete": true
+    },
+    {
+      "id": "dpl_5Y8h2J7qpYG8FH4SKuf74DhDvrth",
+      "files": 114,
+      "excluded": 0,
+      "complete": true
+    }
+  ]
+}

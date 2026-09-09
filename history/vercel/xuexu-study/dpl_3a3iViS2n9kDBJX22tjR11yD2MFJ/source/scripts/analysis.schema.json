@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "overview",
+    "topics",
+    "firstStep",
+    "warnings"
+  ],
+  "properties": {
+    "overview": {
+      "type": "string"
+    },
+    "firstStep": {
+      "type": "string"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "fromPage",
+          "toPage",
+          "prerequisites"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "fromPage": {
+            "type": "integer"
+          },
+          "toPage": {
+            "type": "integer"
+          },
+          "prerequisites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+[
+  {
+    "key": "STUDY_PASSWORD_HASH",
+    "type": "sensitive",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "SESSION_SECRET",
+    "type": "sensitive",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "STUDY_ENCRYPTION_KEY",
+    "type": "sensitive",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "NEON_AUTH_BASE_URL",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "POSTGRES_USER",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "PGUSER",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "POSTGRES_URL_NO_SSL",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "POSTGRES_URL_NON_POOLING",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "VITE_NEON_AUTH_URL",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "PGHOST",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "PGHOST_UNPOOLED",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "POSTGRES_HOST",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "POSTGRES_URL",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "POSTGRES_PASSWORD",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "PGPASSWORD",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "POSTGRES_PRISMA_URL",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "PGDATABASE",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "NEON_PROJECT_ID",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "DATABASE_URL",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "DATABASE_URL_UNPOOLED",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "POSTGRES_DATABASE",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  },
+  {
+    "key": "BLOB_READ_WRITE_TOKEN",
+    "type": "encrypted",
+    "target": [
+      "production"
+    ]
+  }
+]

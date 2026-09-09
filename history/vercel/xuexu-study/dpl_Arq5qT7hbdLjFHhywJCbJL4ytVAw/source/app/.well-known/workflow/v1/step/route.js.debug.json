@@ -1,0 +1,10 @@
+{
+  "stepFiles": [
+    "C:/Users/86134/Documents/Codex/2026-09-07/new-chat/work/studyflow-vercel/node_modules/workflow/dist/stdlib.js",
+    "C:/Users/86134/Documents/Codex/2026-09-07/new-chat/work/studyflow-vercel/workflows/material-steps.ts"
+  ],
+  "workflowFiles": [
+    "C:/Users/86134/Documents/Codex/2026-09-07/new-chat/work/studyflow-vercel/workflows/material.ts"
+  ],
+  "serdeOnlyFiles": []
+}

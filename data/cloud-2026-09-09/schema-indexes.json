@@ -1,0 +1,100 @@
+[
+  {
+    "schemaname": "drizzle",
+    "tablename": "__drizzle_migrations",
+    "indexname": "__drizzle_migrations_pkey",
+    "tablespace": null,
+    "indexdef": "CREATE UNIQUE INDEX __drizzle_migrations_pkey ON drizzle.__drizzle_migrations USING btree (id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_ai_calls",
+    "indexname": "study_ai_calls_pkey",
+    "tablespace": null,
+    "indexdef": "CREATE UNIQUE INDEX study_ai_calls_pkey ON public.study_ai_calls USING btree (id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_ai_locks",
+    "indexname": "study_ai_locks_pkey",
+    "tablespace": null,
+    "indexdef": "CREATE UNIQUE INDEX study_ai_locks_pkey ON public.study_ai_locks USING btree (user_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_login_attempts",
+    "indexname": "study_login_attempts_pkey",
+    "tablespace": null,
+    "indexdef": "CREATE UNIQUE INDEX study_login_attempts_pkey ON public.study_login_attempts USING btree (id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_profiles",
+    "indexname": "study_profiles_pkey",
+    "tablespace": null,
+    "indexdef": "CREATE UNIQUE INDEX study_profiles_pkey ON public.study_profiles USING btree (user_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_secrets",
+    "indexname": "study_secrets_pkey",
+    "tablespace": null,
+    "indexdef": "CREATE UNIQUE INDEX study_secrets_pkey ON public.study_secrets USING btree (user_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_ai_calls",
+    "indexname": "idx_ai_user_month",
+    "tablespace": null,
+    "indexdef": "CREATE INDEX idx_ai_user_month ON public.study_ai_calls USING btree (user_id, month)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_history",
+    "indexname": "study_history_pkey",
+    "tablespace": null,
+    "indexdef": "CREATE UNIQUE INDEX study_history_pkey ON public.study_history USING btree (id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_receipts",
+    "indexname": "study_receipts_pkey",
+    "tablespace": null,
+    "indexdef": "CREATE UNIQUE INDEX study_receipts_pkey ON public.study_receipts USING btree (id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_history",
+    "indexname": "idx_history_user_revision",
+    "tablespace": null,
+    "indexdef": "CREATE INDEX idx_history_user_revision ON public.study_history USING btree (user_id, revision)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_receipts",
+    "indexname": "idx_receipts_user",
+    "tablespace": null,
+    "indexdef": "CREATE INDEX idx_receipts_user ON public.study_receipts USING btree (user_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_material_jobs",
+    "indexname": "study_material_jobs_pkey",
+    "tablespace": null,
+    "indexdef": "CREATE UNIQUE INDEX study_material_jobs_pkey ON public.study_material_jobs USING btree (id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_material_jobs",
+    "indexname": "study_material_jobs_user_id_material_id_key",
+    "tablespace": null,
+    "indexdef": "CREATE UNIQUE INDEX study_material_jobs_user_id_material_id_key ON public.study_material_jobs USING btree (user_id, material_id)"
+  },
+  {
+    "schemaname": "public",
+    "tablename": "study_material_pages",
+    "indexname": "study_material_pages_pkey",
+    "tablespace": null,
+    "indexdef": "CREATE UNIQUE INDEX study_material_pages_pkey ON public.study_material_pages USING btree (job_id, page)"
+  }
+]

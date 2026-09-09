@@ -1,0 +1,15 @@
+[
+  {
+    "schemaname": "drizzle",
+    "sequencename": "__drizzle_migrations_id_seq",
+    "sequenceowner": "neondb_owner",
+    "data_type": "integer",
+    "start_value": "1",
+    "min_value": "1",
+    "max_value": "2147483647",
+    "increment_by": "1",
+    "cycle": false,
+    "cache_size": "1",
+    "last_value": "4"
+  }
+]
