@@ -1,10 +1,10 @@
-import type {StudyState} from './model';
+import {withDevelopmentSubject,type StudyState} from './model';
 import {DATA_VERSION,WRITE_PROTOCOL} from './versions';
 export function readStoredState(data:string):StudyState{
  const state=JSON.parse(data);
  if(state?.version!==DATA_VERSION)throw new Error('STUDY_UNSUPPORTED_DATA_VERSION');
  if(!Array.isArray(state.subjects)||!Array.isArray(state.tasks)||!Array.isArray(state.materials)||!Array.isArray(state.timetable)||!state.settings)throw new Error('STUDY_INVALID_STORED_DATA');
- return state;
+ return withDevelopmentSubject(state);
 }
 export function compatibleWrite(value:unknown){return value===WRITE_PROTOCOL;}
 export function contentSummary(state:StudyState){return {subjects:state.subjects.length,tasks:state.tasks.length,completed:state.tasks.filter(t=>t.status==='done'||t.status==='partial').length,materials:state.materials.length,timetable:state.timetable.length,routes:state.subjects.reduce((n,s)=>n+s.plans.length,0)};}

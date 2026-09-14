@@ -53,9 +53,9 @@ export function useCloudSync(notify:(message:string)=>void){
  const retry=useCallback(async()=>{const draft=pending.current;if(draft?.status==='queued')return send(draft);},[send]);
  const resolve=useCallback(async(id:string,reviewedRevision:number)=>{
   const list=await localStore.drafts(),draft=list.find(d=>d.command.requestId===id);
-  if(!draft||draft.status!=='conflict'||writing.current)return;
+  if(!draft||!['conflict','upgrade'].includes(draft.status)||writing.current)return;
   // Use exactly the revision the user compared. A later update must conflict again.
-  const replacement:Draft={...draft,command:{...draft.command,revision:reviewedRevision,requestId:crypto.randomUUID()},status:'queued',error:undefined,uncertain:false};
+  const replacement:Draft={...draft,command:{...draft.command,revision:reviewedRevision,protocol:WRITE_PROTOCOL,requestId:crypto.randomUUID()},status:'queued',error:undefined,uncertain:false};
   await localStore.save(replacement);await localStore.remove(id);await reloadDrafts();return send(replacement);
  },[reloadDrafts,send]);
  const discard=useCallback(async(id:string)=>{if(writing.current)return;await localStore.remove(id);await reloadDrafts();editing.current=false;if(latest.current)accept(latest.current,true);channel.current?.postMessage('drafts');},[accept,reloadDrafts]);
