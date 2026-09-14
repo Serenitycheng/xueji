@@ -12,7 +12,7 @@ const root=fileURLToPath(new URL('../',import.meta.url));
 process.chdir(root);
 for(const f of ['.env.local','.env.development.local','.env.device.local'])if(fs.existsSync(f))process.loadEnvFile(f);
 if(process.env.STUDY_HTTPS_PROXY)setGlobalDispatcher(new ProxyAgent(process.env.STUDY_HTTPS_PROXY));
-const base=process.env.STUDY_SITE_URL||'https://xuexu-study.vercel.app';
+const base=process.env.STUDY_SITE_URL||'https://xuexu-study-sereni1.vercel.app';
 const origin=new URL(base);if(origin.protocol!=='https:'&&!['127.0.0.1','localhost'].includes(origin.hostname))throw new Error('处理器只连接 HTTPS 网站。');
 const cache=path.resolve('work/device');fs.mkdirSync(cache,{recursive:true});
 let token='',expires=0;

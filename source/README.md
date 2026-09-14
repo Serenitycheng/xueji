@@ -33,7 +33,9 @@
 
 数据库通过 `db/vercel-schema.ts` 与 `drizzle-vercel/` 管理。先运行 `npm run db:migrate`，再运行 `npm run dev`。生产使用 `npm run build` 与 `npm start`。修改结构后运行 `npm run db:generate` 并审核迁移。
 
-发布前先 `vercel link` 关联正确团队与项目，配置生产环境变量，再执行 `vercel --prod`。Vercel配置使用私有Blob直传，较大的教材不会经过普通函数请求体。学习记录使用版本号检查，避免不同设备互相覆盖。
+通过 Git 发布时，将现有 Vercel 项目关联到仓库，Root Directory 设为 `source`，Production Branch 设为 `main`。`vercel.json` 指定的发布脚本先检查正式环境变量、准备资源并完成 Next.js 构建，再仅在 `VERCEL_ENV=production` 时执行待应用的前向迁移；预览与本地构建不迁移数据库。任一步骤失败都会终止本次发布。协议迁移到新版正式生效之间，旧网站写入可能短暂被拒绝，草稿会保留。若迁移完成后平台发布失败，应继续完成新版发布，不能直接回退为旧协议写入程序。
+
+也可先 `vercel link` 关联正确团队与项目，配置生产环境变量，再执行 `vercel --prod`。Vercel配置使用私有Blob直传，较大的教材不会经过普通函数请求体。学习记录使用版本号检查，避免不同设备互相覆盖。
 
 `node scripts/test.mjs` 检查课表、任务重排、反馈去重与材料引用；`npx tsc --noEmit` 和 `npm run build` 检查类型与构建。
 

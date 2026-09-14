@@ -1,7 +1,14 @@
 import {existsSync} from 'node:fs';
 import {drizzle} from 'drizzle-orm/neon-http';
 import {migrate} from 'drizzle-orm/neon-http/migrator';
+import {neon} from '@neondatabase/serverless';
+import {WRITE_PROTOCOL} from '../lib/versions.ts';
 for(const file of ['.env.local','.env.development.local'])if(existsSync(file))process.loadEnvFile(file);
 if(!process.env.DATABASE_URL)throw new Error('DATABASE_URL is required');
 await migrate(drizzle(process.env.DATABASE_URL),{migrationsFolder:'drizzle-vercel'});
+const sql=neon(process.env.DATABASE_URL);
+const [guard]=await sql.query("SELECT pg_get_functiondef('study_profile_guard()'::regprocedure) AS definition");
+const protocol=guard?.definition.match(/current_setting\('study\.write_protocol',\s*true\)\s+IS\s+DISTINCT\s+FROM\s+'(\d+)'/i)?.[1];
+if(protocol!==String(WRITE_PROTOCOL))throw new Error('Database write protocol does not match this release.');
+console.log('Database write protocol verified: '+protocol+'.');
 console.log('Database migration completed.');
