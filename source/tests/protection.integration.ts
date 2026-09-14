@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {loadState,saveState,db} from '../lib/server';
 import {claimCommand} from '../lib/commands';
 import {atomicWrite} from '../lib/database';
@@ -11,6 +12,11 @@ const result=await Promise.allSettled([saveState(user.id,a,0),saveState(user.id,
 assert.equal(result.filter(r=>r.status==='fulfilled').length,1);
 assert.equal((await loadState(user.id)).revision,1);console.log('PASS: concurrent writes keep exactly one winner');
 await assert.rejects(()=>db().prepare('UPDATE study_profiles SET data=?,revision=revision+1 WHERE user_id=?').bind(JSON.stringify(b),user.id).run(),/STUDY_WRITE_PROTOCOL/);console.log('PASS: old deployment writes rejected by database');
+await assert.rejects(()=>atomicWrite([{query:"SELECT set_config('study.write_protocol','3',true)",params:[]},{query:'SELECT study_save_profile($1,$2,$3)',params:[user.id,JSON.stringify(b),1]}]),/STUDY_WRITE_PROTOCOL/);
+const oldCommand={op:'subject.save',id:'linear',goal:'Before upgrade',revision:0,protocol:3,requestId:crypto.randomUUID()};
+await assert.rejects(()=>claimCommand(user,oldCommand),error=>!!error&&typeof error==='object'&&'status' in error&&error.status===426);
+await db().prepare("INSERT INTO study_receipts(id,user_id,fingerprint,status,status_code,result,created_at) VALUES(?,?,?,'done',200,?,?)").bind(user.id+':'+oldCommand.requestId,user.id,createHash('sha256').update(JSON.stringify(oldCommand)).digest('hex'),JSON.stringify({message:'Previously saved'}),Date.now()).run();
+const oldReplay=await claimCommand(user,oldCommand);assert.equal((await oldReplay.response!.json()).replayed,true);assert.equal((await loadState(user.id)).revision,1);console.log('PASS: protocol 3 cannot write but can recover its existing receipt without duplication');
 const command={op:'subject.save',id:'linear',goal:'Retried',revision:1,protocol:WRITE_PROTOCOL,requestId:crypto.randomUUID()};
 const claim=await claimCommand(user,command);assert.ok(claim.id);
 const duplicate=await claimCommand(user,command);assert.equal(duplicate.response?.status,202);
@@ -23,4 +29,4 @@ await saveState(user.id,readStoredState(history.data),2,{reason:'恢复测试'})
 const count=await db().prepare('SELECT count(*)::integer AS n FROM study_history WHERE user_id=?').bind(user.id).first<{n:number}>();assert.equal(count?.n,4);console.log('PASS: restoring creates a new version and keeps previous versions');
 const abandoned=await claimCommand(user,{...command,revision:3,requestId:crypto.randomUUID()});await db().prepare("UPDATE study_receipts SET status='failed' WHERE id=?").bind(abandoned.id).run();
 await assert.rejects(()=>saveState(user.id,a,3,{receiptId:abandoned.id}),/STUDY_COMMAND_CANCELLED/);assert.equal((await loadState(user.id)).revision,3);console.log('PASS: cancelled late responses cannot write');
-const invalid=JSON.stringify({...a,version:99});await assert.rejects(()=>atomicWrite([{query:"SELECT set_config('study.write_protocol','3',true)",params:[]},{query:'SELECT study_save_profile($1,$2,$3)',params:[user.id,invalid,3]}]),/STUDY_UNSUPPORTED/);console.log('PASS: future data schema rejected without reset');
+const invalid=JSON.stringify({...a,version:99});await assert.rejects(()=>atomicWrite([{query:"SELECT set_config('study.write_protocol','4',true)",params:[]},{query:'SELECT study_save_profile($1,$2,$3)',params:[user.id,invalid,3]}]),/STUDY_UNSUPPORTED/);console.log('PASS: future data schema rejected without reset');

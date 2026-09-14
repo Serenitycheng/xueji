@@ -72,7 +72,7 @@ async function processJob(job){
 async function main(){
  const login=spawnSync(codexBinary(),['login','status'],{encoding:'utf8',windowsHide:true});
  if(login.status!==0||!/ChatGPT/i.test(login.stdout+login.stderr))throw new Error('请先在本机 Codex 登录 ChatGPT 账号，处理器不会使用 API Key 计费。');
- const snap=await api('/api/study');if(snap.protocol!==3)throw new Error('网站版本尚未更新，请先发布新版。');
+ const snap=await api('/api/study');if(snap.protocol!==4)throw new Error('本机处理器与网站版本不一致，请更新后再处理资料。');
  if(process.argv.includes('--check')){console.log('ChatGPT subscription login and website connection verified.');return;}
  const lock=path.join(cache,'worker.lock');
  if(fs.existsSync(lock)){const pid=Number(fs.readFileSync(lock,'utf8'));if(Number.isInteger(pid)&&pid>0){let alive=true;try{process.kill(pid,0);}catch(e){alive=e.code!=='ESRCH';}if(alive){console.log('A processor is already running.');return;}}fs.unlinkSync(lock);}

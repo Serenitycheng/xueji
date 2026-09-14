@@ -1,5 +1,6 @@
 'use client';
 import {STUDY_PATTERNS} from '@/lib/route-adjustments';
+import {DEVELOPMENT_CURRICULUM} from '@/lib/development-curriculum';
 import {today} from '@/lib/model';
 import {useState,type CSSProperties} from 'react';
 import {type Snapshot,type Subject} from '@/lib/model';
@@ -16,10 +17,11 @@ export function RoutesView({snap,actions}:{snap:Snapshot;actions:Actions}){
  const [chosen,setChosen]=useState(snap.state.subjects[0].id),[editing,setEditing]=useState<Subject|null>(null);
  const [adjusting,setAdjusting]=useState(false),[mode,setMode]=useState('resources'),[reason,setReason]=useState(''),[basePlanId,setBasePlanId]=useState(''),[pattern,setPattern]=useState('example');
  const subject=snap.state.subjects.find(s=>s.id===chosen)!;const Icon=subjectIcons[chosen];
- return <><div className="page-heading"><div><div className="eyebrow">MY LEARNING PATHS</div><h1>从目标，到下一步。</h1><p>四个方向，各有路线，共用你的时间。</p></div></div>
+ return <><div className="page-heading"><div><div className="eyebrow">MY LEARNING PATHS</div><h1>从目标，到下一步。</h1><p>{snap.state.subjects.length} 个学习领域，各有路线，共用你的时间。</p></div></div>
  <div className="course-grid">{snap.state.subjects.map(s=>{const I=subjectIcons[s.id];const tasks=snap.state.tasks.filter(t=>t.subjectId===s.id&&t.source!=='demo');const complete=tasks.filter(t=>t.status==='done').length;return <button key={s.id} className={'course-card '+(chosen===s.id?'selected':'')} style={{'--subject':s.color} as CSSProperties} onClick={()=>setChosen(s.id)}><div className="course-card-head"><span className="course-icon"><I size={22}/></span>{s.paused?<Pause size={15}/>:<ArrowUpRight size={16}/>}</div><h3>{s.short}</h3><p>{s.goal}</p><Progress value={tasks.length?complete/tasks.length*100:0} aria-label={s.name+'任务完成比例'}/><small>{s.paused?'已暂停':tasks.length?complete+' / '+tasks.length+' 项任务已完成':'等待开始第一段学习'}</small></button>;})}</div>
  <section className="content-panel"><div className="section-heading"><div className="flex-heading"><span className="course-icon" style={{'--subject':subject.color} as CSSProperties}><Icon size={22}/></span><div><h2>{subject.name}</h2><p className="hint">{subject.deadline?'考试日期：'+subject.deadline:'尚未设定截止日期'}{subject.paused?' · 已暂停':''}</p></div></div><Button variant="outline" onClick={()=>setEditing(structuredClone(subject))}><Settings2 size={16}/>编辑目标</Button></div>
  <div className="goal-summary"><div><span>学习目标</span><p>{subject.goal}</p></div><div><span>当前起点</span><p>{subject.level}</p></div></div>
+{subject.id==='development'&&<div className="development-plan-note"><div className="section-heading"><strong><BookOpen size={17}/>你的系统学习方案已整理</strong><a href={DEVELOPMENT_CURRICULUM.source} target="_blank" rel="noopener noreferrer">查看原方案 · {DEVELOPMENT_CURRICULUM.pages} 页<ArrowUpRight size={14}/></a></div><p>{DEVELOPMENT_CURRICULUM.projectPractice}</p><p>每个主题留下三份学习记录：{DEVELOPMENT_CURRICULUM.evidence.join('、')}。</p></div>}
 <div className="next-action"><div><strong>{subject.selectedPlan?'下一步：把路线变成一个小任务':'先选一条路线，再开始学习'}</strong><p className="hint">{subject.selectedPlan?'按真实资料、可用时间和当前进度生成；其他学科的任务会保留。':'先明确主资料和使用顺序。教材会自动读取，无需手抄目录。'}</p></div>{subject.selectedPlan?<Button disabled={actions.busy||!snap.hasKey} onClick={async()=>{if(await actions.run('plan.generate',{date:today(),subjectId:subject.id}))actions.navigate('today');}}>安排下一步<ArrowRight/></Button>:<Button variant="outline" onClick={()=>actions.navigate('materials')}>查看资料处理</Button>}</div>
  <div className="section-heading plan-heading"><h2>适合你的学习方案</h2><Button disabled={actions.busy||!snap.hasKey} onClick={()=>{if(subject.plans.length){setBasePlanId(subject.selectedPlan??subject.plans[0].id);setAdjusting(true);}else void actions.run('routes.generate',{subjectId:subject.id});}}><Sparkles/>{actions.busy?'正在整理方案…':subject.plans.length?'调整方案':'生成 2–3 套方案'}</Button></div>
  <p className="hint">课内路线按已整理教材的真实目录编排；DeepSeek 据此安排每日任务。课外方案由 DeepSeek 结合目标与精选入口推荐，当前不进行实时全网搜索。</p>
