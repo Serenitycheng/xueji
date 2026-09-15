@@ -103,7 +103,9 @@ node node_modules/next/dist/bin/next build --webpack
 
 Obsidian 打开链接遵循[官方 URI 说明](https://help.obsidian.md/Extending+Obsidian/Obsidian+URI)，对名称和路径分别编码，只允许打开类参数，拒绝新增笔记及 append/prepend 等写入参数。
 
-## 当前开发状态
+## 本地验收结束时的开发状态
+
+以下为功能提交前的验收快照。此后功能提交与发布状态见 [学序 0.5.0 修改说明](README-学序重构ver1.md)。
 
 - 分支：`main`；存在本轮未提交修改。
 - 提交：未执行。推送：未执行。Vercel 生产发布：未执行。
