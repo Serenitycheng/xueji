@@ -4,7 +4,7 @@ import {hasSession} from './session';
 import {readStoredState} from './data-protection';
 import {APP_VERSION,DATA_VERSION,WRITE_PROTOCOL} from './versions';
 export {db,files};
-import { initialState, today, type StudyState, type Snapshot } from '@/lib/model';
+import { freshState, today, type StudyState, type Snapshot } from '@/lib/model';
 export class AppError extends Error { constructor(message:string,public status=400){super(message);} }
 export async function identity(){if(!await hasSession())throw new AppError('请先登录学习空间。',401);return {id:'owner',name:'我的学习空间'};}
 export function checkOrigin(request:Request){
@@ -17,7 +17,7 @@ export function checkOrigin(request:Request){
  if(source.host!==host||!(source.protocol==='https:'||(local&&source.protocol==='http:')))throw new AppError('请求来源不匹配，请重新打开页面。',403);
 }
 export async function loadState(userId:string):Promise<{state:StudyState;revision:number;updatedAt:string}>{
- await db().prepare('INSERT INTO study_profiles(user_id,data,revision) VALUES(?,?,0) ON CONFLICT(user_id) DO NOTHING').bind(userId,JSON.stringify(initialState())).run();
+ await db().prepare('INSERT INTO study_profiles(user_id,data,revision) VALUES(?,?,0) ON CONFLICT(user_id) DO NOTHING').bind(userId,JSON.stringify(freshState())).run();
  const r=await db().prepare('SELECT data, revision,updated_at FROM study_profiles WHERE user_id=?').bind(userId).first<{data:string;revision:number;updated_at:string}>();
  if(!r)throw new AppError('学习空间暂时无法读取，请稍后重试。',503);
  return {state:readStoredState(r.data),revision:r.revision,updatedAt:r.updated_at};

@@ -10,7 +10,7 @@ export async function POST(request:Request){let receiptId:string|undefined;try{
  const {id,name,ext,size,text:extracted,pages}=metadata;
  const {state,revision}=await loadState(user.id);if(state.materials.some(m=>m.id===id)){await db().prepare("UPDATE study_receipts SET status='done',status_code=200,result=? WHERE id=?").bind(JSON.stringify({message:'资料已保存。'}),receiptId).run();return Response.json({snapshot:await snapshot(user.id,user.name),message:'资料已保存。'});}
  if(input.revision!==revision)throw new AppError('云端已有更新，文件已上传，登记草稿已保留。请比较后继续保存。',409);
- if(!state.subjects.some(s=>s.id===input.subjectId)&&input.subjectId!=='general')throw new AppError('请选择资料所属学科。');
+ if(!state.subjects.some(s=>s.id===input.subjectId)&&!state.learning?.directions.some(d=>d.id===input.subjectId)&&input.subjectId!=='general')throw new AppError('请选择资料所属学科。');
  const prefix=user.id+'/'+id;const blob=await head(prefix+'/file');if(blob.size!==size)throw new AppError('上传未完成，请重新导入。');
  const textPath=extracted?await saveMaterialText(user.id,id,extracted):undefined;
  state.materials.push({id,textPath,subjectId:input.subjectId,name,kind:ext==='pdf'?'pdf':ext==='pptx'?'slides':'text',size,pages,textLength:extracted.length,status:extracted.trim().length>30?'ready':'needs-text',excerpt:extracted.slice(0,600),createdAt:new Date().toISOString()});

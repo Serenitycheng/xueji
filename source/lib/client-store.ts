@@ -11,5 +11,8 @@ export const localStore={
  async save(draft:Draft){if(!canPersist(draft.command))throw new Error('密钥不能写入本机草稿');return access<void>('readwrite',(s,done)=>{s.put(draft,'draft:'+draft.command.requestId);done();});},
  async drafts(){return access<Draft[]>('readonly',(s,done)=>{const r=s.openCursor();const rows:Draft[]=[];r.onsuccess=()=>{const c=r.result;if(c){if(String(c.key).startsWith('draft:'))rows.push(c.value);c.continue();}else done(rows.sort((a,b)=>a.createdAt.localeCompare(b.createdAt)));};});},
  async remove(id:string){return access<void>('readwrite',(s,done)=>{s.delete('draft:'+id);done();});},
+ async form(id:string){return access<unknown>('readonly',(s,done)=>{const r=s.get('form:'+id);r.onsuccess=()=>done(r.result);});},
+ async saveForm(id:string,value:unknown){return access<void>('readwrite',(s,done)=>{s.put(value,'form:'+id);done();});},
+ async removeForm(id:string){return access<void>('readwrite',(s,done)=>{s.delete('form:'+id);done();});},
  async clear(){return access<void>('readwrite',(s,done)=>{s.clear();done();});},
 };

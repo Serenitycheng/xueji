@@ -7,7 +7,7 @@ const schema='studyflow_test_'+randomUUID().replaceAll('-','');
 if(!/^studyflow_test_[a-f0-9]{32}$/.test(schema))throw new Error('Invalid isolated schema');
 const sql=neon(process.env.DATABASE_URL);await sql.query('CREATE SCHEMA '+schema);
 try{
- const statements=(await Promise.all(['0000_daffy_quentin_quire.sql','0001_remarkable_talon.sql','0002_material_jobs.sql','0003_learning_flow_protocol.sql','0004_development_protocol.sql'].map(f=>readFile('drizzle-vercel/'+f,'utf8')))).flatMap(s=>s.split('--> statement-breakpoint').filter(x=>x.trim()));
+ const statements=(await Promise.all(['0000_daffy_quentin_quire.sql','0001_remarkable_talon.sql','0002_material_jobs.sql','0003_learning_flow_protocol.sql','0004_development_protocol.sql','0005_learning_workspace.sql'].map(f=>readFile('drizzle-vercel/'+f,'utf8')))).flatMap(s=>s.split('--> statement-breakpoint').filter(x=>x.trim()));
  await sql.transaction([sql.query('SET LOCAL search_path TO '+schema),...statements.map(s=>sql.query(s))]);
  // Inject a transaction-local schema into the actual application adapter. No
  // production code path or user profile is changed by these integration tests.

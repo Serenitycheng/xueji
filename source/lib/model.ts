@@ -1,7 +1,8 @@
+import {emptyLearning,type LearningWorkspace} from './learning';
 import {classesOnDate} from './timetable';
 import {developmentLearningPlan} from './development-curriculum';
 export type SubjectId = 'linear' | 'stats' | 'japanese' | 'photo' | 'development';
-export type View = 'today' | 'routes' | 'materials' | 'progress' | 'schedule' | 'settings' | 'cloud';
+export type View = 'legacy' | 'learn' | 'today' | 'routes' | 'materials' | 'progress' | 'schedule' | 'settings' | 'cloud';
 export type Subject = {id: SubjectId; name: string; short: string; color: string; goal: string; level: string; deadline: string; paused: boolean; selectedPlan?: string; recommendationHistory?: string[]; plans: LearningPlan[]};
 export type LearningPlan = {changes?: string[]; studyPattern?: 'explain'|'example'|'attempt'; sessionMinutes?: number; id: string; title: string; description: string; resources: {resourceId?: string; name: string; role: string; url: string; verified: boolean; materialId?: string}[]; stages: string[]};
 export type Quiz = {question: string; options: string[]; answer: number; explanation: string};
@@ -12,7 +13,7 @@ export type TimetableEntry = {id: string; name: string; day: number; start: stri
 export type DayOverride = {date: string; minutes: number; reason: string};
 export type Settings = {model: string; budget: number; ratio: number; awakeStart: string; awakeEnd: string; protectedMinutes: number; bufferMinutes: number; maxMinutes: number; semesterStart: string; restDays: number[]};
 export type LogEntry = {id: string; date: string; message: string; type: 'plan' | 'feedback' | 'schedule' | 'resource'};
-export type StudyState = {version: 1; subjects: Subject[]; tasks: Task[]; materials: Material[]; timetable: TimetableEntry[]; overrides: DayOverride[]; settings: Settings; logs: LogEntry[]; demo: boolean};
+export type StudyState = {learning?:LearningWorkspace;version: 1; subjects: Subject[]; tasks: Task[]; materials: Material[]; timetable: TimetableEntry[]; overrides: DayOverride[]; settings: Settings; logs: LogEntry[]; demo: boolean};
 export type Snapshot = {state: StudyState; revision: number; hasKey: boolean; usage: {cost: number; calls: number; month: string}; userName: string; updatedAt?: string; appVersion?: string; protocol?: number; schemaVersion?: number};
 export const DEVELOPMENT_SUBJECT: Subject = {
  id:'development',name:'开发',short:'开发',color:'#347ea4',
@@ -36,6 +37,7 @@ export function addDays(date: string,n:number) {const d=new Date(date+'T12:00:00
 export function initialState(): StudyState {
  return {version:1,subjects:structuredClone(SUBJECTS),tasks:[],materials:[],timetable:[],overrides:[],logs:[],demo:false,settings:{model:'deepseek-v4-flash',budget:100,ratio:50,awakeStart:'08:00',awakeEnd:'23:00',protectedMinutes:300,bufferMinutes:60,maxMinutes:180,semesterStart:today(),restDays:[]}};
 }
+export function freshState():StudyState {return {...initialState(),subjects:[],learning:emptyLearning()};}
 export function demoTasks(date=today()): Task[] {
 const rows: [SubjectId,string,number,string,string[],Quiz][]=[
 ['linear','从向量开始，理解线性组合',35,'能用自己的话解释向量的线性组合',['把向量理解为一组有顺序的数，例如 (1, 2)。','用纸笔计算 2 × (1, 2) + (3, 1)，注意逐个位置运算。','完成简短验证，记录不确定的地方。'],{question:'2 × (1, 2) + (3, 1) 等于？',options:['(5, 5)','(5, 3)','(4, 4)'],answer:0,explanation:'对应位置相加：(2+3, 4+1) = (5, 5)。'}],

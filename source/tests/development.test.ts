@@ -1,3 +1,4 @@
+import {ensureLearning} from '../lib/learning';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {initialState,demoTasks,withDevelopmentSubject,type StudyState} from '../lib/model';
@@ -34,7 +35,7 @@ test('normalization is idempotent and preserves a customized development plan',(
  dev.goal='我的系统学习方案';dev.paused=true;dev.selectedPlan='mine';
  dev.plans=[{id:'mine',title:'已有方案',description:'保留',resources:[],stages:['基础']}];
  assert.strictEqual(withDevelopmentSubject(state),state);
- assert.deepEqual(readStoredState(JSON.stringify(state)),state);
+ assert.deepEqual(readStoredState(JSON.stringify(state)),ensureLearning(state));
  const a=withDevelopmentSubject(legacyState()),b=withDevelopmentSubject(legacyState());
  a.subjects[4].plans.push(...dev.plans);
  assert.equal(b.subjects[4].plans.length,1);
@@ -44,7 +45,7 @@ test('restoring an older state also includes development and retains unknown fie
  const original={...legacyState(),futureExtra:{keep:true}};
  const restored=readStoredState(JSON.stringify(original));
  assert.equal(restored.subjects.filter(s=>s.id==='development').length,1);
- assert.deepEqual({...restored,subjects:original.subjects},original);
+ const {learning,...legacy}=restored;assert.deepEqual({...legacy,subjects:original.subjects},original);assert.ok(learning);
  assert.throws(()=>readStoredState(JSON.stringify({...original,version:99})),/UNSUPPORTED/);
 });
 
@@ -79,5 +80,5 @@ test('development joins the same time budget and paused-task handling',()=>{
  rebalance(state);
  assert.equal(state.tasks.find(t=>t.subjectId==='development')!.status,'deferred');
  assert.equal(compatibleWrite(3),false);
- assert.equal(compatibleWrite(4),true);
+ assert.equal(compatibleWrite(4),false);assert.equal(compatibleWrite(5),true);
 });

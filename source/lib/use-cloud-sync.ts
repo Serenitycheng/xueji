@@ -1,10 +1,10 @@
 'use client';
 import {useCallback,useEffect,useRef,useState} from 'react';
-import {initialState,today,type Snapshot} from './model';
+import {freshState,today,type Snapshot} from './model';
 import {localStore,canPersist,type Draft,type Command} from './client-store';
 import {WRITE_PROTOCOL} from './versions';
 export function useCloudSync(notify:(message:string)=>void){
- const [snap,setSnap]=useState<Snapshot>(()=>({state:initialState(),revision:0,hasKey:false,usage:{cost:0,calls:0,month:today().slice(0,7)},userName:'我的学习空间'}));
+ const [snap,setSnap]=useState<Snapshot>(()=>({state:freshState(),revision:0,hasKey:false,usage:{cost:0,calls:0,month:today().slice(0,7)},userName:'我的学习空间'}));
  const [loaded,setLoaded]=useState(false),[busy,setBusy]=useState(false),[online,setOnline]=useState(true),[error,setError]=useState(''),[lastSync,setLastSync]=useState(''),[drafts,setDrafts]=useState<Draft[]>([]),[cloud,setCloud]=useState<Snapshot|null>(null);
  const shown=useRef(snap),latest=useRef<Snapshot|null>(null),pending=useRef<Draft|null>(null),editing=useRef(false),writing=useRef(false),ready=useRef(false),channel=useRef<BroadcastChannel|null>(null),refreshing=useRef<Promise<void>|null>(null);
  const reloadDrafts=useCallback(async()=>{const list=await localStore.drafts();setDrafts(list);pending.current=list[0]??null;return list;},[]);
@@ -22,7 +22,7 @@ export function useCloudSync(notify:(message:string)=>void){
   refreshing.current=work;try{await work;}finally{refreshing.current=null;}
  },[accept]);
  const send=useCallback(async(draft:Draft)=>{
-  if(writing.current)return null;writing.current=true;setBusy(true);
+  if(writing.current)return null;writing.current=true;setBusy(true);notify('');
   const persist=canPersist(draft.command);
   try{
    if(persist){await localStore.save(draft);await reloadDrafts();}
@@ -69,7 +69,7 @@ export function useCloudSync(notify:(message:string)=>void){
   const offline=()=>setOnline(false);
   window.addEventListener('online',tick);window.addEventListener('offline',offline);window.addEventListener('focus',tick);document.addEventListener('visibilitychange',tick);
   if('BroadcastChannel' in window){channel.current=new BroadcastChannel('studyflow-sync-v2');channel.current.onmessage=()=>{void reloadDrafts().then(()=>refresh());};}
-  const unload=(e:BeforeUnloadEvent)=>{if(writing.current){e.preventDefault();}};window.addEventListener('beforeunload',unload);
+  const unload=(e:BeforeUnloadEvent)=>{if(writing.current||editing.current){e.preventDefault();}};window.addEventListener('beforeunload',unload);
   return()=>{active=false;window.clearInterval(interval);window.removeEventListener('online',tick);window.removeEventListener('offline',offline);window.removeEventListener('focus',tick);document.removeEventListener('visibilitychange',tick);window.removeEventListener('beforeunload',unload);channel.current?.close();};
  },[notify,refresh,reloadDrafts,send]);
  return {snap,loaded,busy,online,error,lastSync,cloud,drafts,run,refresh,retry,resolve,discard,cancel,finishEditing,markEditing:()=>{editing.current=true;},cloudAhead:!!cloud&&cloud.revision>snap.revision};

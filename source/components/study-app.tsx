@@ -1,67 +1,412 @@
 'use client';
-import {useEffect,useState,type CSSProperties} from 'react';
-import {BookOpen,LayoutDashboard,Route,FolderOpen,ChartNoAxesCombined,CalendarDays,Settings,ArrowUpRight,ArrowRight,Plus,Clock3,Sparkles,ChevronLeft,ChevronRight,Check,Leaf,RefreshCw,AlertCircle,GraduationCap,Camera,Code2,Languages,Calculator,PanelLeft,Target,Cloud,CheckCheck} from 'lucide-react';
-import {Button} from '@/components/ui/button';
-import {SidebarProvider,Sidebar,SidebarHeader,SidebarContent,SidebarFooter,SidebarGroup,SidebarGroupLabel,SidebarMenu,SidebarMenuItem,SidebarMenuButton,SidebarInset,SidebarTrigger} from '@/components/ui/sidebar';
-import {Progress} from '@/components/ui/progress';
-import {Dialog,DialogContent,DialogHeader,DialogTitle,DialogDescription} from '@/components/ui/dialog';
-import {Input} from '@/components/ui/input';
-import {Textarea} from '@/components/ui/textarea';
-import {Field,Empty} from '@/components/ui-parts';
-import {type Snapshot,type Task,type View,type SubjectId,initialState,today,addDays,dailyBudget,demoTasks} from '@/lib/model';
-import {RoutesView,MaterialsView,ProgressView,ScheduleView,SettingsView,TaskDetail} from '@/components/study-views';
-import {useCloudSync} from '@/lib/use-cloud-sync';
-import {localStore} from '@/lib/client-store';
-import {CloudView} from '@/components/views/cloud-view';
-const nav=[{id:'today',label:'今日学习',icon:LayoutDashboard},{id:'routes',label:'学习路线',icon:Route},{id:'materials',label:'资料库',icon:FolderOpen},{id:'progress',label:'学习进度',icon:ChartNoAxesCombined},{id:'schedule',label:'时间安排',icon:CalendarDays},{id:'cloud',label:'同步与版本',icon:Cloud}] as const;
-export const subjectIcons={linear:Calculator,stats:ChartNoAxesCombined,japanese:Languages,photo:Camera,development:Code2};
-export type Actions={run:(op:string,data?:Record<string,unknown>)=>Promise<any>;busy:boolean;hasDraft:boolean;notify:(message:string)=>void;refresh:()=>Promise<void>;navigate:(view:View)=>void};
-export default function StudyApp(){
- const [message,setMessage]=useState(''),[view,setView]=useState<View>('today'),[selectedDate,setDate]=useState(today()),[filter,setFilter]=useState('all'),[detail,setDetail]=useState<string|null>(null),[adjust,setAdjust]=useState(false),[minutes,setMinutes]=useState(120),[reason,setReason]=useState(''),[coach,setCoach]=useState(false),[coachText,setCoachText]=useState(''),[coachReply,setCoachReply]=useState('');
- const sync=useCloudSync(setMessage);
- const {snap,loaded,busy,error,refresh,run}=sync;
- useEffect(()=>{const update=()=>{const allowed=['today','routes','materials','progress','schedule','settings','cloud'];const v=location.hash.slice(1);if(allowed.includes(v))setView(v as View);};update();window.addEventListener('hashchange',update);return()=>window.removeEventListener('hashchange',update);},[]);
- const navigate=(v:View)=>{sync.finishEditing();setView(v);history.replaceState(null,'','#'+v);window.scrollTo({top:0,behavior:'smooth'});};
- const actions:Actions={run,busy,hasDraft:sync.drafts.length>0,notify:setMessage,refresh,navigate};
- const state=snap.state, budget=dailyBudget(state,selectedDate),tasks=state.tasks.filter(t=>t.date===selectedDate&&t.status!=='deferred'),done=tasks.filter(t=>t.status==='done').length,total=tasks.reduce((s,t)=>s+t.minutes,0),completedMinutes=tasks.filter(t=>t.status==='done'||t.status==='partial').reduce((s,t)=>s+(t.actualMinutes??t.minutes),0);
- const shown=tasks.filter(t=>filter==='all'||t.subjectId===filter);
- const selectedTask=state.tasks.find(t=>t.id===detail);
- const dateObj=new Date(selectedDate+'T12:00:00Z');
- return <SidebarProvider style={{'--sidebar-width':'232px'} as CSSProperties} onFocusCapture={e=>{if(e.target instanceof Element&&e.target.matches('input,textarea,[role=combobox],[role=slider],[role=checkbox]'))sync.markEditing();}} onChangeCapture={()=>sync.markEditing()}>
- <Sidebar className="app-sidebar"><SidebarHeader className="brand"><div className="brand-symbol"><BookOpen size={23}/></div><div><strong>学序<span>STUDYFLOW</span></strong></div></SidebarHeader>
- <SidebarContent><SidebarGroup><SidebarGroupLabel>学习工作台</SidebarGroupLabel><SidebarMenu>{nav.map(n=><SidebarMenuItem key={n.id}><SidebarMenuButton isActive={view===n.id} onClick={()=>navigate(n.id)} className="nav-item"><n.icon/><span>{n.label}</span>{n.id==='today'&&tasks.length>0&&<span className="nav-count">{tasks.length-done}</span>}</SidebarMenuButton></SidebarMenuItem>)}</SidebarMenu></SidebarGroup>
- <SidebarGroup className="subjects-nav"><SidebarGroupLabel>学习领域 <span>{state.subjects.length}</span></SidebarGroupLabel><SidebarMenu>{state.subjects.map(s=><SidebarMenuItem key={s.id}><SidebarMenuButton onClick={()=>{setFilter(s.id);navigate('today');}}><i className="subject-dot" style={{background:s.color}}/><span>{s.short}</span>{s.paused&&<span className="subtle">暂停</span>}</SidebarMenuButton></SidebarMenuItem>)}</SidebarMenu></SidebarGroup>
- <div className="sidebar-note"><span className="eyebrow">ONE STEP AT A TIME</span><p>按自己的节奏，<br/>把好奇变成进步。</p><span className="note-line"/></div>
- </SidebarContent><SidebarFooter><Button variant="ghost" className={'settings-nav '+(view==='settings'?'is-active':'')} onClick={()=>navigate('settings')}><Settings size={18}/>偏好与 AI 设置</Button><div className="profile"><span className="avatar">我</span><div><strong>我的学习空间</strong><small><Cloud size={12}/>个人空间 · 云端保存</small></div><Button variant="ghost" size="sm" onClick={async()=>{if(sync.drafts.length){setMessage('请先处理或导出本机草稿后再退出。');navigate('cloud');return;}const r=await fetch('/api/auth',{method:'DELETE'});if(r.ok){await localStore.clear().catch(()=>{});window.location.assign('/login');}}}>退出</Button></div></SidebarFooter></Sidebar>
- <SidebarInset><header className="topbar"><div className="breadcrumb"><SidebarTrigger className="mobile-trigger"/><span>我的工作台</span><ChevronRight size={14}/><strong>{nav.find(n=>n.id===view)?.label??'偏好与 AI 设置'}</strong></div><div className="top-actions"><Button variant="ghost" className="sync-indicator" onClick={()=>navigate('cloud')}><Cloud size={15}/>{busy?'正在保存':sync.drafts.length?'待处理草稿':!sync.online?'暂时离线':sync.cloudAhead?'有新内容':'云端同步'}</Button><span className="connection"><i className={snap.hasKey?'connected':''}/>{snap.hasKey?'DeepSeek 已连接':'DeepSeek 待连接'}</span><Button variant="outline" onClick={()=>navigate('materials')}><Plus/>导入资料</Button></div></header>
- <main className="main-content">
- {(sync.drafts.length>0||sync.cloudAhead)&&view!=='cloud'&&<div className="notice"><Cloud size={18}/><span>{sync.drafts.length?'有未确认的本机修改，请比较后继续保存。':'另一台设备有新内容，当前编辑保持原样。'}</span><Button variant="outline" onClick={()=>navigate('cloud')}>查看与处理</Button></div>}
- {error&&<div className="notice error"><AlertCircle size={18}/><span>{error}</span><Button variant="outline" onClick={()=>void refresh()}>重试</Button></div>}
- {message&&<div className="notice" role="status"><CheckCheck size={18}/><span>{message}</span><Button variant="ghost" onClick={()=>setMessage('')}>关闭</Button></div>}
- {!loaded&&!error&&<div className="loading-line" role="status"><RefreshCw className="spin" size={16}/>正在读取学习空间…</div>}
- {view==='today'&&<>
- <div className="page-heading"><div><div className="eyebrow">{dateObj.toLocaleDateString('zh-CN',{month:'long',day:'numeric',weekday:'long',timeZone:'UTC'})}</div><h1>今天，学一点新的。</h1><p>目标有方向，学习有节奏。</p></div><Button variant="outline" onClick={()=>{setMinutes(budget.minutes);setReason('');setAdjust(true);}}><Clock3/>调整今日时间</Button></div>
- {!snap.hasKey&&<div className="setup-banner"><span className="setup-icon"><Sparkles size={21}/></span><div><strong>你的学习工作台已就绪</strong><p>连接 DeepSeek，再导入材料，就能生成属于你的学习安排。</p></div><Button onClick={()=>navigate('settings')}>连接 DeepSeek<ArrowUpRight/></Button></div>}
- {state.demo&&<div className="demo-note"><span>体验模式 · 以下任务和验证为内置示例，不代表你的真实学习进度。</span><Button variant="ghost" disabled={busy} onClick={()=>void run('demo.clear')}>结束体验</Button></div>}
- <div className="stats-strip"><div className="stat-block"><span><Clock3 size={16}/>今日学习额度</span><strong>{budget.minutes}<small>分钟</small></strong><p>{budget.overridden?'已按你的安排调整':state.timetable.length?'结合课表与休息时间计算':'暂用默认作息，可在时间安排中修改'}</p></div><div className="stat-block"><span><CheckCheck size={16}/>任务完成</span><strong>{done}<small>/ {tasks.length} 项</small></strong><Progress value={tasks.length?done/tasks.length*100:0} aria-label="今日任务完成比例"/></div><div className="stat-block"><span><Target size={16}/>已学习</span><strong>{completedMinutes}<small>分钟</small></strong><p>已安排 {total} 分钟 · 预留 {Math.max(0,budget.minutes-total)} 分钟</p></div></div>
- <div className="today-layout"><section className="tasks-area"><div className="section-heading"><h2>今日任务 <span>{tasks.length}</span></h2><div className="date-controls"><Button variant="ghost" size="icon" aria-label="前一天" onClick={()=>setDate(addDays(selectedDate,-1))}><ChevronLeft/></Button><Button variant="ghost" onClick={()=>setDate(today())}>{selectedDate===today()?'今天':selectedDate.slice(5)}</Button><Button variant="ghost" size="icon" aria-label="后一天" onClick={()=>setDate(addDays(selectedDate,1))}><ChevronRight/></Button></div></div>
- <div className="subject-filters"><Button variant={filter==='all'?'secondary':'ghost'} onClick={()=>setFilter('all')}>全部</Button>{state.subjects.map(s=><Button key={s.id} variant={filter===s.id?'secondary':'ghost'} onClick={()=>setFilter(s.id)}><i className="subject-dot" style={{background:s.color}}/>{s.short}</Button>)}</div>
- {shown.length===0?<Empty icon={<BookOpen size={28}/>} title={tasks.length?'这门课今天没有任务':'把第一步安排好'} action={<div className="empty-actions"><Button disabled={busy||!loaded} onClick={()=>!snap.hasKey?navigate('settings'):!state.subjects.some(s=>s.selectedPlan&&!s.paused)?navigate('routes'):void run('plan.generate',{date:selectedDate})}><Sparkles/>{!snap.hasKey?'连接学习助手':!state.subjects.some(s=>s.selectedPlan&&!s.paused)?'选择学习路线':'生成今日计划'}</Button>{!state.tasks.length&&<Button variant="outline" disabled={busy||!loaded} onClick={()=>void run('demo.load')}>先体验示例</Button>}</div>}>{tasks.length?'可以看看其他科目，或在学习路线中调整。':'先选择学习路线。准备好后，让 DeepSeek 把目标拆成今天能完成的小任务。'}</Empty>:<div className="task-list">{shown.map((t,i)=>{const s=state.subjects.find(s=>s.id===t.subjectId)!;const Icon=subjectIcons[t.subjectId];return <article key={t.id} className={'task-card '+(t.status==='done'?'task-done':'')} style={{'--subject':s.color} as CSSProperties}><div className="task-topline"><span className="subject-chip"><Icon size={14}/>{s.short}</span><span className="task-kind">{t.source==='review'?'巩固复习':t.source==='demo'?'体验任务':'学习任务'}</span><span className="task-time"><Clock3 size={14}/>{t.minutes} 分钟</span></div><button className="task-title-button" onClick={()=>setDetail(t.id)}><h3>{t.title}</h3></button><p className="task-goal">{t.goal}</p><div className="task-resource"><BookOpen size={14}/><span>{t.resource} · {t.location||'查看任务步骤'}</span></div><div className="task-bottom"><span className={'task-status '+(t.status==='done'?'green':'')}>{t.status==='done'?<><Check size={14}/>{t.score!==undefined?'已完成 · 验证 '+t.score+'%':'已完成 · 待验证'}</>:t.status==='partial'?'已学一部分':<><span className="status-dot"/>待开始</>}</span><Button variant={i===0&&t.status==='todo'?'default':'outline'} onClick={()=>setDetail(t.id)}>{t.status==='done'?'查看记录':'开始学习'}<ArrowRight size={15}/></Button></div></article>;})}</div>}
- <Button className="regenerate" variant="ghost" disabled={busy||!snap.hasKey} onClick={()=>void run('plan.generate',{date:selectedDate})}><RefreshCw className={busy?'spin':''} size={15}/>根据最新进度更新计划</Button>
- </section><aside className="today-aside"><section className="focus-panel"><span className="eyebrow">LEARNING COMPASS</span><h2>你的学习方向</h2><div className="focus-orbit"><div className="orbit-center"><BookOpen size={27}/><span>持续积累</span></div>{state.subjects.map((s,i)=>{const Icon=subjectIcons[s.id];return <div key={s.id} className="orbit-dot" style={{color:s.color,left:`calc(50% + ${71*Math.sin(2*Math.PI*i/state.subjects.length)}px)`,top:`${87-71*Math.cos(2*Math.PI*i/state.subjects.length)}px`}}><Icon size={20}/></div>;})}</div><div className="focus-subjects">{state.subjects.map(s=><div key={s.id}><i className="subject-dot" style={{background:s.color}}/><span>{s.short}</span><small>{s.paused?'已暂停':s.deadline?'考试 '+s.deadline.slice(5):s.id==='linear'||s.id==='stats'?'待设考试日期':'按自己的节奏'}</small></div>)}</div><Button variant="ghost" onClick={()=>navigate('routes')}>查看学习路线<ArrowUpRight size={15}/></Button></section>
- <section className="coach-panel"><span className="mini-icon"><Sparkles size={18}/></span><h3>计划可以跟着生活走</h3><p>今天有事、内容太难，或想换一份资料？告诉学习助手。</p><Button variant="outline" onClick={()=>setCoach(true)}>聊聊我的安排<ArrowRight size={15}/></Button></section>
- <div className="quiet-note"><Leaf size={16}/><span>留一点空白，也是计划的一部分。</span></div></aside></div>
- </>}
- {view==='routes'&&<RoutesView snap={snap} actions={actions}/>}
- {view==='materials'&&<MaterialsView snap={snap} actions={actions}/>}
- {view==='progress'&&<ProgressView snap={snap} actions={actions}/>}
- {view==='schedule'&&<ScheduleView snap={snap} actions={actions}/>}
- {view==='settings'&&<SettingsView snap={snap} actions={actions}/>}
- {view==='cloud'&&<CloudView sync={sync} notify={setMessage}/>}
- <footer className="app-footer"><span>学序 · 按自己的节奏学习</span><span>你的记录，仅属于你</span></footer>
- </main></SidebarInset>
- <Dialog open={adjust} onOpenChange={setAdjust}><DialogContent className="wide-dialog"><DialogHeader><DialogTitle>调整 {selectedDate===today()?'今天':selectedDate} 的时间</DialogTitle><DialogDescription>保留已经完成的学习，重新分配剩余任务。</DialogDescription></DialogHeader><Field label="今天总共可以学习多少分钟"><Input aria-label="可学习分钟数" type="number" min={0} max={720} value={minutes} onChange={e=>setMinutes(Number(e.target.value))}/></Field><Field label="发生了什么"><Textarea aria-label="调整原因" value={reason} onChange={e=>setReason(e.target.value)} placeholder="例如：今晚有活动，想早点休息"/></Field><div className="dialog-actions"><Button variant="outline" onClick={()=>{setMinutes(0);setReason('今天休息');}}>今天休息</Button><Button disabled={busy||!reason.trim()} onClick={async()=>{if(await run('day.override',{date:selectedDate,minutes,reason}))setAdjust(false);}}>保存并重新安排</Button></div></DialogContent></Dialog>
- <Dialog open={coach} onOpenChange={setCoach}><DialogContent className="wide-dialog"><DialogHeader><DialogTitle>聊聊你的学习安排</DialogTitle><DialogDescription>助手会结合目标、资料和近期反馈给出建议。</DialogDescription></DialogHeader><Textarea aria-label="给学习助手的消息" value={coachText} onChange={e=>setCoachText(e.target.value)} placeholder="最近日语资料看不懂，能帮我调整一下吗？" rows={4}/>{coachReply&&<div className="coach-reply">{coachReply}</div>}<Button disabled={busy||!coachText.trim()||!snap.hasKey} onClick={async()=>{const r=await run('coach',{message:coachText});if(r)setCoachReply(r.reply);}}>{busy?'正在整理建议…':snap.hasKey?'发送给学习助手':'请先在设置中连接 DeepSeek'}</Button><Button variant="ghost" onClick={()=>{setCoach(false);setMinutes(budget.minutes);setReason(coachText);setAdjust(true);}}>调整可用时间</Button></DialogContent></Dialog>
- {selectedTask&&<TaskDetail task={selectedTask} snap={snap} actions={actions} onClose={()=>setDetail(null)}/>}
- </SidebarProvider>;
+import { useEffect, useState, type CSSProperties } from 'react';
+import {
+  BookOpen,
+  LayoutDashboard,
+  Route,
+  FolderOpen,
+  History,
+  Settings,
+  ChevronRight,
+  Cloud,
+  AlertCircle,
+  CheckCheck,
+  Calculator,
+  ChartNoAxesCombined,
+  Languages,
+  Camera,
+  Code2,
+} from 'lucide-react';
+import { Button } from './ui/button';
+import {
+  SidebarProvider,
+  Sidebar,
+  SidebarHeader,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarInset,
+  SidebarTrigger,
+} from './ui/sidebar';
+import { MaterialsView } from './views/materials-view';
+import { SettingsView } from './views/settings-view';
+import { CloudView } from './views/cloud-view';
+import {
+  LearningHome,
+  DirectionsView,
+  DirectionDetail,
+  LearningReview,
+  LegacyView,
+  ReferenceEntry,
+} from './learning-workspace';
+import { useCloudSync } from '@/lib/use-cloud-sync';
+import { localStore } from '@/lib/client-store';
+import { emptyLearning } from '@/lib/learning';
+import type { Snapshot, View } from '@/lib/model';
+export const subjectIcons = {
+  linear: Calculator,
+  stats: ChartNoAxesCombined,
+  japanese: Languages,
+  photo: Camera,
+  development: Code2,
+};
+export type Actions = {
+  run: (
+    op: string,
+    data?: Record<string, unknown>,
+  ) => Promise<{ snapshot: Snapshot; message?: string; reply?: string } | null>;
+  busy: boolean;
+  hasDraft: boolean;
+  notify: (message: string) => void;
+  refresh: () => Promise<void>;
+  navigate: (view: View) => void;
+};
+const nav = [
+  { id: 'today', label: '继续学习', icon: LayoutDashboard },
+  { id: 'routes', label: '学习方向', icon: Route },
+  { id: 'materials', label: '资料库', icon: FolderOpen },
+  { id: 'progress', label: '学习回看', icon: History },
+] as const;
+export default function StudyApp() {
+  const [message, setMessage] = useState(''),
+    [view, setView] = useState<View>('today'),
+    [directionId, setDirectionId] = useState('');
+  const sync = useCloudSync(setMessage);
+  const { snap, loaded, busy, error, run, refresh } = sync,
+    w = snap.state.learning ?? emptyLearning();
+  useEffect(() => {
+    const update = () => {
+      const hash = location.hash.slice(1);
+      if (hash.startsWith('learn/')) {
+        try {
+          const id = decodeURIComponent(hash.slice(6));
+          setDirectionId(id);
+          setView('learn');
+          localStorage.setItem('xuexu-last-direction', id);
+        } catch {
+          setView('today');
+        }
+        return;
+      }
+      const v = hash === 'schedule' ? 'legacy' : hash;
+      if (
+        [
+          'today',
+          'routes',
+          'materials',
+          'progress',
+          'settings',
+          'cloud',
+          'legacy',
+        ].includes(v)
+      )
+        setView(v as View);
+      else setView('today');
+    };
+    update();
+    window.addEventListener('hashchange', update);
+    return () => window.removeEventListener('hashchange', update);
+  }, []);
+  const navigate = (v: View) => {
+    sync.finishEditing();
+    setView(v);
+    history.replaceState(null, '', '#' + v);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  const open = (id: string) => {
+    sync.finishEditing();
+    setDirectionId(id);
+    setView('learn');
+    history.replaceState(null, '', '#learn/' + encodeURIComponent(id));
+    try {
+      localStorage.setItem('xuexu-last-direction', id);
+    } catch {}
+    window.scrollTo({ top: 0 });
+  };
+  const actions: Actions = {
+      run,
+      busy,
+      hasDraft: sync.drafts.length > 0,
+      notify: setMessage,
+      refresh,
+      navigate,
+    },
+    state = { ...snap.state, learning: w },
+    d = w.directions.find((d) => d.id === directionId);
+  return (
+    <SidebarProvider
+      style={{ '--sidebar-width': '232px' } as CSSProperties}
+      onFocusCapture={(e) => {
+        if (
+          e.target instanceof Element &&
+          e.target.matches('input,textarea,select,[role=combobox]')
+        )
+          sync.markEditing();
+      }}
+      onChangeCapture={() => sync.markEditing()}
+    >
+      <Sidebar className="app-sidebar">
+        <SidebarHeader className="brand">
+          <div className="brand-symbol">
+            <BookOpen size={23} />
+          </div>
+          <div>
+            <strong>
+              学序<span>STUDYFLOW</span>
+            </strong>
+          </div>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>学习工作台</SidebarGroupLabel>
+            <SidebarMenu>
+              {nav.map((n) => (
+                <SidebarMenuItem key={n.id}>
+                  <SidebarMenuButton
+                    isActive={view === n.id}
+                    onClick={() => navigate(n.id)}
+                    className="nav-item"
+                  >
+                    <n.icon />
+                    <span>{n.label}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroup>
+          <SidebarGroup>
+            <SidebarGroupLabel>
+              进行中的方向 ·{' '}
+              {w.directions.filter((d) => d.status === 'active').length}
+            </SidebarGroupLabel>
+            <SidebarMenu>
+              {w.directions
+                .filter((d) => d.status === 'active')
+                .slice(0, 8)
+                .map((d) => (
+                  <SidebarMenuItem key={d.id}>
+                    <SidebarMenuButton
+                      isActive={view === 'learn' && directionId === d.id}
+                      onClick={() => open(d.id)}
+                    >
+                      <BookOpen />
+                      <span>{d.name}</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              {w.directions.filter((d) => d.status === 'active').length > 8 && (
+                <SidebarMenuItem>
+                  <SidebarMenuButton onClick={() => navigate('routes')}>
+                    查看全部方向
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              )}
+            </SidebarMenu>
+          </SidebarGroup>
+          <div className="sidebar-note">
+            <span className="eyebrow">ONE STEP AT A TIME</span>
+            <p>
+              留下一个起点，
+              <br />
+              下次从容接上。
+            </p>
+          </div>
+        </SidebarContent>
+        <SidebarFooter>
+          <Button
+            variant="ghost"
+            className="settings-nav"
+            onClick={() => navigate('settings')}
+          >
+            <Settings size={18} />
+            设置
+          </Button>
+          <Button
+            variant="ghost"
+            className="settings-nav"
+            onClick={() => navigate('cloud')}
+          >
+            <Cloud size={18} />
+            同步与版本
+          </Button>
+          <div className="profile">
+            <span className="avatar">我</span>
+            <div>
+              <strong>我的学习空间</strong>
+              <small>个人空间</small>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={async () => {
+                if (sync.drafts.length) {
+                  setMessage('请先处理或导出已提交的本机草稿后再退出。');
+                  navigate('cloud');
+                  return;
+                }
+                const r = await fetch('/api/auth', { method: 'DELETE' });
+                if (r.ok) {
+                  await localStore.clear().catch(() => {});
+                  location.assign('/login');
+                }
+              }}
+            >
+              退出
+            </Button>
+          </div>
+        </SidebarFooter>
+      </Sidebar>
+      <SidebarInset>
+        <header className="topbar">
+          <div className="breadcrumb">
+            <SidebarTrigger className="mobile-trigger" />
+            <span>我的工作台</span>
+            <ChevronRight size={14} />
+            <strong>
+              {view === 'learn'
+                ? (d?.name ?? '学习方向')
+                : (nav.find((n) => n.id === view)?.label ??
+                  (view === 'legacy'
+                    ? '旧记录与计划'
+                    : view === 'cloud'
+                      ? '同步与版本'
+                      : '设置'))}
+            </strong>
+          </div>
+          <Button
+            variant="ghost"
+            className="sync-indicator"
+            onClick={() => navigate('cloud')}
+          >
+            <Cloud size={15} />
+            {busy
+              ? '正在保存'
+              : sync.drafts.length
+                ? '本机修改待确认'
+                : !sync.online
+                  ? '离线 · 本机缓存'
+                  : sync.cloudAhead
+                    ? '云端有新内容'
+                    : '已连接云端'}
+          </Button>
+        </header>
+        <main className="main-content">
+          {(sync.drafts.length > 0 || sync.cloudAhead) && view !== 'cloud' && (
+            <div className="notice">
+              <Cloud size={18} />
+              <span>
+                {sync.drafts.length
+                  ? '有尚未确认的本机修改，输入仍保留。'
+                  : '另一台设备有新内容，当前编辑保持原样。'}
+              </span>
+              <Button variant="outline" onClick={() => navigate('cloud')}>
+                比较与处理
+              </Button>
+            </div>
+          )}
+          {error && (
+            <div className="notice error" role="alert">
+              <AlertCircle size={18} />
+              <span>{error}</span>
+              <Button variant="outline" onClick={() => void refresh()}>
+                重试
+              </Button>
+            </div>
+          )}
+          {message && (
+            <output className="notice">
+              <CheckCheck size={18} />
+              <span>{message}</span>
+              <Button variant="ghost" onClick={() => setMessage('')}>
+                关闭
+              </Button>
+            </output>
+          )}
+          {!loaded ? (
+            <output>正在读取学习空间…</output>
+          ) : (
+            <>
+              {view === 'today' && (
+                <LearningHome state={state} actions={actions} open={open} />
+              )}
+              {view === 'routes' && (
+                <DirectionsView state={state} actions={actions} open={open} />
+              )}
+              {view === 'learn' &&
+                (d ? (
+                  <DirectionDetail
+                    key={d.id}
+                    d={d}
+                    state={state}
+                    actions={actions}
+                    open={open}
+                  />
+                ) : (
+                  <section className="learning-empty">
+                    <h1>这个学习方向暂时无法找到</h1>
+                    <p>请确认已登录正确账号，或从方向列表重新进入。</p>
+                    <Button onClick={() => navigate('routes')}>
+                      查看学习方向
+                    </Button>
+                  </section>
+                ))}
+              {view === 'progress' && (
+                <LearningReview state={state} actions={actions} open={open} />
+              )}
+              {view === 'materials' && (
+                <>
+                  <section className="content-panel">
+                    <h2>已关联的学习入口 · {w.references.length}</h2>
+                    {w.references.length ? (
+                      w.references.map((r) => (
+                        <div key={r.id}>
+                          <button
+                            className="text-link"
+                            onClick={() => open(r.directionId)}
+                          >
+                            {
+                              w.directions.find((d) => d.id === r.directionId)
+                                ?.name
+                            }
+                          </button>
+                          <ReferenceEntry reference={r} actions={actions} />
+                        </div>
+                      ))
+                    ) : (
+                      <p>在学习方向中关联主材料、网页、本地路径或笔记。</p>
+                    )}
+                  </section>
+                  <MaterialsView snap={snap} actions={actions} />
+                </>
+              )}
+              {view === 'settings' && (
+                <>
+                  <SettingsView snap={snap} actions={actions} />
+                  <Button variant="outline" onClick={() => navigate('cloud')}>
+                    数据导出、同步与版本
+                  </Button>
+                </>
+              )}
+              {view === 'cloud' && (
+                <CloudView sync={sync} notify={setMessage} />
+              )}
+              {view === 'legacy' && (
+                <LegacyView state={state} actions={actions} />
+              )}
+            </>
+          )}
+          <footer className="app-footer">
+            <span>学序 · 留下起点，继续学习</span>
+            <Button variant="ghost" onClick={() => navigate('legacy')}>
+              旧记录与计划
+            </Button>
+          </footer>
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
+  );
 }
