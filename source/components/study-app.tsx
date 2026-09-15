@@ -156,7 +156,7 @@ export default function StudyApp() {
           </div>
           <div>
             <strong>
-              学序<span>STUDYFLOW</span>
+              学迹<span>XUEJI</span>
             </strong>
           </div>
         </SidebarHeader>
@@ -400,7 +400,7 @@ export default function StudyApp() {
             </>
           )}
           <footer className="app-footer">
-            <span>学序 · 留下起点，继续学习</span>
+            <span>学迹 · 留下起点，继续学习</span>
             <Button variant="ghost" onClick={() => navigate('legacy')}>
               旧记录与计划
             </Button>

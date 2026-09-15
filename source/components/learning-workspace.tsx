@@ -380,7 +380,7 @@ export function ReferenceEntry({
         {r.kind === 'local' && <p className="hint">此路径仅适用于相应设备</p>}
         {r.kind === 'note' && (
           <p className="hint">
-            需要本机安装对应应用并存在该笔记；打不开时可复制路径。学序未读取笔记正文。
+            需要本机安装对应应用并存在该笔记；打不开时可复制路径。学迹未读取笔记正文。
           </p>
         )}
         <small className="reference-target">{r.target}</small>
@@ -1650,7 +1650,7 @@ export function LegacyView({
         <a
           className="resource-open"
           href="/api/history?export=1"
-          download="学序学习数据ver1.json"
+          download="学迹学习数据ver1.json"
         >
           导出全部学习状态
         </a>
