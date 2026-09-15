@@ -28,16 +28,21 @@ function command(
 }
 function setup() {
   let s = command(freshState(), 'direction.create', { name: '我的课程' });
-  const id = s.learning!.directions[0].id;
+  const created = s.learning!.directions.at(-1)!;
+  s.learning!.directions = [
+    created,
+    ...s.learning!.directions.filter((d) => d.id !== created.id),
+  ];
+  const id = created.id;
   s = command(s, 'unit.save', { directionId: id, name: '一个单元' });
   return { s, id, unitId: s.learning!.units[0].id };
 }
-test('A01 A02 empty account can create a direction and one current unit without AI or resources', () => {
+test('A01 A02 catalog has no invented progress and manual directions still work without AI or resources', () => {
   const empty = freshState();
   assert.equal(empty.subjects.length, 0);
   assert.equal(
     readStoredState(JSON.stringify(empty)).learning!.directions.length,
-    0,
+    6,
   );
   const { s, id } = setup();
   const saved = command(s, 'action.save', {
@@ -135,7 +140,7 @@ test('A17 exploration can save position and next reading with no mastery label',
     kind: 'reading',
   });
   s = command(s, 'record.save', {
-    directionId: s.learning!.directions[0].id,
+    directionId: s.learning!.directions.at(-1)!.id,
     result: '读到第一篇的讨论',
     nextMode: 'replace',
     nextTitle: '从讨论的问题继续阅读',

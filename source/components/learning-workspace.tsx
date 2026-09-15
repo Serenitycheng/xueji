@@ -15,6 +15,8 @@ import { BookOpen, ArrowRight, Plus, Copy, Link2, Pin } from 'lucide-react';
 import type { Actions } from './study-app';
 import type { StudyState } from '@/lib/model';
 import { localStore } from '@/lib/client-store';
+import { CurriculumRoute, CurrentCurriculumLesson } from './curriculum-route';
+import { getCurriculum, curriculumStepCount } from '@/lib/curriculum';
 import {
   masteryLabels,
   evidenceLabels,
@@ -101,9 +103,20 @@ export function DirectionCard({
         {d.origin === 'legacy' && <small>沿用旧档案</small>}
       </div>
       <h2>{d.name}</h2>
+      {getCurriculum(d.curriculumId) && (
+        <p className="hint">
+          路线已就绪 · {curriculumStepCount(getCurriculum(d.curriculumId)!)}{' '}
+          个具体小节
+        </p>
+      )}
       <dl>
         <dt>当前内容</dt>
-        <dd>{unit?.name ?? '尚未确定，可以直接写下当前内容'}</dd>
+        <dd>
+          {unit?.name ??
+            (d.curriculumId
+              ? '从路线中选择当前正在学的小节'
+              : '尚未确定，可以直接写下当前内容')}
+        </dd>
         <dt>上次停点</dt>
         <dd>
           {w.records.filter((r) => r.directionId === d.id && r.result).at(-1)
@@ -179,15 +192,15 @@ export function LearningHome({ state, actions, open }: Props) {
         <>
           <p className="hint">进行中的方向 · {active.length}</p>
           <div className="learning-grid">
-            {sorted.slice(0, 4).map((d) => (
+            {sorted.slice(0, 6).map((d) => (
               <DirectionCard key={d.id} d={d} w={w} open={open} />
             ))}
           </div>
-          {sorted.length > 4 && (
+          {sorted.length > 6 && (
             <details>
-              <summary>其他 {sorted.length - 4} 个进行中的方向</summary>
+              <summary>其他 {sorted.length - 6} 个进行中的方向</summary>
               <div className="learning-grid">
-                {sorted.slice(4).map((d) => (
+                {sorted.slice(6).map((d) => (
                   <DirectionCard key={d.id} d={d} w={w} open={open} />
                 ))}
               </div>
@@ -692,6 +705,7 @@ export function DirectionDetail({
 }: Props & { d: Direction }) {
   const w = state.learning!,
     units = w.units.filter((u) => u.directionId === d.id),
+    personalUnits = units.filter((u) => !u.curriculumItemId),
     u = units.find((u) => u.id === d.currentUnitId),
     a = w.actions.find((a) => a.id === d.currentActionId),
     last = w.records.filter((r) => r.directionId === d.id).at(-1);
@@ -765,8 +779,21 @@ export function DirectionDetail({
           <h2>这次从这里继续</h2>
           <span>{u?.contact === 'seen' ? '已接触' : u ? '未接触' : ''}</span>
         </div>
-        <h3>{u?.name ?? '还没有当前单元'}</h3>
-        <p>{u?.scope || d.scope || '可以只添加当前正在学的一小段内容。'}</p>
+        <h3>
+          {u?.name ??
+            (d.curriculumId
+              ? '从下方路线选择你正在学的一节'
+              : '还没有当前单元')}
+        </h3>
+        <p>
+          {!u?.curriculumItemId &&
+            (u?.scope ||
+              d.scope ||
+              (d.curriculumId
+                ? '路线已编入，可以直接从已有进度继续。'
+                : '可以只添加当前正在学的一小段内容。'))}
+        </p>
+        <CurrentCurriculumLesson state={state} d={d} />
         {u && d.kind !== 'reading' && (
           <p className="learning-judgment">
             当前判断：{masteryLabels[u.mastery]}
@@ -789,6 +816,13 @@ export function DirectionDetail({
           <p>{a?.title ?? '下一步尚未确定'}</p>
           {a?.start && <span>开始位置：{a.start}</span>}
           {a?.endCondition && <span>结束条件：{a.endCondition}</span>}
+          {a?.unitId && a.unitId !== d.currentUnitId && (
+            <small>
+              这条下一步来自「
+              {units.find((unit) => unit.id === a.unitId)?.name ?? '之前的单元'}
+              」，可以按当前小节调整。
+            </small>
+          )}
           {last?.nextMode === 'keep' && (
             <small>上次记录尚未更新下一步，保留原有内容</small>
           )}
@@ -862,9 +896,21 @@ export function DirectionDetail({
           </Button>
         </section>
       )}
+      <CurriculumRoute
+        state={state}
+        d={d}
+        actions={actions}
+        onRecord={() => {
+          setCorrection(undefined);
+          setRecord(true);
+        }}
+      />
       <section className="content-panel learning-section">
         <div className="section-heading">
-          <h2>简短路线 · {units.filter((u) => !u.archived).length} 个单元</h2>
+          <h2>
+            {d.curriculumId ? '自己的补充单元' : '简短路线'} ·{' '}
+            {personalUnits.filter((u) => !u.archived).length} 个单元
+          </h2>
           <Button
             variant="outline"
             onClick={() =>
@@ -872,11 +918,19 @@ export function DirectionDetail({
             }
           >
             <Plus />
-            {units.length ? '添加单元' : '写下当前内容'}
+            {personalUnits.length || d.curriculumId
+              ? '添加单元'
+              : '写下当前内容'}
           </Button>
         </div>
-        {!units.length && <p>先写当前正在学的内容，不需要整理整本教材。</p>}
-        {units
+        {!personalUnits.length && (
+          <p>
+            {d.curriculumId
+              ? '课堂任务、项目或额外阅读可以补充在这里。'
+              : '先写当前正在学的内容，不需要整理整本教材。'}
+          </p>
+        )}
+        {personalUnits
           .filter((x) => !x.archived)
           .map((unit, i, visible) => (
             <article

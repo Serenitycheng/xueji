@@ -1,4 +1,12 @@
 import type { StudyState } from './model';
+import {
+  withCurricula,
+  getCurriculum,
+  findCurriculumItem,
+  curriculumUnitId,
+  currentCurriculumItem,
+  curriculumSourceHref,
+} from './curriculum';
 
 export type Mastery = 'unknown' | 'reinforce' | 'independent';
 export type Evidence = 'self' | 'practice' | 'work' | 'teacher';
@@ -13,7 +21,8 @@ export type Direction = {
   currentUnitId?: string;
   currentActionId?: string;
   pinned: boolean;
-  origin: 'manual' | 'legacy';
+  origin: 'manual' | 'legacy' | 'curriculum';
+  curriculumId?: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -30,7 +39,8 @@ export type Unit = {
   blocker: string;
   gap: string;
   archived: boolean;
-  origin: 'manual' | 'legacy-route';
+  origin: 'manual' | 'legacy-route' | 'curriculum';
+  curriculumItemId?: string;
   updatedAt: string;
 };
 export type LearningAction = {
@@ -111,7 +121,8 @@ export const emptyLearning = (): LearningWorkspace => ({
 export function ensureLearning(state: StudyState): StudyState {
   if (state.learning) {
     validateLearning(state.learning);
-    return state;
+    const learning = withCurricula(state.learning);
+    return learning === state.learning ? state : { ...state, learning };
   }
   const learning = emptyLearning();
   for (const s of state.subjects) {
@@ -147,7 +158,7 @@ export function ensureLearning(state: StudyState): StudyState {
       }),
     );
   }
-  return { ...state, learning };
+  return { ...state, learning: withCurricula(learning) };
 }
 export function validateLearning(w: LearningWorkspace) {
   if (
@@ -236,12 +247,23 @@ export function copyActionText(
   base: string,
 ) {
   const a = w.actions.find((a) => a.id === d.currentActionId);
+  const item = currentCurriculumItem(w, d);
   return [
     d.name + '学习',
     a?.title ?? '下一步尚未确定',
     a?.start ? '开始位置：' + a.start : '',
     a?.endCondition ? '结束条件：' + a.endCondition : '',
     '学习入口：' + learningLink(base, d.id),
+    ...(item
+      ? [
+          '当前路线位置：' + item.name,
+          '本节学习指引：' + item.scope,
+          ...item.sources.map(
+            (s) =>
+              `${s.label}：${s.locator}${curriculumSourceHref(s) ? ' · ' + new URL(curriculumSourceHref(s)!, base).href : s.fileName ? ' · ' + s.fileName : ''}`,
+          ),
+        ]
+      : []),
     ...w.references
       .filter(
         (r) =>
@@ -356,6 +378,40 @@ export function applyLearning(
       createdAt: now,
       updatedAt: now,
     });
+  } else if (op === 'learning.route.select') {
+    const d = getDirection();
+    const item = findCurriculumItem(
+      getCurriculum(d.curriculumId),
+      str(input.itemId, 100),
+    );
+    if (!item)
+      throw new LearningError('找不到这个方向中的路线小节，请刷新后重试。');
+    let u = w.units.find(
+      (u) => u.directionId === d.id && u.curriculumItemId === item.id,
+    );
+    if (!u) {
+      u = {
+        id: curriculumUnitId(d.id, item.id),
+        directionId: d.id,
+        name: item.name,
+        scope: item.scope,
+        endCondition: item.endCondition,
+        contact: 'unseen',
+        mastery: 'unknown',
+        evidence: '',
+        blocker: '',
+        gap: '',
+        archived: false,
+        origin: 'curriculum',
+        curriculumItemId: item.id,
+        updatedAt: now,
+      };
+      w.units.push(u);
+    }
+    u.archived = false;
+    d.currentUnitId = u.id;
+    d.updatedAt = now;
+    message = '已保存当前学习位置';
   } else if (op === 'learning.direction.update') {
     const d = getDirection();
     for (const k of ['name', 'goal', 'scope', 'endCondition'] as const)
@@ -388,7 +444,7 @@ export function applyLearning(
     const items =
       op === 'learning.direction.move'
         ? w.directions
-        : w.units.filter((u) => u.directionId === d.id);
+        : w.units.filter((u) => u.directionId === d.id && !u.curriculumItemId);
     const target = op === 'learning.direction.move' ? d.id : input.unitId,
       index = items.findIndex((x) => x.id === target);
     const delta = choice(input.delta, ['up', 'down']) === 'up' ? -1 : 1,

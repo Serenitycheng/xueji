@@ -22,7 +22,7 @@ const token = await new SignJWT({
   .setAudience('studyflow')
   .setExpirationTime('30m')
   .sign(new TextEncoder().encode(secret));
-const base = 'http://127.0.0.1:4175';
+const base = process.env.STUDY_TEST_URL ?? 'http://127.0.0.1:4175';
 const errors = [];
 let dropNext = false;
 const submitted = [];
@@ -94,7 +94,7 @@ async function saved() {
 }
 try {
   await page.goto(base);
-  await shown('建立第一个学习方向');
+  await page.locator('.learning-card').nth(5).waitFor();
   assert.equal(
     await page.locator('[data-nextjs-dialog],.vite-error-overlay').count(),
     0,
@@ -102,7 +102,7 @@ try {
   console.log(
     'PASS browser smoke: real Next page loads, meaningful controls and no framework overlay',
   );
-  await button('建立学习方向');
+  await button('新建学习方向');
   await page.getByLabel('方向名称', { exact: true }).fill('开发基础（验收）');
   await button('建立方向');
   await shown('这次从这里继续');
@@ -183,7 +183,8 @@ try {
   await page.getByText('方向状态与更多信息', { exact: true }).click();
   await button('暂停方向');
   await page.goto(base + '/#today');
-  await shown('当前没有进行中的方向');
+  await page.locator('.learning-card').nth(5).waitFor();
+  assert.equal(await page.getByRole('heading', {name:'开发基础（验收）',exact:true}).count(),0);
   await page.goto(deepLink);
   await shown('这次从这里继续');
   await page.getByText('方向状态与更多信息', { exact: true }).click();
@@ -211,7 +212,7 @@ try {
     .getByLabel('编辑方向名称', { exact: true })
     .fill('本机尚未提交的新名称');
   const current = await h.server.loadState('owner');
-  current.state.learning.directions[0].goal = '另一设备保存的目标';
+  current.state.learning.directions.find(d=>d.name==='开发基础（验收）').goal = '另一设备保存的目标';
   await h.server.saveState('owner', current.state, current.revision);
   await button('保存方向');
   await shown('云端已有更新');

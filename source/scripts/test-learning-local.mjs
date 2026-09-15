@@ -4,7 +4,7 @@ const h = await createHarness();
 try {
   await h.module('tests/protection.integration.mjs');
   let snap = await (await h.api.GET()).json();
-  assert.equal(snap.state.learning.directions.length, 0);
+  assert.equal(snap.state.learning.directions.length, 6);
   const call = async (data, expected = 200) => {
     const command = {
       requestId: crypto.randomUUID(),
@@ -29,7 +29,7 @@ try {
     return { json, command };
   };
   await call({ op: 'learning.direction.create', name: '隔离验收方向' });
-  const d = snap.state.learning.directions[0].id;
+  const d = snap.state.learning.directions.at(-1).id;
   await call({
     op: 'learning.unit.save',
     directionId: d,
@@ -128,6 +128,51 @@ try {
   await call({ op: 'plan.generate', date: '2026-09-15' }, 400);
   console.log(
     'PASS A18 A24-A27: export scope, authentication, foreign object and legacy scheduling boundaries',
+  );
+  const routes = [
+    ['professional', 'PR-05-01-01'],
+    ['development', 'DEV-01-01'],
+    ['japanese', 'JP-00-01'],
+    ['photo', 'PH-01-01'],
+    ['stats', 'ST-1-1-1'],
+    ['linear', 'LA-1-1'],
+  ];
+  for (const [curriculumId, itemId] of routes) {
+    const directionId = snap.state.learning.directions.find(
+      (d) => d.curriculumId === curriculumId,
+    ).id;
+    const selected = await call({
+      op: 'learning.route.select',
+      directionId,
+      itemId,
+    });
+    const count = snap.state.learning.units.length;
+    await call(selected.command);
+    await call({ op: 'learning.route.select', directionId, itemId });
+    assert.equal(snap.state.learning.units.length, count);
+    const unitId = snap.state.learning.directions.find(
+      (d) => d.id === directionId,
+    ).currentUnitId;
+    await call({
+      op: 'learning.record.save',
+      directionId,
+      result: `记录 ${itemId}`,
+      contact: 'seen',
+    });
+    const persisted = (await h.server.loadState('owner')).state.learning;
+    assert.equal(persisted.records.at(-1).unitId, unitId);
+    assert.equal(persisted.units.find((u) => u.id === unitId).contact, 'seen');
+    assert.equal(
+      persisted.units.find((u) => u.id === unitId).mastery,
+      'unknown',
+    );
+    await call(
+      { op: 'learning.route.select', directionId, itemId: 'not-in-this-route' },
+      400,
+    );
+  }
+  console.log(
+    'PASS six curricula: actual API persists section selections and records; retries do not duplicate sections; invalid route IDs rejected',
   );
   // Fixture has old real-shaped entities, not a copy written into an actual account.
   const legacy = h.model.initialState();
