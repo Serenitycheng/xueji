@@ -41,7 +41,7 @@ export async function ask(userId:string,state:StudyState,kind:string,prompt:stri
 export async function context(userId:string,state:StudyState,subjectId?:SubjectId){
  const materials=state.materials.filter(m=>m.subjectId==='general'||!subjectId||m.subjectId===subjectId).slice(-12);
  const docs=await Promise.all(materials.map(async m=>{const blob=m.textPath?await files().get(m.textPath):null;const all=blob?await blob.text():m.excerpt;const subject=state.subjects.find(s=>s.id===m.subjectId);const recent=state.tasks.filter(t=>t.materialId===m.id).slice(-3);const last=recent.filter(t=>(t.score??0)>=80).at(-1);const nextPage=Number(last?.location.match(/第\s*(\d+)\s*页/)?.[1]??m.analysis?.topics[0]?.fromPage??1);const content=relevantText(all,[subject?.goal,subject?.level,...recent.map(t=>t.title+' '+t.goal)].join(' '),nextPage);return {id:m.id,name:m.name,subjectId:m.subjectId,url:m.url,analysis:m.analysis,content,truncated:content.length<all.length,status:m.status};}));
- const resources=[...CATALOG.filter(r=>!subjectId||r.subjectId===subjectId),...docs.map(m=>({id:m.id,subjectId:m.subjectId,name:m.name,url:m.url??'',description:m.content,verified:m.status==='ready'}))];
+ const resources=[...CATALOG.filter(r=>r.recommended!==false&&(!subjectId||r.subjectId===subjectId)),...docs.map(m=>({id:m.id,subjectId:m.subjectId,name:m.name,url:m.url??'',description:m.content,verified:m.status==='ready'}))];
  return {resources,docs,subjects:state.subjects.filter(s=>!subjectId||s.id===subjectId),recent:state.tasks.filter(t=>t.source!=='demo'&&(!subjectId||t.subjectId===subjectId)).slice(-28),adjustments:state.logs.slice(0,8)};
 }
 export function makePlans(result:any,state:StudyState,subjectId:SubjectId,minimum=2):LearningPlan[]{

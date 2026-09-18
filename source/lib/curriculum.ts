@@ -1,5 +1,6 @@
 import data from './curricula/six-directions.json';
 import type { Direction, LearningWorkspace, Unit } from './learning';
+import type { Material } from './model';
 
 export type CurriculumSource = {
   label: string;
@@ -8,6 +9,7 @@ export type CurriculumSource = {
   status: string;
   fileName?: string;
   materialId?: string;
+  materialFileNames?: string[];
   pdfPage?: number;
 };
 export type CurriculumStep = {
@@ -18,6 +20,8 @@ export type CurriculumStep = {
   done: string;
   optional: boolean;
   group?: string;
+  topics?: string[];
+  legacyIds?: string[];
 };
 export type CurriculumUnit = {
   id: string;
@@ -59,7 +63,9 @@ export function curriculumStepCount(c: Curriculum) {
 export function findCurriculumItem(c: Curriculum | undefined, id?: string) {
   if (!c || !id) return;
   for (const unit of c.units) {
-    const index = unit.steps.findIndex((s) => s.id === id);
+    const index = unit.steps.findIndex(
+      (s) => s.id === id || s.legacyIds?.includes(id),
+    );
     if (index >= 0) {
       const step = unit.steps[index];
       return {
@@ -142,6 +148,23 @@ export function currentCurriculumItem(w: LearningWorkspace, d: Direction) {
     getCurriculum(d.curriculumId),
     unit?.curriculumItemId,
   );
+}
+// Bind only an unambiguous private upload of the verified edition in this account.
+// An explicit attachment ID always wins; never guess a replacement for a missing ID.
+export function resolveCurriculumSource(
+  source: CurriculumSource,
+  materials: Material[],
+): CurriculumSource {
+  if (source.materialId || !source.materialFileNames?.length) return source;
+  const normalize = (name: string) =>
+    name.normalize('NFKC').toLowerCase().replace(/\s+/g, '');
+  const names = new Set(source.materialFileNames.map(normalize));
+  const matches = materials.filter(
+    (m) => m.kind === 'pdf' && !m.url && names.has(normalize(m.name)),
+  );
+  return matches.length === 1
+    ? { ...source, materialId: matches[0].id }
+    : source;
 }
 export function curriculumSourceHref(source: CurriculumSource) {
   const page = source.pdfPage ? `#page=${source.pdfPage}` : '';

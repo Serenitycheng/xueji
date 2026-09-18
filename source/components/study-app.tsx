@@ -373,7 +373,7 @@ export default function StudyApp() {
                                 ?.name
                             }
                           </button>
-                          <ReferenceEntry reference={r} actions={actions} />
+                          <ReferenceEntry reference={r} material={snap.state.materials.find((m) => m.id === r.target)} actions={actions} />
                         </div>
                       ))
                     ) : (

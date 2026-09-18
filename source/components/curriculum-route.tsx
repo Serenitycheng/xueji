@@ -3,6 +3,7 @@ import { useId, useState } from 'react';
 import { BookOpen, ArrowUpRight, Check, Map } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
+import { PdfOpenButton } from './pdf-open-button';
 import type { Actions } from './study-app';
 import type { StudyState } from '@/lib/model';
 import { masteryLabels, type Direction } from '@/lib/learning';
@@ -10,6 +11,7 @@ import {
   getCurriculum,
   curriculumStepCount,
   curriculumSourceHref,
+  resolveCurriculumSource,
   curriculumUnitState,
   currentCurriculumItem,
   type Curriculum,
@@ -34,10 +36,12 @@ function Sources({
 }) {
   return (
     <ul className="curriculum-sources">
-      {sources.map((s, i) => {
+      {sources.map((source, i) => {
+        const s = resolveCurriculumSource(source, state.materials);
         const href = curriculumSourceHref(s);
-        const missing =
-          s.materialId && !state.materials.some((m) => m.id === s.materialId);
+        const missing = s.materialId
+          ? !state.materials.some((m) => m.id === s.materialId)
+          : !!s.materialFileNames?.length;
         return (
           <li key={`${s.label}:${i}`}>
             <div>
@@ -47,25 +51,53 @@ function Sources({
               {s.fileName && <p className="hint">原方案：{s.fileName}</p>}
               {missing && (
                 <p className="hint">
-                  资料库暂未找到这本教材，请补充原件；仍可按上面的章节和页序学习。
+                  {s.materialFileNames ? (
+                    <>
+                      请在资料库导入这份第3版 PDF，保留原文件名，或命名为
+                      “Python语言程序设计基础
+                      第三版.pdf”。同名文件需只保留一份， 即可按上面的页码打开。{' '}
+                      <a href="#materials">前往资料库</a>
+                    </>
+                  ) : (
+                    '资料库暂未找到这本教材，请补充原件；仍可按上面的章节和页序学习。'
+                  )}
                 </p>
               )}
             </div>
-            {href && !missing && (
-              <a
-                className="text-link resource-open"
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ArrowUpRight size={16} />
-                {s.materialId
-                  ? `打开教材 · PDF第${s.pdfPage}页`
-                  : s.url.startsWith('/api/')
-                    ? '打开方案原件'
-                    : '打开资源'}
-              </a>
-            )}
+            {href &&
+              !missing &&
+              (s.materialId || s.url === '/api/development-plan' ? (
+                <PdfOpenButton
+                  resource={
+                    s.materialId
+                      ? { kind: 'material', materialId: s.materialId }
+                      : { kind: 'development-plan' }
+                  }
+                  title={s.label}
+                  page={s.pdfPage}
+                  className="text-link resource-open"
+                  label={
+                    s.materialId
+                      ? '打开教材' +
+                        (s.pdfPage ? ' · PDF第' + s.pdfPage + '页' : '')
+                      : '打开方案原件'
+                  }
+                />
+              ) : (
+                <a
+                  className="text-link resource-open"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ArrowUpRight size={16} />
+                  {s.materialId
+                    ? `打开教材 · PDF第${s.pdfPage}页`
+                    : s.url.startsWith('/api/')
+                      ? '打开方案原件'
+                      : '打开资源'}
+                </a>
+              ))}
           </li>
         );
       })}
@@ -110,10 +142,23 @@ function Step({
 }: Props & { step: CurriculumStep; index: number }) {
   const w = state.learning!;
   const saved = curriculumUnitState(w, d, step.id);
-  const current = saved?.id === d.currentUnitId && !!saved;
-  const count = w.records.filter((r) => saved && r.unitId === saved.id).length;
+  const current = currentCurriculumItem(w, d)?.id === step.id;
+  const currentSaved = !!saved && saved.id === d.currentUnitId;
+  const legacyUnits = w.units.filter(
+    (u) =>
+      u.directionId === d.id &&
+      !!u.curriculumItemId &&
+      step.legacyIds?.includes(u.curriculumItemId),
+  );
+  const unitIds = new Set([
+    ...(saved ? [saved.id] : []),
+    ...legacyUnits.map((u) => u.id),
+  ]);
+  const count = w.records.filter(
+    (r) => r.unitId && unitIds.has(r.unitId),
+  ).length;
   const select = async (record = false) => {
-    if (current) {
+    if (currentSaved) {
       if (record) onRecord();
       return;
     }
@@ -139,7 +184,11 @@ function Step({
             {step.optional ? '选学 · ' : ''}
             {current ? '当前学习 · ' : ''}
             {saved?.contact === 'seen' ? '已接触 · ' : ''}
-            {saved ? masteryLabels[saved.mastery] : '尚未记录'}
+            {saved
+              ? masteryLabels[saved.mastery]
+              : legacyUnits.length
+                ? '整节未判断'
+                : '尚未记录'}
             {count > 0 ? ` · ${count} 条记录` : ''}
           </small>
         </span>
@@ -147,6 +196,11 @@ function Step({
       </summary>
       <div className="curriculum-step-body">
         {step.group && <p className="hint">所属章节：{step.group}</p>}
+        {legacyUnits.length > 0 && (
+          <p className="hint">
+            旧小节的记录和掌握判断已保留；整节掌握程度单独记录。
+          </p>
+        )}
         <p>
           <strong>怎么学：</strong>
           {step.action}
@@ -158,10 +212,14 @@ function Step({
         </p>
         <div className="button-row">
           <Button
-            disabled={actions.busy || current}
+            disabled={actions.busy || currentSaved}
             onClick={() => void select()}
           >
-            {current ? '正在学这一节' : '设为当前小节'}
+            {currentSaved
+              ? '正在学这一节'
+              : current
+                ? '按整节继续学习'
+                : '设为当前小节'}
           </Button>
           <Button
             variant="outline"
@@ -189,7 +247,7 @@ function UnitOutline({
     (s) =>
       !query ||
       unitMatches ||
-      `${s.title} ${s.group ?? ''} ${s.sources.map((r) => `${r.label} ${r.locator}`).join(' ')}`
+      `${s.title} ${s.group ?? ''} ${s.topics?.join(' ') ?? ''} ${s.sources.map((r) => `${r.label} ${r.locator}`).join(' ')}`
         .toLocaleLowerCase()
         .includes(query),
   );
@@ -432,7 +490,7 @@ export function CurriculumRoute(props: Props) {
           (u) =>
             `${u.title} ${u.goal}`.toLocaleLowerCase().includes(query) ||
             u.steps.some((s) =>
-              `${s.title} ${s.group ?? ''} ${s.sources.map((r) => `${r.label} ${r.locator}`).join(' ')}`
+              `${s.title} ${s.group ?? ''} ${s.topics?.join(' ') ?? ''} ${s.sources.map((r) => `${r.label} ${r.locator}`).join(' ')}`
                 .toLocaleLowerCase()
                 .includes(query),
             ),

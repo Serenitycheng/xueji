@@ -1,4 +1,4 @@
-import type { StudyState } from './model';
+import type { Material, StudyState } from './model';
 import {
   withCurricula,
   getCurriculum,
@@ -6,6 +6,7 @@ import {
   curriculumUnitId,
   currentCurriculumItem,
   curriculumSourceHref,
+  resolveCurriculumSource,
 } from './curriculum';
 
 export type Mastery = 'unknown' | 'reinforce' | 'independent';
@@ -245,6 +246,7 @@ export function copyActionText(
   w: LearningWorkspace,
   d: Direction,
   base: string,
+  materials: Material[] = [],
 ) {
   const a = w.actions.find((a) => a.id === d.currentActionId);
   const item = currentCurriculumItem(w, d);
@@ -258,10 +260,12 @@ export function copyActionText(
       ? [
           '当前路线位置：' + item.name,
           '本节学习指引：' + item.scope,
-          ...item.sources.map(
-            (s) =>
-              `${s.label}：${s.locator}${curriculumSourceHref(s) ? ' · ' + new URL(curriculumSourceHref(s)!, base).href : s.fileName ? ' · ' + s.fileName : ''}`,
-          ),
+          ...item.sources
+            .map((s) => resolveCurriculumSource(s, materials))
+            .map(
+              (s) =>
+                `${s.label}：${s.locator}${curriculumSourceHref(s) ? ' · ' + new URL(curriculumSourceHref(s)!, base).href : s.fileName ? ' · ' + s.fileName : ''}`,
+            ),
         ]
       : []),
     ...w.references

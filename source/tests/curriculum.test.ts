@@ -5,10 +5,20 @@ import {
   curriculumStepCount,
   findCurriculumItem,
   curriculumSourceHref,
+  resolveCurriculumSource,
+  currentCurriculumItem,
+  curriculumUnitId,
+  curriculumUnitState,
 } from '../lib/curriculum';
 import { ensureLearning, applyLearning, copyActionText } from '../lib/learning';
-import { freshState, initialState, type StudyState } from '../lib/model';
+import {
+  freshState,
+  initialState,
+  type StudyState,
+  type Material,
+} from '../lib/model';
 import { readStoredState } from '../lib/data-protection';
+import { CATALOG } from '../lib/catalog';
 const command = (s: StudyState, op: string, data: Record<string, unknown>) =>
   applyLearning(s, `learning.${op}`, {
     requestId: crypto.randomUUID(),
@@ -23,7 +33,7 @@ void test('all six catalogs retain the agreed chapters, lesson IDs and professio
       ['development', 11, 57],
       ['japanese', 28, 111],
       ['photo', 8, 27],
-      ['stats', 10, 96],
+      ['stats', 10, 37],
       ['linear', 6, 44],
     ],
   );
@@ -197,4 +207,238 @@ void test('resources keep private attachments private and use verified PDF posit
     undefined,
   );
   assert.ok(!JSON.stringify(curricula).includes('C:/Users/'));
+});
+
+void test('probability uses section-level entries and preserves topic search, PDF starts and partial electives', () => {
+  const stats = curricula.find((c) => c.id === 'stats')!;
+  const steps = stats.units.flatMap((u) => u.steps);
+  assert.ok(
+    steps.every(
+      (s) => /^ST-\d+-\d+$/.test(s.id) && /^§\d+\.\d+ /.test(s.title),
+    ),
+  );
+  assert.equal(steps.flatMap((s) => s.legacyIds ?? [s.id]).length, 96);
+  assert.deepEqual(
+    steps.filter((s) => s.optional).map((s) => s.id),
+    ['ST-4-4', 'ST-8-4', 'ST-8-6'],
+  );
+  const section = findCurriculumItem(stats, 'ST-1-5')!;
+  assert.equal(
+    section.name,
+    '第1单元｜随机事件与概率 / 第5节 · §1.5 全概率公式和贝叶斯公式',
+  );
+  assert.equal(section.sources[0].pdfPage, 69);
+  assert.equal(section.sources[0].locator, '§1.5；PDF第69页起，读至本章习题前');
+  assert.ok(
+    findCurriculumItem(stats, 'ST-7-1')!.step!.topics!.includes('最大似然估计'),
+  );
+  assert.match(findCurriculumItem(stats, 'ST-6-1')!.scope, /选学/);
+  assert.match(findCurriculumItem(stats, 'ST-7-3')!.scope, /选学/);
+  assert.equal(findCurriculumItem(stats, 'ST-1-5-99'), undefined);
+  assert.equal(
+    findCurriculumItem(
+      curricula.find((c) => c.id === 'linear'),
+      'ST-1-5-1',
+    ),
+    undefined,
+  );
+});
+
+void test('legacy probability positions resolve without rewriting history or promoting subsection mastery', () => {
+  let s = ensureLearning(freshState());
+  const directionId = s.learning!.directions.find(
+    (d) => d.curriculumId === 'stats',
+  )!.id;
+  // Recreate an older saved workspace with progress and records in both finer subsections.
+  for (const itemId of ['ST-1-5-1', 'ST-1-5-2']) {
+    s = command(s, 'route.select', { directionId, itemId: 'ST-1-5' });
+    const d = s.learning!.directions.find((d) => d.id === directionId)!;
+    const unit = s.learning!.units.find((u) => u.id === d.currentUnitId)!;
+    unit.id = curriculumUnitId(directionId, itemId);
+    unit.curriculumItemId = itemId;
+    unit.name =
+      itemId === 'ST-1-5-1' ? '§1.5.1 全概率公式' : '§1.5.2 贝叶斯公式';
+    d.currentUnitId = unit.id;
+    s = command(s, 'record.save', {
+      directionId,
+      result: '旧小节的学习记录',
+      contact: 'seen',
+      mastery: 'independent',
+      nextMode: 'replace',
+      nextTitle: '继续旧小节练习',
+    });
+  }
+  const before = JSON.parse(JSON.stringify(s.learning!));
+  s = readStoredState(JSON.stringify(s));
+  assert.deepEqual(s.learning, before);
+  const d = s.learning!.directions.find((d) => d.id === directionId)!;
+  assert.equal(currentCurriculumItem(s.learning!, d)!.id, 'ST-1-5');
+  assert.equal(curriculumUnitState(s.learning!, d, 'ST-1-5'), undefined);
+  s = command(s, 'route.select', { directionId, itemId: 'ST-1-5' });
+  const whole = curriculumUnitState(s.learning!, d, 'ST-1-5')!;
+  assert.equal(whole.mastery, 'unknown');
+  assert.equal(whole.contact, 'unseen');
+  assert.deepEqual(s.learning!.units.slice(0, 2), before.units);
+  for (const key of ['records', 'actions', 'references'] as const)
+    assert.deepEqual(s.learning![key], before[key]);
+  assert.equal(
+    s.learning!.directions.find((d) => d.id === directionId)!.currentActionId,
+    d.currentActionId,
+  );
+  s = command(s, 'record.save', {
+    directionId,
+    result: '整节练习',
+    contact: 'seen',
+    mastery: 'reinforce',
+  });
+  const afterRecord = structuredClone(s.learning!);
+  s = command(s, 'route.select', { directionId, itemId: 'ST-1-5-1' });
+  s = command(s, 'route.select', { directionId, itemId: 'ST-1-5-2' });
+  assert.equal(s.learning!.units.length, 3);
+  assert.deepEqual(s.learning!.units, afterRecord.units);
+  assert.deepEqual(s.learning!.records, afterRecord.records);
+  assert.equal(
+    s.learning!.directions.find((d) => d.id === directionId)!.currentUnitId,
+    whole.id,
+  );
+});
+
+void test('existing probability entries already at section level keep their saved progress', () => {
+  let s = ensureLearning(freshState());
+  const directionId = s.learning!.directions.find(
+    (d) => d.curriculumId === 'stats',
+  )!.id;
+  s = command(s, 'route.select', { directionId, itemId: 'ST-2-1' });
+  s = command(s, 'record.save', {
+    directionId,
+    result: '已掌握随机变量',
+    mastery: 'independent',
+    contact: 'seen',
+  });
+  const before = structuredClone(s.learning!);
+  s = command(s, 'route.select', { directionId, itemId: 'ST-1-5' });
+  s = command(s, 'route.select', { directionId, itemId: 'ST-2-1' });
+  assert.deepEqual(s.learning!.units[0], before.units[0]);
+  assert.deepEqual(s.learning!.records, before.records);
+});
+
+void test('Python textbook binds only an unambiguous private upload of the verified edition', () => {
+  const source = getPythonSource();
+  const uploaded: Material = {
+    id: 'python-upload',
+    subjectId: 'development',
+    kind: 'pdf',
+    name: source.materialFileNames![0],
+    size: 134631499,
+    pages: 416,
+    textLength: 0,
+    status: 'needs-text',
+    excerpt: '',
+    createdAt: '',
+  };
+  assert.equal(resolveCurriculumSource(source, []), source);
+  assert.equal(curriculumSourceHref(source), undefined);
+  const resolved = resolveCurriculumSource(source, [uploaded]);
+  assert.equal(resolved.materialId, uploaded.id);
+  assert.equal(
+    curriculumSourceHref(resolved),
+    '/api/materials?id=python-upload#page=68',
+  );
+  assert.equal(source.materialId, undefined);
+  assert.equal(
+    resolveCurriculumSource(source, [
+      { ...uploaded, name: 'Python语言程序设计基础（第3版）.PDF' },
+    ]).materialId,
+    uploaded.id,
+  );
+  for (const other of [
+    { ...uploaded, name: 'Python语言程序设计基础 第二版.pdf' },
+    { ...uploaded, kind: 'link' as const },
+    { ...uploaded, url: 'https://example.com/book.pdf' },
+  ])
+    assert.equal(resolveCurriculumSource(source, [other]), source);
+  assert.equal(
+    resolveCurriculumSource(source, [
+      uploaded,
+      { ...uploaded, id: 'duplicate' },
+    ]),
+    source,
+  );
+  const explicit = { ...source, materialId: 'explicit-id' };
+  assert.equal(resolveCurriculumSource(explicit, [uploaded]), explicit);
+});
+function getPythonSource() {
+  return findCurriculumItem(
+    curricula.find((c) => c.id === 'development'),
+    'DEV-01-01',
+  )!.sources[0];
+}
+void test('copied learning action includes the account-specific Python attachment without a public file URL', () => {
+  let s = ensureLearning(freshState());
+  const directionId = s.learning!.directions.find(
+    (d) => d.curriculumId === 'development',
+  )!.id;
+  s = command(s, 'route.select', { directionId, itemId: 'DEV-01-01' });
+  const d = s.learning!.directions.find((d) => d.id === directionId)!;
+  const source = getPythonSource();
+  const materials: Material[] = [
+    {
+      id: 'private-python',
+      subjectId: 'development',
+      kind: 'pdf',
+      name: source.materialFileNames![0],
+      size: 10,
+      textLength: 0,
+      status: 'needs-text',
+      excerpt: '',
+      createdAt: '',
+    },
+  ];
+  assert.match(
+    copyActionText(s.learning!, d, 'https://study.example/', materials),
+    /https:\/\/study\.example\/api\/materials\?id=private-python#page=68/,
+  );
+  assert.ok(
+    !copyActionText(s.learning!, d, 'https://study.example/').includes(
+      'id=private-python',
+    ),
+  );
+});
+
+void test('current recommendations agree with the route while legacy resource identities stay resolvable', () => {
+  const recommended = CATALOG.filter((r) => r.recommended !== false);
+  assert.deepEqual(
+    recommended.filter((r) => r.subjectId === 'linear').map((r) => r.url),
+    ['https://www.icourse163.org/course/BIT-32001'],
+  );
+  assert.ok(
+    recommended.some(
+      (r) =>
+        r.subjectId === 'stats' &&
+        r.url === 'https://www.bilibili.com/video/BV1JXppejE8q/',
+    ),
+  );
+  assert.equal(
+    recommended.filter(
+      (r) => r.subjectId === 'photo' && r.url.includes('bilibili.com'),
+    ).length,
+    5,
+  );
+  assert.ok(
+    recommended.some(
+      (r) =>
+        r.subjectId === 'development' &&
+        r.url === 'https://www.icourse163.org/course/BIT-268001',
+    ),
+  );
+  for (const id of [
+    'cs50-python',
+    'mit-linear',
+    'mit-stats',
+    '3b1b',
+    'stat110',
+  ]) {
+    assert.ok(CATALOG.find((r) => r.id === id)?.url);
+    assert.ok(!recommended.some((r) => r.id === id));
+  }
 });

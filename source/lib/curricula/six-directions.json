@@ -1,5 +1,5 @@
 {
-  "version": "2026-09-15.1",
+  "version": "2026-09-18.2",
   "subjects": [
     {
       "id": "professional",
@@ -838,8 +838,9 @@
         "保持原方案01—09结构；09分为A、B两部分。先同步做01编程和03工具，再补02，随后04→05→06→07；08、09先了解概念，深入实践放在基础之后。",
         "每次只推进一个可验证的小改动：先写预期，再读AI改动，运行并检验，最后记录原因。基础短练习亲手完成，项目可以持续借助AI。",
         "不把Java或完整C课程新增为前置。C只在理解地址/内存时按需使用；网页项目的HTML、CSS、JavaScript→TypeScript→React作为原方案中的并行支线。",
-        "各单元的页码指你提供的16页方案；实际学习内容定位到官方课程Week、教材章或文档标题。官方资料为中英混合，术语记录采用中文解释＋原英文。",
-        "完成标准：能解释、能改动、能检查正常/边界/异常情形。不是把课程播放到结尾。"
+        "01编程基础主教材改为用户提供的《Python语言程序设计基础》第3版（嵩天、黄天羽、杨雅婷，2024），沿用原9节能力顺序并映射到本书。教材采用这份416页PDF的页序；开发方案原件仍为16页，两者分开标注。",
+        "完成标准：能解释、能改动、能检查正常/边界/异常情形。不是把课程播放到结尾。",
+        "辅助资料优先中文、国内课程及B站作者原发布；01配合北理工嵩天MOOC，测试等教材外练习使用官方中文文档。其他单元保留既定的Hello算法、中文文档和持续更新的官方资料，不因换来源重排学习方案。"
       ],
       "units": [
         {
@@ -854,23 +855,29 @@
               "title": "值、表达式与输入输出",
               "sources": [
                 {
+                  "label": "嵩天等《Python语言程序设计基础》第3版",
+                  "url": "",
+                  "locator": "§2.1—2.3（PDF第68—82页），再查§3.1—3.5的数字与字符串（PDF第104—135页）",
+                  "status": "用户提供第3版；目录与正文起始页已核对",
+                  "materialFileNames": [
+                    "Python语言程序设计基础 第三版 (嵩天, 黄天羽, 杨雅婷) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+                    "Python语言程序设计基础 第三版.pdf",
+                    "Python语言程序设计基础(第3版).pdf"
+                  ],
+                  "pdfPage": 68
+                },
+                {
+                  "label": "北理工嵩天｜Python语言程序设计 MOOC",
+                  "url": "https://www.icourse163.org/course/BIT-268001",
+                  "locator": "按“基本语法、输入输出、数据类型”主题选课；视频结构与第3版教材不完全一致，正文以教材为主",
+                  "status": "作者课程；当前参考书含2024年第3版；不将重开课当作新录制"
+                },
+                {
                   "label": "开发学习方案 ver2",
                   "url": "/api/development-plan",
                   "locator": "PDF第3页",
                   "status": "用户提供",
                   "pdfPage": 3
-                },
-                {
-                  "label": "CS50P",
-                  "url": "https://cs50.harvard.edu/python/",
-                  "locator": "Week 0 Functions, Variables",
-                  "status": "已核对课节"
-                },
-                {
-                  "label": "Python官方中文教程",
-                  "url": "https://docs.python.org/zh-cn/3/tutorial/",
-                  "locator": "对应章作为中文查阅；先学概念再查官方教程",
-                  "status": "已核对课节"
                 }
               ],
               "action": "写一个学习时长换算器；测试数字、空输入和非数字输入。",
@@ -882,23 +889,29 @@
               "title": "条件判断",
               "sources": [
                 {
+                  "label": "嵩天等《Python语言程序设计基础》第3版",
+                  "url": "",
+                  "locator": "§4.1 分支结构；PDF第150—153页",
+                  "status": "用户提供第3版；目录与正文起始页已核对",
+                  "materialFileNames": [
+                    "Python语言程序设计基础 第三版 (嵩天, 黄天羽, 杨雅婷) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+                    "Python语言程序设计基础 第三版.pdf",
+                    "Python语言程序设计基础(第3版).pdf"
+                  ],
+                  "pdfPage": 150
+                },
+                {
+                  "label": "北理工嵩天｜Python语言程序设计 MOOC",
+                  "url": "https://www.icourse163.org/course/BIT-268001",
+                  "locator": "按“分支与条件判断”主题选课；视频结构与第3版教材不完全一致，正文以教材为主",
+                  "status": "作者课程；当前参考书含2024年第3版；不将重开课当作新录制"
+                },
+                {
                   "label": "开发学习方案 ver2",
                   "url": "/api/development-plan",
                   "locator": "PDF第3页",
                   "status": "用户提供",
                   "pdfPage": 3
-                },
-                {
-                  "label": "CS50P",
-                  "url": "https://cs50.harvard.edu/python/",
-                  "locator": "Week 1 Conditionals；辅查Python教程§4.1",
-                  "status": "已核对课节"
-                },
-                {
-                  "label": "Python官方中文教程",
-                  "url": "https://docs.python.org/zh-cn/3/tutorial/",
-                  "locator": "对应章作为中文查阅；先学概念再查官方教程",
-                  "status": "已核对课节"
                 }
               ],
               "action": "把“已完成/进行中/未开始”判定写成函数，列出所有分支。",
@@ -910,23 +923,29 @@
               "title": "循环与终止",
               "sources": [
                 {
+                  "label": "嵩天等《Python语言程序设计基础》第3版",
+                  "url": "",
+                  "locator": "§4.4—4.5 循环与条件计算；PDF第164—171页",
+                  "status": "用户提供第3版；目录与正文起始页已核对",
+                  "materialFileNames": [
+                    "Python语言程序设计基础 第三版 (嵩天, 黄天羽, 杨雅婷) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+                    "Python语言程序设计基础 第三版.pdf",
+                    "Python语言程序设计基础(第3版).pdf"
+                  ],
+                  "pdfPage": 164
+                },
+                {
+                  "label": "北理工嵩天｜Python语言程序设计 MOOC",
+                  "url": "https://www.icourse163.org/course/BIT-268001",
+                  "locator": "按“循环、退出条件与逻辑运算”主题选课；视频结构与第3版教材不完全一致，正文以教材为主",
+                  "status": "作者课程；当前参考书含2024年第3版；不将重开课当作新录制"
+                },
+                {
                   "label": "开发学习方案 ver2",
                   "url": "/api/development-plan",
                   "locator": "PDF第3页",
                   "status": "用户提供",
                   "pdfPage": 3
-                },
-                {
-                  "label": "CS50P",
-                  "url": "https://cs50.harvard.edu/python/",
-                  "locator": "Week 2 Loops；Python教程§4.2—4.6",
-                  "status": "已核对课节"
-                },
-                {
-                  "label": "Python官方中文教程",
-                  "url": "https://docs.python.org/zh-cn/3/tutorial/",
-                  "locator": "对应章作为中文查阅；先学概念再查官方教程",
-                  "status": "已核对课节"
                 }
               ],
               "action": "逐行跟踪循环，用列表汇总学习时长；解释退出条件。",
@@ -938,23 +957,29 @@
               "title": "列表、字典、集合与元组",
               "sources": [
                 {
+                  "label": "嵩天等《Python语言程序设计基础》第3版",
+                  "url": "",
+                  "locator": "§6.1—6.5 集合、列表、元组、字典；PDF第220—239页",
+                  "status": "用户提供第3版；目录与正文起始页已核对",
+                  "materialFileNames": [
+                    "Python语言程序设计基础 第三版 (嵩天, 黄天羽, 杨雅婷) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+                    "Python语言程序设计基础 第三版.pdf",
+                    "Python语言程序设计基础(第3版).pdf"
+                  ],
+                  "pdfPage": 220
+                },
+                {
+                  "label": "北理工嵩天｜Python语言程序设计 MOOC",
+                  "url": "https://www.icourse163.org/course/BIT-268001",
+                  "locator": "按“组合数据类型”主题选课；视频结构与第3版教材不完全一致，正文以教材为主",
+                  "status": "作者课程；当前参考书含2024年第3版；不将重开课当作新录制"
+                },
+                {
                   "label": "开发学习方案 ver2",
                   "url": "/api/development-plan",
                   "locator": "PDF第3页",
                   "status": "用户提供",
                   "pdfPage": 3
-                },
-                {
-                  "label": "Python官方中文教程",
-                  "url": "https://docs.python.org/zh-cn/3/tutorial/",
-                  "locator": "第5章；对象和引用对照第9.1节",
-                  "status": "已核对课节"
-                },
-                {
-                  "label": "Python官方中文教程",
-                  "url": "https://docs.python.org/zh-cn/3/tutorial/",
-                  "locator": "对应章作为中文查阅；先学概念再查官方教程",
-                  "status": "已核对课节"
                 }
               ],
               "action": "为学习记录选数据结构；比较共享同一个列表与复制列表的结果。",
@@ -966,23 +991,29 @@
               "title": "函数、模块与库",
               "sources": [
                 {
+                  "label": "嵩天等《Python语言程序设计基础》第3版",
+                  "url": "",
+                  "locator": "§5.1—5.2 函数（PDF第184—192页）；§5.5 模块化（PDF第207—209页）；库导入查§2.5",
+                  "status": "用户提供第3版；目录与正文起始页已核对",
+                  "materialFileNames": [
+                    "Python语言程序设计基础 第三版 (嵩天, 黄天羽, 杨雅婷) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+                    "Python语言程序设计基础 第三版.pdf",
+                    "Python语言程序设计基础(第3版).pdf"
+                  ],
+                  "pdfPage": 184
+                },
+                {
+                  "label": "北理工嵩天｜Python语言程序设计 MOOC",
+                  "url": "https://www.icourse163.org/course/BIT-268001",
+                  "locator": "按“函数与代码复用”主题选课；视频结构与第3版教材不完全一致，正文以教材为主",
+                  "status": "作者课程；当前参考书含2024年第3版；不将重开课当作新录制"
+                },
+                {
                   "label": "开发学习方案 ver2",
                   "url": "/api/development-plan",
                   "locator": "PDF第3页",
                   "status": "用户提供",
                   "pdfPage": 3
-                },
-                {
-                  "label": "CS50P",
-                  "url": "https://cs50.harvard.edu/python/",
-                  "locator": "Week 0函数＋Week 4 Libraries；Python第4.8、6章",
-                  "status": "已核对课节"
-                },
-                {
-                  "label": "Python官方中文教程",
-                  "url": "https://docs.python.org/zh-cn/3/tutorial/",
-                  "locator": "对应章作为中文查阅；先学概念再查官方教程",
-                  "status": "已核对课节"
                 }
               ],
               "action": "把读入、计算、展示拆为三个函数，再放进两个模块。",
@@ -994,23 +1025,29 @@
               "title": "异常与可理解的报错",
               "sources": [
                 {
+                  "label": "嵩天等《Python语言程序设计基础》第3版",
+                  "url": "",
+                  "locator": "§4.2 异常结构；PDF第154—159页",
+                  "status": "用户提供第3版；目录与正文起始页已核对",
+                  "materialFileNames": [
+                    "Python语言程序设计基础 第三版 (嵩天, 黄天羽, 杨雅婷) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+                    "Python语言程序设计基础 第三版.pdf",
+                    "Python语言程序设计基础(第3版).pdf"
+                  ],
+                  "pdfPage": 154
+                },
+                {
+                  "label": "北理工嵩天｜Python语言程序设计 MOOC",
+                  "url": "https://www.icourse163.org/course/BIT-268001",
+                  "locator": "按“异常处理”主题选课；视频结构与第3版教材不完全一致，正文以教材为主",
+                  "status": "作者课程；当前参考书含2024年第3版；不将重开课当作新录制"
+                },
+                {
                   "label": "开发学习方案 ver2",
                   "url": "/api/development-plan",
                   "locator": "PDF第3页",
                   "status": "用户提供",
                   "pdfPage": 3
-                },
-                {
-                  "label": "CS50P",
-                  "url": "https://cs50.harvard.edu/python/",
-                  "locator": "Week 3 Exceptions；Python第8章",
-                  "status": "已核对课节"
-                },
-                {
-                  "label": "Python官方中文教程",
-                  "url": "https://docs.python.org/zh-cn/3/tutorial/",
-                  "locator": "对应章作为中文查阅；先学概念再查官方教程",
-                  "status": "已核对课节"
                 }
               ],
               "action": "为非法输入和缺失文件分别处理；保留意外异常的信息。",
@@ -1022,23 +1059,35 @@
               "title": "文件与数据保存",
               "sources": [
                 {
+                  "label": "嵩天等《Python语言程序设计基础》第3版",
+                  "url": "",
+                  "locator": "§7.1—7.2 文件读写（PDF第254—260页）；§7.4—7.5 数据格式化（PDF第268—275页）；JSON补查官方中文文档",
+                  "status": "用户提供第3版；目录与正文起始页已核对",
+                  "materialFileNames": [
+                    "Python语言程序设计基础 第三版 (嵩天, 黄天羽, 杨雅婷) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+                    "Python语言程序设计基础 第三版.pdf",
+                    "Python语言程序设计基础(第3版).pdf"
+                  ],
+                  "pdfPage": 254
+                },
+                {
+                  "label": "北理工嵩天｜Python语言程序设计 MOOC",
+                  "url": "https://www.icourse163.org/course/BIT-268001",
+                  "locator": "按“文件和数据格式化”主题选课；视频结构与第3版教材不完全一致，正文以教材为主",
+                  "status": "作者课程；当前参考书含2024年第3版；不将重开课当作新录制"
+                },
+                {
+                  "label": "Python官方中文文档｜JSON",
+                  "url": "https://docs.python.org/zh-cn/3/library/json.html",
+                  "locator": "JSON编码与解码；补足本节学习记录保存练习",
+                  "status": "持续更新的官方中文文档"
+                },
+                {
                   "label": "开发学习方案 ver2",
                   "url": "/api/development-plan",
                   "locator": "PDF第3页",
                   "status": "用户提供",
                   "pdfPage": 3
-                },
-                {
-                  "label": "CS50P",
-                  "url": "https://cs50.harvard.edu/python/",
-                  "locator": "Week 6 File I/O；Python第7章",
-                  "status": "已核对课节"
-                },
-                {
-                  "label": "Python官方中文教程",
-                  "url": "https://docs.python.org/zh-cn/3/tutorial/",
-                  "locator": "对应章作为中文查阅；先学概念再查官方教程",
-                  "status": "已核对课节"
                 }
               ],
               "action": "保存并重新读取JSON/CSV学习记录；改变运行目录验证相对路径。",
@@ -1050,23 +1099,29 @@
               "title": "类与对象",
               "sources": [
                 {
+                  "label": "嵩天等《Python语言程序设计基础》第3版",
+                  "url": "",
+                  "locator": "§9.1—9.4 类、对象与继承；PDF第326页起，到§9.5前",
+                  "status": "用户提供第3版；目录与正文起始页已核对",
+                  "materialFileNames": [
+                    "Python语言程序设计基础 第三版 (嵩天, 黄天羽, 杨雅婷) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+                    "Python语言程序设计基础 第三版.pdf",
+                    "Python语言程序设计基础(第3版).pdf"
+                  ],
+                  "pdfPage": 326
+                },
+                {
+                  "label": "Python官方中文教程｜类",
+                  "url": "https://docs.python.org/zh-cn/3/tutorial/classes.html",
+                  "locator": "对照教材第9章，查阅类、实例和继承",
+                  "status": "持续更新的官方中文文档"
+                },
+                {
                   "label": "开发学习方案 ver2",
                   "url": "/api/development-plan",
                   "locator": "PDF第3页",
                   "status": "用户提供",
                   "pdfPage": 3
-                },
-                {
-                  "label": "CS50P",
-                  "url": "https://cs50.harvard.edu/python/",
-                  "locator": "Week 8 Object-Oriented Programming；Python第9章",
-                  "status": "已核对课节"
-                },
-                {
-                  "label": "Python官方中文教程",
-                  "url": "https://docs.python.org/zh-cn/3/tutorial/",
-                  "locator": "对应章作为中文查阅；先学概念再查官方教程",
-                  "status": "已核对课节"
                 }
               ],
               "action": "做一个简单记录类，说明属性、方法与普通函数的分工。",
@@ -1078,23 +1133,29 @@
               "title": "测试与小程序验收",
               "sources": [
                 {
+                  "label": "嵩天等《Python语言程序设计基础》第3版",
+                  "url": "",
+                  "locator": "§8.3 程序组织框架（PDF第296页起），复查§1.6.2 常见程序问题（PDF第55页起）；自动测试另查官方中文unittest文档",
+                  "status": "用户提供第3版；目录与正文起始页已核对",
+                  "materialFileNames": [
+                    "Python语言程序设计基础 第三版 (嵩天, 黄天羽, 杨雅婷) (z-library.sk, 1lib.sk, z-lib.sk).pdf",
+                    "Python语言程序设计基础 第三版.pdf",
+                    "Python语言程序设计基础(第3版).pdf"
+                  ],
+                  "pdfPage": 296
+                },
+                {
+                  "label": "Python官方中文文档｜unittest",
+                  "url": "https://docs.python.org/zh-cn/3/library/unittest.html",
+                  "locator": "基本示例：为已有函数编写正常、边界与异常测试；属于本路线补充练习",
+                  "status": "持续更新的官方中文文档"
+                },
+                {
                   "label": "开发学习方案 ver2",
                   "url": "/api/development-plan",
                   "locator": "PDF第3页",
                   "status": "用户提供",
                   "pdfPage": 3
-                },
-                {
-                  "label": "CS50P",
-                  "url": "https://cs50.harvard.edu/python/",
-                  "locator": "Week 5 Unit Tests",
-                  "status": "已核对课节"
-                },
-                {
-                  "label": "Python官方中文教程",
-                  "url": "https://docs.python.org/zh-cn/3/tutorial/",
-                  "locator": "对应章作为中文查阅；先学概念再查官方教程",
-                  "status": "已核对课节"
                 }
               ],
               "action": "给关键函数写正常、边界、异常输入的测试；换一个需求再修改程序。",
@@ -4406,11 +4467,12 @@
       "name": "摄影",
       "goal": "在已有拍摄经验上补理论，把“凭感觉调参数”变成能够解释、复现并复盘的选择。",
       "notes": [
-        "暂沿用旧档案“已有较多实践、未系统学过理论”。从自己的旧片测起，会的内容可以用作业验证后跳过。",
+        "暂沿用旧档案“已有较多实践、未系统学过理论”。从自己的旧片测起，会的内容可以用作业验证后跳过。 新增2024—2025年发布的B站中文实拍与后期讲解，作为相应主题的补充。",
         "主资料采用Sony中文基础知识系列；构图辅助用Canon官方教程；后期参考Adobe官方色调与颜色文档。使用其中通用原理，不要求购买相应品牌设备或软件。",
         "大单元按知识依赖重排，具体每节都给阅读位置和对照拍摄任务。摄影进度以能复现效果、解释取舍和保留作品为准。",
         "未获知当前器材：可调参数相机直接实验；固定光圈手机在光圈节先观察官方对比图，实拍重点做距离、焦距/镜头、光线和曝光补偿。无需为了完成路线购置器材。",
-        "每次保留原片、所选片和简短说明；人物练习使用愿意参与的人，或用静物替代。"
+        "每次保留原片、所选片和简短说明；人物练习使用愿意参与的人，或用静物替代。",
+        "辅助视频按本节需要选看，不要求刷完整合集。器材展示与商业推广不属于学习任务；实拍先用手边设备，后期按现有软件对应工具练习。"
       ],
       "units": [
         {
@@ -4429,6 +4491,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243651",
                   "locator": "基础知识目录；本次自拟诊断",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“直方图”“构图思维”，用于诊断曝光与画面问题",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：选12张旧片，分别标记曝光、清晰度、构图、光线问题；先解释你当时想表现什么。",
@@ -4444,6 +4512,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243680",
                   "locator": "曝光及曝光补偿",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“曝光标尺”“曝光锁定”“直方图”",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：同一场景拍偏暗、基准、偏亮三张，观察高光与暗部保留程度。",
@@ -4459,6 +4533,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243651",
                   "locator": "目录：M模式；结合相机/手机现有可用控制项",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“M档”“M档曝光三要素”，每轮只改一个参数",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：在固定机位与光线下只改一个参数，写出预测效果，再和结果比较。",
@@ -4489,6 +4569,12 @@
                   "url": "https://service.sony.com.cn/eclassroom/00000275.html",
                   "locator": "相机基础操作04：光圈及作用",
                   "status": "已核对课节"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“认识光圈”“光圈影响景深”“光圈优先”",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：固定距离与焦距比较背景虚化；没有可调光圈时先读对比图，再以距离做实验。",
@@ -4504,6 +4590,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243685",
                   "locator": "快门速度及S模式",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“认识快门”“安全快门”“高速快门”“低速快门”",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：拍同一运动对象，比较冻结、拖影与抖动；记录哪些模糊是有意的。",
@@ -4519,6 +4611,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243687",
                   "locator": "ISO感光度",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“什么是感光度”“感光度的原理”",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：在固定场景比较不同ISO的噪声与细节；说明何时宁愿提高ISO也要保证快门。",
@@ -4534,6 +4632,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243651",
                   "locator": "目录：M模式；复用本单元三个资料",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“M档曝光三要素”，再验证本节三个场景",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：为静物、走动人物、夜景分别写一个拍摄策略，再选一类实际验证。",
@@ -4558,6 +4662,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243651",
                   "locator": "目录→焦距",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "郭城安｜街拍焦段选择（B站）",
+                  "url": "https://www.bilibili.com/video/BV1Ki421R732/",
+                  "locator": "比较35／50／85mm的观看范围与拍摄距离；不要求购买镜头",
+                  "status": "2024-03-18发布；已核作者与主题"
                 }
               ],
               "action": "阅读对应资料后做对照实验：同机位比较广角与长焦；再移动位置保持主体大小，区分视角与透视变化。",
@@ -4573,6 +4683,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243651",
                   "locator": "目录→散焦的因素；最近对焦距离",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "复看“光圈影响景深”，把拍摄距离和背景距离作为对照变量",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：改变主体距离和主体到背景距离，比较背景虚化及对焦失败边界。",
@@ -4588,6 +4704,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243651",
                   "locator": "目录→自动对焦（AF）模式和手动对焦（MF）模式",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“对焦区域”；各品牌模式名称仍查设备说明书",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：分别拍静止和运动对象，检查焦点位置而非只看缩略图。",
@@ -4627,6 +4749,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243651",
                   "locator": "目录→灯光及其效果",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "麦同学看世界｜单灯布光（B站）",
+                  "url": "https://www.bilibili.com/video/BV1Xx4y147Vf/",
+                  "locator": "观察七种布光的方向、阴影与适用场景；现有灯或窗光即可练习",
+                  "status": "2024-06-20发布；已核作者与主题"
                 }
               ],
               "action": "阅读对应资料后做对照实验：对同一静物拍顺光、侧光、逆光，观察体积感与阴影。",
@@ -4642,6 +4770,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243651",
                   "locator": "灯光及其效果；本次自拟窗边实验",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“场景与光线”；结合官方图例观察阴影边缘",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：比较直射光与窗帘柔化后的光，描述阴影边缘变化。",
@@ -4657,6 +4791,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243681",
                   "locator": "白平衡",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“相机色温”“光线色温”“白平衡”及环境色温的配合",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：同一场景比较自动和预设白平衡，解释中性还原与气氛表达。",
@@ -4681,6 +4821,12 @@
                   "url": "https://snapshot.asia.canon/tw/zh-hant/article/part-1-basic-knowledge-and-useful-techniques-for-composing-shots",
                   "locator": "构图基础教程Part 1；官方页面目录定位",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“机位高度”“平视机位”“构图思维”",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：同一主体拍三种机位，先清理背景与边缘，再决定取景。",
@@ -4696,6 +4842,12 @@
                   "url": "https://snapshot.asia.canon/tw/zh-hant/article/part-1-basic-knowledge-and-useful-techniques-for-composing-shots",
                   "locator": "构图基础教程Part 1；本次自拟比较练习",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“线条”“构图技巧”，用自己的照片比较重心与视线路径",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：拍居中、偏置与引导线三种构图，说明视线先到哪里。",
@@ -4711,6 +4863,12 @@
                   "url": "https://snapshot.asia.canon/tw/zh-hant/article/part-2-composition-basics-main-theme-038-sub-theme-and-triangular-composition",
                   "locator": "构图基础Part 2：主副主题与三角构图",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“二次构图”；主体与层次的原则以官方教程为基础",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：在一个场景内安排前景、主体和背景，去掉一个元素比较效果。",
@@ -4735,6 +4893,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243651",
                   "locator": "复用光圈、对焦、灯光三节",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "麦同学看世界｜单灯布光（B站）",
+                  "url": "https://www.bilibili.com/video/BV1Xx4y147Vf/",
+                  "locator": "观察七种布光的方向、阴影与适用场景；现有灯或窗光即可练习",
+                  "status": "2024-06-20发布；已核作者与主题"
                 }
               ],
               "action": "阅读对应资料后做对照实验：以窗光拍一组人物或静物，重点保持主体清晰、背景简洁。",
@@ -4750,6 +4914,12 @@
                   "url": "https://snapshot.asia.canon/tw/zh-hant/article/part-1-basic-knowledge-and-useful-techniques-for-composing-shots",
                   "locator": "复用构图基础Part 1",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "郭城安｜街拍焦段选择（B站）",
+                  "url": "https://www.bilibili.com/video/BV1Ki421R732/",
+                  "locator": "比较35／50／85mm的观看范围与拍摄距离；不要求购买镜头",
+                  "status": "2024-03-18发布；已核作者与主题"
                 }
               ],
               "action": "阅读对应资料后做对照实验：限定一个地点拍环境、关系、细节三类画面，避免只重复同一视角。",
@@ -4765,6 +4935,12 @@
                   "url": "https://www.sony.com/zh-cn/electronics/support/articles/00243685",
                   "locator": "快门速度及S模式；结合ISO教程",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“低速快门”“慢门摄影”；提高ISO与保留运动感的取舍仍自行比较",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：选择一个低光场景，比较保证清晰和保留运动感的两种结果。",
@@ -4789,6 +4965,12 @@
                   "url": "https://helpx.adobe.com/cn/lightroom-classic/desktop/process-and-develop-photos/image-tone-color.html",
                   "locator": "官方后期文档作参考；本次自拟整理流程",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "大慧DaHui｜Lightroom修片流程（B站）",
+                  "url": "https://www.bilibili.com/video/BV181cBeSEav/",
+                  "locator": "02:59裁剪、18:15细节检查；原片管理与命名沿用本节实践",
+                  "status": "2025-01-15发布；已核作者说明中的时间点"
                 }
               ],
               "action": "阅读对应资料后做对照实验：从30张中选6张，写淘汰理由；原片保留，编辑另存，建立可找回的命名。",
@@ -4804,6 +4986,12 @@
                   "url": "https://helpx.adobe.com/cn/lightroom-classic/desktop/process-and-develop-photos/image-tone-color.html",
                   "locator": "页面内“直方图”“白平衡”“色调”相关栏目",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "大慧DaHui｜Lightroom修片流程（B站）",
+                  "url": "https://www.bilibili.com/video/BV181cBeSEav/",
+                  "locator": "06:35曝光、09:35白平衡；先校正再塑造风格",
+                  "status": "2025-01-15发布；已核作者说明中的时间点"
                 }
               ],
               "action": "阅读对应资料后做对照实验：先改曝光与白平衡，再调对比；用前后对照确认是否损失高光或造成偏色。",
@@ -4819,6 +5007,12 @@
                   "url": "https://helpx.adobe.com/cn/lightroom-classic/desktop/process-and-develop-photos/image-tone-color.html",
                   "locator": "色调和颜色相关栏目；按现有软件对应控制项",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "卢金瑞｜Lightroom局部蒙版（B站）",
+                  "url": "https://www.bilibili.com/video/BV1mnWRenEzM/",
+                  "locator": "用空间照片观察蒙版局部调整；迁移方法到自己的照片，不要求改学空间摄影",
+                  "status": "2024-08-24发布；已核作者与主题"
                 }
               ],
               "action": "阅读对应资料后做对照实验：对一张照片只做少量针对性修正，写出每一步服务的表达目的。",
@@ -4834,6 +5028,12 @@
                   "url": "https://helpx.adobe.com/cn/lightroom-classic/desktop/process-and-develop-photos/image-tone-color.html",
                   "locator": "复用色调与颜色原理；本次自拟组图输出",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "大慧DaHui｜Lightroom修片流程（B站）",
+                  "url": "https://www.bilibili.com/video/BV181cBeSEav/",
+                  "locator": "11:45色彩、12:44颜色分级、23:20导出；用同一组照片检查一致性",
+                  "status": "2025-01-15发布；已核作者说明中的时间点"
                 }
               ],
               "action": "阅读对应资料后做对照实验：统一6张照片的观感，分别检查屏幕显示与导出结果；确认尺寸、方向和颜色。",
@@ -4858,6 +5058,12 @@
                   "url": "https://snapshot.asia.canon/tw/zh-hant/article/part-1-basic-knowledge-and-useful-techniques-for-composing-shots",
                   "locator": "复用主副主题；本次自拟组图项目",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "伍伍教摄影｜基础与实拍（B站）",
+                  "url": "https://www.bilibili.com/video/BV1ha7mzmEgq/",
+                  "locator": "选看“场景与光线”“构图思维”，为自己的主题列画面清单",
+                  "status": "2025-06-02发布；已核公开目录，按标题选看"
                 }
               ],
               "action": "阅读对应资料后做对照实验：选“校园的一天”等一个明确主题，列6—8张各有作用的画面清单。",
@@ -4888,6 +5094,12 @@
                   "url": "https://helpx.adobe.com/cn/lightroom-classic/desktop/process-and-develop-photos/image-tone-color.html",
                   "locator": "本次自拟验收，复用整理与后期单元",
                   "status": "已核教程主题；目录入口按所列标题进入"
+                },
+                {
+                  "label": "大慧DaHui｜Lightroom修片流程（B站）",
+                  "url": "https://www.bilibili.com/video/BV181cBeSEav/",
+                  "locator": "复看完整修片流程，比较原片与输出；组图复盘仍按本节标准",
+                  "status": "2025-01-15发布；已核作者说明中的时间点"
                 }
               ],
               "action": "阅读对应资料后做对照实验：交付6—8张成组作品，每张一句说明；与基线旧片比较，列三项改进和一个待解决问题。",
@@ -4904,9 +5116,9 @@
       "goal": "按现有教材逐节建立概率模型、推断方法和应用判断能力。",
       "notes": [
         "主教材：《概率论与数理统计》，房永飞、赵颖、田玉斌，机械工业出版社，2021年第1版，ISBN 978-7-111-68760-3；学迹资料库对应PDF共712页。",
-        "10章，128个层级标题，提取其中96个最细小节作为可选进度节点。以下只写PDF页序，不套用纸书页码；页序由仓库逐页识别文本定位。",
-        "先读中文教材再选辅助视频。Stat110为英文概率课程；OpenIntro为英文统计辅助，其章节编号属于辅助资料，与主教材不同。国内MOOC同样只作辅助，不声称与现有教材一一配套。",
-        "带选学标记的内容来自原教材星号：4.4、6.1.3、7.3.4、8.4、8.6。课堂若要求，则改为必学；本路线不推定考试范围。",
+        "按教材10章、37节安排学习位置，目录只到1.5这一节，不再单列更细的小节。以下只写PDF页序，不套用纸书页码；页序沿用已核对的正文定位。",
+        "先读中文教材，主辅助视频改用宋浩官方B站2024年发布的2.0版，按主题对应37节；课程编号与教材编号分开标注。回归与单因素方差分析补充国内MOOC，录制年份未确认，不称为新版。",
+        "整节选学内容为4.4、8.4、8.6；6.1中的「参数空间和分布族」、7.3中的「非正态总体参数的区间估计」保留部分选学标记。课堂若要求，则改为必学；本路线不推定考试范围。",
         "连续分布需要基本积分；多维分布需要多重积分基础；遇到缺口先做局部补习。每章结束重做错题并混合练习，不靠看完视频判定掌握。"
       ],
       "units": [
@@ -4918,409 +5130,184 @@
           "branch": "",
           "steps": [
             {
-              "id": "ST-1-1-1",
-              "title": "§1.1.1 随机试验",
+              "id": "ST-1-1",
+              "title": "§1.1 样本空间和随机事件",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§1.1.1；PDF第13页起，到§1.1.2标题前（PDF第14页）",
+                  "locator": "§1.1；PDF第13页起，到§1.2标题前（PDF第24页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 13
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 1：样本空间、计数；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程1.1：随机试验与随机事件",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②判断一个过程是否具有随机试验的特征。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②判断一个过程是否具有随机试验的特征；为掷两次硬币写出有序样本空间；把口头描述改写成样本空间的子集；用集合图比较并、交、补及互斥。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 13,
-              "textbookSection": "1.1.1",
-              "group": "样本空间和随机事件"
-            },
-            {
-              "id": "ST-1-1-2",
-              "title": "§1.1.2 样本空间",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§1.1.2；PDF第14页起，到§1.1.3标题前（PDF第16页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 14
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 1：样本空间、计数；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "1.1",
+              "legacyIds": [
+                "ST-1-1-1",
+                "ST-1-1-2",
+                "ST-1-1-3",
+                "ST-1-1-4"
               ],
-              "action": "①读定义、条件和推导；②为掷两次硬币写出有序样本空间。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 14,
-              "textbookSection": "1.1.2",
-              "group": "样本空间和随机事件"
+              "topics": [
+                "随机试验",
+                "样本空间",
+                "随机事件",
+                "事件的关系与运算"
+              ]
             },
             {
-              "id": "ST-1-1-3",
-              "title": "§1.1.3 随机事件",
+              "id": "ST-1-2",
+              "title": "§1.2 事件的概率",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§1.1.3；PDF第16页起，到§1.1.4标题前（PDF第16页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 16
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 1：样本空间、计数；英文选看",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②把口头描述改写成样本空间的子集。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 16,
-              "textbookSection": "1.1.3",
-              "group": "样本空间和随机事件"
-            },
-            {
-              "id": "ST-1-1-4",
-              "title": "§1.1.4 事件的关系与运算",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§1.1.4；PDF第16页起，到§1.2.1标题前（PDF第24页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 16
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 1：样本空间、计数；英文选看",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②用集合图比较并、交、补及互斥。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 16,
-              "textbookSection": "1.1.4",
-              "group": "样本空间和随机事件"
-            },
-            {
-              "id": "ST-1-2-1",
-              "title": "§1.2.1 古典概率",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§1.2.1；PDF第24页起，到§1.2.2标题前（PDF第32页）",
+                  "locator": "§1.2；PDF第24页起，到§1.3标题前（PDF第53页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 24
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 1：样本空间、计数；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程1.2—1.3：频率、概率与两类概型",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②检查等可能性后列出计数过程。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②检查等可能性后列出计数过程；画出几何区域并比较测度比例；重复模拟抛硬币，比较频率波动和理论概率；用三条公理检查一个概率赋值是否合法；用补事件与容斥两种方法处理一个问题。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 24,
-              "textbookSection": "1.2.1",
-              "group": "事件的概率"
-            },
-            {
-              "id": "ST-1-2-2",
-              "title": "§1.2.2 几何概率",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§1.2.2；PDF第32页起，到§1.2.3标题前（PDF第37页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 32
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 2—3：概率公理与性质；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "1.2",
+              "legacyIds": [
+                "ST-1-2-1",
+                "ST-1-2-2",
+                "ST-1-2-3",
+                "ST-1-2-4",
+                "ST-1-2-5"
               ],
-              "action": "①读定义、条件和推导；②画出几何区域并比较测度比例。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 32,
-              "textbookSection": "1.2.2",
-              "group": "事件的概率"
+              "topics": [
+                "古典概率",
+                "几何概率",
+                "频率",
+                "概率的公理化定义",
+                "概率的性质"
+              ]
             },
             {
-              "id": "ST-1-2-3",
-              "title": "§1.2.3 频率",
+              "id": "ST-1-3",
+              "title": "§1.3 条件概率与乘法定理",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§1.2.3；PDF第37页起，到§1.2.4标题前（PDF第43页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 37
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 2—3：概率公理与性质；英文选看",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②重复模拟抛硬币，比较频率波动和理论概率。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 37,
-              "textbookSection": "1.2.3",
-              "group": "事件的概率"
-            },
-            {
-              "id": "ST-1-2-4",
-              "title": "§1.2.4 概率的公理化定义",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§1.2.4；PDF第43页起，到§1.2.5标题前（PDF第44页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 43
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 2—3：概率公理与性质；英文选看",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②用三条公理检查一个概率赋值是否合法。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 43,
-              "textbookSection": "1.2.4",
-              "group": "事件的概率"
-            },
-            {
-              "id": "ST-1-2-5",
-              "title": "§1.2.5 概率的性质",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§1.2.5；PDF第44页起，到§1.3.1标题前（PDF第53页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 44
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 2—3：概率公理与性质；英文选看",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②用补事件与容斥两种方法处理一个问题。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 44,
-              "textbookSection": "1.2.5",
-              "group": "事件的概率"
-            },
-            {
-              "id": "ST-1-3-1",
-              "title": "§1.3.1 条件概率",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§1.3.1；PDF第53页起，到§1.3.2标题前（PDF第56页）",
+                  "locator": "§1.3；PDF第53页起，到§1.4标题前（PDF第60页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 53
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 4—5：条件、独立、贝叶斯与全概率；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程1.4：条件概率与乘法公式",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②写明条件后样本空间发生了什么变化。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②写明条件后样本空间发生了什么变化；画两阶段树图，用条件概率相乘。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 53,
-              "textbookSection": "1.3.1",
-              "group": "条件概率与乘法定理"
-            },
-            {
-              "id": "ST-1-3-2",
-              "title": "§1.3.2 乘法定理",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§1.3.2；PDF第56页起，到§1.4.1标题前（PDF第60页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 56
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 4—5：条件、独立、贝叶斯与全概率；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "1.3",
+              "legacyIds": [
+                "ST-1-3-1",
+                "ST-1-3-2"
               ],
-              "action": "①读定义、条件和推导；②画两阶段树图，用条件概率相乘。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 56,
-              "textbookSection": "1.3.2",
-              "group": "条件概率与乘法定理"
+              "topics": [
+                "条件概率",
+                "乘法定理"
+              ]
             },
             {
-              "id": "ST-1-4-1",
-              "title": "§1.4.1 两个事件的独立性",
+              "id": "ST-1-4",
+              "title": "§1.4 独立性",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§1.4.1；PDF第60页起，到§1.4.2标题前（PDF第63页）",
+                  "locator": "§1.4；PDF第60页起，到§1.5标题前（PDF第69页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 60
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 4—5：条件、独立、贝叶斯与全概率；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程1.6：事件独立性；伯努利试验按需选看",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②构造互斥但不独立的例子。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②构造互斥但不独立的例子；检查两两独立与相互独立的区别。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 60,
-              "textbookSection": "1.4.1",
-              "group": "独立性"
-            },
-            {
-              "id": "ST-1-4-2",
-              "title": "§1.4.2 多个事件的独立性",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§1.4.2；PDF第63页起，到§1.5.1标题前（PDF第69页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 63
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 4—5：条件、独立、贝叶斯与全概率；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "1.4",
+              "legacyIds": [
+                "ST-1-4-1",
+                "ST-1-4-2"
               ],
-              "action": "①读定义、条件和推导；②检查两两独立与相互独立的区别。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 63,
-              "textbookSection": "1.4.2",
-              "group": "独立性"
+              "topics": [
+                "两个事件的独立性",
+                "多个事件的独立性"
+              ]
             },
             {
-              "id": "ST-1-5-1",
-              "title": "§1.5.1 全概率公式",
+              "id": "ST-1-5",
+              "title": "§1.5 全概率公式和贝叶斯公式",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§1.5.1；PDF第69页起，到§1.5.2标题前（PDF第72页）",
+                  "locator": "§1.5；PDF第69页起，读至本章习题前",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 69
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 4—5：条件、独立、贝叶斯与全概率；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程1.5：全概率与贝叶斯公式",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②先列完备事件组再汇总概率。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②先列完备事件组再汇总概率；把先验、似然与后验逐项标在树图上。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 69,
-              "textbookSection": "1.5.1",
-              "group": "全概率公式和贝叶斯公式"
-            },
-            {
-              "id": "ST-1-5-2",
-              "title": "§1.5.2 贝叶斯公式",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§1.5.2；PDF第72页起，读至本章习题前",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 72
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 4—5：条件、独立、贝叶斯与全概率；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "1.5",
+              "legacyIds": [
+                "ST-1-5-1",
+                "ST-1-5-2"
               ],
-              "action": "①读定义、条件和推导；②把先验、似然与后验逐项标在树图上。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 72,
-              "textbookSection": "1.5.2",
-              "group": "全概率公式和贝叶斯公式"
+              "topics": [
+                "全概率公式",
+                "贝叶斯公式"
+              ]
             }
           ]
         },
@@ -5338,16 +5325,16 @@
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§2.1；PDF第81页起，到§2.2.1标题前（PDF第83页）",
+                  "locator": "§2.1；PDF第81页起，到§2.2标题前（PDF第83页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 81
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 7—8、11：离散变量与常用分布；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程2.1：随机变量",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
               "action": "①读定义、条件和推导；②给每个试验结果指定随机变量取值。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
@@ -5359,58 +5346,38 @@
               "group": "随机变量"
             },
             {
-              "id": "ST-2-2-1",
-              "title": "§2.2.1 离散型随机变量",
+              "id": "ST-2-2",
+              "title": "§2.2 离散型随机变量及其分布律",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§2.2.1；PDF第83页起，到§2.2.2标题前（PDF第88页）",
+                  "locator": "§2.2；PDF第83页起，到§2.3标题前（PDF第104页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 83
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 7—8、11：离散变量与常用分布；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程2.2：离散分布及常见分布",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②检查分布律非负且总和为1。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②检查分布律非负且总和为1；为两点、二项、泊松等本节分布各写适用情境。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 83,
-              "textbookSection": "2.2.1",
-              "group": "离散型随机变量及其分布律"
-            },
-            {
-              "id": "ST-2-2-2",
-              "title": "§2.2.2 几种重要的离散型随机变量",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§2.2.2；PDF第88页起，到§2.3标题前（PDF第104页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 88
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 7—8、11：离散变量与常用分布；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "2.2",
+              "legacyIds": [
+                "ST-2-2-1",
+                "ST-2-2-2"
               ],
-              "action": "①读定义、条件和推导；②为两点、二项、泊松等本节分布各写适用情境。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 88,
-              "textbookSection": "2.2.2",
-              "group": "离散型随机变量及其分布律"
+              "topics": [
+                "离散型随机变量",
+                "几种重要的离散型随机变量"
+              ]
             },
             {
               "id": "ST-2-3",
@@ -5419,16 +5386,16 @@
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§2.3；PDF第104页起，到§2.4.1标题前（PDF第113页）",
+                  "locator": "§2.3；PDF第104页起，到§2.4标题前（PDF第113页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 104
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 8：CDF与PMF；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程2.3：分布函数",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
               "action": "①读定义、条件和推导；②画一个离散CDF，标出跳跃与右连续。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
@@ -5440,112 +5407,72 @@
               "group": "随机变量的分布函数"
             },
             {
-              "id": "ST-2-4-1",
-              "title": "§2.4.1 连续型随机变量及其密度函数",
+              "id": "ST-2-4",
+              "title": "§2.4 连续型随机变量及其分布",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§2.4.1；PDF第113页起，到§2.4.2标题前（PDF第117页）",
+                  "locator": "§2.4；PDF第113页起，到§2.5标题前（PDF第129页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 113
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 12—14、16：连续、正态、指数；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程2.4：密度函数及均匀、指数、正态分布",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②区分密度值与区间概率。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②区分密度值与区间概率；比较均匀、指数、正态的参数与形状。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 113,
-              "textbookSection": "2.4.1",
-              "group": "连续型随机变量及其分布"
-            },
-            {
-              "id": "ST-2-4-2",
-              "title": "§2.4.2 几种重要的连续型随机变量",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§2.4.2；PDF第117页起，到§2.5.1标题前（PDF第129页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 117
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 12—14、16：连续、正态、指数；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "2.4",
+              "legacyIds": [
+                "ST-2-4-1",
+                "ST-2-4-2"
               ],
-              "action": "①读定义、条件和推导；②比较均匀、指数、正态的参数与形状。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 117,
-              "textbookSection": "2.4.2",
-              "group": "连续型随机变量及其分布"
+              "topics": [
+                "连续型随机变量及其密度函数",
+                "几种重要的连续型随机变量"
+              ]
             },
             {
-              "id": "ST-2-5-1",
-              "title": "§2.5.1 离散型随机变量函数的分布",
+              "id": "ST-2-5",
+              "title": "§2.5 一维随机变量函数的分布",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§2.5.1；PDF第129页起，到§2.5.2标题前（PDF第131页）",
+                  "locator": "§2.5；PDF第129页起，读至本章习题前",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 129
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 22：变量变换与卷积；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程2.5：离散型与连续型变量函数的分布",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②枚举变换前后取值并合并概率。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②枚举变换前后取值并合并概率；先用分布函数法处理变换，再核对支撑区间。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 129,
-              "textbookSection": "2.5.1",
-              "group": "一维随机变量函数的分布"
-            },
-            {
-              "id": "ST-2-5-2",
-              "title": "§2.5.2 连续型随机变量函数的分布",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§2.5.2；PDF第131页起，读至本章习题前",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 131
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 22：变量变换与卷积；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "2.5",
+              "legacyIds": [
+                "ST-2-5-1",
+                "ST-2-5-2"
               ],
-              "action": "①读定义、条件和推导；②先用分布函数法处理变换，再核对支撑区间。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 131,
-              "textbookSection": "2.5.2",
-              "group": "一维随机变量函数的分布"
+              "topics": [
+                "离散型随机变量函数的分布",
+                "连续型随机变量函数的分布"
+              ]
             }
           ]
         },
@@ -5557,193 +5484,78 @@
           "branch": "",
           "steps": [
             {
-              "id": "ST-3-1-1",
-              "title": "§3.1.1 二维随机变量的联合分布函数",
+              "id": "ST-3-1",
+              "title": "§3.1 二维随机变量及其联合分布",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§3.1.1；PDF第149页起，到§3.1.2标题前（PDF第153页）",
+                  "locator": "§3.1；PDF第149页起，到§3.2标题前（PDF第169页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 149
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 18—19：联合、边缘与条件分布；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程3.1：联合分布函数与二维离散分布；二维连续分布及特殊分布补读教材",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②从联合CDF解释一个矩形区域的概率。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②从联合CDF解释一个矩形区域的概率；构造联合概率表并检查总和；画支撑区域后写积分界；对照本节重要二维分布列出参数和适用范围。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 149,
-              "textbookSection": "3.1.1",
-              "group": "二维随机变量及其联合分布"
-            },
-            {
-              "id": "ST-3-1-2",
-              "title": "§3.1.2 二维离散型随机变量及其分布",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§3.1.2；PDF第153页起，到§3.1.3标题前（PDF第156页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 153
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 18—19：联合、边缘与条件分布；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "3.1",
+              "legacyIds": [
+                "ST-3-1-1",
+                "ST-3-1-2",
+                "ST-3-1-3",
+                "ST-3-1-4"
               ],
-              "action": "①读定义、条件和推导；②构造联合概率表并检查总和。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 153,
-              "textbookSection": "3.1.2",
-              "group": "二维随机变量及其联合分布"
+              "topics": [
+                "二维随机变量的联合分布函数",
+                "二维离散型随机变量及其分布",
+                "二维连续型随机变量及其分布",
+                "重要的二维随机变量及其分布"
+              ]
             },
             {
-              "id": "ST-3-1-3",
-              "title": "§3.1.3 二维连续型随机变量及其分布",
+              "id": "ST-3-2",
+              "title": "§3.2 边缘分布",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§3.1.3；PDF第156页起，到§3.1.4标题前（PDF第163页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 156
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 18—19：联合、边缘与条件分布；英文选看",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②画支撑区域后写积分界。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 156,
-              "textbookSection": "3.1.3",
-              "group": "二维随机变量及其联合分布"
-            },
-            {
-              "id": "ST-3-1-4",
-              "title": "§3.1.4 重要的二维随机变量及其分布",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§3.1.4；PDF第163页起，到§3.2.1标题前（PDF第169页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 163
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 18—19：联合、边缘与条件分布；英文选看",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②对照本节重要二维分布列出参数和适用范围。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 163,
-              "textbookSection": "3.1.4",
-              "group": "二维随机变量及其联合分布"
-            },
-            {
-              "id": "ST-3-2-1",
-              "title": "§3.2.1 边缘分布函数",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§3.2.1；PDF第169页起，到§3.2.2标题前（PDF第170页）",
+                  "locator": "§3.2；PDF第169页起，到§3.3标题前（PDF第182页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 169
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 18—19：联合、边缘与条件分布；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程3.2：边缘分布函数、分布律与密度",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②由联合CDF取极限得到边缘CDF。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②由联合CDF取极限得到边缘CDF；分别对联合表的行列求和；对另一变量积分并保留分段界。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 169,
-              "textbookSection": "3.2.1",
-              "group": "边缘分布"
-            },
-            {
-              "id": "ST-3-2-2",
-              "title": "§3.2.2 二维离散型随机变量的边缘分布律",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§3.2.2；PDF第170页起，到§3.2.3标题前（PDF第175页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 170
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 18—19：联合、边缘与条件分布；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "3.2",
+              "legacyIds": [
+                "ST-3-2-1",
+                "ST-3-2-2",
+                "ST-3-2-3"
               ],
-              "action": "①读定义、条件和推导；②分别对联合表的行列求和。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 170,
-              "textbookSection": "3.2.2",
-              "group": "边缘分布"
-            },
-            {
-              "id": "ST-3-2-3",
-              "title": "§3.2.3 二维连续型随机变量的边缘密度函数",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§3.2.3；PDF第175页起，到§3.3标题前（PDF第182页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 175
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 18—19：联合、边缘与条件分布；英文选看",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②对另一变量积分并保留分段界。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 175,
-              "textbookSection": "3.2.3",
-              "group": "边缘分布"
+              "topics": [
+                "边缘分布函数",
+                "二维离散型随机变量的边缘分布律",
+                "二维连续型随机变量的边缘密度函数"
+              ]
             },
             {
               "id": "ST-3-3",
@@ -5752,16 +5564,16 @@
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§3.3；PDF第182页起，到§3.4.1标题前（PDF第193页）",
+                  "locator": "§3.3；PDF第182页起，到§3.4标题前（PDF第193页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 182
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 18—19：联合、边缘与条件分布；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程3.4：独立性判定（注意课程编号与教材不同）",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
               "action": "①读定义、条件和推导；②检验联合分布能否分解为边缘乘积。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
@@ -5773,112 +5585,72 @@
               "group": "随机变量的独立性"
             },
             {
-              "id": "ST-3-4-1",
-              "title": "§3.4.1 二维离散型随机变量的条件分布",
+              "id": "ST-3-4",
+              "title": "§3.4 条件分布",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§3.4.1；PDF第193页起，到§3.4.2标题前（PDF第196页）",
+                  "locator": "§3.4；PDF第193页起，到§3.5标题前（PDF第203页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 193
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 18—19：联合、边缘与条件分布；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程3.3：离散条件分布与条件密度（注意课程编号与教材不同）",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②对联合表的一行或一列重新归一化。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②对联合表的一行或一列重新归一化；求条件密度并检查分母非零。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 193,
-              "textbookSection": "3.4.1",
-              "group": "条件分布"
-            },
-            {
-              "id": "ST-3-4-2",
-              "title": "§3.4.2 二维连续型随机变量的条件分布",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§3.4.2；PDF第196页起，到§3.5.1标题前（PDF第203页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 196
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 18—19：联合、边缘与条件分布；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "3.4",
+              "legacyIds": [
+                "ST-3-4-1",
+                "ST-3-4-2"
               ],
-              "action": "①读定义、条件和推导；②求条件密度并检查分母非零。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 196,
-              "textbookSection": "3.4.2",
-              "group": "条件分布"
+              "topics": [
+                "二维离散型随机变量的条件分布",
+                "二维连续型随机变量的条件分布"
+              ]
             },
             {
-              "id": "ST-3-5-1",
-              "title": "§3.5.1 二维离散型随机变量函数的分布",
+              "id": "ST-3-5",
+              "title": "§3.5 二维随机变量函数的分布",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§3.5.1；PDF第203页起，到§3.5.2标题前（PDF第208页）",
+                  "locator": "§3.5；PDF第203页起，读至本章习题前",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 203
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 22：变量变换与卷积；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程3.5：二维变量函数、最大值与最小值的分布",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②枚举二维变量映射到同一结果的情况。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②枚举二维变量映射到同一结果的情况；画出变换后事件区域，比较积分与卷积思路。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 203,
-              "textbookSection": "3.5.1",
-              "group": "二维随机变量函数的分布"
-            },
-            {
-              "id": "ST-3-5-2",
-              "title": "§3.5.2 二维连续型随机变量函数的分布",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§3.5.2；PDF第208页起，读至本章习题前",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 208
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 22：变量变换与卷积；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "3.5",
+              "legacyIds": [
+                "ST-3-5-1",
+                "ST-3-5-2"
               ],
-              "action": "①读定义、条件和推导；②画出变换后事件区域，比较积分与卷积思路。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 208,
-              "textbookSection": "3.5.2",
-              "group": "二维随机变量函数的分布"
+              "topics": [
+                "二维离散型随机变量函数的分布",
+                "二维连续型随机变量函数的分布"
+              ]
             }
           ]
         },
@@ -5890,328 +5662,148 @@
           "branch": "",
           "steps": [
             {
-              "id": "ST-4-1-1",
-              "title": "§4.1.1 离散型随机变量的数学期望",
+              "id": "ST-4-1",
+              "title": "§4.1 数学期望",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§4.1.1；PDF第241页起，到§4.1.2标题前（PDF第247页）",
+                  "locator": "§4.1；PDF第241页起，到§4.2标题前（PDF第271页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 241
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 9—10、14：期望与函数期望；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程4.1：期望定义、变量函数的期望与性质",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②用取值乘概率求期望并解释单位。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②用取值乘概率求期望并解释单位；用积分求期望并检查收敛性；直接对函数取期望，说明不必先求新分布的条件；用期望线性性缩短计算，并指出不要求独立。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 241,
-              "textbookSection": "4.1.1",
-              "group": "数学期望"
-            },
-            {
-              "id": "ST-4-1-2",
-              "title": "§4.1.2 连续型随机变量的数学期望",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§4.1.2；PDF第247页起，到§4.1.3标题前（PDF第252页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 247
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 9—10、14：期望与函数期望；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "4.1",
+              "legacyIds": [
+                "ST-4-1-1",
+                "ST-4-1-2",
+                "ST-4-1-3",
+                "ST-4-1-4"
               ],
-              "action": "①读定义、条件和推导；②用积分求期望并检查收敛性。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 247,
-              "textbookSection": "4.1.2",
-              "group": "数学期望"
+              "topics": [
+                "离散型随机变量的数学期望",
+                "连续型随机变量的数学期望",
+                "随机变量函数的数学期望",
+                "数学期望的性质"
+              ]
             },
             {
-              "id": "ST-4-1-3",
-              "title": "§4.1.3 随机变量函数的数学期望",
+              "id": "ST-4-2",
+              "title": "§4.2 方差",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§4.1.3；PDF第252页起，到§4.1.4标题前（PDF第264页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 252
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 9—10、14：期望与函数期望；英文选看",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②直接对函数取期望，说明不必先求新分布的条件。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 252,
-              "textbookSection": "4.1.3",
-              "group": "数学期望"
-            },
-            {
-              "id": "ST-4-1-4",
-              "title": "§4.1.4 数学期望的性质",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§4.1.4；PDF第264页起，到§4.2.1标题前（PDF第271页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 264
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 9—10、14：期望与函数期望；英文选看",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②用期望线性性缩短计算，并指出不要求独立。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 264,
-              "textbookSection": "4.1.4",
-              "group": "数学期望"
-            },
-            {
-              "id": "ST-4-2-1",
-              "title": "§4.2.1 方差的概念",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§4.2.1；PDF第271页起，到§4.2.2标题前（PDF第278页）",
+                  "locator": "§4.2；PDF第271页起，到§4.3标题前（PDF第283页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 271
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 12、21：方差与和的方差；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程4.2：方差定义、性质与常见分布",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②用两种方差公式互相核对。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②用两种方差公式互相核对；比较平移、缩放和求和后方差如何变化。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 271,
-              "textbookSection": "4.2.1",
-              "group": "方差"
-            },
-            {
-              "id": "ST-4-2-2",
-              "title": "§4.2.2 方差的性质",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§4.2.2；PDF第278页起，到§4.3.1标题前（PDF第283页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 278
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 12、21：方差与和的方差；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "4.2",
+              "legacyIds": [
+                "ST-4-2-1",
+                "ST-4-2-2"
               ],
-              "action": "①读定义、条件和推导；②比较平移、缩放和求和后方差如何变化。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 278,
-              "textbookSection": "4.2.2",
-              "group": "方差"
+              "topics": [
+                "方差的概念",
+                "方差的性质"
+              ]
             },
             {
-              "id": "ST-4-3-1",
-              "title": "§4.3.1 协方差的定义",
+              "id": "ST-4-3",
+              "title": "§4.3 协方差和相关系数",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§4.3.1；PDF第283页起，到§4.3.2标题前（PDF第288页）",
+                  "locator": "§4.3；PDF第283页起，到§4.4标题前（PDF第306页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 283
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 21：协方差与相关；矩的细节以主教材为准",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程4.3—4.4：协方差、相关系数与矩",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②计算协方差并解释正负号。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②计算协方差并解释正负号；展开线性组合的协方差；构造不相关却不独立的例子；区分原点矩与中心矩。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 283,
-              "textbookSection": "4.3.1",
-              "group": "协方差和相关系数"
-            },
-            {
-              "id": "ST-4-3-2",
-              "title": "§4.3.2 协方差的性质",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§4.3.2；PDF第288页起，到§4.3.3标题前（PDF第293页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 288
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 21：协方差与相关；矩的细节以主教材为准",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "4.3",
+              "legacyIds": [
+                "ST-4-3-1",
+                "ST-4-3-2",
+                "ST-4-3-3",
+                "ST-4-3-4"
               ],
-              "action": "①读定义、条件和推导；②展开线性组合的协方差。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 288,
-              "textbookSection": "4.3.2",
-              "group": "协方差和相关系数"
+              "topics": [
+                "协方差的定义",
+                "协方差的性质",
+                "相关系数",
+                "矩"
+              ]
             },
             {
-              "id": "ST-4-3-3",
-              "title": "§4.3.3 相关系数",
+              "id": "ST-4-4",
+              "title": "§4.4 多维随机变量的数字特征",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§4.3.3；PDF第293页起，到§4.3.4标题前（PDF第302页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 293
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 21：协方差与相关；矩的细节以主教材为准",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②构造不相关却不独立的例子。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 293,
-              "textbookSection": "4.3.3",
-              "group": "协方差和相关系数"
-            },
-            {
-              "id": "ST-4-3-4",
-              "title": "§4.3.4 矩",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§4.3.4；PDF第302页起，到§4.4.1标题前（PDF第306页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 302
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 21：协方差与相关；矩的细节以主教材为准",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②区分原点矩与中心矩。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 302,
-              "textbookSection": "4.3.4",
-              "group": "协方差和相关系数"
-            },
-            {
-              "id": "ST-4-4-1",
-              "title": "§4.4.1 多维随机变量的期望和协方差矩阵",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§4.4.1；PDF第306页起，到§4.4.2标题前（PDF第307页）",
+                  "locator": "§4.4；PDF第306页起，读至本章习题前",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 306
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 30：χ²、t、多维正态；F分布以主教材为准",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程4.4：协方差矩阵；多维正态分布补读教材",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②组织均值向量与协方差矩阵，核对对称性。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②组织均值向量与协方差矩阵，核对对称性；检查多维正态的边缘与独立性条件。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": true,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 306,
-              "textbookSection": "4.4.1",
-              "group": "多维随机变量的数字特征"
-            },
-            {
-              "id": "ST-4-4-2",
-              "title": "§4.4.2 多维正态随机变量",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§4.4.2；PDF第307页起，读至本章习题前",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 307
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 30：χ²、t、多维正态；F分布以主教材为准",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "4.4",
+              "legacyIds": [
+                "ST-4-4-1",
+                "ST-4-4-2"
               ],
-              "action": "①读定义、条件和推导；②检查多维正态的边缘与独立性条件。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": true,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 307,
-              "textbookSection": "4.4.2",
-              "group": "多维随机变量的数字特征"
+              "topics": [
+                "多维随机变量的期望和协方差矩阵",
+                "多维正态随机变量"
+              ]
             }
           ]
         },
@@ -6223,85 +5815,40 @@
           "branch": "",
           "steps": [
             {
-              "id": "ST-5-1-1",
-              "title": "§5.1.1 切比雪夫不等式",
+              "id": "ST-5-1",
+              "title": "§5.1 大数定律",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§5.1.1；PDF第319页起，到§5.1.2标题前（PDF第322页）",
+                  "locator": "§5.1；PDF第319页起，到§5.2标题前（PDF第332页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 319
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 28—29：不等式、大数定律与中心极限定理；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程5.1—5.2：切比雪夫不等式与大数定律",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②用切比雪夫给出上界并比较其松紧。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②用切比雪夫给出上界并比较其松紧；把依概率收敛的定义翻译成事件概率；判断大数定律需要哪些条件。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 319,
-              "textbookSection": "5.1.1",
-              "group": "大数定律"
-            },
-            {
-              "id": "ST-5-1-2",
-              "title": "§5.1.2 依概率收敛",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§5.1.2；PDF第322页起，到§5.1.3标题前（PDF第323页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 322
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 28—29：不等式、大数定律与中心极限定理；英文选看",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "5.1",
+              "legacyIds": [
+                "ST-5-1-1",
+                "ST-5-1-2",
+                "ST-5-1-3"
               ],
-              "action": "①读定义、条件和推导；②把依概率收敛的定义翻译成事件概率。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 322,
-              "textbookSection": "5.1.2",
-              "group": "大数定律"
-            },
-            {
-              "id": "ST-5-1-3",
-              "title": "§5.1.3 大数定律",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§5.1.3；PDF第323页起，到§5.2标题前（PDF第332页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 323
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 28—29：不等式、大数定律与中心极限定理；英文选看",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②判断大数定律需要哪些条件。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 323,
-              "textbookSection": "5.1.3",
-              "group": "大数定律"
+              "topics": [
+                "切比雪夫不等式",
+                "依概率收敛",
+                "大数定律"
+              ]
             },
             {
               "id": "ST-5-2",
@@ -6316,10 +5863,10 @@
                   "pdfPage": 332
                 },
                 {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 28—29：不等式、大数定律与中心极限定理；英文选看",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程5.3：中心极限定理",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
               "action": "①读定义、条件和推导；②把和或均值标准化，再做一次正态近似。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
@@ -6340,139 +5887,74 @@
           "branch": "",
           "steps": [
             {
-              "id": "ST-6-1-1",
-              "title": "§6.1.1 总体和个体",
+              "id": "ST-6-1",
+              "title": "§6.1 一些基本概念",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§6.1.1；PDF第350页起，到§6.1.2标题前（PDF第351页）",
+                  "locator": "§6.1；PDF第350页起，到§6.2标题前（PDF第356页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 350
                 },
                 {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 1 视频 1.3B Sampling principles；Chapter 5 抽样变异",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程6.1：总体与样本；参数空间和分布族补读教材",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②区分研究总体、个体与所测变量。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②区分研究总体、个体与所测变量；比较样本、观测值及经验分布；为一个分布模型写参数空间（选学）。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 350,
-              "textbookSection": "6.1.1",
-              "group": "一些基本概念"
-            },
-            {
-              "id": "ST-6-1-2",
-              "title": "§6.1.2 样本和样本分布",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§6.1.2；PDF第351页起，到§6.1.3标题前（PDF第353页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 351
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 1 视频 1.3B Sampling principles；Chapter 5 抽样变异",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "6.1",
+              "legacyIds": [
+                "ST-6-1-1",
+                "ST-6-1-2",
+                "ST-6-1-3"
               ],
-              "action": "①读定义、条件和推导；②比较样本、观测值及经验分布。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 351,
-              "textbookSection": "6.1.2",
-              "group": "一些基本概念"
+              "topics": [
+                "总体和个体",
+                "样本和样本分布",
+                "参数空间和分布族"
+              ]
             },
             {
-              "id": "ST-6-1-3",
-              "title": "§6.1.3 参数空间和分布族",
+              "id": "ST-6-2",
+              "title": "§6.2 统计量和抽样分布",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§6.1.3；PDF第353页起，到§6.2.1标题前（PDF第356页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 353
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 1 视频 1.3B Sampling principles；Chapter 5 抽样变异",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②为一个分布模型写参数空间。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": true,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 353,
-              "textbookSection": "6.1.3",
-              "group": "一些基本概念"
-            },
-            {
-              "id": "ST-6-2-1",
-              "title": "§6.2.1 统计量",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§6.2.1；PDF第356页起，到§6.2.2标题前（PDF第361页）",
+                  "locator": "§6.2；PDF第356页起，读至本章习题前",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 356
                 },
                 {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 1 视频 1.3B Sampling principles；Chapter 5 抽样变异",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程6.2—6.3：统计量、三大分布与正态抽样分布",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②判断一个表达式是不是统计量。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②判断一个表达式是不是统计量；整理正态样本下χ²、t、F统计量和自由度。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 356,
-              "textbookSection": "6.2.1",
-              "group": "统计量和抽样分布"
-            },
-            {
-              "id": "ST-6-2-2",
-              "title": "§6.2.2 抽样分布",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§6.2.2；PDF第361页起，读至本章习题前",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 361
-                },
-                {
-                  "label": "Harvard Stat110",
-                  "url": "https://stat110.hsites.harvard.edu/youtube",
-                  "locator": "Lecture 30：χ²、t、多维正态；F分布以主教材为准",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "6.2",
+              "legacyIds": [
+                "ST-6-2-1",
+                "ST-6-2-2"
               ],
-              "action": "①读定义、条件和推导；②整理正态样本下χ²、t、F统计量和自由度。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 361,
-              "textbookSection": "6.2.2",
-              "group": "统计量和抽样分布"
+              "topics": [
+                "统计量",
+                "抽样分布"
+              ]
             }
           ]
         },
@@ -6484,274 +5966,114 @@
           "branch": "",
           "steps": [
             {
-              "id": "ST-7-1-1",
-              "title": "§7.1.1 参数的点估计问题",
+              "id": "ST-7-1",
+              "title": "§7.1 点估计",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§7.1.1；PDF第397页起，到§7.1.2标题前（PDF第398页）",
+                  "locator": "§7.1；PDF第397页起，到§7.2标题前（PDF第416页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 397
                 },
                 {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第五章 5.1 矩估计、5.2 极大似然估计；辅助课，教材不同",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程7.1：矩估计与极大似然估计",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②区分参数、估计量与本次估计值。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②区分参数、估计量与本次估计值；将样本矩与总体矩相等后求解；写似然与对数似然，检查参数边界。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 397,
-              "textbookSection": "7.1.1",
-              "group": "点估计"
-            },
-            {
-              "id": "ST-7-1-2",
-              "title": "§7.1.2 矩估计",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§7.1.2；PDF第398页起，到§7.1.3标题前（PDF第403页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 398
-                },
-                {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第五章 5.1 矩估计、5.2 极大似然估计；辅助课，教材不同",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "7.1",
+              "legacyIds": [
+                "ST-7-1-1",
+                "ST-7-1-2",
+                "ST-7-1-3"
               ],
-              "action": "①读定义、条件和推导；②将样本矩与总体矩相等后求解。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 398,
-              "textbookSection": "7.1.2",
-              "group": "点估计"
+              "topics": [
+                "参数的点估计问题",
+                "矩估计",
+                "最大似然估计"
+              ]
             },
             {
-              "id": "ST-7-1-3",
-              "title": "§7.1.3 最大似然估计",
+              "id": "ST-7-2",
+              "title": "§7.2 估计量的评价标准",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§7.1.3；PDF第403页起，到§7.2.1标题前（PDF第416页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 403
-                },
-                {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第五章 5.1 矩估计、5.2 极大似然估计；辅助课，教材不同",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②写似然与对数似然，检查参数边界。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 403,
-              "textbookSection": "7.1.3",
-              "group": "点估计"
-            },
-            {
-              "id": "ST-7-2-1",
-              "title": "§7.2.1 无偏性",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§7.2.1；PDF第416页起，到§7.2.2标题前（PDF第419页）",
+                  "locator": "§7.2；PDF第416页起，到§7.3标题前（PDF第424页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 416
                 },
                 {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 5.1：点估计与抽样变异；评价标准细节以主教材为准",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程7.2：估计量评价",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②计算估计量期望，判断是否无偏。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②计算估计量期望，判断是否无偏；在相同前提下比较两个估计量的方差；解释样本量增大时估计量如何收敛。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 416,
-              "textbookSection": "7.2.1",
-              "group": "估计量的评价标准"
-            },
-            {
-              "id": "ST-7-2-2",
-              "title": "§7.2.2 有效性",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§7.2.2；PDF第419页起，到§7.2.3标题前（PDF第421页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 419
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 5.1：点估计与抽样变异；评价标准细节以主教材为准",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "7.2",
+              "legacyIds": [
+                "ST-7-2-1",
+                "ST-7-2-2",
+                "ST-7-2-3"
               ],
-              "action": "①读定义、条件和推导；②在相同前提下比较两个估计量的方差。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 419,
-              "textbookSection": "7.2.2",
-              "group": "估计量的评价标准"
+              "topics": [
+                "无偏性",
+                "有效性",
+                "相合性"
+              ]
             },
             {
-              "id": "ST-7-2-3",
-              "title": "§7.2.3 相合性",
+              "id": "ST-7-3",
+              "title": "§7.3 区间估计",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§7.2.3；PDF第421页起，到§7.3.1标题前（PDF第424页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 421
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 5.1：点估计与抽样变异；评价标准细节以主教材为准",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②解释样本量增大时估计量如何收敛。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 421,
-              "textbookSection": "7.2.3",
-              "group": "估计量的评价标准"
-            },
-            {
-              "id": "ST-7-3-1",
-              "title": "§7.3.1 区间估计的基本概念和枢轴量法",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§7.3.1；PDF第424页起，到§7.3.2标题前（PDF第426页）",
+                  "locator": "§7.3；PDF第424页起，读至本章习题前",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 424
                 },
                 {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "视频5.2 置信区间、7.1B 单均值、7.3 两均值差；方差区间以主教材为准",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程7.3—7.4：区间估计；非正态总体部分补读教材",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②从枢轴量反解区间并解释覆盖率。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②从枢轴量反解区间并解释覆盖率；按方差已知或未知选择正态/t/χ²区间；写明两样本独立等假设再选择区间公式；核对近似方法及其样本条件（选学）。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 424,
-              "textbookSection": "7.3.1",
-              "group": "区间估计"
-            },
-            {
-              "id": "ST-7-3-2",
-              "title": "§7.3.2 单个正态总体均值与方差的区间估计",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§7.3.2；PDF第426页起，到§7.3.3标题前（PDF第435页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 426
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "视频5.2 置信区间、7.1B 单均值、7.3 两均值差；方差区间以主教材为准",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "7.3",
+              "legacyIds": [
+                "ST-7-3-1",
+                "ST-7-3-2",
+                "ST-7-3-3",
+                "ST-7-3-4"
               ],
-              "action": "①读定义、条件和推导；②按方差已知或未知选择正态/t/χ²区间。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 426,
-              "textbookSection": "7.3.2",
-              "group": "区间估计"
-            },
-            {
-              "id": "ST-7-3-3",
-              "title": "§7.3.3 两个正态总体均值差和方差比的置信区间",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§7.3.3；PDF第435页起，到§7.3.4标题前（PDF第441页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 435
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "视频5.2 置信区间、7.1B 单均值、7.3 两均值差；方差区间以主教材为准",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②写明两样本独立等假设再选择区间公式。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 435,
-              "textbookSection": "7.3.3",
-              "group": "区间估计"
-            },
-            {
-              "id": "ST-7-3-4",
-              "title": "§7.3.4 非正态总体参数的区间估计",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§7.3.4；PDF第441页起，读至本章习题前",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 441
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "视频5.2 置信区间、7.1B 单均值、7.3 两均值差；方差区间以主教材为准",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②核对近似方法及其样本条件。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": true,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 441,
-              "textbookSection": "7.3.4",
-              "group": "区间估计"
+              "topics": [
+                "区间估计的基本概念和枢轴量法",
+                "单个正态总体均值与方差的区间估计",
+                "两个正态总体均值差和方差比的置信区间",
+                "非正态总体参数的区间估计"
+              ]
             }
           ]
         },
@@ -6763,274 +6085,138 @@
           "branch": "",
           "steps": [
             {
-              "id": "ST-8-1-1",
-              "title": "§8.1.1 假设检验的基本概念",
+              "id": "ST-8-1",
+              "title": "§8.1 假设检验",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§8.1.1；PDF第449页起，到§8.1.2标题前（PDF第454页）",
+                  "locator": "§8.1；PDF第449页起，到§8.2标题前（PDF第455页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 449
                 },
                 {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第六章6.1—6.4：检验概念、步骤、单/双正态总体；按本小节主题选择",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程8.1：检验问题、思想、概念与两类错误",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②写H0、H1和两类错误，不把未拒绝当作证明成立。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②写H0、H1和两类错误，不把未拒绝当作证明成立；完整写出假设、统计量、拒绝域和结论。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 449,
-              "textbookSection": "8.1.1",
-              "group": "假设检验"
-            },
-            {
-              "id": "ST-8-1-2",
-              "title": "§8.1.2 假设检验的基本步骤",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§8.1.2；PDF第454页起，到§8.2.1标题前（PDF第455页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 454
-                },
-                {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第六章6.1—6.4：检验概念、步骤、单/双正态总体；按本小节主题选择",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "8.1",
+              "legacyIds": [
+                "ST-8-1-1",
+                "ST-8-1-2"
               ],
-              "action": "①读定义、条件和推导；②完整写出假设、统计量、拒绝域和结论。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 454,
-              "textbookSection": "8.1.2",
-              "group": "假设检验"
+              "topics": [
+                "假设检验的基本概念",
+                "假设检验的基本步骤"
+              ]
             },
             {
-              "id": "ST-8-2-1",
-              "title": "§8.2.1 单个正态总体方差已知,均值的假设检验",
+              "id": "ST-8-2",
+              "title": "§8.2 单个正态总体均值与方差的假设检验",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§8.2.1；PDF第455页起，到§8.2.2标题前（PDF第460页）",
+                  "locator": "§8.2；PDF第455页起，到§8.3标题前（PDF第472页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 455
                 },
                 {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第六章6.1—6.4：检验概念、步骤、单/双正态总体；按本小节主题选择",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程8.2：单个正态总体的均值与方差检验",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②在方差已知时实施均值检验。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②在方差已知时实施均值检验；在方差未知时说明为什么使用t统计量；写均值未知时方差检验的自由度；对照上一小节解释均值已知带来的变化。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 455,
-              "textbookSection": "8.2.1",
-              "group": "单个正态总体均值与方差的假设检验"
-            },
-            {
-              "id": "ST-8-2-2",
-              "title": "§8.2.2 单个正态总体方差未知,均值的假设检验",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§8.2.2；PDF第460页起，到§8.2.3标题前（PDF第465页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 460
-                },
-                {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第六章6.1—6.4：检验概念、步骤、单/双正态总体；按本小节主题选择",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "8.2",
+              "legacyIds": [
+                "ST-8-2-1",
+                "ST-8-2-2",
+                "ST-8-2-3",
+                "ST-8-2-4"
               ],
-              "action": "①读定义、条件和推导；②在方差未知时说明为什么使用t统计量。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 460,
-              "textbookSection": "8.2.2",
-              "group": "单个正态总体均值与方差的假设检验"
+              "topics": [
+                "单个正态总体方差已知,均值的假设检验",
+                "单个正态总体方差未知,均值的假设检验",
+                "单个正态总体均值未知,方差的假设检验",
+                "单个正态总体均值已知,方差的假设检验"
+              ]
             },
             {
-              "id": "ST-8-2-3",
-              "title": "§8.2.3 单个正态总体均值未知,方差的假设检验",
+              "id": "ST-8-3",
+              "title": "§8.3 两个正态总体均值差与方差比的假设检验",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§8.2.3；PDF第465页起，到§8.2.4标题前（PDF第469页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 465
-                },
-                {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第六章6.1—6.4：检验概念、步骤、单/双正态总体；按本小节主题选择",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②写均值未知时方差检验的自由度。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 465,
-              "textbookSection": "8.2.3",
-              "group": "单个正态总体均值与方差的假设检验"
-            },
-            {
-              "id": "ST-8-2-4",
-              "title": "§8.2.4 单个正态总体均值已知,方差的假设检验",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§8.2.4；PDF第469页起，到§8.3.1标题前（PDF第472页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 469
-                },
-                {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第六章6.1—6.4：检验概念、步骤、单/双正态总体；按本小节主题选择",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②对照上一小节解释均值已知带来的变化。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 469,
-              "textbookSection": "8.2.4",
-              "group": "单个正态总体均值与方差的假设检验"
-            },
-            {
-              "id": "ST-8-3-1",
-              "title": "§8.3.1 两个正态总体均值差的假设检验",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§8.3.1；PDF第472页起，到§8.3.2标题前（PDF第479页）",
+                  "locator": "§8.3；PDF第472页起，到§8.4标题前（PDF第487页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 472
                 },
                 {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第六章6.1—6.4：检验概念、步骤、单/双正态总体；按本小节主题选择",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "课程8.3：两个总体的均值与方差比较",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
-              "action": "①读定义、条件和推导；②依据样本条件选择均值差检验。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②依据样本条件选择均值差检验；检查方差比F检验的分子分母次序。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 472,
-              "textbookSection": "8.3.1",
-              "group": "两个正态总体均值差与方差比的假设检验"
-            },
-            {
-              "id": "ST-8-3-2",
-              "title": "§8.3.2 两个正态总体方差比的假设检验",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§8.3.2；PDF第479页起，到§8.4.1标题前（PDF第487页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 479
-                },
-                {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第六章6.1—6.4：检验概念、步骤、单/双正态总体；按本小节主题选择",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "8.3",
+              "legacyIds": [
+                "ST-8-3-1",
+                "ST-8-3-2"
               ],
-              "action": "①读定义、条件和推导；②检查方差比F检验的分子分母次序。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 479,
-              "textbookSection": "8.3.2",
-              "group": "两个正态总体均值差与方差比的假设检验"
+              "topics": [
+                "两个正态总体均值差的假设检验",
+                "两个正态总体方差比的假设检验"
+              ]
             },
             {
-              "id": "ST-8-4-1",
-              "title": "§8.4.1 指数分布参数的假设检验",
+              "id": "ST-8-4",
+              "title": "§8.4 非正态总体参数的假设检验",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§8.4.1；PDF第487页起，到§8.4.2标题前（PDF第489页）",
+                  "locator": "§8.4；PDF第487页起，到§8.5标题前（PDF第492页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 487
-                },
-                {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第六章6.1—6.4：检验概念、步骤、单/双正态总体；按本小节主题选择",
-                  "status": "已核对课节"
                 }
               ],
-              "action": "①读定义、条件和推导；②为指数参数构建检验统计量。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②为指数参数构建检验统计量；明确两点分布参数与样本比例的关系。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": true,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 487,
-              "textbookSection": "8.4.1",
-              "group": "非正态总体参数的假设检验"
-            },
-            {
-              "id": "ST-8-4-2",
-              "title": "§8.4.2 两点分布参数的假设检验",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§8.4.2；PDF第489页起，到§8.5标题前（PDF第492页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 489
-                },
-                {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第六章6.1—6.4：检验概念、步骤、单/双正态总体；按本小节主题选择",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "8.4",
+              "legacyIds": [
+                "ST-8-4-1",
+                "ST-8-4-2"
               ],
-              "action": "①读定义、条件和推导；②明确两点分布参数与样本比例的关系。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": true,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 489,
-              "textbookSection": "8.4.2",
-              "group": "非正态总体参数的假设检验"
+              "topics": [
+                "指数分布参数的假设检验",
+                "两点分布参数的假设检验"
+              ]
             },
             {
               "id": "ST-8-5",
@@ -7039,16 +6225,16 @@
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§8.5；PDF第492页起，到§8.6.1标题前（PDF第494页）",
+                  "locator": "§8.5；PDF第492页起，到§8.6标题前（PDF第494页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 492
                 },
                 {
-                  "label": "中文概率统计MOOC",
-                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
-                  "locator": "第六章6.1—6.4：检验概念、步骤、单/双正态总体；按本小节主题选择",
-                  "status": "已核对课节"
+                  "label": "宋浩｜概率论与数理统计 2.0（B站）",
+                  "url": "https://www.bilibili.com/video/BV1JXppejE8q/",
+                  "locator": "复看课程8.1的检验思想；检验与置信区间的对应关系以教材为准",
+                  "status": "官方账号；2024-09-10发布；已核目录，按课程标题选集"
                 }
               ],
               "action": "①读定义、条件和推导；②在对应条件下用区间与检验交叉核对。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
@@ -7060,112 +6246,42 @@
               "group": "假设检验与置信区间的关系"
             },
             {
-              "id": "ST-8-6-1",
-              "title": "§8.6.1 拟合优度检验",
+              "id": "ST-8-6",
+              "title": "§8.6 非参数假设检验",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§8.6.1；PDF第494页起，到§8.6.2标题前（PDF第499页）",
+                  "locator": "§8.6；PDF第494页起，读至本章习题前",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 494
                 },
                 {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 6.3—6.4：拟合优度与列联表；符号/秩和仅用主教材",
-                  "status": "已核对课节"
+                  "label": "浙江大学概率统计 MOOC｜专题补充",
+                  "url": "https://www.icourse163.org/course/detail.htm?cid=232005",
+                  "locator": "第60讲：拟合优度检验；独立性、符号和秩和检验仍按教材学习",
+                  "status": "已核课程大纲；录制年份未确认，仅补主视频缺项"
                 }
               ],
-              "action": "①读定义、条件和推导；②比较观察频数与期望频数，并检查合并类别要求。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②比较观察频数与期望频数，并检查合并类别要求；根据列联表检验独立性；按差值正负构造符号检验；先合并排序再计算秩和。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": true,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 494,
-              "textbookSection": "8.6.1",
-              "group": "非参数假设检验"
-            },
-            {
-              "id": "ST-8-6-2",
-              "title": "§8.6.2 独立性检验",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§8.6.2；PDF第499页起，到§8.6.3标题前（PDF第503页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 499
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 6.3—6.4：拟合优度与列联表；符号/秩和仅用主教材",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "8.6",
+              "legacyIds": [
+                "ST-8-6-1",
+                "ST-8-6-2",
+                "ST-8-6-3",
+                "ST-8-6-4"
               ],
-              "action": "①读定义、条件和推导；②根据列联表检验独立性。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": true,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 499,
-              "textbookSection": "8.6.2",
-              "group": "非参数假设检验"
-            },
-            {
-              "id": "ST-8-6-3",
-              "title": "§8.6.3 符号检验",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§8.6.3；PDF第503页起，到§8.6.4标题前（PDF第508页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 503
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 6.3—6.4：拟合优度与列联表；符号/秩和仅用主教材",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②按差值正负构造符号检验。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": true,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 503,
-              "textbookSection": "8.6.3",
-              "group": "非参数假设检验"
-            },
-            {
-              "id": "ST-8-6-4",
-              "title": "§8.6.4 秩和检验",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§8.6.4；PDF第508页起，读至本章习题前",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 508
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 6.3—6.4：拟合优度与列联表；符号/秩和仅用主教材",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②先合并排序再计算秩和。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": true,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 508,
-              "textbookSection": "8.6.4",
-              "group": "非参数假设检验"
+              "topics": [
+                "拟合优度检验",
+                "独立性检验",
+                "符号检验",
+                "秩和检验"
+              ]
             }
           ]
         },
@@ -7177,274 +6293,114 @@
           "branch": "",
           "steps": [
             {
-              "id": "ST-9-1-1",
-              "title": "§9.1.1 回归名称的由来",
+              "id": "ST-9-1",
+              "title": "§9.1 回归分析概述",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§9.1.1；PDF第518页起，到§9.1.2标题前（PDF第518页）",
+                  "locator": "§9.1；PDF第518页起，到§9.2标题前（PDF第522页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 518
                 },
                 {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 8.1、8.2、8.4：回归直线、最小二乘、推断",
-                  "status": "已核对课节"
+                  "label": "中文概率统计 MOOC｜回归专题",
+                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
+                  "locator": "第七章：先看一元回归的研究问题与模型用途",
+                  "status": "已核课程大纲；录制年份未确认，仅补主视频缺项"
                 }
               ],
-              "action": "①读定义、条件和推导；②用自己的话解释“回归”一词与今天模型的区别。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②用自己的话解释“回归”一词与今天模型的区别；区分描述、预测与因果判断。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 518,
-              "textbookSection": "9.1.1",
-              "group": "回归分析概述"
+              "textbookSection": "9.1",
+              "legacyIds": [
+                "ST-9-1-1",
+                "ST-9-1-2"
+              ],
+              "topics": [
+                "回归名称的由来",
+                "回归分析研究的内容"
+              ]
             },
             {
-              "id": "ST-9-1-2",
-              "title": "§9.1.2 回归分析研究的内容",
+              "id": "ST-9-2",
+              "title": "§9.2 一元线性回归",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§9.1.2；PDF第518页起，到§9.2.1标题前（PDF第522页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 518
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 8.1、8.2、8.4：回归直线、最小二乘、推断",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②区分描述、预测与因果判断。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 518,
-              "textbookSection": "9.1.2",
-              "group": "回归分析概述"
-            },
-            {
-              "id": "ST-9-2-1",
-              "title": "§9.2.1 一元线性回归模型",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§9.2.1；PDF第522页起，到§9.2.2标题前（PDF第524页）",
+                  "locator": "§9.2；PDF第522页起，到§9.3标题前（PDF第552页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 522
                 },
                 {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 8.1、8.2、8.4：回归直线、最小二乘、推断",
-                  "status": "已核对课节"
+                  "label": "浙江大学概率统计 MOOC｜专题补充",
+                  "url": "https://www.icourse163.org/course/detail.htm?cid=232005",
+                  "locator": "第63—64讲：一元回归的估计、检验与应用",
+                  "status": "已核课程大纲；录制年份未确认，仅补主视频缺项"
                 }
               ],
-              "action": "①读定义、条件和推导；②写模型、误差项及假设。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②写模型、误差项及假设；由平方损失推导或计算斜率截距；检验斜率并解释不确定性；区分均值置信区间与个体预测区间。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 522,
-              "textbookSection": "9.2.1",
-              "group": "一元线性回归"
-            },
-            {
-              "id": "ST-9-2-2",
-              "title": "§9.2.2 未知参数的估计",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§9.2.2；PDF第524页起，到§9.2.3标题前（PDF第537页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 524
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 8.1、8.2、8.4：回归直线、最小二乘、推断",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "9.2",
+              "legacyIds": [
+                "ST-9-2-1",
+                "ST-9-2-2",
+                "ST-9-2-3",
+                "ST-9-2-4"
               ],
-              "action": "①读定义、条件和推导；②由平方损失推导或计算斜率截距。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 524,
-              "textbookSection": "9.2.2",
-              "group": "一元线性回归"
+              "topics": [
+                "一元线性回归模型",
+                "未知参数的估计",
+                "显著性检验",
+                "预测和控制"
+              ]
             },
             {
-              "id": "ST-9-2-3",
-              "title": "§9.2.3 显著性检验",
+              "id": "ST-9-3",
+              "title": "§9.3 多元线性回归",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§9.2.3；PDF第537页起，到§9.2.4标题前（PDF第544页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 537
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 8.1、8.2、8.4：回归直线、最小二乘、推断",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②检验斜率并解释不确定性。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 537,
-              "textbookSection": "9.2.3",
-              "group": "一元线性回归"
-            },
-            {
-              "id": "ST-9-2-4",
-              "title": "§9.2.4 预测和控制",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§9.2.4；PDF第544页起，到§9.3.1标题前（PDF第552页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 544
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 8.1、8.2、8.4：回归直线、最小二乘、推断",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②区分均值置信区间与个体预测区间。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 544,
-              "textbookSection": "9.2.4",
-              "group": "一元线性回归"
-            },
-            {
-              "id": "ST-9-3-1",
-              "title": "§9.3.1 多元线性回归模型",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§9.3.1；PDF第552页起，到§9.3.2标题前（PDF第554页）",
+                  "locator": "§9.3；PDF第552页起，读至本章习题前",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 552
                 },
                 {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 9.1 Multiple regression basics；9.3 模型条件检查",
-                  "status": "已核对课节"
+                  "label": "中文概率统计 MOOC｜回归专题",
+                  "url": "https://www.icourse163.org/course/detail.htm?cid=1003566010",
+                  "locator": "第七章：多元回归分析；R演示只作方法观察，不新增R学习前置",
+                  "status": "已核课程大纲；录制年份未确认，仅补主视频缺项"
                 }
               ],
-              "action": "①读定义、条件和推导；②把多个解释变量写成矩阵形式。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②把多个解释变量写成矩阵形式；估计系数并检查共线性；做整体F检验，写清整体原假设；在控制其他变量条件下解释单个系数的检验。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 552,
-              "textbookSection": "9.3.1",
-              "group": "多元线性回归"
-            },
-            {
-              "id": "ST-9-3-2",
-              "title": "§9.3.2 未知参数的估计",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§9.3.2；PDF第554页起，到§9.3.3标题前（PDF第561页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 554
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 9.1 Multiple regression basics；9.3 模型条件检查",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "9.3",
+              "legacyIds": [
+                "ST-9-3-1",
+                "ST-9-3-2",
+                "ST-9-3-3",
+                "ST-9-3-4"
               ],
-              "action": "①读定义、条件和推导；②估计系数并检查共线性。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 554,
-              "textbookSection": "9.3.2",
-              "group": "多元线性回归"
-            },
-            {
-              "id": "ST-9-3-3",
-              "title": "§9.3.3 回归方程的显著性检验",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§9.3.3；PDF第561页起，到§9.3.4标题前（PDF第563页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 561
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 9.1 Multiple regression basics；9.3 模型条件检查",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②做整体F检验，写清整体原假设。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 561,
-              "textbookSection": "9.3.3",
-              "group": "多元线性回归"
-            },
-            {
-              "id": "ST-9-3-4",
-              "title": "§9.3.4 回归系数的显著性检验",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§9.3.4；PDF第563页起，读至本章习题前",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 563
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 9.1 Multiple regression basics；9.3 模型条件检查",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②在控制其他变量条件下解释单个系数的检验。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 563,
-              "textbookSection": "9.3.4",
-              "group": "多元线性回归"
+              "topics": [
+                "多元线性回归模型",
+                "未知参数的估计",
+                "回归方程的显著性检验",
+                "回归系数的显著性检验"
+              ]
             }
           ]
         },
@@ -7456,143 +6412,73 @@
           "branch": "",
           "steps": [
             {
-              "id": "ST-10-1-1",
-              "title": "§10.1.1 因素与水平",
+              "id": "ST-10-1",
+              "title": "§10.1 单因素方差分析",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§10.1.1；PDF第569页起，到§10.1.2标题前（PDF第569页）",
+                  "locator": "§10.1；PDF第569页起，到§10.2标题前（PDF第583页）",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 569
                 },
                 {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 7 视频7.5A、7.5B：单因素ANOVA及条件；双因素细节用主教材",
-                  "status": "已核对课节"
+                  "label": "浙江大学概率统计 MOOC｜专题补充",
+                  "url": "https://www.icourse163.org/course/detail.htm?cid=232005",
+                  "locator": "第61—62讲：单因素方差分析及均值比较",
+                  "status": "已核课程大纲；录制年份未确认，仅补主视频缺项"
                 }
               ],
-              "action": "①读定义、条件和推导；②辨认因素、水平、重复观测。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②辨认因素、水平、重复观测；写单因素模型与误差假设；将总变异分解为组间与组内，完成ANOVA表。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 569,
-              "textbookSection": "10.1.1",
-              "group": "单因素方差分析"
-            },
-            {
-              "id": "ST-10-1-2",
-              "title": "§10.1.2 数学模型",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§10.1.2；PDF第569页起，到§10.1.3标题前（PDF第572页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 569
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 7 视频7.5A、7.5B：单因素ANOVA及条件；双因素细节用主教材",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "10.1",
+              "legacyIds": [
+                "ST-10-1-1",
+                "ST-10-1-2",
+                "ST-10-1-3"
               ],
-              "action": "①读定义、条件和推导；②写单因素模型与误差假设。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 569,
-              "textbookSection": "10.1.2",
-              "group": "单因素方差分析"
+              "topics": [
+                "因素与水平",
+                "数学模型",
+                "统计分析"
+              ]
             },
             {
-              "id": "ST-10-1-3",
-              "title": "§10.1.3 统计分析",
+              "id": "ST-10-2",
+              "title": "§10.2 双因素方差分析",
               "sources": [
                 {
                   "label": "房永飞等《概率论与数理统计》",
                   "url": "",
-                  "locator": "§10.1.3；PDF第572页起，到§10.2.1标题前（PDF第583页）",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 572
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 7 视频7.5A、7.5B：单因素ANOVA及条件；双因素细节用主教材",
-                  "status": "已核对课节"
-                }
-              ],
-              "action": "①读定义、条件和推导；②将总变异分解为组间与组内，完成ANOVA表。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 572,
-              "textbookSection": "10.1.3",
-              "group": "单因素方差分析"
-            },
-            {
-              "id": "ST-10-2-1",
-              "title": "§10.2.1 数学模型",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§10.2.1；PDF第583页起，到§10.2.2标题前（PDF第587页）",
+                  "locator": "§10.2；PDF第583页起，读至本章习题前",
                   "status": "目录与逐页文本定位",
                   "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
                   "pdfPage": 583
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 7 视频7.5A、7.5B：单因素ANOVA及条件；双因素细节用主教材",
-                  "status": "已核对课节"
                 }
               ],
-              "action": "①读定义、条件和推导；②辨认两个因素及是否考虑交互作用。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
+              "action": "①读本节的定义、条件和推导；②辨认两个因素及是否考虑交互作用；按本节模型完成方差分解，避免混用不同设计。③遮住答案，独立重做本节的代表例题；无独立例题时完成上述概念练习。",
+              "done": "能解释本节主要方法及其条件，独立完成代表题并保留计算过程；对照答案定位容易误用的前提。",
               "optional": false,
               "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
               "pdfStart": 583,
-              "textbookSection": "10.2.1",
-              "group": "双因素方差分析"
-            },
-            {
-              "id": "ST-10-2-2",
-              "title": "§10.2.2 统计分析",
-              "sources": [
-                {
-                  "label": "房永飞等《概率论与数理统计》",
-                  "url": "",
-                  "locator": "§10.2.2；PDF第587页起，读至本章习题前",
-                  "status": "目录与逐页文本定位",
-                  "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-                  "pdfPage": 587
-                },
-                {
-                  "label": "OpenIntro",
-                  "url": "https://www.openintro.org/book/os/",
-                  "locator": "Chapter 7 视频7.5A、7.5B：单因素ANOVA及条件；双因素细节用主教材",
-                  "status": "已核对课节"
-                }
+              "textbookSection": "10.2",
+              "legacyIds": [
+                "ST-10-2-1",
+                "ST-10-2-2"
               ],
-              "action": "①读定义、条件和推导；②按本节模型完成方差分解，避免混用不同设计。③遮住答案，独立重做本小节一道例题；无独立例题时完成上述概念练习。",
-              "done": "能解释采用的方法及其条件，计算过程保留；对照答案定位一处容易误用的前提。",
-              "optional": false,
-              "materialId": "fa396af4-5792-4400-baf4-c24a9897c928",
-              "pdfStart": 587,
-              "textbookSection": "10.2.2",
-              "group": "双因素方差分析"
+              "topics": [
+                "数学模型",
+                "统计分析"
+              ]
             }
           ]
         }
-      ]
+      ],
+      "resourceNote": "宋浩2.0当前可核目录到两个总体的假设检验，部分二维内容仍标注剪辑中。非正态参数检验、双因素方差分析，以及其他视频未覆盖的选学内容，以教材为准；不为凑齐视频误配课节。"
     },
     {
       "id": "linear",
@@ -7602,7 +6488,7 @@
         "主教材：《线性代数》，孙良、闫桂峰，高等教育出版社，2016年第1版，ISBN 978-7-04-046128-2；学迹资料库文件名“线代课本.pdf”，共271个PDF页面。",
         "6章44节全部列出。页序来自仓库保留的逐页识别文本和目录；尚未逐页对照扫描图。优先使用PDF页序，公式和图形以教材原页为准。",
         "相邻小节可能在同一页交界：读到下一节标题前停止。起始页已定位；本路线不把推算的印刷页码当作已核实页码。",
-        "主视频沿用与教材配套的北京理工大学MOOC；明确核对过的分集附在步骤中。3Blue1Brown只作几何直觉补充，不替代教材的计算与证明。",
+        "辅助课程只选北京理工大学MOOC（孙良团队），按现有教材主题学习，不再并列另一套B站课程。该课2015年上线，保留它是因为与教材配套，不把近期重开课称为重新录制。",
         "先按教材顺序学；课堂进度和考试范围尚未重新确认，可直接选已学到的小节。章末练习按课堂要求选做。"
       ],
       "units": [
@@ -7873,12 +6759,6 @@
                   "url": "https://www.icourse163.org/course/BIT-32001",
                   "locator": "2.2 矩阵的乘法运算；2.3 乘法运算的性质（在课程目录中选择）",
                   "status": "已核对课节"
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=5",
-                  "locator": "合集第5个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②逐项算矩阵乘积，并构造AB与BA不相等的例子。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8009,12 +6889,6 @@
                   "url": "https://www.icourse163.org/course/BIT-32001",
                   "locator": "2.9 可逆矩阵；2.10 逆矩阵的求法（在课程目录中选择）",
                   "status": "已核对课节"
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=8",
-                  "locator": "合集第8个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②用增广矩阵求逆，并把所得结果左右乘回去核验。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8102,12 +6976,6 @@
                   "url": "https://www.icourse163.org/course/BIT-32001",
                   "locator": "3.1 向量空间；3.2 子空间；3.3 与矩阵有关的向量空间（在课程目录中选择）",
                   "status": "已核对课节"
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=2",
-                  "locator": "合集第2个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②检查一个集合是否对加法与数乘封闭，区分向量与向量空间。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8133,12 +7001,6 @@
                   "label": "北京理工大学配套MOOC",
                   "url": "https://www.icourse163.org/course/BIT-32001",
                   "locator": "3.4—3.7：线性关系、表示与等价（在课程目录中选择）",
-                  "status": "已核对课节"
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=3",
-                  "locator": "合集第3个视频；选看直觉补充",
                   "status": "已核对课节"
                 }
               ],
@@ -8192,12 +7054,6 @@
                   "url": "https://www.icourse163.org/course/BIT-32001",
                   "locator": "3.10 基与维数；3.11 基变换与坐标变换（在课程目录中选择）",
                   "status": "已核对课节"
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=13",
-                  "locator": "合集第13个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②选择一组基，求向量坐标，再换一组基比较坐标。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8218,12 +7074,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 118
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=8",
-                  "locator": "合集第8个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②写出齐次基础解系；将非齐次通解写成特解加齐次通解。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8244,12 +7094,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 125
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=10",
-                  "locator": "合集第10个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②计算内积、长度与投影，做一次施密特正交化；最小二乘部分按课堂需要选学。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8279,12 +7123,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 149
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=7",
-                  "locator": "合集第7个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②计算二阶行列式，并用有向面积解释符号。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8305,12 +7143,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 151
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=7",
-                  "locator": "合集第7个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②按书中递归定义展开一个三阶行列式，核对余子式与符号。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8331,12 +7163,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 156
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=7",
-                  "locator": "合集第7个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②用交换、倍乘和倍加三类操作检验行列式变化规律。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8377,12 +7203,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 178
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=16",
-                  "locator": "合集第16个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②分别用求逆或克拉默法则解同一问题，并说明适用条件。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8403,12 +7223,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 181
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=12",
-                  "locator": "合集第12个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②把面积或体积问题写为行列式，并解释退化为零的情况。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8438,12 +7252,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 191
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=14",
-                  "locator": "合集第14个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②先求特征值，再求每个特征空间，最后代回Av=λv。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8484,12 +7292,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 198
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=13",
-                  "locator": "合集第13个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②检验B=P⁻¹AP，并列出相似后保持不变的量。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8510,12 +7312,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 202
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=14",
-                  "locator": "合集第14个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②比较重根但可对角化与不可对角化的例子，检查独立特征向量数量。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8536,12 +7332,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 209
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=14",
-                  "locator": "合集第14个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②构造P与D，完整验证AP=PD。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",
@@ -8582,12 +7372,6 @@
                   "status": "目录与逐页OCR定位",
                   "materialId": "7b9c4a34-82ae-4116-a69a-01edb58ebfaf",
                   "pdfPage": 216
-                },
-                {
-                  "label": "3Blue1Brown 官方B站合集",
-                  "url": "https://www.bilibili.com/video/BV1ys411472E/?p=14",
-                  "locator": "合集第14个视频；选看直觉补充",
-                  "status": "已核对课节"
                 }
               ],
               "action": "①读对应教材定义和例题；②将特征向量正交归一，验证QᵀAQ为对角矩阵。③遮住答案，重做本节一道完整例题；若本节无独立例题，就完成上述自拟练习。",

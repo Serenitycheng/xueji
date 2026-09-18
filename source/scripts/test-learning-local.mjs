@@ -134,7 +134,7 @@ try {
     ['development', 'DEV-01-01'],
     ['japanese', 'JP-00-01'],
     ['photo', 'PH-01-01'],
-    ['stats', 'ST-1-1-1'],
+    ['stats', 'ST-1-1'],
     ['linear', 'LA-1-1'],
   ];
   for (const [curriculumId, itemId] of routes) {

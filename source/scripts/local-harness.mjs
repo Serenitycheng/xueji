@@ -48,6 +48,7 @@ export async function createHarness() {
     'app/api/history/route.ts',
     'app/api/materials/route.ts',
     'app/api/development-plan/route.ts',
+    'app/api/pdf-open/route.ts',
     'lib/server.ts',
     'lib/model.ts',
   ];

@@ -13,9 +13,10 @@ import {
 } from './ui/dialog';
 import { BookOpen, ArrowRight, Plus, Copy, Link2, Pin } from 'lucide-react';
 import type { Actions } from './study-app';
-import type { StudyState } from '@/lib/model';
+import type { StudyState, Material } from '@/lib/model';
 import { localStore } from '@/lib/client-store';
 import { CurriculumRoute, CurrentCurriculumLesson } from './curriculum-route';
+import { PdfOpenButton } from './pdf-open-button';
 import { getCurriculum, curriculumStepCount } from '@/lib/curriculum';
 import {
   masteryLabels,
@@ -334,10 +335,12 @@ export function DirectionsView({ state, actions, open }: Props) {
 }
 export function ReferenceEntry({
   reference: r,
+  material,
   actions,
   onEdit,
 }: {
   reference: Reference;
+  material?: Material;
   actions: Actions;
   onEdit?: () => void;
 }) {
@@ -392,7 +395,15 @@ export function ReferenceEntry({
       </div>
       <div className="button-row">
         {href &&
-          (r.kind === 'attachment' ? (
+          (r.kind === 'attachment' &&
+          material?.kind === 'pdf' &&
+          !material.url ? (
+            <PdfOpenButton
+              resource={{ kind: 'material', materialId: material.id }}
+              title={material.name}
+              label="打开原件"
+            />
+          ) : r.kind === 'attachment' ? (
             <Button
               variant="outline"
               disabled={checking}
@@ -862,7 +873,7 @@ export function DirectionDetail({
           <Button
             variant="ghost"
             onClick={() => {
-              const text = copyActionText(w, d, location.href);
+              const text = copyActionText(w, d, location.href, state.materials);
               setCopyPreview(text);
               void copy(text, actions);
             }}
@@ -1032,6 +1043,7 @@ export function DirectionDetail({
             <ReferenceEntry
               key={r.id}
               reference={r}
+              material={state.materials.find((m) => m.id === r.target)}
               actions={actions}
               onEdit={() => setRef(r)}
             />
@@ -1042,14 +1054,11 @@ export function DirectionDetail({
           </p>
         )}
         {d.id === 'development' && (
-          <a
-            className="resource-open"
-            href="/api/development-plan"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            开发学习方案 ver2 原件
-          </a>
+          <PdfOpenButton
+            resource={{ kind: 'development-plan' }}
+            title="开发学习方案 ver2"
+            label="开发学习方案 ver2 原件"
+          />
         )}
         <Button variant="ghost" onClick={() => actions.navigate('materials')}>
           查看全部资料与上传状态
