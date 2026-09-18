@@ -6,7 +6,11 @@ import { Input } from './ui/input';
 import { PdfOpenButton } from './pdf-open-button';
 import type { Actions } from './study-app';
 import type { StudyState } from '@/lib/model';
-import { masteryLabels, type Direction } from '@/lib/learning';
+import {
+  masteryLabels,
+  unitCompletionProgress,
+  type Direction,
+} from '@/lib/learning';
 import {
   getCurriculum,
   curriculumStepCount,
@@ -113,21 +117,28 @@ export function CurrentCurriculumLesson({
   if (!item) return null;
   return (
     <div className="current-lesson-guide">
-      <span className="eyebrow">本节学习指引</span>
-      <p>{item.scope}</p>
-      {item.endCondition && (
-        <p>
-          <strong>做到什么程度：</strong>
-          {item.endCondition}
-        </p>
-      )}
+      <div className="lesson-guide-grid">
+        <section className="lesson-guide-card">
+          <span className="lesson-guide-label">本节任务</span>
+          <p>{item.scope}</p>
+        </section>
+        {item.endCondition && (
+          <section className="lesson-guide-card is-goal">
+            <span className="lesson-guide-label">完成标准</span>
+            <p>{item.endCondition}</p>
+          </section>
+        )}
+      </div>
       {item.node && (
         <p className="hint">
           这个节点暂未拆分课节。原方案教材：{item.node.materials}
           。可先在这里记录学习位置。
         </p>
       )}
-      <Sources sources={item.sources} state={state} />
+      <section className="lesson-resource-section">
+        <h4 className="lesson-subheading">学习资料</h4>
+        <Sources sources={item.sources} state={state} />
+      </section>
     </div>
   );
 }
@@ -144,6 +155,7 @@ function Step({
   const saved = curriculumUnitState(w, d, step.id);
   const current = currentCurriculumItem(w, d)?.id === step.id;
   const currentSaved = !!saved && saved.id === d.currentUnitId;
+  const completion = unitCompletionProgress(saved, d);
   const legacyUnits = w.units.filter(
     (u) =>
       u.directionId === d.id &&
@@ -170,7 +182,7 @@ function Step({
   };
   return (
     <details
-      className={`curriculum-step ${current ? 'is-current' : ''}`}
+      className={`curriculum-step ${current ? 'is-current' : ''} ${completion.complete ? 'is-complete' : ''}`}
       data-step-id={step.id}
       open={current || undefined}
     >
@@ -183,7 +195,13 @@ function Step({
           <small>
             {step.optional ? '选学 · ' : ''}
             {current ? '当前学习 · ' : ''}
-            {saved?.contact === 'seen' ? '已接触 · ' : ''}
+            {completion.complete
+              ? '已完成 · '
+              : completion.done > 0
+                ? '已完成 ' + completion.done + '/' + completion.total + ' · '
+                : saved?.contact === 'seen'
+                  ? '已接触 · '
+                  : ''}
             {saved
               ? masteryLabels[saved.mastery]
               : legacyUnits.length
@@ -192,7 +210,12 @@ function Step({
             {count > 0 ? ` · ${count} 条记录` : ''}
           </small>
         </span>
-        {current && <Check size={18} />}
+        {(current || completion.complete) && (
+          <Check
+            size={18}
+            className={completion.complete ? 'step-complete-icon' : undefined}
+          />
+        )}
       </summary>
       <div className="curriculum-step-body">
         {step.group && <p className="hint">所属章节：{step.group}</p>}
@@ -252,6 +275,13 @@ function UnitOutline({
         .includes(query),
   );
   if (!steps.length) return null;
+  const completed = unit.steps.filter(
+    (step) =>
+      unitCompletionProgress(
+        curriculumUnitState(props.state.learning!, props.d, step.id),
+        props.d,
+      ).complete,
+  ).length;
   return (
     <details
       className="curriculum-unit"
@@ -261,7 +291,11 @@ function UnitOutline({
       <summary>
         <BookOpen size={18} />
         <strong>{unit.title}</strong>
-        <span>{steps.length} 节</span>
+        <span>
+          {completed > 0
+            ? completed + '/' + unit.steps.length + ' 节完成'
+            : unit.steps.length + ' 节'}
+        </span>
       </summary>
       <div className="curriculum-unit-body">
         <p>{unit.goal}</p>

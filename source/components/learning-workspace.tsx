@@ -11,7 +11,15 @@ import {
   DialogTitle,
   DialogDescription,
 } from './ui/dialog';
-import { BookOpen, ArrowRight, Plus, Copy, Link2, Pin } from 'lucide-react';
+import {
+  BookOpen,
+  ArrowRight,
+  Plus,
+  Copy,
+  Link2,
+  Pin,
+  Check,
+} from 'lucide-react';
 import type { Actions } from './study-app';
 import type { StudyState, Material } from '@/lib/model';
 import { localStore } from '@/lib/client-store';
@@ -25,6 +33,8 @@ import {
   copyActionText,
   safeReferenceHref,
   obsidianLink,
+  unitCompletionProgress,
+  type CompletionPart,
   type Direction,
   type Unit,
   type Reference,
@@ -35,6 +45,13 @@ type Props = {
   state: StudyState;
   actions: Actions;
   open: (id: string) => void;
+};
+const completionLabels: Record<CompletionPart, string> = {
+  lesson: '本节',
+  'self-study': '预习／自学',
+  'class-notes': '上课＋补笔记',
+  homework: '作业',
+  qa: '答疑',
 };
 const statuses = {
   active: '进行中',
@@ -720,6 +737,7 @@ export function DirectionDetail({
     u = units.find((u) => u.id === d.currentUnitId),
     a = w.actions.find((a) => a.id === d.currentActionId),
     last = w.records.filter((r) => r.directionId === d.id).at(-1);
+  const lessonCompletion = u ? unitCompletionProgress(u, d) : undefined;
   const [editing, setEditing] = useState(false),
     [edit, setEdit] = useState(d),
     [record, setRecord] = useState(false),
@@ -786,59 +804,155 @@ export function DirectionDetail({
         </div>
       </div>
       <section className="content-panel learning-context">
-        <div className="section-heading">
-          <h2>这次从这里继续</h2>
-          <span>{u?.contact === 'seen' ? '已接触' : u ? '未接触' : ''}</span>
+        <div className="lesson-header">
+          <div>
+            <span className="eyebrow">这次从这里继续</span>
+            <h2>
+              {u?.name ??
+                (d.curriculumId
+                  ? '从下方路线选择你正在学的一节'
+                  : '还没有当前单元')}
+            </h2>
+          </div>
+          {u && lessonCompletion && (
+            <span
+              className={
+                'lesson-status' +
+                (lessonCompletion.complete ? ' is-complete' : '')
+              }
+            >
+              {lessonCompletion.complete
+                ? '本节已完成'
+                : lessonCompletion.total > 1 && lessonCompletion.done > 0
+                  ? '已完成 ' +
+                    lessonCompletion.done +
+                    '/' +
+                    lessonCompletion.total
+                  : u.contact === 'seen'
+                    ? '学习中'
+                    : '未接触'}
+            </span>
+          )}
         </div>
-        <h3>
-          {u?.name ??
-            (d.curriculumId
-              ? '从下方路线选择你正在学的一节'
-              : '还没有当前单元')}
-        </h3>
-        <p>
-          {!u?.curriculumItemId &&
-            (u?.scope ||
+        {!u?.curriculumItemId && (
+          <p className="lesson-intro">
+            {u?.scope ||
               d.scope ||
               (d.curriculumId
                 ? '路线已编入，可以直接从已有进度继续。'
-                : '可以只添加当前正在学的一小段内容。'))}
-        </p>
-        <CurrentCurriculumLesson state={state} d={d} />
-        {u && d.kind !== 'reading' && (
-          <p className="learning-judgment">
-            当前判断：{masteryLabels[u.mastery]}
-            {u.evidenceType ? ' · ' + evidenceLabels[u.evidenceType] : ''}
-            {u.mastery === 'unknown' ? ' · 目前掌握情况尚不清楚' : ''}
+                : '可以只添加当前正在学的一小段内容。')}
           </p>
         )}
-        {u?.evidence && <p className="hint">最近依据：{u.evidence}</p>}
-        <dl>
-          <dt>上次停点</dt>
-          <dd>
-            {w.records.filter((r) => r.directionId === d.id && r.result).at(-1)
-              ?.result || '尚未记录'}
-          </dd>
-          <dt>{d.kind === 'reading' ? '正在思考' : '当前卡点'}</dt>
-          <dd>{u?.blocker || '尚未记录'}</dd>
-        </dl>
-        <div className="next-step">
-          <small>已保存的下一步</small>
-          <p>{a?.title ?? '下一步尚未确定'}</p>
-          {a?.start && <span>开始位置：{a.start}</span>}
-          {a?.endCondition && <span>结束条件：{a.endCondition}</span>}
-          {a?.unitId && a.unitId !== d.currentUnitId && (
-            <small>
-              这条下一步来自「
-              {units.find((unit) => unit.id === a.unitId)?.name ?? '之前的单元'}
-              」，可以按当前小节调整。
-            </small>
-          )}
-          {last?.nextMode === 'keep' && (
-            <small>上次记录尚未更新下一步，保留原有内容</small>
-          )}
-        </div>
-        <div className="button-row">
+        <CurrentCurriculumLesson state={state} d={d} />
+        {u && lessonCompletion && (
+          <section className="lesson-completion" aria-label="本节完成进度">
+            <div className="lesson-completion-heading">
+              <div>
+                <h3>完成进度</h3>
+                <p>
+                  {lessonCompletion.total > 1
+                    ? '四项分别记录，全部完成后本节才算完成。'
+                    : '完成后仍可继续补记学习结果。'}
+                </p>
+              </div>
+              {lessonCompletion.total > 1 && (
+                <span>
+                  {lessonCompletion.done}/{lessonCompletion.total}
+                </span>
+              )}
+            </div>
+            <fieldset className="lesson-completion-actions">
+              <legend className="sr-only">本节完成项</legend>
+              {lessonCompletion.parts.map((part) => {
+                const isDone = u.completionParts?.includes(part) ?? false;
+                const label =
+                  part === 'lesson'
+                    ? isDone
+                      ? '本节已完成'
+                      : '完成本节'
+                    : completionLabels[part] + (isDone ? '已完成' : '完成');
+                return (
+                  <Button
+                    key={part}
+                    size="sm"
+                    variant={isDone ? 'secondary' : 'outline'}
+                    className={isDone ? 'is-complete' : undefined}
+                    aria-pressed={isDone}
+                    title={isDone ? '再次点击可取消这一完成项' : undefined}
+                    disabled={actions.busy}
+                    onClick={() =>
+                      void actions.run('learning.unit.completion', {
+                        directionId: d.id,
+                        unitId: u.id,
+                        part,
+                        completed: !isDone,
+                      })
+                    }
+                  >
+                    {isDone && <Check size={14} />}
+                    {label}
+                  </Button>
+                );
+              })}
+            </fieldset>
+            <p className="lesson-completion-note">
+              完成进度独立保存，不会自动改变掌握判断。
+            </p>
+          </section>
+        )}
+        {u && (
+          <section className="lesson-state-section">
+            <h3 className="lesson-subheading">学习状态</h3>
+            <div className="lesson-state-grid">
+              {d.kind !== 'reading' && (
+                <article className="lesson-state-card">
+                  <span>当前判断</span>
+                  <strong>{masteryLabels[u.mastery]}</strong>
+                  <p>
+                    {u.evidenceType
+                      ? evidenceLabels[u.evidenceType]
+                      : u.mastery === 'unknown'
+                        ? '目前掌握情况尚不清楚'
+                        : '尚未补充判断依据'}
+                  </p>
+                </article>
+              )}
+              <article className="lesson-state-card">
+                <span>上次停点</span>
+                <strong>
+                  {w.records
+                    .filter((r) => r.directionId === d.id && r.result)
+                    .at(-1)?.result || '尚未记录'}
+                </strong>
+              </article>
+              <article className="lesson-state-card">
+                <span>{d.kind === 'reading' ? '正在思考' : '当前卡点'}</span>
+                <strong>{u.blocker || '尚未记录'}</strong>
+              </article>
+            </div>
+            {u.evidence && <p className="hint">最近依据：{u.evidence}</p>}
+          </section>
+        )}
+        <section className="lesson-next-section">
+          <h3 className="lesson-subheading">已保存的下一步</h3>
+          <div className="next-step">
+            <p>{a?.title ?? '下一步尚未确定'}</p>
+            {a?.start && <span>开始位置：{a.start}</span>}
+            {a?.endCondition && <span>结束条件：{a.endCondition}</span>}
+            {a?.unitId && a.unitId !== d.currentUnitId && (
+              <small>
+                这条下一步来自「
+                {units.find((unit) => unit.id === a.unitId)?.name ??
+                  '之前的单元'}
+                」，可以按当前小节调整。
+              </small>
+            )}
+            {last?.nextMode === 'keep' && (
+              <small>上次记录尚未更新下一步，保留原有内容</small>
+            )}
+          </div>
+        </section>
+        <div className="button-row lesson-actions">
           <Button
             onClick={() => {
               setCorrection(undefined);
@@ -864,15 +978,6 @@ export function DirectionDetail({
           <Button
             variant="ghost"
             onClick={() => {
-              setCorrection(undefined);
-              setRecord(true);
-            }}
-          >
-            补记学习结果
-          </Button>
-          <Button
-            variant="ghost"
-            onClick={() => {
               const text = copyActionText(w, d, location.href, state.materials);
               setCopyPreview(text);
               void copy(text, actions);
@@ -882,8 +987,8 @@ export function DirectionDetail({
             复制学习行动
           </Button>
         </div>
-        <p className="hint">
-          开始只打开学习上下文，无需计时。打开材料学习后，也可以直接补记。
+        <p className="hint lesson-action-note">
+          学习结束后，用“开始／继续本次学习”补记停点、掌握判断和下一步。
         </p>
         {copyPreview && (
           <details open>
@@ -891,7 +996,7 @@ export function DirectionDetail({
             <pre className="copy-preview">{copyPreview}</pre>
           </details>
         )}
-      </section>
+      </section>{' '}
       {proposals.length > 0 && (
         <section className="content-panel rule-suggestion">
           <h2>一个可选起点</h2>

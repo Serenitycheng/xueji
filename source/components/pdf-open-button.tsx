@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useId, useState } from 'react';
+import { useRef, useState } from 'react';
 import { ArrowUpRight, RefreshCw } from 'lucide-react';
 import { Button } from './ui/button';
 import {
@@ -15,7 +15,8 @@ import {
   type PdfResource,
 } from '@/lib/pdf-open';
 
-type Mode = 'pdf-xchange' | 'browser' | 'download';
+type Ticket = { href: string; expiresAt: number; resourceKey: string };
+
 export function PdfOpenButton({
   resource,
   title,
@@ -29,207 +30,161 @@ export function PdfOpenButton({
   label?: string;
   className?: string;
 }) {
-  const [open, setOpen] = useState(false);
-  const [mode, setMode] = useState<Mode>('pdf-xchange');
-  const [ticket, setTicket] = useState<{ href: string; expiresAt: number }>();
-  const [error, setError] = useState('');
-  const [attempt, setAttempt] = useState(0);
+  const [fallbackOpen, setFallbackOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
   const [launched, setLaunched] = useState(false);
-  const group = useId();
+  const [error, setError] = useState('');
+  const ticketRef = useRef<Ticket | undefined>(undefined);
+  const requestRef = useRef<
+    { resourceKey: string; promise: Promise<Ticket> } | undefined
+  >(undefined);
   const materialId =
     resource.kind === 'material' ? resource.materialId : undefined;
-  useEffect(() => {
-    if (!open || mode !== 'pdf-xchange') return;
-    const controller = new AbortController();
-    void (async () => {
-      try {
-        const response = await fetch('/api/pdf-open', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(
-            materialId
-              ? { kind: 'material', materialId }
-              : { kind: 'development-plan' },
-          ),
-          signal: controller.signal,
-        });
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error ?? '暂时无法准备 PDF。');
-        const url = new URL(data.path, window.location.origin);
-        if (
-          url.origin !== window.location.origin ||
-          url.pathname !==
-            (materialId ? '/api/materials' : '/api/development-plan') ||
-          typeof data.expiresAt !== 'number'
-        )
-          throw new Error('资料打开地址无效。');
-        if (!controller.signal.aborted)
-          setTicket({
-            href: pdfXChangeHref(url.href, page),
-            expiresAt: data.expiresAt,
-          });
-      } catch (e) {
-        if (!controller.signal.aborted)
-          setError(
-            e instanceof Error ? e.message : '暂时无法准备 PDF，请重试。',
-          );
-      }
+  const resourceKey =
+    resource.kind +
+    ':' +
+    (materialId ?? 'development-plan') +
+    ':' +
+    (page ?? '');
+
+  const prepare = async () => {
+    if (
+      ticketRef.current?.resourceKey === resourceKey &&
+      ticketRef.current.expiresAt > Date.now() + 5_000
+    )
+      return ticketRef.current;
+    if (requestRef.current?.resourceKey === resourceKey)
+      return requestRef.current.promise;
+    const request = (async () => {
+      const response = await fetch('/api/pdf-open', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(
+          materialId
+            ? { kind: 'material', materialId }
+            : { kind: 'development-plan' },
+        ),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error ?? '暂时无法准备 PDF。');
+      const url = new URL(data.path, window.location.origin);
+      if (
+        url.origin !== window.location.origin ||
+        url.pathname !==
+          (materialId ? '/api/materials' : '/api/development-plan') ||
+        typeof data.expiresAt !== 'number'
+      )
+        throw new Error('资料打开地址无效。');
+      const ticket = {
+        href: pdfXChangeHref(url.href, page),
+        expiresAt: data.expiresAt,
+        resourceKey,
+      };
+      ticketRef.current = ticket;
+      return ticket;
     })();
-    return () => controller.abort();
-  }, [open, mode, materialId, page, attempt]);
-  useEffect(() => {
-    if (!ticket) return;
-    const timer = setTimeout(
-      () => {
-        setTicket(undefined);
-        setError('打开准备已过期，请重新准备。');
-      },
-      Math.max(0, ticket.expiresAt - Date.now()),
-    );
-    return () => clearTimeout(timer);
-  }, [ticket]);
-  const href =
-    mode === 'pdf-xchange'
-      ? ticket?.href
-      : pdfResourceHref(resource, page, mode === 'download');
+    const pending = { resourceKey, promise: request };
+    requestRef.current = pending;
+    try {
+      return await request;
+    } finally {
+      if (requestRef.current === pending) requestRef.current = undefined;
+    }
+  };
+
+  const openEditor = async () => {
+    if (busy) return;
+    setBusy(true);
+    setError('');
+    try {
+      const ticket = await prepare();
+      setLaunched(true);
+      setFallbackOpen(false);
+      const openEvent = new CustomEvent('study:pdf-open', {
+        cancelable: true,
+        detail: { href: ticket.href },
+      });
+      if (window.dispatchEvent(openEvent)) window.location.href = ticket.href;
+    } catch (e) {
+      setError(e instanceof Error ? e.message : '暂时无法准备 PDF，请重试。');
+      setFallbackOpen(true);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const browserHref = pdfResourceHref(resource, page, false);
+  const downloadHref = pdfResourceHref(resource, page, true);
+
   return (
     <>
-      <button
-        type="button"
-        className={className}
-        onClick={() => {
-          setMode('pdf-xchange');
-          setTicket(undefined);
-          setError('');
-          setLaunched(false);
-          setOpen(true);
-        }}
-      >
-        <ArrowUpRight size={16} />
-        {label}
-      </button>
-      <Dialog open={open} onOpenChange={setOpen}>
+      <span className="pdf-open-control">
+        <button
+          type="button"
+          className={className}
+          disabled={busy}
+          onPointerEnter={() => void prepare().catch(() => undefined)}
+          onFocus={() => void prepare().catch(() => undefined)}
+          onClick={() => void openEditor()}
+        >
+          {busy ? (
+            <RefreshCw size={16} className="spin" />
+          ) : (
+            <ArrowUpRight size={16} />
+          )}
+          {busy ? '正在打开…' : label}
+        </button>
+        {launched && (
+          <button
+            type="button"
+            className="pdf-open-alternatives"
+            onClick={() => setFallbackOpen(true)}
+          >
+            没打开？
+          </button>
+        )}
+      </span>
+      <Dialog open={fallbackOpen} onOpenChange={setFallbackOpen}>
         <DialogContent className="pdf-open-dialog">
           <DialogHeader>
-            <DialogTitle>选择打开方式</DialogTitle>
+            <DialogTitle>教材没有打开？</DialogTitle>
             <DialogDescription>
               {title}
               {page ? ' · PDF 第 ' + page + ' 页' : ''}
             </DialogDescription>
           </DialogHeader>
-          <fieldset className="pdf-open-options">
-            <legend className="sr-only">PDF 打开方式</legend>
-            {(
-              [
-                [
-                  'pdf-xchange',
-                  'PDF-XChange Editor',
-                  '默认 · 在本机阅读器中打开，保留页码定位',
-                ],
-                ['browser', '在浏览器中打开', '在新标签页阅读，保留 PDF 页序'],
-                [
-                  'download',
-                  '下载后用其他应用打开',
-                  '下载后在文件上选择“打开方式”',
-                ],
-              ] as const
-            ).map(([value, name, detail]) => (
-              <label
-                key={value}
-                htmlFor={group + value}
-                aria-label={name}
-                className={mode === value ? 'is-selected' : ''}
-              >
-                <input
-                  id={group + value}
-                  type="radio"
-                  name={group}
-                  value={value}
-                  checked={mode === value}
-                  onChange={() => {
-                    setMode(value);
-                    setTicket(undefined);
-                    setError('');
-                    setLaunched(false);
-                  }}
-                />
-                <span>
-                  <strong>{name}</strong>
-                  <small>{detail}</small>
-                </span>
-              </label>
-            ))}
-          </fieldset>
-          {mode === 'pdf-xchange' && (
-            <p className="hint">
-              需在这台设备安装 PDF-XChange Editor 10.4
-              或更新版本。浏览器提示时允许打开；未能启动可改用浏览器或下载。编辑后请另存到本机，不会自动覆盖云端原件。
+          {error && (
+            <p className="form-error" role="alert">
+              {error}
             </p>
           )}
-          {mode === 'download' && page && (
-            <p className="hint">下载后请手动跳到 PDF 第 {page} 页。</p>
-          )}
-          {mode === 'pdf-xchange' && error && (
-            <div role="alert">
-              <p className="form-error">{error}</p>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setTicket(undefined);
-                  setError('');
-                  setAttempt((n) => n + 1);
-                }}
-              >
-                重新准备
-              </Button>
-            </div>
-          )}
-          {href ? (
-            <a
-              className="pdf-open-confirm"
-              href={href}
-              target={mode === 'browser' ? '_blank' : undefined}
-              rel="noopener noreferrer"
-              referrerPolicy="no-referrer"
-              onClick={(event) => {
-                if (
-                  mode === 'pdf-xchange' &&
-                  (!ticket || ticket.expiresAt <= Date.now())
-                ) {
-                  event.preventDefault();
-                  setTicket(undefined);
-                  setError('');
-                  setAttempt((n) => n + 1);
-                  return;
-                }
-                setLaunched(true);
-              }}
+          <p className="hint">
+            默认使用 PDF-XChange
+            Editor。首次使用时，浏览器可能会询问是否允许打开本机应用。
+          </p>
+          <div className="pdf-open-fallback-actions">
+            <Button
+              variant="outline"
+              disabled={busy}
+              onClick={() => void openEditor()}
             >
-              <ArrowUpRight size={16} />
-              {mode === 'pdf-xchange'
-                ? '用 PDF-XChange Editor 打开'
-                : mode === 'browser'
-                  ? '在浏览器中打开'
-                  : '下载 PDF'}
+              {busy && <RefreshCw size={16} className="spin" />}
+              再试一次 PDF-XChange
+            </Button>
+            <a
+              className="pdf-open-fallback-link"
+              href={browserHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              在浏览器中打开
+              <ArrowUpRight size={15} />
             </a>
-          ) : (
-            mode === 'pdf-xchange' &&
-            !error && (
-              <Button disabled>
-                <RefreshCw size={16} className="spin" />
-                正在准备 PDF…
-              </Button>
-            )
-          )}
-          {launched && (
-            <output className="hint">
-              {mode === 'pdf-xchange'
-                ? '已请求打开阅读器。若没有启动，请允许浏览器调用，或选择其他打开方式。'
-                : mode === 'download'
-                  ? '已请求下载，请在浏览器的下载列表中打开文件。'
-                  : '已在新标签页请求打开。'}
-            </output>
-          )}
+            <a className="pdf-open-fallback-link" href={downloadHref} download>
+              下载 PDF
+            </a>
+          </div>
+          {page && <p className="hint">下载后请手动跳到 PDF 第 {page} 页。</p>}
         </DialogContent>
       </Dialog>
     </>

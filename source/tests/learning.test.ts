@@ -14,7 +14,10 @@ import {
   obsidianLink,
   copyActionText,
   validateLearning,
+  completionPartsFor,
+  unitCompletionProgress,
 } from '../lib/learning';
+import { getCurriculum } from '../lib/curriculum';
 import { readStoredState } from '../lib/data-protection';
 function command(
   s: StudyState,
@@ -68,6 +71,65 @@ test('A06 A08 A09 contact, unknown and self assessment are independent', () => {
   s = command(s, 'record.save', { directionId: id, mastery: 'independent' });
   assert.equal(s.learning!.units[0].evidenceType, 'self');
   assert.equal(s.learning!.records.at(-1)!.previousMastery, 'unknown');
+});
+test('lesson completion is independent, with four required parts only for stats and linear algebra', () => {
+  const setupResult = setup();
+  let s = setupResult.s;
+  const id = setupResult.id;
+  const firstUnitId = setupResult.unitId;
+  s = command(s, 'unit.completion', {
+    directionId: id,
+    unitId: firstUnitId,
+    part: 'lesson',
+  });
+  assert.ok(s.learning!.units[0].completedAt);
+  assert.equal(s.learning!.units[0].mastery, 'unknown');
+  s = command(s, 'unit.completion', {
+    directionId: id,
+    unitId: firstUnitId,
+    part: 'lesson',
+    completed: false,
+  });
+  assert.equal(s.learning!.units[0].completedAt, undefined);
+
+  s = ensureLearning(freshState());
+  const stats = s.learning!.directions.find(
+    (direction) => direction.curriculumId === 'stats',
+  )!;
+  const step = getCurriculum('stats')!.units[0].steps[0];
+  s = command(s, 'route.select', {
+    directionId: stats.id,
+    itemId: step.id,
+  });
+  const unitId = s.learning!.directions.find(
+    (d) => d.id === stats.id,
+  )!.currentUnitId!;
+  const parts = completionPartsFor(stats);
+  assert.equal(parts.length, 4);
+  for (const part of parts.slice(0, 3))
+    s = command(s, 'unit.completion', {
+      directionId: stats.id,
+      unitId,
+      part,
+    });
+  let unit = s.learning!.units.find((item) => item.id === unitId)!;
+  assert.deepEqual(unitCompletionProgress(unit, stats), {
+    parts,
+    done: 3,
+    total: 4,
+    complete: false,
+  });
+  assert.equal(unit.completedAt, undefined);
+  s = command(s, 'unit.completion', {
+    directionId: stats.id,
+    unitId,
+    part: parts[3],
+  });
+  unit = s.learning!.units.find((item) => item.id === unitId)!;
+  assert.equal(unitCompletionProgress(unit, stats).complete, true);
+  assert.ok(unit.completedAt);
+  assert.equal(unit.contact, 'seen');
+  assert.equal(unit.mastery, 'unknown');
 });
 test('A10 A11 missing next step preserves confirmed action, explicit clear is distinct', () => {
   let { s, id } = setup();

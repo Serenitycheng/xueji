@@ -11,6 +11,15 @@ import {
 
 export type Mastery = 'unknown' | 'reinforce' | 'independent';
 export type Evidence = 'self' | 'practice' | 'work' | 'teacher';
+export const stagedCompletionParts = [
+  { id: 'self-study', label: '预习／自学' },
+  { id: 'class-notes', label: '上课＋补笔记' },
+  { id: 'homework', label: '作业' },
+  { id: 'qa', label: '答疑' },
+] as const;
+export type CompletionPart =
+  | 'lesson'
+  | (typeof stagedCompletionParts)[number]['id'];
 export type Direction = {
   id: string;
   name: string;
@@ -42,6 +51,8 @@ export type Unit = {
   archived: boolean;
   origin: 'manual' | 'legacy-route' | 'curriculum';
   curriculumItemId?: string;
+  completionParts?: CompletionPart[];
+  completedAt?: string;
   updatedAt: string;
 };
 export type LearningAction = {
@@ -108,6 +119,22 @@ export const evidenceLabels: Record<Evidence, string> = {
   work: '作品与反馈',
   teacher: '教师反馈',
 };
+export function completionPartsFor(
+  d: Pick<Direction, 'curriculumId'>,
+): CompletionPart[] {
+  return d.curriculumId === 'stats' || d.curriculumId === 'linear'
+    ? stagedCompletionParts.map((part) => part.id)
+    : ['lesson'];
+}
+export function unitCompletionProgress(
+  u: Pick<Unit, 'completionParts'> | undefined,
+  d: Pick<Direction, 'curriculumId'>,
+) {
+  const parts = completionPartsFor(d);
+  const saved = new Set(u?.completionParts ?? []);
+  const done = parts.filter((part) => saved.has(part)).length;
+  return { parts, done, total: parts.length, complete: done === parts.length };
+}
 export const emptyLearning = (): LearningWorkspace => ({
   version: 1,
   directions: [],
@@ -178,6 +205,18 @@ export function validateLearning(w: LearningWorkspace) {
   ])
     if (new Set(rows.map((x) => x.id)).size !== rows.length)
       throw new Error('STUDY_DUPLICATE_LEARNING_ID');
+  const validCompletionParts = new Set<string>([
+    'lesson',
+    ...stagedCompletionParts.map((part) => part.id),
+  ]);
+  for (const u of w.units)
+    if (
+      u.completionParts !== undefined &&
+      (!Array.isArray(u.completionParts) ||
+        new Set(u.completionParts).size !== u.completionParts.length ||
+        u.completionParts.some((part) => !validCompletionParts.has(part)))
+    )
+      throw new Error('STUDY_INVALID_LEARNING_COMPLETION');
   const direction = (id: string) => w.directions.some((d) => d.id === id);
   const unit = (id: string | undefined, d: string) =>
     !id || w.units.some((u) => u.id === id && u.directionId === d);
@@ -489,6 +528,34 @@ export function applyLearning(
     if (!d.currentUnitId || input.makeCurrent === true) d.currentUnitId = u.id;
     if (u.archived && d.currentUnitId === u.id) d.currentUnitId = undefined;
     d.updatedAt = now;
+  } else if (op === 'learning.unit.completion') {
+    const d = getDirection(),
+      u = getUnit(d, input.unitId ?? d.currentUnitId);
+    if (!u) throw new LearningError('请先选择当前学习小节。');
+    const allowed = completionPartsFor(d);
+    const part = choice(
+      input.part ?? (allowed.length === 1 ? 'lesson' : ''),
+      allowed,
+    );
+    if (input.completed !== undefined && typeof input.completed !== 'boolean')
+      throw new LearningError('请选择有效的完成状态。');
+    const completed = input.completed !== false;
+    const saved = new Set(
+      (u.completionParts ?? []).filter((value) => allowed.includes(value)),
+    );
+    if (completed) saved.add(part);
+    else saved.delete(part);
+    u.completionParts = allowed.filter((value) => saved.has(value));
+    u.completedAt =
+      u.completionParts.length === allowed.length ? now : undefined;
+    if (completed) u.contact = 'seen';
+    u.updatedAt = now;
+    d.updatedAt = now;
+    message = completed
+      ? u.completedAt
+        ? '本节已完成，掌握判断保持原状'
+        : '本节进度已保存，掌握判断保持原状'
+      : '已取消这一完成项，掌握判断保持原状';
   } else if (op === 'learning.action.save') {
     const d = getDirection();
     if (input.clear === true) {

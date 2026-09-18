@@ -30,7 +30,6 @@ const token = await new SignJWT({
 const errors = [];
 const calls = [];
 let loseSelectionResponse = false;
-let failPdfOpen = false;
 const ctx = await browser.newContext({
   viewport: { width: 1365, height: 950 },
   extraHTTPHeaders: { Cookie: '__Host-study-session=' + token },
@@ -66,12 +65,11 @@ await ctx.route('**/api/**', async (route) => {
     }
   } else if (url.pathname === '/api/history')
     response = await h.history.GET(request);
-  else if (url.pathname === '/api/pdf-open') {
-    response = failPdfOpen
-      ? Response.json({ error: '模拟断线，请重试。' }, { status: 503 })
-      : await (await h.module('app/api/pdf-open/route.mjs')).POST(request);
-    failPdfOpen = false;
-  } else if (url.pathname === '/api/materials')
+  else if (url.pathname === '/api/pdf-open')
+    response = await (
+      await h.module('app/api/pdf-open/route.mjs')
+    ).POST(request);
+  else if (url.pathname === '/api/materials')
     response = await h.materials.GET(request);
   else if (url.pathname === '/api/development-plan')
     response = await (
@@ -91,6 +89,12 @@ await ctx.route('**/api/**', async (route) => {
   });
 });
 const page = await ctx.newPage();
+await page.addInitScript(() => {
+  window.addEventListener('study:pdf-open', (event) => {
+    event.preventDefault();
+    window.__lastPdfOpenHref = event.detail.href;
+  });
+});
 page.on('pageerror', (e) => errors.push(e.message));
 page.on('dialog', (d) => void d.accept());
 const direction = (id) => `curriculum:${id}`;
@@ -103,6 +107,14 @@ const selected = async (itemId) => {
   await page.getByText('已保存当前学习位置', { exact: true }).waitFor();
 };
 const snapshot = async () => (await h.server.loadState('owner')).state;
+const directPdfOpen = async (button) => {
+  await page.evaluate(() => {
+    window.__lastPdfOpenHref = '';
+  });
+  await button.click();
+  await page.waitForFunction(() => Boolean(window.__lastPdfOpenHref));
+  return page.evaluate(() => window.__lastPdfOpenHref);
+};
 try {
   const initial = await h.server.loadState('owner');
   initial.state.materials = [
@@ -225,6 +237,14 @@ try {
     (await snapshot()).learning.records.at(-1).unitName.includes('信息使用者'),
     true,
   );
+  const professionalCompletion = page.getByRole('group', {
+    name: '本节完成项',
+    exact: true,
+  });
+  assert.equal(await professionalCompletion.getByRole('button').count(), 1);
+  await professionalCompletion
+    .getByRole('button', { name: '完成本节', exact: true })
+    .waitFor();
   console.log(
     'PASS professional: all 31 nodes and 16 basic lessons; chosen lesson record survives reload',
   );
@@ -243,25 +263,36 @@ try {
     await page.locator('a[href*="3blue1brown"],a[href*="3Blue1Brown"]').count(),
     0,
   );
+  const completionGroup = page.getByRole('group', {
+    name: '本节完成项',
+    exact: true,
+  });
+  for (const name of [
+    '预习／自学完成',
+    '上课＋补笔记完成',
+    '作业完成',
+    '答疑完成',
+  ])
+    await completionGroup.getByRole('button', { name, exact: true }).click();
+  await page.getByText('本节已完成', { exact: true }).waitFor();
+  const completedLinear = (await snapshot()).learning;
+  const completedLinearUnit = completedLinear.units.find(
+    (unit) =>
+      unit.id ===
+      completedLinear.directions.find(
+        (direction) => direction.curriculumId === 'linear',
+      ).currentUnitId,
+  );
+  assert.equal(completedLinearUnit.completionParts.length, 4);
+  assert.equal(completedLinearUnit.mastery, 'unknown');
+
   const textbook = page
     .locator('.current-lesson-guide')
     .getByRole('button', { name: '打开教材 · PDF第9页', exact: true });
-  await textbook.click();
-  const chooser = page.getByRole('dialog', { name: '选择打开方式' });
-  assert.ok(
-    await chooser
-      .getByRole('radio', { name: /^PDF-XChange Editor/ })
-      .isChecked(),
-  );
-  const editor = chooser.getByRole('link', {
-    name: '用 PDF-XChange Editor 打开',
-    exact: true,
-  });
-  await editor.waitFor();
-  const editorHref = await editor.getAttribute('href');
+  const editorHref = await directPdfOpen(textbook);
   assert.match(
     editorHref,
-    /^pxce:http:\/\/127\.0\.0\.1:4176\/api\/materials\?id=7b9c4a34.*openToken=.*#page=9$/,
+    /^pxce:http:\/\/127\.0\.0\.1:\d+\/api\/materials\?id=7b9c4a34.*openToken=.*#page=9$/,
   );
   const file = await page.evaluate(async (href) => {
     const r = await fetch(href.slice(5));
@@ -269,67 +300,29 @@ try {
   }, editorHref);
   assert.equal(file.status, 200);
   assert.equal(file.body, '%PDF-isolated-fixture');
-  await mkdir('work/tests/pdf-open', { recursive: true });
-  await chooser.screenshot({ path: 'work/tests/pdf-open/desktop.png' });
-  await chooser.getByRole('radio', { name: /^在浏览器中打开/ }).check();
-  const browserLink = chooser.getByRole('link', {
-    name: '在浏览器中打开',
-    exact: true,
-  });
-  assert.match(
-    await browserLink.getAttribute('href'),
-    /api\/materials\?id=7b9c4a34.*#page=9$/,
-  );
-  assert.equal(await browserLink.getAttribute('target'), '_blank');
-  await chooser.getByRole('radio', { name: /^下载后用其他应用打开/ }).check();
-  const downloadLink = chooser.getByRole('link', {
-    name: '下载 PDF',
-    exact: true,
-  });
-  const downloadEvent = page.waitForEvent('download');
-  await downloadLink.click();
-  const download = await downloadEvent;
-  assert.equal(download.suggestedFilename(), '线代课本.pdf');
-  await download.delete();
-  await chooser.getByRole('button', { name: 'Close', exact: true }).click();
-  failPdfOpen = true;
-  await textbook.click();
-  await chooser
-    .getByRole('alert')
-    .getByText('模拟断线，请重试。', { exact: true })
-    .waitFor();
-  await chooser.getByRole('button', { name: '重新准备', exact: true }).click();
-  await chooser
-    .getByRole('link', { name: '用 PDF-XChange Editor 打开', exact: true })
-    .waitFor();
-  await chooser.getByRole('button', { name: 'Close', exact: true }).click();
-  await page.setViewportSize({ width: 390, height: 844 });
-  await textbook.click();
-  await chooser
-    .getByRole('link', { name: '用 PDF-XChange Editor 打开', exact: true })
-    .waitFor();
-  await chooser.screenshot({ path: 'work/tests/pdf-open/mobile.png' });
-  const box = await chooser.boundingBox();
-  assert.ok(box && box.x >= 0 && box.x + box.width <= 390);
   assert.equal(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth > innerWidth,
-    ),
-    false,
+    await page.getByRole('dialog', { name: '选择打开方式' }).count(),
+    0,
   );
-  await chooser.getByRole('button', { name: 'Close', exact: true }).click();
-  await page.setViewportSize({ width: 1365, height: 950 });
+  const alternatives = page.getByRole('button', {
+    name: '没打开？',
+    exact: true,
+  });
+  await alternatives.waitFor();
+  assert.equal(
+    await page.getByRole('button', { name: '没打开？', exact: true }).count(),
+    1,
+  );
   console.log(
-    'PASS PDF opener: default reader, scoped URL and page, browser option, download filename, retry, mobile dialog',
+    'PASS lesson completion: linear requires four saved parts without changing mastery',
+  );
+  console.log(
+    'PASS PDF opener: direct PDF-XChange launch with browser and download fallback',
   );
   await page
     .locator('.reference-row')
     .getByRole('button', { name: '打开原件', exact: true })
-    .click();
-  await chooser
-    .getByRole('link', { name: '用 PDF-XChange Editor 打开', exact: true })
     .waitFor();
-  await chooser.getByRole('button', { name: 'Close', exact: true }).click();
   await page.goto(base + '/#materials');
   await page.getByRole('button', { name: /线代课本.pdf/ }).waitFor();
   assert.equal(
@@ -357,17 +350,12 @@ try {
     0,
   );
   await page.getByRole('button', { name: /线代课本.pdf/ }).click();
-  const detail = page.getByRole('dialog', {
-    name: '线代课本.pdf',
-    exact: true,
-  });
+  const detail = page
+    .locator('.wide-dialog')
+    .filter({ hasText: '线代课本.pdf' });
   await detail
     .getByRole('button', { name: '打开原始资料', exact: true })
-    .click();
-  await chooser
-    .getByRole('link', { name: '用 PDF-XChange Editor 打开', exact: true })
     .waitFor();
-  await chooser.getByRole('button', { name: 'Close', exact: true }).click();
   assert.ok(await detail.isVisible());
   await detail.getByRole('button', { name: 'Close', exact: true }).click();
   await open('development');
@@ -399,29 +387,30 @@ try {
   );
   await page.reload();
   await pythonGuide
-    .getByRole('button', { name: '打开教材 · PDF第68页', exact: true })
-    .click();
-  const pythonLink = chooser.getByRole('link', {
-    name: '用 PDF-XChange Editor 打开',
-    exact: true,
-  });
-  await pythonLink.waitFor();
-  assert.match(
-    await pythonLink.getAttribute('href'),
-    /id=8cba18af.*openToken=.*#page=68$/,
-  );
-  const pythonDownload = await page.evaluate(
-    async (href) => {
-      const r = await fetch(href.slice(5));
-      return { status: r.status, body: await r.text() };
-    },
-    await pythonLink.getAttribute('href'),
-  );
+    .getByRole('button', {
+      name: '打开教材 · PDF第68页',
+      exact: true,
+    })
+    .waitFor();
+  const pythonTicket = await page.evaluate(async (materialId) => {
+    const response = await fetch('/api/pdf-open', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ kind: 'material', materialId }),
+    });
+    return response.json();
+  }, pythonId);
+  const pythonHref =
+    'pxce:' + new URL(pythonTicket.path, base).href + '#page=68';
+  assert.match(pythonHref, /id=8cba18af.*openToken=.*#page=68$/);
+  const pythonDownload = await page.evaluate(async (href) => {
+    const r = await fetch(href.slice(5));
+    return { status: r.status, body: await r.text() };
+  }, pythonHref);
   assert.deepEqual(pythonDownload, {
     status: 200,
     body: '%PDF-isolated-python-fixture',
   });
-  await chooser.getByRole('button', { name: 'Close', exact: true }).click();
   assert.equal(
     await pythonGuide
       .getByRole('link', { name: '前往资料库', exact: true })
@@ -455,17 +444,7 @@ try {
   await page
     .locator('.current-lesson-guide')
     .getByRole('button', { name: '打开方案原件', exact: true })
-    .click();
-  const planLink = chooser.getByRole('link', {
-    name: '用 PDF-XChange Editor 打开',
-    exact: true,
-  });
-  await planLink.waitFor();
-  assert.match(
-    await planLink.getAttribute('href'),
-    /\/api\/development-plan\?openToken=/,
-  );
-  await chooser.getByRole('button', { name: 'Close', exact: true }).click();
+    .waitFor();
   await open('linear');
   console.log(
     'PASS PDF entries: learning references, nested library dialog, original development plan',
@@ -575,18 +554,11 @@ try {
   );
   assert.match(await statsSection.locator('summary').innerText(), /3 条记录/);
   await statsSection
-    .getByRole('button', { name: '打开教材 · PDF第69页', exact: true })
-    .click();
-  const statsEditor = chooser.getByRole('link', {
-    name: '用 PDF-XChange Editor 打开',
-    exact: true,
-  });
-  await statsEditor.waitFor();
-  assert.match(
-    await statsEditor.getAttribute('href'),
-    /id=fa396af4.*#page=69$/,
-  );
-  await chooser.getByRole('button', { name: 'Close', exact: true }).click();
+    .getByRole('button', {
+      name: '打开教材 · PDF第69页',
+      exact: true,
+    })
+    .waitFor();
   await mkdir('work/tests/stats-sections', { recursive: true });
   await statsSection.screenshot({
     path: 'work/tests/stats-sections/desktop.png',
