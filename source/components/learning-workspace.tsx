@@ -24,9 +24,17 @@ import type { Actions } from './study-app';
 import type { StudyState, Material } from '@/lib/model';
 import { localStore } from '@/lib/client-store';
 import { CurriculumRoute, CurrentCurriculumLesson } from './curriculum-route';
+import { JapaneseAbilityEditor, JapaneseDashboard } from './japanese-abilities';
 import { PdfOpenButton } from './pdf-open-button';
-import { getCurriculum, curriculumStepCount } from '@/lib/curriculum';
 import {
+  getCurriculum,
+  curriculumStepCount,
+  curriculumUnitStates,
+  currentCurriculumItem,
+} from '@/lib/curriculum';
+import {
+  abilityStatusLabels,
+  japaneseAbilityStatusFor,
   masteryLabels,
   evidenceLabels,
   suggestions,
@@ -109,6 +117,7 @@ export function DirectionCard({
   open: (id: string) => void;
 }) {
   const unit = w.units.find((u) => u.id === d.currentUnitId),
+    curriculumItem = currentCurriculumItem(w, d),
     action = w.actions.find((a) => a.id === d.currentActionId),
     last = w.records.filter((r) => r.directionId === d.id).at(-1);
   return (
@@ -130,7 +139,8 @@ export function DirectionCard({
       <dl>
         <dt>当前内容</dt>
         <dd>
-          {unit?.name ??
+          {curriculumItem?.step?.title ??
+            unit?.name ??
             (d.curriculumId
               ? '从路线中选择当前正在学的小节'
               : '尚未确定，可以直接写下当前内容')}
@@ -602,7 +612,7 @@ function RecordForm({
             placeholder="只写一句停点也可以"
           />
         </Field>
-        {d.kind !== 'reading' && u && (
+        {d.kind !== 'reading' && d.curriculumId !== 'japanese' && u && (
           <Choice
             label="当前判断"
             value={form.mastery}
@@ -738,6 +748,11 @@ export function DirectionDetail({
     a = w.actions.find((a) => a.id === d.currentActionId),
     last = w.records.filter((r) => r.directionId === d.id).at(-1);
   const lessonCompletion = u ? unitCompletionProgress(u, d) : undefined;
+  const currentItem = currentCurriculumItem(w, d);
+  const japanese = d.curriculumId === 'japanese';
+  const currentAbilityStatus = currentItem?.step
+    ? japaneseAbilityStatusFor(curriculumUnitStates(w, d, currentItem.step.id))
+    : 'not-started';
   const [editing, setEditing] = useState(false),
     [edit, setEdit] = useState(d),
     [record, setRecord] = useState(false),
@@ -803,12 +818,14 @@ export function DirectionDetail({
           </Button>
         </div>
       </div>
+      {japanese && <JapaneseDashboard state={state} d={d} />}
       <section className="content-panel learning-context">
         <div className="lesson-header">
           <div>
             <span className="eyebrow">这次从这里继续</span>
             <h2>
-              {u?.name ??
+              {currentItem?.step?.title ??
+                u?.name ??
                 (d.curriculumId
                   ? '从下方路线选择你正在学的一节'
                   : '还没有当前单元')}
@@ -821,16 +838,18 @@ export function DirectionDetail({
                 (lessonCompletion.complete ? ' is-complete' : '')
               }
             >
-              {lessonCompletion.complete
-                ? '本节已完成'
-                : lessonCompletion.total > 1 && lessonCompletion.done > 0
-                  ? '已完成 ' +
-                    lessonCompletion.done +
-                    '/' +
-                    lessonCompletion.total
-                  : u.contact === 'seen'
-                    ? '学习中'
-                    : '未接触'}
+              {japanese
+                ? abilityStatusLabels[currentAbilityStatus]
+                : lessonCompletion.complete
+                  ? '本节已完成'
+                  : lessonCompletion.total > 1 && lessonCompletion.done > 0
+                    ? '已完成 ' +
+                      lessonCompletion.done +
+                      '/' +
+                      lessonCompletion.total
+                    : u.contact === 'seen'
+                      ? '学习中'
+                      : '未接触'}
             </span>
           )}
         </div>
@@ -844,7 +863,7 @@ export function DirectionDetail({
           </p>
         )}
         <CurrentCurriculumLesson state={state} d={d} />
-        {u && lessonCompletion && (
+        {u && lessonCompletion && !japanese && (
           <section className="lesson-completion" aria-label="本节完成进度">
             <div className="lesson-completion-heading">
               <div>
@@ -900,7 +919,24 @@ export function DirectionDetail({
             </p>
           </section>
         )}
-        {u && (
+        {japanese && currentItem?.step && (
+          <section className="lesson-completion japanese-current-ability">
+            <div className="lesson-completion-heading">
+              <div>
+                <h3>当前能力状态</h3>
+                <p>状态用于监控实际能力，不会改变 IRODORI 的学习顺序。</p>
+              </div>
+              <span>{abilityStatusLabels[currentAbilityStatus]}</span>
+            </div>
+            <JapaneseAbilityEditor
+              state={state}
+              d={d}
+              itemId={currentItem.step.id}
+              actions={actions}
+            />
+          </section>
+        )}
+        {u && !japanese && (
           <section className="lesson-state-section">
             <h3 className="lesson-subheading">学习状态</h3>
             <div className="lesson-state-grid">
@@ -933,62 +969,73 @@ export function DirectionDetail({
             {u.evidence && <p className="hint">最近依据：{u.evidence}</p>}
           </section>
         )}
-        <section className="lesson-next-section">
-          <h3 className="lesson-subheading">已保存的下一步</h3>
-          <div className="next-step">
-            <p>{a?.title ?? '下一步尚未确定'}</p>
-            {a?.start && <span>开始位置：{a.start}</span>}
-            {a?.endCondition && <span>结束条件：{a.endCondition}</span>}
-            {a?.unitId && a.unitId !== d.currentUnitId && (
-              <small>
-                这条下一步来自「
-                {units.find((unit) => unit.id === a.unitId)?.name ??
-                  '之前的单元'}
-                」，可以按当前小节调整。
-              </small>
-            )}
-            {last?.nextMode === 'keep' && (
-              <small>上次记录尚未更新下一步，保留原有内容</small>
-            )}
+        {!japanese && (
+          <section className="lesson-next-section">
+            <h3 className="lesson-subheading">已保存的下一步</h3>
+            <div className="next-step">
+              <p>{a?.title ?? '下一步尚未确定'}</p>
+              {a?.start && <span>开始位置：{a.start}</span>}
+              {a?.endCondition && <span>结束条件：{a.endCondition}</span>}
+              {a?.unitId && a.unitId !== d.currentUnitId && (
+                <small>
+                  这条下一步来自「
+                  {units.find((unit) => unit.id === a.unitId)?.name ??
+                    '之前的单元'}
+                  」，可以按当前小节调整。
+                </small>
+              )}
+              {last?.nextMode === 'keep' && (
+                <small>上次记录尚未更新下一步，保留原有内容</small>
+              )}
+            </div>
+          </section>
+        )}
+        {!japanese && (
+          <div className="button-row lesson-actions">
+            <Button
+              onClick={() => {
+                setCorrection(undefined);
+                setRecord(true);
+              }}
+            >
+              开始／继续本次学习
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() =>
+                setActionForm({
+                  title: a?.title ?? '',
+                  start: a?.start ?? '',
+                  endCondition: a?.endCondition ?? '',
+                  source: 'manual',
+                  basis: '',
+                })
+              }
+            >
+              调整下一步
+            </Button>
+            <Button
+              variant="ghost"
+              onClick={() => {
+                const text = copyActionText(
+                  w,
+                  d,
+                  location.href,
+                  state.materials,
+                );
+                setCopyPreview(text);
+                void copy(text, actions);
+              }}
+            >
+              <Copy />
+              复制学习行动
+            </Button>
           </div>
-        </section>
-        <div className="button-row lesson-actions">
-          <Button
-            onClick={() => {
-              setCorrection(undefined);
-              setRecord(true);
-            }}
-          >
-            开始／继续本次学习
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() =>
-              setActionForm({
-                title: a?.title ?? '',
-                start: a?.start ?? '',
-                endCondition: a?.endCondition ?? '',
-                source: 'manual',
-                basis: '',
-              })
-            }
-          >
-            调整下一步
-          </Button>
-          <Button
-            variant="ghost"
-            onClick={() => {
-              const text = copyActionText(w, d, location.href, state.materials);
-              setCopyPreview(text);
-              void copy(text, actions);
-            }}
-          >
-            <Copy />
-            复制学习行动
-          </Button>
-        </div>
+        )}
         <p className="hint lesson-action-note">
-          学习结束后，用“开始／继续本次学习”补记停点、掌握判断和下一步。
+          {japanese
+            ? '学习结束后更新能力状态；只有遇到明显问题时，再补充薄弱点或掌握证据。'
+            : '学习结束后，用“开始／继续本次学习”补记停点、掌握判断和下一步。'}
         </p>
         {copyPreview && (
           <details open>

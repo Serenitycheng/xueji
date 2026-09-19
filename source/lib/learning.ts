@@ -7,6 +7,7 @@ import {
   currentCurriculumItem,
   curriculumSourceHref,
   resolveCurriculumSource,
+  curriculumUnitStates,
 } from './curriculum';
 
 export type Mastery = 'unknown' | 'reinforce' | 'independent';
@@ -20,6 +21,17 @@ export const stagedCompletionParts = [
 export type CompletionPart =
   | 'lesson'
   | (typeof stagedCompletionParts)[number]['id'];
+export const japaneseAbilityStatuses = [
+  { id: 'not-started', label: '未开始' },
+  { id: 'learning', label: '学习中' },
+  { id: 'basic', label: '基本掌握' },
+  { id: 'fluent', label: '熟练' },
+] as const;
+export type AbilityStatus = (typeof japaneseAbilityStatuses)[number]['id'];
+export const abilityStatusLabels: Record<AbilityStatus, string> =
+  Object.fromEntries(
+    japaneseAbilityStatuses.map((status) => [status.id, status.label]),
+  ) as Record<AbilityStatus, string>;
 export type Direction = {
   id: string;
   name: string;
@@ -53,6 +65,7 @@ export type Unit = {
   curriculumItemId?: string;
   completionParts?: CompletionPart[];
   completedAt?: string;
+  abilityStatus?: AbilityStatus;
   updatedAt: string;
 };
 export type LearningAction = {
@@ -135,6 +148,27 @@ export function unitCompletionProgress(
   const done = parts.filter((part) => saved.has(part)).length;
   return { parts, done, total: parts.length, complete: done === parts.length };
 }
+export function japaneseAbilityStatusFor(
+  value: readonly Unit[] | Unit | undefined,
+): AbilityStatus {
+  const units = !value ? [] : Array.isArray(value) ? value : [value];
+  const explicit = units
+    .filter((unit) => unit.abilityStatus)
+    .toSorted((a, b) => a.updatedAt.localeCompare(b.updatedAt))
+    .at(-1)?.abilityStatus;
+  if (explicit) return explicit;
+  if (
+    units.some(
+      (unit) => !!unit.completedAt || unit.completionParts?.includes('lesson'),
+    )
+  )
+    return 'basic';
+  if (
+    units.some((unit) => unit.contact === 'seen' || unit.mastery !== 'unknown')
+  )
+    return 'learning';
+  return 'not-started';
+}
 export const emptyLearning = (): LearningWorkspace => ({
   version: 1,
   directions: [],
@@ -209,7 +243,10 @@ export function validateLearning(w: LearningWorkspace) {
     'lesson',
     ...stagedCompletionParts.map((part) => part.id),
   ]);
-  for (const u of w.units)
+  const validAbilityStatuses = new Set(
+    japaneseAbilityStatuses.map((status) => status.id),
+  );
+  for (const u of w.units) {
     if (
       u.completionParts !== undefined &&
       (!Array.isArray(u.completionParts) ||
@@ -217,6 +254,12 @@ export function validateLearning(w: LearningWorkspace) {
         u.completionParts.some((part) => !validCompletionParts.has(part)))
     )
       throw new Error('STUDY_INVALID_LEARNING_COMPLETION');
+    if (
+      u.abilityStatus !== undefined &&
+      !validAbilityStatuses.has(u.abilityStatus)
+    )
+      throw new Error('STUDY_INVALID_ABILITY_STATUS');
+  }
   const direction = (id: string) => w.directions.some((d) => d.id === id);
   const unit = (id: string | undefined, d: string) =>
     !id || w.units.some((u) => u.id === id && u.directionId === d);
@@ -429,9 +472,17 @@ export function applyLearning(
     );
     if (!item)
       throw new LearningError('找不到这个方向中的路线小节，请刷新后重试。');
-    let u = w.units.find(
-      (u) => u.directionId === d.id && u.curriculumItemId === item.id,
-    );
+    const related =
+      d.curriculumId === 'japanese'
+        ? curriculumUnitStates(w, d, item.id)
+        : w.units.filter(
+            (unit) =>
+              unit.directionId === d.id && unit.curriculumItemId === item.id,
+          );
+    let u =
+      related.find((unit) => unit.id === d.currentUnitId) ??
+      related.find((unit) => unit.curriculumItemId === item.id) ??
+      related.at(-1);
     if (!u) {
       u = {
         id: curriculumUnitId(d.id, item.id),
@@ -450,6 +501,10 @@ export function applyLearning(
         updatedAt: now,
       };
       w.units.push(u);
+    } else {
+      u.name = item.name;
+      u.scope = item.scope;
+      u.endCondition = item.endCondition;
     }
     u.archived = false;
     d.currentUnitId = u.id;
@@ -528,6 +583,61 @@ export function applyLearning(
     if (!d.currentUnitId || input.makeCurrent === true) d.currentUnitId = u.id;
     if (u.archived && d.currentUnitId === u.id) d.currentUnitId = undefined;
     d.updatedAt = now;
+  } else if (op === 'learning.ability.update') {
+    const d = getDirection();
+    if (d.curriculumId !== 'japanese')
+      throw new LearningError('能力状态仅用于日语能力节点。');
+    const item = findCurriculumItem(
+      getCurriculum(d.curriculumId),
+      str(input.itemId, 100),
+    );
+    if (!item?.step)
+      throw new LearningError('找不到这个日语能力节点，请刷新后重试。');
+    const status = choice(
+      input.status,
+      japaneseAbilityStatuses.map((value) => value.id),
+    );
+    const related = curriculumUnitStates(w, d, item.id);
+    let u =
+      related.find((unit) => unit.abilityStatus) ??
+      related.find((unit) => unit.curriculumItemId === item.id) ??
+      related.at(-1);
+    if (!u) {
+      u = {
+        id: curriculumUnitId(d.id, item.id),
+        directionId: d.id,
+        name: item.name,
+        scope: item.scope,
+        endCondition: item.endCondition,
+        contact: 'unseen',
+        mastery: 'unknown',
+        evidence: '',
+        blocker: '',
+        gap: '',
+        archived: false,
+        origin: 'curriculum',
+        curriculumItemId: item.id,
+        updatedAt: now,
+      };
+      w.units.push(u);
+    }
+    u.name = item.name;
+    u.scope = item.scope;
+    u.endCondition = item.endCondition;
+    u.abilityStatus = status;
+    u.contact = status === 'not-started' ? 'unseen' : 'seen';
+    u.mastery =
+      status === 'fluent'
+        ? 'independent'
+        : status === 'basic'
+          ? 'reinforce'
+          : 'unknown';
+    if (input.blocker !== undefined) u.blocker = str(input.blocker);
+    if (input.evidence !== undefined) u.evidence = str(input.evidence);
+    u.archived = false;
+    u.updatedAt = now;
+    d.updatedAt = now;
+    message = '能力状态已保存';
   } else if (op === 'learning.unit.completion') {
     const d = getDirection(),
       u = getUnit(d, input.unitId ?? d.currentUnitId);

@@ -32,7 +32,9 @@ const calls = [];
 let loseSelectionResponse = false;
 const ctx = await browser.newContext({
   viewport: { width: 1365, height: 950 },
-  extraHTTPHeaders: { Cookie: '__Host-study-session=' + token },
+  extraHTTPHeaders: {
+    Cookie: `${new URL(base).protocol === 'https:' ? '__Host-study-session' : 'study-session'}=${token}`,
+  },
   permissions: ['clipboard-read', 'clipboard-write'],
 });
 await ctx.route('**/api/**', async (route) => {
@@ -578,6 +580,68 @@ try {
     'PASS stats: 37 sections, legacy position and both records retained, whole-section record and unknown mastery, subtopic search, PDF page 69, mobile layout',
   );
 
+  await open('japanese');
+  const japaneseSelect = page.getByLabel('选择当前 IRODORI 位置');
+  assert.equal(
+    await page.getByRole('heading', { name: '能力节点' }).count(),
+    1,
+  );
+  assert.equal(await page.locator('[data-step-id]').count(), 111);
+  assert.equal(await japaneseSelect.locator('option').count(), 112);
+  await japaneseSelect.selectOption('JP-A1-L03-01');
+  await page.getByText('已保存当前学习位置', { exact: true }).waitFor();
+  const japaneseDashboard = page.getByRole('region', { name: '日语能力监控' });
+  await japaneseDashboard
+    .getByText('IRODORI Starter A1', { exact: true })
+    .waitFor();
+  await japaneseDashboard.getByText(/Lesson 3 \/ 18 · 本课能力 1\/2/).waitFor();
+  await japaneseDashboard
+    .getByText('Can-do 08 / Can-do 10 · 能进行基础自我介绍并询问他人信息', {
+      exact: true,
+    })
+    .waitFor();
+  const introduction = page.locator('[data-step-id="JP-A1-L03-01"]');
+  await introduction.getByText(/Lesson 3 · 当前学习/).waitFor();
+  const currentAbility = page.locator('.japanese-current-ability');
+  await currentAbility
+    .getByRole('button', { name: '学习中', exact: true })
+    .click();
+  await page.getByText('能力状态已保存', { exact: true }).waitFor();
+  let japaneseState = (await snapshot()).learning;
+  let introductionUnit = japaneseState.units.find(
+    (unit) => unit.curriculumItemId === 'JP-A1-L03-01',
+  );
+  assert.equal(introductionUnit.abilityStatus, 'learning');
+  await page.getByRole('button', { name: '关闭', exact: true }).click();
+  await currentAbility
+    .getByText('薄弱点与掌握证据（选填）', { exact: true })
+    .click();
+  await currentAbility.getByLabel('当前薄弱点').fill('听力反应慢');
+  await currentAbility
+    .getByLabel('掌握证据')
+    .fill('能完成姓名和籍贯的简短介绍');
+  await currentAbility
+    .getByRole('button', { name: '保存补充信息', exact: true })
+    .click();
+  await page.getByText('能力状态已保存', { exact: true }).waitFor();
+  japaneseState = (await snapshot()).learning;
+  introductionUnit = japaneseState.units.find(
+    (unit) => unit.curriculumItemId === 'JP-A1-L03-01',
+  );
+  assert.equal(introductionUnit.blocker, '听力反应慢');
+  assert.equal(introductionUnit.evidence, '能完成姓名和籍贯的简短介绍');
+  await japaneseDashboard.getByText('听力反应慢', { exact: true }).waitFor();
+  await mkdir('work/tests/japanese-abilities', { recursive: true });
+  await japaneseDashboard.screenshot({
+    path: 'work/tests/japanese-abilities/dashboard.png',
+  });
+  await page.locator('.learning-context').screenshot({
+    path: 'work/tests/japanese-abilities/current-ability.png',
+  });
+  console.log(
+    'PASS Japanese: 111 ability nodes, Lesson progress and Can-do mapping retained, four-level status and weak point persist',
+  );
+
   for (const [id, item] of [
     ['development', 'DEV-01-01'],
     ['japanese', 'JP-00-01'],
@@ -585,10 +649,20 @@ try {
     ['stats', 'ST-1-1'],
   ]) {
     await open(id);
-    await selected(item);
+    if (id === 'japanese') {
+      await page.getByLabel('选择当前 IRODORI 位置').selectOption(item);
+      await page.getByText('已保存当前学习位置', { exact: true }).waitFor();
+    } else await selected(item);
     await page.reload();
     await page.locator('.current-lesson-guide').waitFor();
-    assert.equal(await page.getByLabel('选择当前学习小节').inputValue(), item);
+    assert.equal(
+      await page
+        .getByLabel(
+          id === 'japanese' ? '选择当前 IRODORI 位置' : '选择当前学习小节',
+        )
+        .inputValue(),
+      item,
+    );
   }
   console.log(
     'PASS all remaining curricula: section selection persists and renders the correct lesson guidance',

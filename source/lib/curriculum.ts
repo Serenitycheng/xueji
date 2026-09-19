@@ -22,6 +22,12 @@ export type CurriculumStep = {
   group?: string;
   topics?: string[];
   legacyIds?: string[];
+  level?: string;
+  category?: string;
+  course?: string;
+  lesson?: string;
+  canDos?: string[];
+  targets?: string[];
 };
 export type CurriculumUnit = {
   id: string;
@@ -60,6 +66,9 @@ export function getCurriculum(id?: string) {
 export function curriculumStepCount(c: Curriculum) {
   return c.units.reduce((n, u) => n + u.steps.length, 0);
 }
+export function curriculumSteps(c: Curriculum) {
+  return c.units.flatMap((unit) => unit.steps.map((step) => ({ unit, step })));
+}
 export function findCurriculumItem(c: Curriculum | undefined, id?: string) {
   if (!c || !id) return;
   for (const unit of c.units) {
@@ -70,7 +79,10 @@ export function findCurriculumItem(c: Curriculum | undefined, id?: string) {
       const step = unit.steps[index];
       return {
         id: step.id,
-        name: `${unit.title} / 第${index + 1}节 · ${step.title}`,
+        name:
+          c.id === 'japanese'
+            ? `${unit.title} / ${step.title}`
+            : `${unit.title} / 第${index + 1}节 · ${step.title}`,
         scope: step.action,
         endCondition: step.done,
         sources: step.sources,
@@ -186,7 +198,28 @@ export function curriculumUnitState(
   d: Direction,
   itemId: string,
 ): Unit | undefined {
-  return w.units.find(
-    (u) => u.directionId === d.id && u.curriculumItemId === itemId,
+  if (d.curriculumId !== 'japanese')
+    return w.units.find(
+      (unit) => unit.directionId === d.id && unit.curriculumItemId === itemId,
+    );
+  const states = curriculumUnitStates(w, d, itemId);
+  return (
+    states.find((unit) => unit.id === d.currentUnitId) ??
+    states.find((unit) => unit.curriculumItemId === itemId) ??
+    states.at(-1)
+  );
+}
+export function curriculumUnitStates(
+  w: LearningWorkspace,
+  d: Direction,
+  itemId: string,
+): Unit[] {
+  const item = findCurriculumItem(getCurriculum(d.curriculumId), itemId);
+  const ids = new Set([item?.id ?? itemId, ...(item?.step?.legacyIds ?? [])]);
+  return w.units.filter(
+    (unit) =>
+      unit.directionId === d.id &&
+      !!unit.curriculumItemId &&
+      ids.has(unit.curriculumItemId),
   );
 }

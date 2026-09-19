@@ -2318,24 +2318,22 @@
       "name": "日语",
       "goal": "从假名和日常交际起步，建立A1—A2基础，再逐步把能力迁移到动画、歌曲和自己的生活。",
       "notes": [
-        "暂按旧档案“零基础、日常表达、逐步听懂动画和日语歌”设定；这不是对你当前水平的新测评。",
-        "本次建议主线：IRODORI入门A1 → 初级1 A2 → 初级2 A2；三册各18课。选它是因为有官方中文说明、逐课PDF和音频，能用明确课号定位。",
-        "先用MARUGOTO Plus学假名，随后与入门前两课并行；不要为了默写全熟而长期推迟听说。",
-        "入门小节的练习号核对到官方“内容一览”；初级1/2已核对官方逐课目录，拆成“理解课文”和“情境应用”两步，这是本次设计的学习步骤，不冒充教材原有节号。",
-        "下载目录里进入对应第N课，PDF、MP3和音频回放在同一行。中文逐课PDF部分抓取超时，未核定书内页码或音轨编号，所以本路线使用册别＋课号＋栏目定位；不填推算页码。",
-        "每个两课单元结束，混合复用上一单元表达。A2结束不等于能无字幕听懂所有影视内容；兴趣材料作为迁移练习，不替代基础主线。"
+        "IRODORI 仍是学习主线，按 Starter A1 → 初级1 A2 → 初级2 A2 和官方 Lesson / Can-do 顺序推进。",
+        "这里的节点表示已经会什么、正在练什么和哪里还薄弱；Lesson / Can-do 作为学习来源保留。",
+        "原有教材进度和学习记录继续保留；旧步骤已完成时，能力状态最多初始化为“基本掌握”，不会自动判定为“熟练”。",
+        "语法、词汇、汉字只作为能力支撑内容或薄弱点；详细笔记继续放在 Obsidian。"
       ],
       "units": [
         {
           "id": "JP-U00",
-          "title": "准备单元｜假名、发音与输入",
-          "goal": "建立字形与声音的对应，能查询并输入常见词。",
+          "title": "A1 · 文字与发音",
+          "goal": "建立假名、发音和输入的基础能力，不要求先把整张表默写到完全熟练。",
           "prerequisites": "",
           "branch": "",
           "steps": [
             {
               "id": "JP-00-01",
-              "title": "平假名与拍节",
+              "title": "能识读并输入基础平假名",
               "sources": [
                 {
                   "label": "MARUGOTO Plus A1",
@@ -2346,11 +2344,20 @@
               ],
               "action": "先学元音与清音，听一个音读一个字；再随机识读，记录易混字。",
               "done": "随机识读可自我纠错；能听、说、输入，不只记住表格顺序。",
-              "optional": false
+              "optional": false,
+              "level": "A1",
+              "category": "文字与发音",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 1-2 前置",
+              "canDos": [],
+              "targets": [
+                "随机识读可自我纠错；能听、说、输入，不只记住表格顺序。"
+              ],
+              "group": "文字与发音"
             },
             {
               "id": "JP-00-02",
-              "title": "片假名与外来词",
+              "title": "能识读并输入基础片假名",
               "sources": [
                 {
                   "label": "MARUGOTO Plus A1",
@@ -2361,11 +2368,20 @@
               ],
               "action": "用熟悉的外来词练音形对应，比较相似字形，避免只按中文读音记忆。",
               "done": "随机识读可自我纠错；能听、说、输入，不只记住表格顺序。",
-              "optional": false
+              "optional": false,
+              "level": "A1",
+              "category": "文字与发音",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 1-2 前置",
+              "canDos": [],
+              "targets": [
+                "随机识读可自我纠错；能听、说、输入，不只记住表格顺序。"
+              ],
+              "group": "文字与发音"
             },
             {
               "id": "JP-00-03",
-              "title": "长音、促音与拗音",
+              "title": "能辨认长音、促音与拗音",
               "sources": [
                 {
                   "label": "MARUGOTO Plus A1",
@@ -2376,2086 +2392,3519 @@
               ],
               "action": "跟读并拍节，比较短长音及促音；在输入法打出名字和5个常用词。",
               "done": "随机识读可自我纠错；能听、说、输入，不只记住表格顺序。",
-              "optional": false
+              "optional": false,
+              "level": "A1",
+              "category": "文字与发音",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 1-2 前置",
+              "canDos": [],
+              "targets": [
+                "随机识读可自我纠错；能听、说、输入，不只记住表格顺序。"
+              ],
+              "group": "文字与发音"
             }
           ]
         },
         {
           "id": "JP-A1-U01",
-          "title": "A1·第1单元｜基础交际",
-          "goal": "",
+          "title": "A1 · 基础沟通",
+          "goal": "按教材顺序练习“基础沟通”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "前一单元；前两课可与假名并行",
-          "branch": "",
+          "branch": "A1",
           "steps": [
             {
               "id": "JP-A1-L01-01",
-              "title": "第1课·见面与礼貌｜听说与理解",
+              "title": "能在见面与告别时进行礼貌交流",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第1课，练习1—3；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 1 · Can-do 01 / Can-do 02 / Can-do 03",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第1课，用于核对练习结构",
+                  "locator": "入门 Lesson 1 · Can-do 01 / Can-do 02 / Can-do 03",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；比较早晚、见面、告别、致谢和道歉场景，选合适说法。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 1 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在见面与告别时进行礼貌交流；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "基础沟通",
+              "level": "A1",
+              "category": "基础沟通",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 1",
+              "canDos": [
+                "01",
+                "02",
+                "03"
+              ],
+              "targets": [
+                "与人见面时，能够进行问候。",
+                "与人分别时，能够进行告别。",
+                "能够向人表示感谢或道歉。"
+              ]
             },
             {
               "id": "JP-A1-L01-02",
-              "title": "第1课·见面与礼貌｜读写与应用",
+              "title": "能看懂常见问候和致谢短语",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第1课，练习4；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 1 · Can-do 04",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第1课，用于核对练习结构",
+                  "locator": "入门 Lesson 1 · Can-do 04",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；读懂消息表情里的短语，录一段见面到告别的对话。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 1 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂常见问候和致谢短语；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "基础沟通",
+              "level": "A1",
+              "category": "基础沟通",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 1",
+              "canDos": [
+                "04"
+              ],
+              "targets": [
+                "看到写有“早上好”或者“谢谢”的信息表情时能够理解文字的意思。"
+              ]
             },
             {
               "id": "JP-A1-L02-01",
-              "title": "第2课·听不懂时的求助｜听说与理解",
+              "title": "能在听不懂时请求重复并说明语言能力",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第2课，练习1—2；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 2 · Can-do 05 / Can-do 06",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第2课，用于核对练习结构",
+                  "locator": "入门 Lesson 2 · Can-do 05 / Can-do 06",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；听不清时请求重复，并回答自己会哪些语言。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 2 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在听不懂时请求重复并说明语言能力；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "基础沟通",
+              "level": "A1",
+              "category": "基础沟通",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 2",
+              "canDos": [
+                "05",
+                "06"
+              ],
+              "targets": [
+                "没听明白对方说什么时，能够再问一遍。",
+                "能就是否会说日语或者其他语言进行提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A1-L02-02",
-              "title": "第2课·听不懂时的求助｜读写与应用",
+              "title": "能询问不懂事物的日语说法",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第2课，练习3；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 2 · Can-do 07",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第2课，用于核对练习结构",
+                  "locator": "入门 Lesson 2 · Can-do 07",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；拿身边物品询问日语名称，复述对方回答。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 2 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能询问不懂事物的日语说法；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "基础沟通",
+              "level": "A1",
+              "category": "基础沟通",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 2",
+              "canDos": [
+                "07"
+              ],
+              "targets": [
+                "能在不知道日语应该怎么说时就表达方式进行提问，并理解对方的回答。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A1-U02",
-          "title": "A1·第2单元｜介绍自己",
-          "goal": "",
+          "title": "A1 · 自我与人物",
+          "goal": "按教材顺序练习“自我与人物”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "前一单元；前两课可与假名并行",
-          "branch": "",
+          "branch": "A1",
           "steps": [
             {
               "id": "JP-A1-L03-01",
-              "title": "第3课·自我介绍与个人资料｜听说与理解",
+              "title": "能进行基础自我介绍并询问他人信息",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第3课，练习1、3；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 3 · Can-do 08 / Can-do 10",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第3课，用于核对练习结构",
+                  "locator": "入门 Lesson 3 · Can-do 08 / Can-do 10",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；介绍姓名和来自哪里，再反问对方。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 3 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能进行基础自我介绍并询问他人信息；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "自我与人物",
+              "level": "A1",
+              "category": "自我与人物",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 3",
+              "canDos": [
+                "08",
+                "10"
+              ],
+              "targets": [
+                "能进行简单的自我介绍，如姓名、籍贯等。",
+                "遇到初次见面的人，能就姓名、籍贯等进行提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A1-L03-02",
-              "title": "第3课·自我介绍与个人资料｜读写与应用",
+              "title": "能填写名卡和基础个人资料",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第3课，练习2、4；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 3 · Can-do 09 / Can-do 11",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第3课，用于核对练习结构",
+                  "locator": "入门 Lesson 3 · Can-do 09 / Can-do 11",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；使用虚构个人资料填写名卡和申请信息；核对日期数字。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 3 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能填写名卡和基础个人资料；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "自我与人物",
+              "level": "A1",
+              "category": "自我与人物",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 3",
+              "canDos": [
+                "09",
+                "11"
+              ],
+              "targets": [
+                "能在名卡上写自己的国家和姓名。",
+                "能在申请书上填写姓名、国籍、出生日期等。"
+              ]
             },
             {
               "id": "JP-A1-L04-01",
-              "title": "第4课·居住、年龄与家人｜听说与理解",
+              "title": "能听懂并交流家人、住处与年龄",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第4课，练习1—3；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 4 · Can-do 12 / Can-do 13 / Can-do 14",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第4课，用于核对练习结构",
+                  "locator": "入门 Lesson 4 · Can-do 12 / Can-do 13 / Can-do 14",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；用家庭照片介绍人物关系，回答居住地与年龄。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 4 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能听懂并交流家人、住处与年龄；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "自我与人物",
+              "level": "A1",
+              "category": "自我与人物",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 4",
+              "canDos": [
+                "12",
+                "13",
+                "14"
+              ],
+              "targets": [
+                "别人介绍他们的家人时，能理解对方在介绍哪一位家庭成员。",
+                "能就住的地方、年龄等进行提问或做出回答。",
+                "在看照片时，能就这个人是谁等进行简单的提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A1-L04-02",
-              "title": "第4课·居住、年龄与家人｜读写与应用",
+              "title": "能看懂并发布简单人物动态",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第4课，练习4；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 4 · Can-do 15",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第4课，用于核对练习结构",
+                  "locator": "入门 Lesson 4 · Can-do 15",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；给一张合照写简短说明，读一条带照片的社交消息。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 4 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂并发布简单人物动态；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "自我与人物",
+              "level": "A1",
+              "category": "自我与人物",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 4",
+              "canDos": [
+                "15"
+              ],
+              "targets": [
+                "读到朋友在社交网络上发布的简短内容，能够结合照片理解主题。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A1-U03",
-          "title": "A1·第3单元｜饮食与点餐",
-          "goal": "",
+          "title": "A1 · 饮食与点餐",
+          "goal": "按教材顺序练习“饮食与点餐”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "前一单元；前两课可与假名并行",
-          "branch": "",
+          "branch": "A1",
           "steps": [
             {
               "id": "JP-A1-L05-01",
-              "title": "第5课·饮食偏好与习惯｜听说与理解",
+              "title": "能交流饮食偏好、饮料和早餐习惯",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第5课，练习1—4；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 5 · Can-do 16 / Can-do 17 / Can-do 18 / Can-do 19",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第5课，用于核对练习结构",
+                  "locator": "入门 Lesson 5 · Can-do 16 / Can-do 17 / Can-do 18 / Can-do 19",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；问答喜欢的食物、饮料和早餐习惯。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 5 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能交流饮食偏好、饮料和早餐习惯；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "饮食与点餐",
+              "level": "A1",
+              "category": "饮食与点餐",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 5",
+              "canDos": [
+                "16",
+                "17",
+                "18",
+                "19"
+              ],
+              "targets": [
+                "被问到对食物的偏好等时能够做出回答。",
+                "能就有关日本食物的偏好等进行提问或做出回答。",
+                "对方向你推荐饮料时，能回答想喝什么。",
+                "能就早餐吃什么进行提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A1-L05-02",
-              "title": "第5课·饮食偏好与习惯｜读写与应用",
+              "title": "能发布带说明的食物照片",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第5课，练习5；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 5 · Can-do 20",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第5课，用于核对练习结构",
+                  "locator": "入门 Lesson 5 · Can-do 20",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；为早餐照片写说明，再口头表达一种不太喜欢的食物。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 5 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能发布带说明的食物照片；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "饮食与点餐",
+              "level": "A1",
+              "category": "饮食与点餐",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 5",
+              "canDos": [
+                "20"
+              ],
+              "targets": [
+                "能给食物的照片配简单的说明，并在社交网络上发帖。"
+              ]
             },
             {
               "id": "JP-A1-L06-01",
-              "title": "第6课·看菜单与点餐｜听说与理解",
+              "title": "能看懂菜单并选择餐食",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第6课，练习1—3；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 6 · Can-do 21 / Can-do 23 / Can-do 25",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第6课，用于核对练习结构",
+                  "locator": "入门 Lesson 6 · Can-do 21 / Can-do 23 / Can-do 25",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；读菜单并决定点什么，练堂食/带走场景。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 6 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂菜单并选择餐食；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "饮食与点餐",
+              "level": "A1",
+              "category": "饮食与点餐",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 6",
+              "canDos": [
+                "21",
+                "23",
+                "25"
+              ],
+              "targets": [
+                "翻看快餐店的菜单时，能够看懂是什么样的食物或饮料。",
+                "在和别人一起用餐时，能就吃什么进行提问或做出回答。",
+                "看到餐饮店的招牌时，能知道是什么店。"
+              ]
             },
             {
               "id": "JP-A1-L06-02",
-              "title": "第6课·看菜单与点餐｜读写与应用",
+              "title": "能在餐饮店完成点餐与需求表达",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第6课，练习4—5；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 6 · Can-do 22 / Can-do 24",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第6课，用于核对练习结构",
+                  "locator": "入门 Lesson 6 · Can-do 22 / Can-do 24",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；模拟点两种食物和索取餐具，确认数量。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 6 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在餐饮店完成点餐与需求表达；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "饮食与点餐",
+              "level": "A1",
+              "category": "饮食与点餐",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 6",
+              "canDos": [
+                "22",
+                "24"
+              ],
+              "targets": [
+                "能在快餐店点单。",
+                "能在餐饮店里点餐，并在需要盘子或杯子时告诉店员。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A1-U04",
-          "title": "A1·第4单元｜住处和单位",
-          "goal": "",
+          "title": "A1 · 住处与场所",
+          "goal": "按教材顺序练习“住处与场所”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "前一单元；前两课可与假名并行",
-          "branch": "",
+          "branch": "A1",
           "steps": [
             {
               "id": "JP-A1-L07-01",
-              "title": "第7课·住处与房间｜听说与理解",
+              "title": "能介绍房间、设施与居住情况",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第7课，练习1—3；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 7 · Can-do 26 / Can-do 27 / Can-do 28 / Can-do 29",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第7课，用于核对练习结构",
+                  "locator": "入门 Lesson 7 · Can-do 26 / Can-do 27 / Can-do 28 / Can-do 29",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；介绍房间布局，确认有哪些物品。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 7 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能介绍房间、设施与居住情况；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "住处与场所",
+              "level": "A1",
+              "category": "住处与场所",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 7",
+              "canDos": [
+                "26",
+                "27",
+                "28",
+                "29"
+              ],
+              "targets": [
+                "在参观别人的家并听取简单介绍时，能理解房间的户型结构。",
+                "能就家中或房间里必要的物品是否齐全进行提问，并加以确认。",
+                "能就住在哪里、家是什么样子进行提问或做出简单回答。",
+                "能就住在什么样的房子里进行提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A1-L07-02",
-              "title": "第7课·住处与房间｜读写与应用",
+              "title": "能看懂常见家电操作标识",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第7课，练习4—5；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 7 · Can-do 30",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第7课，用于核对练习结构",
+                  "locator": "入门 Lesson 7 · Can-do 30",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；读家电按钮标识，说明自己的住处及一个优缺点。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 7 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂常见家电操作标识；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "住处与场所",
+              "level": "A1",
+              "category": "住处与场所",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 7",
+              "canDos": [
+                "30"
+              ],
+              "targets": [
+                "看到空调遥控器上等操作家电时的按键标识时，能知道要按哪个按键。"
+              ]
             },
             {
               "id": "JP-A1-L08-01",
-              "title": "第8课·人和物的位置｜听说与理解",
+              "title": "能询问人物和物品的位置",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第8课，练习1—3；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 8 · Can-do 31 / Can-do 32 / Can-do 33",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第8课，用于核对练习结构",
+                  "locator": "入门 Lesson 8 · Can-do 31 / Can-do 32 / Can-do 33",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；听房间用途，问答某个人或物品在哪里。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 8 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能询问人物和物品的位置；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "住处与场所",
+              "level": "A1",
+              "category": "住处与场所",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 8",
+              "canDos": [
+                "31",
+                "32",
+                "33"
+              ],
+              "targets": [
+                "在参观单位的各个房间并听取简单介绍时，能理解是做什么的房间。",
+                "能就别人的位置进行提问或做出回答。",
+                "能在单位等场所就什么东西放在哪里进行提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A1-L08-02",
-              "title": "第8课·人和物的位置｜读写与应用",
+              "title": "能看懂房间和场所标识",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第8课，练习4；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 8 · Can-do 34",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第8课，用于核对练习结构",
+                  "locator": "入门 Lesson 8 · Can-do 34",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；画一张房间图，标位置并解释入口标识。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 8 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂房间和场所标识；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "住处与场所",
+              "level": "A1",
+              "category": "住处与场所",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 8",
+              "canDos": [
+                "34"
+              ],
+              "targets": [
+                "看到房间入口处的标识，能知道是做什么的房间。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A1-U05",
-          "title": "A1·第5单元｜时间与协作",
-          "goal": "",
+          "title": "A1 · 日常作息与工作",
+          "goal": "按教材顺序练习“日常作息与工作”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "前一单元；前两课可与假名并行",
-          "branch": "",
+          "branch": "A1",
           "steps": [
             {
               "id": "JP-A1-L09-01",
-              "title": "第9课·时间与日程｜听说与理解",
+              "title": "能听懂并表达作息与日程",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第9课，练习1—2；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 9 · Can-do 35 / Can-do 36",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第9课，用于核对练习结构",
+                  "locator": "入门 Lesson 9 · Can-do 35 / Can-do 36",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；听懂起居时间和一天安排。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 9 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能听懂并表达作息与日程；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "日常作息与工作",
+              "level": "A1",
+              "category": "日常作息与工作",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 9",
+              "canDos": [
+                "35",
+                "36"
+              ],
+              "targets": [
+                "能就起床或就寝的时间进行提问或做出回答。",
+                "在单位听取有关一天日程的简单说明后，能理解其内容。"
+              ]
             },
             {
               "id": "JP-A1-L09-02",
-              "title": "第9课·时间与日程｜读写与应用",
+              "title": "能看懂日程并协调时间",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第9课，练习3—4；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 9 · Can-do 37 / Can-do 38",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第9课，用于核对练习结构",
+                  "locator": "入门 Lesson 9 · Can-do 37 / Can-do 38",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；读日程板，与另一人协商共同有空的时间。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 9 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂日程并协调时间；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "日常作息与工作",
+              "level": "A1",
+              "category": "日常作息与工作",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 9",
+              "canDos": [
+                "37",
+                "38"
+              ],
+              "targets": [
+                "看到单位白板上写的内容，能大致知道其他人的日程安排。",
+                "能询问别人合适的时间，以决定日程 月 火 水 木 金 土 日 ～曜日"
+              ]
             },
             {
               "id": "JP-A1-L10-01",
-              "title": "第10课·指示、确认与借物｜听说与理解",
+              "title": "能理解工作指示并确认关键信息",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第10课，练习1—2；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 10 · Can-do 39 / Can-do 40",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第10课，用于核对练习结构",
+                  "locator": "入门 Lesson 10 · Can-do 39 / Can-do 40",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；听简短指示并确认数量或重点。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 10 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能理解工作指示并确认关键信息；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "日常作息与工作",
+              "level": "A1",
+              "category": "日常作息与工作",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 10",
+              "canDos": [
+                "39",
+                "40"
+              ],
+              "targets": [
+                "在单位听取简单的指示后，能理解要做什么。",
+                "在单位接到指示后，能就重点信息进行确认或再问一遍。"
+              ]
             },
             {
               "id": "JP-A1-L10-02",
-              "title": "第10课·指示、确认与借物｜读写与应用",
+              "title": "能看懂工作便条清单并借用物品",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第10课，练习3—5；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 10 · Can-do 41 / Can-do 42 / Can-do 43",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第10课，用于核对练习结构",
+                  "locator": "入门 Lesson 10 · Can-do 41 / Can-do 42 / Can-do 43",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；读便条和清单，再模拟向同学借充电器。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 10 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂工作便条清单并借用物品；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "日常作息与工作",
+              "level": "A1",
+              "category": "日常作息与工作",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 10",
+              "canDos": [
+                "41",
+                "42",
+                "43"
+              ],
+              "targets": [
+                "在单位看到手写的简单便条，能理解指示的内容。",
+                "在单位等场所，想借用东西时，能拜托其他人借给自己。",
+                "看到物品清单时，能确认必要的物品是否齐全。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A1-U06",
-          "title": "A1·第6单元｜兴趣和邀请",
-          "goal": "",
+          "title": "A1 · 兴趣与邀约",
+          "goal": "按教材顺序练习“兴趣与邀约”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "前一单元；前两课可与假名并行",
-          "branch": "",
+          "branch": "A1",
           "steps": [
             {
               "id": "JP-A1-L11-01",
-              "title": "第11课·兴趣与休息日｜听说与理解",
+              "title": "能谈论爱好与休息日活动",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第11课，练习1—3；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 11 · Can-do 44 / Can-do 45 / Can-do 46",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第11课，用于核对练习结构",
+                  "locator": "入门 Lesson 11 · Can-do 44 / Can-do 45 / Can-do 46",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；介绍自己的爱好以及休息日活动。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 11 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能谈论爱好与休息日活动；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "兴趣与邀约",
+              "level": "A1",
+              "category": "兴趣与邀约",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 11",
+              "canDos": [
+                "44",
+                "45",
+                "46"
+              ],
+              "targets": [
+                "被问及爱好时，能做出简单回答。",
+                "能就爱好或喜欢什么进行提问或做出回答。",
+                "能就休息日时做什么进行提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A1-L11-02",
-              "title": "第11课·兴趣与休息日｜读写与应用",
+              "title": "能看懂并撰写简短个人介绍",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第11课，练习4；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 11 · Can-do 47",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第11课，用于核对练习结构",
+                  "locator": "入门 Lesson 11 · Can-do 47",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；写短个人介绍，把喜欢的漫画或歌曲作为真实内容。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 11 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂并撰写简短个人介绍；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "兴趣与邀约",
+              "level": "A1",
+              "category": "兴趣与邀约",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 11",
+              "canDos": [
+                "47"
+              ],
+              "targets": [
+                "阅读社交网络上简单的个人介绍后，能理解这个人喜欢什么。"
+              ]
             },
             {
               "id": "JP-A1-L12-01",
-              "title": "第12课·活动与邀请｜听说与理解",
+              "title": "能看懂活动信息并询问参加意愿",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第12课，练习1—2；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 12 · Can-do 48 / Can-do 49",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第12课，用于核对练习结构",
+                  "locator": "入门 Lesson 12 · Can-do 48 / Can-do 49",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；从通知找出时间地点，问对方是否参加。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 12 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂活动信息并询问参加意愿；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "兴趣与邀约",
+              "level": "A1",
+              "category": "兴趣与邀约",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 12",
+              "canDos": [
+                "48",
+                "49"
+              ],
+              "targets": [
+                "看到活动通知，能找到时间、地点等重要信息。",
+                "能就去不去参加活动等进行提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A1-L12-02",
-              "title": "第12课·活动与邀请｜读写与应用",
+              "title": "能发出邀请并回复时间安排",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第12课，练习3—4；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 12 · Can-do 50 / Can-do 51",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第12课，用于核对练习结构",
+                  "locator": "入门 Lesson 12 · Can-do 50 / Can-do 51",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；写邀请和回复，包含可行时间或婉拒。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 12 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能发出邀请并回复时间安排；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "兴趣与邀约",
+              "level": "A1",
+              "category": "兴趣与邀约",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 12",
+              "canDos": [
+                "50",
+                "51"
+              ],
+              "targets": [
+                "能在邀请别人或被别人邀请时说出自己合适的时间。",
+                "在看到朋友发来的简单邀请信息后，能进行回复。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A1-U07",
-          "title": "A1·第7单元｜交通与城市",
-          "goal": "",
+          "title": "A1 · 出行与场所",
+          "goal": "按教材顺序练习“出行与场所”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "前一单元；前两课可与假名并行",
-          "branch": "",
+          "branch": "A1",
           "steps": [
             {
               "id": "JP-A1-L13-01",
-              "title": "第13课·交通与路线｜听说与理解",
+              "title": "能确认交通路线、报站与出行时间",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第13课，练习1—3；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 13 · Can-do 52 / Can-do 53 / Can-do 54",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第13课，用于核对练习结构",
+                  "locator": "入门 Lesson 13 · Can-do 52 / Can-do 53 / Can-do 54",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；确认车是否去目的地，复述所需时间。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 13 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能确认交通路线、报站与出行时间；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "出行与场所",
+              "level": "A1",
+              "category": "出行与场所",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 13",
+              "canDos": [
+                "52",
+                "53",
+                "54"
+              ],
+              "targets": [
+                "能就电车或巴士等是否能到自己想去的地方进行提问，并理解对方的回答。",
+                "没听懂车内报站名的广播时，能向其他人进行提问。",
+                "能说出从家到单位的交通方式和所需时间。"
+              ]
             },
             {
               "id": "JP-A1-L13-02",
-              "title": "第13课·交通与路线｜读写与应用",
+              "title": "能问路并看懂车站标识",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第13课，练习4—5；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 13 · Can-do 55 / Can-do 56",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第13课，用于核对练习结构",
+                  "locator": "入门 Lesson 13 · Can-do 55 / Can-do 56",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；依据一张路线图问路，识别换乘或车站标识。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 13 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能问路并看懂车站标识；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "出行与场所",
+              "level": "A1",
+              "category": "出行与场所",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 13",
+              "canDos": [
+                "55",
+                "56"
+              ],
+              "targets": [
+                "能就如何前往目的地进行提问，并理解对方的回答。",
+                "看到车站里常见的标识时，能明白意思。"
+              ]
             },
             {
               "id": "JP-A1-L14-01",
-              "title": "第14课·城市位置与感想｜听说与理解",
+              "title": "能询问并说明所在位置",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第14课，练习1—2；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 14 · Can-do 57 / Can-do 58",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第14课，用于核对练习结构",
+                  "locator": "入门 Lesson 14 · Can-do 57 / Can-do 58",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；在地图上描述自己位置，询问附近设施。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 14 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能询问并说明所在位置；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "出行与场所",
+              "level": "A1",
+              "category": "出行与场所",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 14",
+              "canDos": [
+                "57",
+                "58"
+              ],
+              "targets": [
+                "外出时，能就洗手间或ATM机等的位置进行提问。",
+                "能通过电话告知对方自己所在的位置。"
+              ]
             },
             {
               "id": "JP-A1-L14-02",
-              "title": "第14课·城市位置与感想｜读写与应用",
+              "title": "能听懂场所介绍并看懂营业信息",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第14课，练习3—4；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 14 · Can-do 59 / Can-do 60",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第14课，用于核对练习结构",
+                  "locator": "入门 Lesson 14 · Can-do 59 / Can-do 60",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；读营业时间告示，介绍一处去过的地方并说感想。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 14 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能听懂场所介绍并看懂营业信息；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "出行与场所",
+              "level": "A1",
+              "category": "出行与场所",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 14",
+              "canDos": [
+                "59",
+                "60"
+              ],
+              "targets": [
+                "听取城市各种地方的介绍时，能向对方表达自己的感想。",
+                "看到店铺或餐厅等的告示后，能够理解营业时间、休息日等信息。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A1-U08",
-          "title": "A1·第8单元｜购物与付款",
-          "goal": "",
+          "title": "A1 · 购物与服务",
+          "goal": "按教材顺序练习“购物与服务”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "前一单元；前两课可与假名并行",
-          "branch": "",
+          "branch": "A1",
           "steps": [
             {
               "id": "JP-A1-L15-01",
-              "title": "第15课·寻找商品与评价｜听说与理解",
+              "title": "能询问商品位置并看懂楼层指南",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第15课，练习1—3；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 15 · Can-do 61 / Can-do 62 / Can-do 63",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第15课，用于核对练习结构",
+                  "locator": "入门 Lesson 15 · Can-do 61 / Can-do 62 / Can-do 63",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；在楼层图找物品，向店员询问所在位置。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 15 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能询问商品位置并看懂楼层指南；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "购物与服务",
+              "level": "A1",
+              "category": "购物与服务",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 15",
+              "canDos": [
+                "61",
+                "62",
+                "63"
+              ],
+              "targets": [
+                "有需要的东西时，能询问应该在哪里购买，并理解回答。",
+                "看到店铺的楼层介绍，能知道要去哪里找自己想要的东西。",
+                "在购物中心等场所，能向店员询问商品位置，并理解回答。"
+              ]
             },
             {
               "id": "JP-A1-L15-02",
-              "title": "第15课·寻找商品与评价｜读写与应用",
+              "title": "能评价商品并理解商场标识",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第15课，练习4—5；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 15 · Can-do 64 / Can-do 65",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第15课，用于核对练习结构",
+                  "locator": "入门 Lesson 15 · Can-do 64 / Can-do 65",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；读商场标识，用简单形容词评价两件物品。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 15 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能评价商品并理解商场标识；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "购物与服务",
+              "level": "A1",
+              "category": "购物与服务",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 15",
+              "canDos": [
+                "64",
+                "65"
+              ],
+              "targets": [
+                "和朋友等一起购物时，能就对商品的评价和朋友进行简单交流。",
+                "能明白百货店或购物中心等场所的常见标识的意思。"
+              ]
             },
             {
               "id": "JP-A1-L16-01",
-              "title": "第16课·价格、数量与结账｜听说与理解",
+              "title": "能听懂并询问商品价格",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第16课，练习1—2；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 16 · Can-do 66 / Can-do 67",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第16课，用于核对练习结构",
+                  "locator": "入门 Lesson 16 · Can-do 66 / Can-do 67",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；听价格并复述，询问另一件商品价格。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 16 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能听懂并询问商品价格；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "购物与服务",
+              "level": "A1",
+              "category": "购物与服务",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 16",
+              "canDos": [
+                "66",
+                "67"
+              ],
+              "targets": [
+                "听到商品的价格后，能理解其内容。",
+                "能向店员询问价格，并理解对方的回答。"
+              ]
             },
             {
               "id": "JP-A1-L16-02",
-              "title": "第16课·价格、数量与结账｜读写与应用",
+              "title": "能表达购买数量并应对收银询问",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第16课，练习3—5；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 16 · Can-do 68 / Can-do 69 / Can-do 70",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第16课，用于核对练习结构",
+                  "locator": "入门 Lesson 16 · Can-do 68 / Can-do 69 / Can-do 70",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；模拟按重量或数量购买，并回答收银台提问。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 16 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能表达购买数量并应对收银询问；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "购物与服务",
+              "level": "A1",
+              "category": "购物与服务",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 16",
+              "canDos": [
+                "68",
+                "69",
+                "70"
+              ],
+              "targets": [
+                "购物时，能表达需要的重量或数量。",
+                "在便利店的收银台前，能就是否需要筷子或塑料袋等问题做出回答。",
+                "看到店铺的折扣标识时，能明白商品的价格。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A1-U09",
-          "title": "A1·第9单元｜经历与愿望",
-          "goal": "",
+          "title": "A1 · 假期与经历",
+          "goal": "按教材顺序练习“假期与经历”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "前一单元；前两课可与假名并行",
-          "branch": "",
+          "branch": "A1",
           "steps": [
             {
               "id": "JP-A1-L17-01",
-              "title": "第17课·过去的活动与体验｜听说与理解",
+              "title": "能谈论休息日经历与感想",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第17课，练习1—2；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 17 · Can-do 71 / Can-do 72",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第17课，用于核对练习结构",
+                  "locator": "入门 Lesson 17 · Can-do 71 / Can-do 72",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；描述上个休息日做了什么和感受。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 17 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能谈论休息日经历与感想；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "假期与经历",
+              "level": "A1",
+              "category": "假期与经历",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 17",
+              "canDos": [
+                "71",
+                "72"
+              ],
+              "targets": [
+                "被问及休息日都做了什么时，能做出简单回答。",
+                "能就休息日都做了什么或自己的感想进行提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A1-L17-02",
-              "title": "第17课·过去的活动与体验｜读写与应用",
+              "title": "能看懂价格信息并分享外出体验",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第17课，练习3—5；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 17 · Can-do 73 / Can-do 74 / Can-do 75",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第17课，用于核对练习结构",
+                  "locator": "入门 Lesson 17 · Can-do 73 / Can-do 74 / Can-do 75",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；读活动价格表，给一起出行的人写简短消息。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 17 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂价格信息并分享外出体验；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "假期与经历",
+              "level": "A1",
+              "category": "假期与经历",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 17",
+              "canDos": [
+                "73",
+                "74",
+                "75"
+              ],
+              "targets": [
+                "读到社交网络上简单的内容，能够结合照片理解对方做了什么。",
+                "看到各种设施的价格表时，能明白需要付多少钱。",
+                "事后能给一起出行的人发送简单的感想等。"
+              ]
             },
             {
               "id": "JP-A1-L18-01",
-              "title": "第18课·愿望与旅行叙述｜听说与理解",
+              "title": "能交流假期计划和在日愿望",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第18课，练习1—2；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 18 · Can-do 76 / Can-do 77",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第18课，用于核对练习结构",
+                  "locator": "入门 Lesson 18 · Can-do 76 / Can-do 77",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；问答休假安排与想做的事，区分过去与愿望。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 18 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能交流假期计划和在日愿望；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "假期与经历",
+              "level": "A1",
+              "category": "假期与经历",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 18",
+              "canDos": [
+                "76",
+                "77"
+              ],
+              "targets": [
+                "能就休息日都做了什么进行提问或做出回答。",
+                "被问及想要在日本做什么时，能做出简单回答。"
+              ]
             },
             {
               "id": "JP-A1-L18-02",
-              "title": "第18课·愿望与旅行叙述｜读写与应用",
+              "title": "能发布并讲述旅行经历与感想",
               "sources": [
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
-                  "locator": "入门第18课，练习3—4；音频回放按教材印出的编号选择",
+                  "locator": "入门 Lesson 18 · Can-do 78 / Can-do 79",
                   "status": "课号与练习号已核目录；正文页码待核"
                 },
                 {
                   "label": "官方内容一览",
                   "url": "https://jpfbj.cn/irodori/starter/pdf/X_contents_CN.pdf",
-                  "locator": "入门第18课，用于核对练习结构",
+                  "locator": "入门 Lesson 18 · Can-do 78 / Can-do 79",
                   "status": "已核对课节"
                 }
               ],
-              "action": "先不看听力课文尝试理解，再核对课文和本课语言笔记；按顺序介绍一次出行，并写一条短记录。",
-              "done": "不照抄原句完成一次同类情境；保存录音或短文，指出一个需要复习的表达。",
-              "optional": false
+              "action": "按 IRODORI 入门 Lesson 18 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能发布并讲述旅行经历与感想；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "假期与经历",
+              "level": "A1",
+              "category": "假期与经历",
+              "course": "IRODORI Starter A1",
+              "lesson": "Lesson 18",
+              "canDos": [
+                "78",
+                "79"
+              ],
+              "targets": [
+                "能在社交网络进行简单的发帖，介绍自己休息日都做了什么。",
+                "能简单介绍自己在旅行中都做了什么或自己的感想。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-1-U01",
-          "title": "A2-1·第1单元｜近况与个性",
-          "goal": "",
+          "title": "A2 · 近况与兴趣",
+          "goal": "按教材顺序练习“近况与兴趣”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-1-L01-01",
-              "title": "第1课·工作与近况｜理解课文",
+              "title": "能与熟人问候并介绍近况",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第1课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 1 · Can-do 01 / Can-do 02",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 1 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能与熟人问候并介绍近况；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "近况与兴趣",
+              "level": "A2",
+              "category": "近况与兴趣",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 1",
+              "canDos": [
+                "01",
+                "02"
+              ],
+              "targets": [
+                "能与许久未见的人相互问候。",
+                "在被周围人问到时，能简单介绍自己的近况。"
+              ]
             },
             {
               "id": "JP-A2-1-L01-02",
-              "title": "第1课·工作与近况｜情境应用",
+              "title": "能介绍自己在日本的工作",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第1课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 1 · Can-do 03",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "用简短自我介绍说明正在做什么以及近期变化。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 1 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能介绍自己在日本的工作；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "近况与兴趣",
+              "level": "A2",
+              "category": "近况与兴趣",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 1",
+              "canDos": [
+                "03"
+              ],
+              "targets": [
+                "能简单介绍自己在日本从事的工作。"
+              ]
             },
             {
               "id": "JP-A2-1-L02-01",
-              "title": "第2课·兴趣与个人特点｜理解课文",
+              "title": "能谈论爱好和休息日",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第2课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 2 · Can-do 04 / Can-do 05",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 2 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能谈论爱好和休息日；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "近况与兴趣",
+              "level": "A2",
+              "category": "近况与兴趣",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 2",
+              "canDos": [
+                "04",
+                "05"
+              ],
+              "targets": [
+                "能简单介绍自己的爱好或者喜欢什么。",
+                "能就如何度过休息日进行提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A2-1-L02-02",
-              "title": "第2课·兴趣与个人特点｜情境应用",
+              "title": "能读写个人爱好与生活介绍",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第2课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 2 · Can-do 06 / Can-do 07",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "介绍两位朋友的兴趣差异并追问原因。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 2 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能读写个人爱好与生活介绍；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "近况与兴趣",
+              "level": "A2",
+              "category": "近况与兴趣",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 2",
+              "canDos": [
+                "06",
+                "07"
+              ],
+              "targets": [
+                "在读过店内或设施内张贴的员工介绍后，能理解该员工的家庭构成或爱 好等信息。",
+                "能简单写下自己的爱好或如何度过休息日等信息，供单位在张贴员工介绍 时使用。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-1-U02",
-          "title": "A2-1·第2单元｜天气与季节",
-          "goal": "",
+          "title": "A2 · 季节与天气",
+          "goal": "按教材顺序练习“季节与天气”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-1-L03-01",
-              "title": "第3课·季节感受｜理解课文",
+              "title": "能理解并介绍本国季节特点",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第3课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 3 · Can-do 08 / Can-do 09",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 3 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能理解并介绍本国季节特点；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "季节与天气",
+              "level": "A2",
+              "category": "季节与天气",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 3",
+              "canDos": [
+                "08",
+                "09"
+              ],
+              "targets": [
+                "在看过介绍日本四季的短视频后，能理解各季节的特点。",
+                "能简单介绍自己国家的季节特点。"
+              ]
             },
             {
               "id": "JP-A2-1-L03-02",
-              "title": "第3课·季节感受｜情境应用",
+              "title": "能表达喜欢的季节并说明理由",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第3课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 3 · Can-do 10",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "对比家乡与另一个地方的季节，说明自己的偏好。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 3 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能表达喜欢的季节并说明理由；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "季节与天气",
+              "level": "A2",
+              "category": "季节与天气",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 3",
+              "canDos": [
+                "10"
+              ],
+              "targets": [
+                "能简单介绍自己喜欢的季节并说明理由。"
+              ]
             },
             {
               "id": "JP-A2-1-L04-01",
-              "title": "第4课·天气变化｜理解课文",
+              "title": "能在问候中谈论天气并听懂预报",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第4课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 4 · Can-do 11 / Can-do 12",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 4 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在问候中谈论天气并听懂预报；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "季节与天气",
+              "level": "A2",
+              "category": "季节与天气",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 4",
+              "canDos": [
+                "11",
+                "12"
+              ],
+              "targets": [
+                "能在互相问候时聊聊天气。",
+                "听到天气预报能大致理解内容。"
+              ]
             },
             {
               "id": "JP-A2-1-L04-02",
-              "title": "第4课·天气变化｜情境应用",
+              "title": "能看懂天气相关动态",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第4课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 4 · Can-do 13",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "根据天气安排一天行程，并说明为什么调整。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 4 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂天气相关动态；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "季节与天气",
+              "level": "A2",
+              "category": "季节与天气",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 4",
+              "canDos": [
+                "13"
+              ],
+              "targets": [
+                "能看懂有关天气的社交网络上的帖子。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-1-U03",
-          "title": "A2-1·第3单元｜城市与问路",
-          "goal": "",
+          "title": "A2 · 城市与路线",
+          "goal": "按教材顺序练习“城市与路线”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-1-L05-01",
-              "title": "第5课·居住环境｜理解课文",
+              "title": "能谈论居住城市并询问推荐地点",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第5课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 5 · Can-do 14 / Can-do 15",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 5 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能谈论居住城市并询问推荐地点；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "城市与路线",
+              "level": "A2",
+              "category": "城市与路线",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 5",
+              "canDos": [
+                "14",
+                "15"
+              ],
+              "targets": [
+                "能简单谈谈自己对所住城市的感想。",
+                "能对城市的推荐地点进行提问，并理解对方的回答。"
+              ]
             },
             {
               "id": "JP-A2-1-L05-02",
-              "title": "第5课·居住环境｜情境应用",
+              "title": "能从城市介绍中获取地点信息",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第5课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 5 · Can-do 16",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "描述住处周边的便利与不便。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 5 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能从城市介绍中获取地点信息；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "城市与路线",
+              "level": "A2",
+              "category": "城市与路线",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 5",
+              "canDos": [
+                "16"
+              ],
+              "targets": [
+                "看城市的介绍图，能获取知名景点或店铺等的相关信息。"
+              ]
             },
             {
               "id": "JP-A2-1-L06-01",
-              "title": "第6课·方向说明｜理解课文",
+              "title": "能当面或通过电话问路",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第6课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 6 · Can-do 17 / Can-do 18",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 6 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能当面或通过电话问路；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "城市与路线",
+              "level": "A2",
+              "category": "城市与路线",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 6",
+              "canDos": [
+                "17",
+                "18"
+              ],
+              "targets": [
+                "能向别人问路，并理解对方的回答。",
+                "能通过电话问路，并理解对方的回答。"
+              ]
             },
             {
               "id": "JP-A2-1-L06-02",
-              "title": "第6课·方向说明｜情境应用",
+              "title": "能为驾车者说明前往目的地的路线",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第6课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 6 · Can-do 19",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "用地图指引对方走到邮局或车站。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 6 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能为驾车者说明前往目的地的路线；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "城市与路线",
+              "level": "A2",
+              "category": "城市与路线",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 6",
+              "canDos": [
+                "19"
+              ],
+              "targets": [
+                "在搭别人车时，能告诉对方如何前往目的地。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-1-U04",
-          "title": "A2-1·第4单元｜赴约与经验",
-          "goal": "",
+          "title": "A2 · 邀约与出行",
+          "goal": "按教材顺序练习“邀约与出行”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-1-L07-01",
-              "title": "第7课·赴约迟到｜理解课文",
+              "title": "能协商并确认碰面时间地点",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第7课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 7 · Can-do 20 / Can-do 21",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 7 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能协商并确认碰面时间地点；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "邀约与出行",
+              "level": "A2",
+              "category": "邀约与出行",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 7",
+              "canDos": [
+                "20",
+                "21"
+              ],
+              "targets": [
+                "能对碰面或集合的时间、地点进行提问，并理解对方的回答。",
+                "能协商并决定碰面的时间和地点。"
+              ]
             },
             {
               "id": "JP-A2-1-L07-02",
-              "title": "第7课·赴约迟到｜情境应用",
+              "title": "能看懂并发送迟到联络",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第7课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 7 · Can-do 22 / Can-do 23",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "写一条说明迷路与预计到达时间的消息。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 7 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂并发送迟到联络；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "邀约与出行",
+              "level": "A2",
+              "category": "邀约与出行",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 7",
+              "canDos": [
+                "22",
+                "23"
+              ],
+              "targets": [
+                "在收到对方发来的迟到联络信息时，能理解其内容。",
+                "能写信息告诉对方自己将要迟到。"
+              ]
             },
             {
               "id": "JP-A2-1-L08-01",
-              "title": "第8课·经历与邀请｜理解课文",
+              "title": "能根据经历和爱好发出邀请",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第8课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 8 · Can-do 24",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 8 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能根据经历和爱好发出邀请；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "邀约与出行",
+              "level": "A2",
+              "category": "邀约与出行",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 8",
+              "canDos": [
+                "24"
+              ],
+              "targets": [
+                "能一边询问对方的经历、爱好，一边发出用餐、购物或活动的邀请。"
+              ]
             },
             {
               "id": "JP-A2-1-L08-02",
-              "title": "第8课·经历与邀请｜情境应用",
+              "title": "能商量外出安排并表达活动感想",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第8课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 8 · Can-do 25 / Can-do 26",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "谈一次做过或没做过的活动，并提出尝试邀请。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 8 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能商量外出安排并表达活动感想；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "邀约与出行",
+              "level": "A2",
+              "category": "邀约与出行",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 8",
+              "canDos": [
+                "25",
+                "26"
+              ],
+              "targets": [
+                "与别人一起外出时，能讨论接下来做什么、去哪里等。",
+                "能向对方传达一起参加过活动后的感想。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-1-U05",
-          "title": "A2-1·第5单元｜学习与求助",
-          "goal": "",
+          "title": "A2 · 学习与求助",
+          "goal": "按教材顺序练习“学习与求助”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-1-L09-01",
-              "title": "第9课·读法与请教｜理解课文",
+              "title": "能介绍日语学习经历和感想",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第9课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 9 · Can-do 27 / Can-do 28",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 9 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能介绍日语学习经历和感想；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "学习与求助",
+              "level": "A2",
+              "category": "学习与求助",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 9",
+              "canDos": [
+                "27",
+                "28"
+              ],
+              "targets": [
+                "能简单介绍自己的日语学习经历。",
+                "能就日语学习谈谈自己的感想或意见。"
+              ]
             },
             {
               "id": "JP-A2-1-L09-02",
-              "title": "第9课·读法与请教｜情境应用",
+              "title": "能在不懂日语时求助并查找学习建议",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第9课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 9 · Can-do 29 / Can-do 30",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "遇到看不懂的词时说明问题并请求示范。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 9 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在不懂日语时求助并查找学习建议；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "学习与求助",
+              "level": "A2",
+              "category": "学习与求助",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 9",
+              "canDos": [
+                "29",
+                "30"
+              ],
+              "targets": [
+                "遇到不懂的日语时，能向其他人求助。",
+                "阅读有关日语学习的网络论坛的内容后，能理解推荐的学习方法。"
+              ]
             },
             {
               "id": "JP-A2-1-L10-01",
-              "title": "第10课·学习活动｜理解课文",
+              "title": "能查找并咨询日语学习班",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第10课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 10 · Can-do 31 / Can-do 32 / Can-do 33",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 10 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能查找并咨询日语学习班；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "学习与求助",
+              "level": "A2",
+              "category": "学习与求助",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 10",
+              "canDos": [
+                "31",
+                "32",
+                "33"
+              ],
+              "targets": [
+                "看公民馆等的讲座介绍，能获取地点、时间等信息。",
+                "在政府办公窗口等能就感兴趣的讲座进行提问，并理解对方的回答。",
+                "能就地区的日语学习班向朋友进行提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A2-1-L10-02",
-              "title": "第10课·学习活动｜情境应用",
+              "title": "能说明自己的学习经历与意愿",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第10课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 10 · Can-do 34",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "说明参加课程的安排与想学的内容。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 10 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能说明自己的学习经历与意愿；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "学习与求助",
+              "level": "A2",
+              "category": "学习与求助",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 10",
+              "canDos": [
+                "34"
+              ],
+              "targets": [
+                "在参加日语学习班前，能回答有关学习经历、学习意愿等的简单问题。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-1-U06",
-          "title": "A2-1·第6单元｜聚会与食物",
-          "goal": "",
+          "title": "A2 · 饮食与聚会",
+          "goal": "按教材顺序练习“饮食与聚会”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-1-L11-01",
-              "title": "第11课·聚会准备｜理解课文",
+              "title": "能协商聚会准备和采购分工",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第11课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 11 · Can-do 35 / Can-do 36",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 11 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能协商聚会准备和采购分工；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "饮食与聚会",
+              "level": "A2",
+              "category": "饮食与聚会",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 11",
+              "canDos": [
+                "35",
+                "36"
+              ],
+              "targets": [
+                "能在烧烤等活动时，商量由谁准备什么东西。",
+                "能在开家庭聚会时，商量应该买什么。"
+              ]
             },
             {
               "id": "JP-A2-1-L11-02",
-              "title": "第11课·聚会准备｜情境应用",
+              "title": "能询问并确认食品成分与期限",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第11课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 11 · Can-do 37 / Can-do 38",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "协商各自带什么，避免遗漏和重复。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 11 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能询问并确认食品成分与期限；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "饮食与聚会",
+              "level": "A2",
+              "category": "饮食与聚会",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 11",
+              "canDos": [
+                "37",
+                "38"
+              ],
+              "targets": [
+                "能就食物的材料、消费期限等向店内工作人员等进行提问，并理解对方的 回答。",
+                "通过看食品标识，能确认中是否含有自己不能吃的东西。"
+              ]
             },
             {
               "id": "JP-A2-1-L12-01",
-              "title": "第12课·食物观察｜理解课文",
+              "title": "能描述食物印象、味道与材料",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第12课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 12 · Can-do 39 / Can-do 40 / Can-do 41",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 12 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能描述食物印象、味道与材料；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "饮食与聚会",
+              "level": "A2",
+              "category": "饮食与聚会",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 12",
+              "canDos": [
+                "39",
+                "40",
+                "41"
+              ],
+              "targets": [
+                "在看到食物时，能说出通过其外观获得的印象。",
+                "其他人推荐某种食物后，能说出品尝后的感想。",
+                "能就菜肴的味道、材料等进行提问或做出回答"
+              ]
             },
             {
               "id": "JP-A2-1-L12-02",
-              "title": "第12课·食物观察｜情境应用",
+              "title": "能看懂方便食品的制作方法",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第12课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 12 · Can-do 42",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "介绍一份便当的内容和感受，询问对方选择。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 12 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂方便食品的制作方法；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "饮食与聚会",
+              "level": "A2",
+              "category": "饮食与聚会",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 12",
+              "canDos": [
+                "42"
+              ],
+              "targets": [
+                "在阅读方便食品等的制作方法说明书后，能理解制作流程。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-1-U07",
-          "title": "A2-1·第7单元｜工作与请假",
-          "goal": "",
+          "title": "A2 · 工作沟通",
+          "goal": "按教材顺序练习“工作沟通”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-1-L13-01",
-              "title": "第13课·工作进度｜理解课文",
+              "title": "能说明工作困难与进度",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第13课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 13 · Can-do 43 / Can-do 44",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 13 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能说明工作困难与进度；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "工作沟通",
+              "level": "A2",
+              "category": "工作沟通",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 13",
+              "canDos": [
+                "43",
+                "44"
+              ],
+              "targets": [
+                "在单位遇到困难时，能向上司等说明情况。",
+                "被问到工作的进度情况时，能做出简单的回答。"
+              ]
             },
             {
               "id": "JP-A2-1-L13-02",
-              "title": "第13课·工作进度｜情境应用",
+              "title": "能理解设备操作、工作指示与沟通邮件",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第13课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 13 · Can-do 45 / Can-do 46 / Can-do 47",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "说明任务需要多久、目前做到哪里。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 13 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能理解设备操作、工作指示与沟通邮件；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "工作沟通",
+              "level": "A2",
+              "category": "工作沟通",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 13",
+              "canDos": [
+                "45",
+                "46",
+                "47"
+              ],
+              "targets": [
+                "能在单位就机器的使用方法等进行提问，并理解对方的回答。",
+                "在单位听取工作方法的说明或指示后，能理解其内容。",
+                "能阅读工作上简单的沟通邮件，并理解其内容。"
+              ]
             },
             {
               "id": "JP-A2-1-L14-01",
-              "title": "第14课·请假与理由｜理解课文",
+              "title": "能打电话请假、迟到并征求许可",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第14课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 14 · Can-do 48 / Can-do 49 / Can-do 50",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 14 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能打电话请假、迟到并征求许可；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "工作沟通",
+              "level": "A2",
+              "category": "工作沟通",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 14",
+              "canDos": [
+                "48",
+                "49",
+                "50"
+              ],
+              "targets": [
+                "能给单位打电话请假或通知自己要迟到。",
+                "在离开自己的工位时，能征求周围人的许可。",
+                "在单位想要休假时，能提前征求许可。"
+              ]
             },
             {
               "id": "JP-A2-1-L14-02",
-              "title": "第14课·请假与理由｜情境应用",
+              "title": "能询问请假文件的填写方法",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第14课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 14 · Can-do 51",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "提出请假请求，交代时间和必要信息。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 14 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能询问请假文件的填写方法；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "工作沟通",
+              "level": "A2",
+              "category": "工作沟通",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 14",
+              "canDos": [
+                "51"
+              ],
+              "targets": [
+                "能就请假单等文件的填写方法进行提问，并理解对方的回答。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-1-U08",
-          "title": "A2-1·第8单元｜身体与健康",
-          "goal": "",
+          "title": "A2 · 健康与就医",
+          "goal": "按教材顺序练习“健康与就医”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-1-L15-01",
-              "title": "第15课·症状表达｜理解课文",
+              "title": "能在医院说明症状并理解医嘱",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第15课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 15 · Can-do 52 / Can-do 53",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 15 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在医院说明症状并理解医嘱；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "健康与就医",
+              "level": "A2",
+              "category": "健康与就医",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 15",
+              "canDos": [
+                "52",
+                "53"
+              ],
+              "targets": [
+                "能在医院简单描述自己的症状。",
+                "在医院听到医生的指示后，能理解其内容。"
+              ]
             },
             {
               "id": "JP-A2-1-L15-02",
-              "title": "第15课·症状表达｜情境应用",
+              "title": "能填写问诊单并理解药品用法",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第15课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 15 · Can-do 54 / Can-do 55 / Can-do 56",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "在模拟问诊中描述症状和开始时间。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 15 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能填写问诊单并理解药品用法；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "健康与就医",
+              "level": "A2",
+              "category": "健康与就医",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 15",
+              "canDos": [
+                "54",
+                "55",
+                "56"
+              ],
+              "targets": [
+                "能在医院的前台填写问诊单的必要内容。",
+                "听取药品的说明后，能理解用法及注意事项。",
+                "阅读药品说明后，能理解用法、用量。"
+              ]
             },
             {
               "id": "JP-A2-1-L16-01",
-              "title": "第16课·健康建议｜理解课文",
+              "title": "能交流健康建议与生活习惯",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第16课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 16 · Can-do 57 / Can-do 58",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 16 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能交流健康建议与生活习惯；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "健康与就医",
+              "level": "A2",
+              "category": "健康与就医",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 16",
+              "canDos": [
+                "57",
+                "58"
+              ],
+              "targets": [
+                "能就身体不舒服时的应对方法提出建议，或者在听取建议后能够理解其 内容。",
+                "能介绍自己为了健康在注意的事。"
+              ]
             },
             {
               "id": "JP-A2-1-L16-02",
-              "title": "第16课·健康建议｜情境应用",
+              "title": "能从新闻与海报获取疾病信息",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第16课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 16 · Can-do 59 / Can-do 60",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "理解一条日常建议，并说明是否适合自己的生活。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 16 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能从新闻与海报获取疾病信息；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "健康与就医",
+              "level": "A2",
+              "category": "健康与就医",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 16",
+              "canDos": [
+                "59",
+                "60"
+              ],
+              "targets": [
+                "在看到有关流行疾病的新闻后，能理解疾病名称、症状、预防方法等的大 致内容。",
+                "在医院等看到有关疾病的海报时，能理解症状、预防方法等内容。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-1-U09",
-          "title": "A2-1·第9单元｜礼物与关系",
-          "goal": "",
+          "title": "A2 · 来访与祝福",
+          "goal": "按教材顺序练习“来访与祝福”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-1-L17-01",
-              "title": "第17课·物品来历｜理解课文",
+              "title": "能在拜访时问候并介绍礼物来历",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第17课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 17 · Can-do 61 / Can-do 62 / Can-do 63",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 17 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在拜访时问候并介绍礼物来历；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "来访与祝福",
+              "level": "A2",
+              "category": "来访与祝福",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 17",
+              "canDos": [
+                "61",
+                "62",
+                "63"
+              ],
+              "targets": [
+                "在拜访别人家时，能够进行基本的问候。",
+                "在送特产时，能简单说明是什么东西。",
+                "能就自己的东西介绍是在哪里买的，或者是谁送的等。"
+              ]
             },
             {
               "id": "JP-A2-1-L17-02",
-              "title": "第17课·物品来历｜情境应用",
+              "title": "能写简单感谢邮件",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第17课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 17 · Can-do 64",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "介绍别人送给自己的物品及其意义。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 17 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能写简单感谢邮件；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "来访与祝福",
+              "level": "A2",
+              "category": "来访与祝福",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 17",
+              "canDos": [
+                "64"
+              ],
+              "targets": [
+                "能给邀请自己去家里做客的人或者关照过自己的人写简单的感谢邮件。"
+              ]
             },
             {
               "id": "JP-A2-1-L18-01",
-              "title": "第18课·赠礼安排｜理解课文",
+              "title": "能表达祝福并讨论礼物",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第18课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 18 · Can-do 65 / Can-do 66 / Can-do 67",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 18 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能表达祝福并讨论礼物；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "来访与祝福",
+              "level": "A2",
+              "category": "来访与祝福",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 18",
+              "canDos": [
+                "65",
+                "66",
+                "67"
+              ],
+              "targets": [
+                "能就生日或结婚等表达祝福。",
+                "在为别人挑选礼物时能就应该送什么进行讨论。",
+                "在收到礼物时能表达感谢和感想。"
+              ]
             },
             {
               "id": "JP-A2-1-L18-02",
-              "title": "第18课·赠礼安排｜情境应用",
+              "title": "能看懂并写下祝福内容",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
-                  "locator": "初级1第18课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级1 Lesson 18 · Can-do 68 / Can-do 69",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "为一个场合讨论礼物，说明选择原因。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级1 Lesson 18 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂并写下祝福内容；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "来访与祝福",
+              "level": "A2",
+              "category": "来访与祝福",
+              "course": "IRODORI 初级1 A2",
+              "lesson": "Lesson 18",
+              "canDos": [
+                "68",
+                "69"
+              ],
+              "targets": [
+                "读到朋友在自己的生日时发布在社交网络上的帖子后，能理解其内容。",
+                "能在卡片或卡纸上写祝福或送别的内容。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-2-U01",
-          "title": "A2-2·第1单元｜到来与人物",
-          "goal": "",
+          "title": "A2 · 自我与人物",
+          "goal": "按教材顺序练习“自我与人物”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-2-L01-01",
-              "title": "第1课·到来与变化｜理解课文",
+              "title": "能在单位听懂介绍并进行详细自我介绍",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第1课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 1 · Can-do 01 / Can-do 02",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 1 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在单位听懂介绍并进行详细自我介绍；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "自我与人物",
+              "level": "A2",
+              "category": "自我与人物",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 1",
+              "canDos": [
+                "01",
+                "02"
+              ],
+              "targets": [
+                "第一次到单位，别人为自己介绍同事时，能听懂对方的名字和职位。",
+                "在单位等场景中，第一次与大家打招呼时能进行较为详细的自我介绍。"
+              ]
             },
             {
               "id": "JP-A2-2-L01-02",
-              "title": "第1课·到来与变化｜情境应用",
+              "title": "能介绍故乡并发布自我介绍",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第1课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 1 · Can-do 03 / Can-do 04",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "介绍到一个新地方后的经历和感受。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 1 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能介绍故乡并发布自我介绍；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "自我与人物",
+              "level": "A2",
+              "category": "自我与人物",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 1",
+              "canDos": [
+                "03",
+                "04"
+              ],
+              "targets": [
+                "能简单介绍自己的故乡。",
+                "能在社交网络上的群组中发布简单的自我介绍。"
+              ]
             },
             {
               "id": "JP-A2-2-L02-01",
-              "title": "第2课·描述人物｜理解课文",
+              "title": "能描述人物外貌、性格与特点",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第2课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 2 · Can-do 05 / Can-do 06",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 2 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能描述人物外貌、性格与特点；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "自我与人物",
+              "level": "A2",
+              "category": "自我与人物",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 2",
+              "canDos": [
+                "05",
+                "06"
+              ],
+              "targets": [
+                "找人时，能说出那个人的特点，或在听到特点描述时能找到所描述的人。",
+                "关于不在场的人，能描述其性格、外貌特征等。"
+              ]
             },
             {
               "id": "JP-A2-2-L02-02",
-              "title": "第2课·描述人物｜情境应用",
+              "title": "能介绍喜欢的名人并理解人物访谈",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第2课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 2 · Can-do 07 / Can-do 08",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "根据观察描述一个人的特点，并保留不确定语气。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 2 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能介绍喜欢的名人并理解人物访谈；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "自我与人物",
+              "level": "A2",
+              "category": "自我与人物",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 2",
+              "canDos": [
+                "07",
+                "08"
+              ],
+              "targets": [
+                "关于喜欢的名人，能简单说明喜欢的理由和喜欢的契机。",
+                "读到介绍人物的简单访谈时，能理解其内容。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-2-U02",
-          "title": "A2-2·第2单元｜饮食沟通",
-          "goal": "",
+          "title": "A2 · 餐饮交流",
+          "goal": "按教材顺序练习“餐饮交流”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-2-L03-01",
-              "title": "第3课·饮食限制｜理解课文",
+              "title": "能看懂菜单并说明饮食限制与点餐需求",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第3课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 3 · Can-do 09 / Can-do 10 / Can-do 11",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 3 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂菜单并说明饮食限制与点餐需求；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "餐饮交流",
+              "level": "A2",
+              "category": "餐饮交流",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 3",
+              "canDos": [
+                "09",
+                "10",
+                "11"
+              ],
+              "targets": [
+                "看菜单时，能理解菜肴的名称、价格、服务的内容等。",
+                "能向一起用餐的人或店员说明自己不能吃的东西并解释理由。",
+                "能在餐饮店向店员说明对座位的要求或想点的菜品。"
+              ]
             },
             {
               "id": "JP-A2-2-L03-02",
-              "title": "第3课·饮食限制｜情境应用",
+              "title": "能预约餐厅并看懂优惠信息",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第3课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 3 · Can-do 12 / Can-do 13",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "明确说明过敏或不能吃的食物，向店员确认。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 3 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能预约餐厅并看懂优惠信息；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "餐饮交流",
+              "level": "A2",
+              "category": "餐饮交流",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 3",
+              "canDos": [
+                "12",
+                "13"
+              ],
+              "targets": [
+                "能通过电话预约餐饮店。",
+                "看到餐饮店的优惠券时，能读懂必要的信息。"
+              ]
             },
             {
               "id": "JP-A2-2-L04-01",
-              "title": "第4课·吃法与建议｜理解课文",
+              "title": "能理解餐厅和菜肴吃法的说明",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第4课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 4 · Can-do 14 / Can-do 15 / Can-do 16",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 4 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能理解餐厅和菜肴吃法的说明；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "餐饮交流",
+              "level": "A2",
+              "category": "餐饮交流",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 4",
+              "canDos": [
+                "14",
+                "15",
+                "16"
+              ],
+              "targets": [
+                "听到推荐的餐饮店的介绍时，能理解该店铺的特点。",
+                "能听懂关于菜肴食用方法的说明。",
+                "能就菜肴的食用方法进行提问或做出回答。"
+              ]
             },
             {
               "id": "JP-A2-2-L04-02",
-              "title": "第4课·吃法与建议｜情境应用",
+              "title": "能介绍本国菜肴并看懂餐厅评价",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第4课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 4 · Can-do 17 / Can-do 18",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "向朋友解释一道食物的吃法。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 4 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能介绍本国菜肴并看懂餐厅评价；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "餐饮交流",
+              "level": "A2",
+              "category": "餐饮交流",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 4",
+              "canDos": [
+                "17",
+                "18"
+              ],
+              "targets": [
+                "能简单介绍自己国家菜肴的特点、食材、食用方法等。",
+                "阅读网络上关于餐饮店的评价，能看懂味道、价格等方面的信息。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-2-U03",
-          "title": "A2-2·第3单元｜出行计划",
-          "goal": "",
+          "title": "A2 · 旅行与交通",
+          "goal": "按教材顺序练习“旅行与交通”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-2-L05-01",
-              "title": "第5课·预约与准备｜理解课文",
+              "title": "能听懂旅游地介绍并讨论旅行计划",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第5课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 5 · Can-do 19 / Can-do 20",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 5 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能听懂旅游地介绍并讨论旅行计划；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "旅行与交通",
+              "level": "A2",
+              "category": "旅行与交通",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 5",
+              "canDos": [
+                "19",
+                "20"
+              ],
+              "targets": [
+                "听到有关日本旅游胜地的简单介绍后，能理解是什么样的地方、可以做什 么事等。",
+                "能和朋友讨论旅行的计划。"
+              ]
             },
             {
               "id": "JP-A2-2-L05-02",
-              "title": "第5课·预约与准备｜情境应用",
+              "title": "能征求旅行建议并看懂网站评价",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第5课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 5 · Can-do 21 / Can-do 22",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "比较出行安排，给出准备建议。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 5 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能征求旅行建议并看懂网站评价；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "旅行与交通",
+              "level": "A2",
+              "category": "旅行与交通",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 5",
+              "canDos": [
+                "21",
+                "22"
+              ],
+              "targets": [
+                "能就计划中的旅行征求其他人的建议，或为其他人的旅行计划提供建议。",
+                "阅读旅行网站上的评价时，能大致理解其内容。"
+              ]
             },
             {
               "id": "JP-A2-2-L06-01",
-              "title": "第6课·旅行回顾｜理解课文",
+              "title": "能看懂交通信息并从广播获取信息",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第6课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 6 · Can-do 23 / Can-do 25",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 6 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂交通信息并从广播获取信息；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "旅行与交通",
+              "level": "A2",
+              "category": "旅行与交通",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 6",
+              "canDos": [
+                "23",
+                "25"
+              ],
+              "targets": [
+                "看到列车票、车厢内的标记、车站张贴的告示等，能够看懂必要的信息。",
+                "能从车站或列车等的广播中获取必要的信息，不明白的时候能向周围的人 询问。"
+              ]
             },
             {
               "id": "JP-A2-2-L06-02",
-              "title": "第6课·旅行回顾｜情境应用",
+              "title": "能介绍旅行计划并分享旅行经历",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第6课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 6 · Can-do 24 / Can-do 26 / Can-do 27",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按顺序介绍行程，解释喜欢和不满意的地方。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 6 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能介绍旅行计划并分享旅行经历；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "旅行与交通",
+              "level": "A2",
+              "category": "旅行与交通",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 6",
+              "canDos": [
+                "24",
+                "26",
+                "27"
+              ],
+              "targets": [
+                "能向旅行中遇到的人简单介绍自己的旅行计划。",
+                "能简单谈谈自己旅行的感想。",
+                "能在社交网络上发帖，简单记录旅行的经历或感想。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-2-U04",
-          "title": "A2-2·第4单元｜活动与通知",
-          "goal": "",
+          "title": "A2 · 活动与通知",
+          "goal": "按教材顺序练习“活动与通知”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-2-L07-01",
-              "title": "第7课·活动变更｜理解课文",
+              "title": "能看懂并听懂地区活动通知",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第7课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 7 · Can-do 28 / Can-do 30",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 7 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂并听懂地区活动通知；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "活动与通知",
+              "level": "A2",
+              "category": "活动与通知",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 7",
+              "canDos": [
+                "28",
+                "30"
+              ],
+              "targets": [
+                "看到地区告示板或信箱里的通知等时，能看懂主要信息。",
+                "听到地区无线广播中播放的活动等的通知后，能理解主要内容。"
+              ]
             },
             {
               "id": "JP-A2-2-L07-02",
-              "title": "第7课·活动变更｜情境应用",
+              "title": "能询问地区活动内容并理解回答",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第7课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 7 · Can-do 29 / Can-do 31",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "读活动变更信息，复述地点和条件。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 7 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能询问地区活动内容并理解回答；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "活动与通知",
+              "level": "A2",
+              "category": "活动与通知",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 7",
+              "canDos": [
+                "29",
+                "31"
+              ],
+              "targets": [
+                "能就地区活动或通知的内容进行提问，并理解对方的回答。",
+                "被邀请参加地区活动时，能就活动内容进行提问，并理解对方的回答。"
+              ]
             },
             {
               "id": "JP-A2-2-L08-01",
-              "title": "第8课·现场询问｜理解课文",
+              "title": "能在活动现场获取安排与报名信息",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第8课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 8 · Can-do 32 / Can-do 33 / Can-do 34 / Can-do 35",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 8 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在活动现场获取安排与报名信息；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "活动与通知",
+              "level": "A2",
+              "category": "活动与通知",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 8",
+              "canDos": [
+                "32",
+                "33",
+                "34",
+                "35"
+              ],
+              "targets": [
+                "看到活动的计划表，能读懂节目的时间、内容等主要信息。",
+                "在活动现场，能向工作人员等询问时间、地点等，并理解对方的回答。",
+                "能就自己想要参加的活动的参加条件、报名方法等向负责人提问。",
+                "在活动现场，听到介绍或有关注意事项等的广播时，能大致理解其内容。"
+              ]
             },
             {
               "id": "JP-A2-2-L08-02",
-              "title": "第8课·现场询问｜情境应用",
+              "title": "能看懂并发布活动经历",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第8课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 8 · Can-do 36 / Can-do 37",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "在活动现场询问摊位、节目与设施的位置。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 8 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂并发布活动经历；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "活动与通知",
+              "level": "A2",
+              "category": "活动与通知",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 8",
+              "canDos": [
+                "36",
+                "37"
+              ],
+              "targets": [
+                "读到参加了活动的朋友在社交网络上发的帖子时，能理解其内容。",
+                "能在社交网络上发帖，简单记录自己参加过的活动。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-2-U05",
-          "title": "A2-2·第5单元｜节日与习惯",
-          "goal": "",
+          "title": "A2 · 节日与习惯",
+          "goal": "按教材顺序练习“节日与习惯”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-2-L09-01",
-              "title": "第9课·节日活动｜理解课文",
+              "title": "能听懂并介绍节庆活动与假期经历",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第9课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 9 · Can-do 38 / Can-do 39 / Can-do 40",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 9 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能听懂并介绍节庆活动与假期经历；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "节日与习惯",
+              "level": "A2",
+              "category": "节日与习惯",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 9",
+              "canDos": [
+                "38",
+                "39",
+                "40"
+              ],
+              "targets": [
+                "关于日本的年节活动，能听懂要做什么、要吃什么等内容。",
+                "能简单介绍自己在新年等假期中做了什么、过得怎么样等。",
+                "能简单介绍自己国家的节庆或活动。"
+              ]
             },
             {
               "id": "JP-A2-2-L09-02",
-              "title": "第9课·节日活动｜情境应用",
+              "title": "能阅读活动报道并写新年贺卡",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第9课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 9 · Can-do 41 / Can-do 42",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "介绍一个节日通常做什么，并与熟悉的节日对照。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 9 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能阅读活动报道并写新年贺卡；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "节日与习惯",
+              "level": "A2",
+              "category": "节日与习惯",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 9",
+              "canDos": [
+                "41",
+                "42"
+              ],
+              "targets": [
+                "读到关于自己参加过的地区活动的相关报道时，能大致理解其内容。",
+                "能写新年贺卡并寄出。"
+              ]
             },
             {
               "id": "JP-A2-2-L10-01",
-              "title": "第10课·场合与衣着｜理解课文",
+              "title": "能询问并比较礼仪与习惯",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第10课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 10 · Can-do 43 / Can-do 44",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 10 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能询问并比较礼仪与习惯；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "节日与习惯",
+              "level": "A2",
+              "category": "节日与习惯",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 10",
+              "canDos": [
+                "43",
+                "44"
+              ],
+              "targets": [
+                "能就日本的婚礼或葬礼等的礼仪或习惯进行提问，并理解对方的回答。",
+                "能就日本与自己国家的礼仪或习惯的不同进行提问或发表意见。"
+              ]
             },
             {
               "id": "JP-A2-2-L10-02",
-              "title": "第10课·场合与衣着｜情境应用",
+              "title": "能谈论异文化体验并看懂相关帖子",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第10课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 10 · Can-do 45 / Can-do 46",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "询问特定场合应穿什么、应注意什么。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 10 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能谈论异文化体验并看懂相关帖子；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "节日与习惯",
+              "level": "A2",
+              "category": "节日与习惯",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 10",
+              "canDos": [
+                "45",
+                "46"
+              ],
+              "targets": [
+                "能简单谈谈自己的异文化体验。",
+                "读到网络上关于礼仪或习惯的不同的帖子时，能大致理解其内容。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-2-U06",
-          "title": "A2-2·第6单元｜购物与服务",
-          "goal": "",
+          "title": "A2 · 购物与服务",
+          "goal": "按教材顺序练习“购物与服务”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-2-L11-01",
-              "title": "第11课·会员与付款｜理解课文",
+              "title": "能在服装店提出需求并处理购物问题",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第11课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 11 · Can-do 47 / Can-do 48",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 11 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在服装店提出需求并处理购物问题；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "购物与服务",
+              "level": "A2",
+              "category": "购物与服务",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 11",
+              "canDos": [
+                "47",
+                "48"
+              ],
+              "targets": [
+                "在服装店等能告知店员想要的颜色或尺码等，买到想要的商品。",
+                "购物过程中遇到麻烦时，能告诉周围的人。"
+              ]
             },
             {
               "id": "JP-A2-2-L11-02",
-              "title": "第11课·会员与付款｜情境应用",
+              "title": "能描述遗失物并听懂商场广播",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第11课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 11 · Can-do 49 / Can-do 50",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "模拟购物时忘带卡或需要帮助的情境。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 11 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能描述遗失物并听懂商场广播；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "购物与服务",
+              "level": "A2",
+              "category": "购物与服务",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 11",
+              "canDos": [
+                "49",
+                "50"
+              ],
+              "targets": [
+                "丢了东西时，能描述其特点、在哪里丢的等信息。",
+                "听到商场等的店铺广播时，能大致理解其内容。"
+              ]
             },
             {
               "id": "JP-A2-2-L12-01",
-              "title": "第12课·商品比较｜理解课文",
+              "title": "能商量购物并使用二手平台购买商品",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第12课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 12 · Can-do 51 / Can-do 52",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 12 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能商量购物并使用二手平台购买商品；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "购物与服务",
+              "level": "A2",
+              "category": "购物与服务",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 12",
+              "canDos": [
+                "51",
+                "52"
+              ],
+              "targets": [
+                "想购物时，能就购物地点、购物内容等与别人商量。",
+                "能使用二手市场应用程序或网站购买电器等。"
+              ]
             },
             {
               "id": "JP-A2-2-L12-02",
-              "title": "第12课·商品比较｜情境应用",
+              "title": "能比较商品信息并与店员协商",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第12课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 12 · Can-do 53 / Can-do 54",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "依据重量、用途和价格比较两件商品。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 12 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能比较商品信息并与店员协商；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "购物与服务",
+              "level": "A2",
+              "category": "购物与服务",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 12",
+              "canDos": [
+                "53",
+                "54"
+              ],
+              "targets": [
+                "在家电商城里看到电器的对比表或价签时，能读懂需要的信息。",
+                "购买电器时，能就商品向店员提问，或拜托他打折。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-2-U07",
-          "title": "A2-2·第7单元｜办理事务",
-          "goal": "",
+          "title": "A2 · 公共设施与生活服务",
+          "goal": "按教材顺序练习“公共设施与生活服务”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-2-L13-01",
-              "title": "第13课·材料与手续｜理解课文",
+              "title": "能听懂公共设施介绍、用法和规则",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第13课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 13 · Can-do 55 / Can-do 56",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 13 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能听懂公共设施介绍、用法和规则；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "公共设施与生活服务",
+              "level": "A2",
+              "category": "公共设施与生活服务",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 13",
+              "canDos": [
+                "55",
+                "56"
+              ],
+              "targets": [
+                "在别人介绍设施等时，能听懂设施中有什么、可以做哪些事情。",
+                "能听懂关于健身房等公共设施的使用方法或规则等的说明。"
+              ]
             },
             {
               "id": "JP-A2-2-L13-02",
-              "title": "第13课·材料与手续｜情境应用",
+              "title": "能询问并看懂公共设施规则与标识",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第13课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 13 · Can-do 57 / Can-do 58 / Can-do 59",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "听懂需要提交哪些材料，缺一项时请求说明。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 13 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能询问并看懂公共设施规则与标识；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "公共设施与生活服务",
+              "level": "A2",
+              "category": "公共设施与生活服务",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 13",
+              "canDos": [
+                "57",
+                "58",
+                "59"
+              ],
+              "targets": [
+                "在图书馆，能就使用方法或规则等进行提问，并理解对方的回答。",
+                "读到用简明日语撰写的面向外国人的图书馆使用指南时，能理解其内容。",
+                "能看懂设施内张贴的“禁止拍照”等标识。"
+              ]
             },
             {
               "id": "JP-A2-2-L14-01",
-              "title": "第14课·服务要求｜理解课文",
+              "title": "能理解快递、洗衣等生活服务的使用方法",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第14课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 14 · Can-do 60 / Can-do 61",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 14 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能理解快递、洗衣等生活服务的使用方法；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "公共设施与生活服务",
+              "level": "A2",
+              "category": "公共设施与生活服务",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 14",
+              "canDos": [
+                "60",
+                "61"
+              ],
+              "targets": [
+                "使用快递配送或洗衣等服务时，听到对方的介绍后，能理解使用方法。",
+                "阅读关于邮递物品等的无人签收通知单后，能理解如何申请二次配送。"
+              ]
             },
             {
               "id": "JP-A2-2-L14-02",
-              "title": "第14课·服务要求｜情境应用",
+              "title": "能表达理发需求并了解面向外国人的服务",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第14课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 14 · Can-do 62 / Can-do 63",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "在模拟理发场景清楚说明自己希望怎样调整。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 14 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能表达理发需求并了解面向外国人的服务；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "公共设施与生活服务",
+              "level": "A2",
+              "category": "公共设施与生活服务",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 14",
+              "canDos": [
+                "62",
+                "63"
+              ],
+              "targets": [
+                "在美容院或理发店，能告诉发型师想要怎样的发型。",
+                "在国际交流协会等，能听懂有哪些面向外国人的服务。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-2-U08",
-          "title": "A2-2·第8单元｜公共规则与应急",
-          "goal": "",
+          "title": "A2 · 环保与应急",
+          "goal": "按教材顺序练习“环保与应急”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-2-L15-01",
-              "title": "第15课·公共设施与提醒｜理解课文",
+              "title": "能理解环保提醒并交流环保做法",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第15课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 15 · Can-do 64 / Can-do 65",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 15 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能理解环保提醒并交流环保做法；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "环保与应急",
+              "level": "A2",
+              "category": "环保与应急",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 15",
+              "canDos": [
+                "64",
+                "65"
+              ],
+              "targets": [
+                "看到单位等张贴的环保活动告示时，能理解注意事项。",
+                "能表达自己为了保护环境而注意的事，并听懂别人表达的内容。"
+              ]
             },
             {
               "id": "JP-A2-2-L15-02",
-              "title": "第15课·公共设施与提醒｜情境应用",
+              "title": "能看懂并询问垃圾分类方法",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第15课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 15 · Can-do 66 / Can-do 67",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "发现设备或环境问题后描述现状并提醒。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 15 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能看懂并询问垃圾分类方法；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "环保与应急",
+              "level": "A2",
+              "category": "环保与应急",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 15",
+              "canDos": [
+                "66",
+                "67"
+              ],
+              "targets": [
+                "阅读关于如何扔垃圾的说明后，能理解想要扔的垃圾应该在什么时候扔 等内容。",
+                "能就扔垃圾的方法进行提问，并理解对方的回答。"
+              ]
             },
             {
               "id": "JP-A2-2-L16-01",
-              "title": "第16课·应急信息｜理解课文",
+              "title": "能理解灾害信息和防灾指示",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第16课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 16 · Can-do 68 / Can-do 69 / Can-do 70",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 16 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能理解灾害信息和防灾指示；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "环保与应急",
+              "level": "A2",
+              "category": "环保与应急",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 16",
+              "canDos": [
+                "68",
+                "69",
+                "70"
+              ],
+              "targets": [
+                "听到关于灾害的新闻或广播时，能理解发生了什么事、应该怎么做。",
+                "听取防灾训练的说明或指示后，能理解做法及注意事项等。",
+                "在防灾训练等过程中，听取发生地震时应如何应对的说明后，能大致理解 其内容。"
+              ]
             },
             {
               "id": "JP-A2-2-L16-02",
-              "title": "第16课·应急信息｜情境应用",
+              "title": "能在灾害中获取帮助并看懂防灾手册",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第16课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 16 · Can-do 71 / Can-do 72",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "读教材的地震情境，准确复述指示；实际应急以当地官方信息为准。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 16 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在灾害中获取帮助并看懂防灾手册；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "环保与应急",
+              "level": "A2",
+              "category": "环保与应急",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 16",
+              "canDos": [
+                "71",
+                "72"
+              ],
+              "targets": [
+                "遇到灾害发生时，能向周围人提问，获得必要的信息。",
+                "读到用简明日语撰写的面向外国人的防灾手册时，能理解其内容。"
+              ]
             }
           ]
         },
         {
           "id": "JP-A2-2-U09",
-          "title": "A2-2·第9单元｜成长与未来",
-          "goal": "",
+          "title": "A2 · 成长与未来",
+          "goal": "按教材顺序练习“成长与未来”相关能力，并分别记录掌握状态与薄弱点。",
           "prerequisites": "上一册基础与前一单元；能做到的课可直接测验后跳过",
-          "branch": "",
+          "branch": "A2",
           "steps": [
             {
               "id": "JP-A2-2-L17-01",
-              "title": "第17课·学习成长｜理解课文",
+              "title": "能谈论在日生活和工作的变化",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第17课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 17 · Can-do 73 / Can-do 74",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 17 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能谈论在日生活和工作的变化；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "成长与未来",
+              "level": "A2",
+              "category": "成长与未来",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 17",
+              "canDos": [
+                "73",
+                "74"
+              ],
+              "targets": [
+                "能简单谈谈自己来到日本以后发生的事或生活上的变化。",
+                "能跟单位同事简单谈谈自己最近的工作情况等。"
+              ]
             },
             {
               "id": "JP-A2-2-L17-02",
-              "title": "第17课·学习成长｜情境应用",
+              "title": "能向老师发送近况信息",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第17课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 17 · Can-do 75",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "对比过去和现在能做的事，举出具体例子。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 17 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能向老师发送近况信息；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "成长与未来",
+              "level": "A2",
+              "category": "成长与未来",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 17",
+              "canDos": [
+                "75"
+              ],
+              "targets": [
+                "能给自己的日语老师发信息，简单汇报近况。"
+              ]
             },
             {
               "id": "JP-A2-2-L18-01",
-              "title": "第18课·未来打算｜理解课文",
+              "title": "能谈论未来梦想并理解经验建议",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第18课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 18 · Can-do 76 / Can-do 77",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "按本课练习顺序听读；先猜场景与关键意思，再核对听力课文和语言笔记；只摘录自己会用的词句。",
-              "done": "能概括本课情境，指出表达目的与说话关系。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 18 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能谈论未来梦想并理解经验建议；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "成长与未来",
+              "level": "A2",
+              "category": "成长与未来",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 18",
+              "canDos": [
+                "76",
+                "77"
+              ],
+              "targets": [
+                "能简单谈谈自己未来的梦想或希望。",
+                "听在日本生活的很长时间的人讲自己的经验或建议时，能大致理解其内容。"
+              ]
             },
             {
               "id": "JP-A2-2-L18-02",
-              "title": "第18课·未来打算｜情境应用",
+              "title": "能在送别场合表达具体感谢",
               "sources": [
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
-                  "locator": "初级2第18课；进入同一行PDF、MP3或音频回放",
+                  "locator": "初级2 Lesson 18 · Can-do 78",
                   "status": "已核官方课目录；练习号与正文页码待核"
                 }
               ],
-              "action": "介绍未来想做的事、理由和准备行动。完成教材相应练习后，用自己的信息重新表达；读写任务采用同一情境。",
-              "done": "保存一段录音或短文；换一个人物、时间或条件仍能表达。",
-              "optional": false
+              "action": "按 IRODORI 初级2 Lesson 18 的原顺序完成这些 Can-do；先理解场景，再用自己的信息完成一次同类任务。",
+              "done": "能在送别场合表达具体感谢；能在类似真实场景中完成，不只复述教材原句。",
+              "optional": false,
+              "group": "成长与未来",
+              "level": "A2",
+              "category": "成长与未来",
+              "course": "IRODORI 初级2 A2",
+              "lesson": "Lesson 18",
+              "canDos": [
+                "78"
+              ],
+              "targets": [
+                "在欢送会等场景中致辞时，能简单举出具体事例，并表达自己的感谢之情。"
+              ]
             }
           ]
         }

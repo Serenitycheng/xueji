@@ -9,8 +9,14 @@ import {
   currentCurriculumItem,
   curriculumUnitId,
   curriculumUnitState,
+  curriculumUnitStates,
 } from '../lib/curriculum';
-import { ensureLearning, applyLearning, copyActionText } from '../lib/learning';
+import {
+  ensureLearning,
+  applyLearning,
+  copyActionText,
+  japaneseAbilityStatusFor,
+} from '../lib/learning';
 import {
   freshState,
   initialState,
@@ -63,6 +69,97 @@ void test('all six catalogs retain the agreed chapters, lesson IDs and professio
       ),
     );
   }
+});
+
+void test('Japanese route uses durable ability nodes while retaining IRODORI order and source mappings', () => {
+  const japanese = curricula.find(
+    (curriculum) => curriculum.id === 'japanese',
+  )!;
+  const steps = japanese.units.flatMap((unit) => unit.steps);
+  assert.equal(steps.length, 111);
+  assert.ok(steps.every((step) => !/^第\d+课/.test(step.title)));
+  assert.deepEqual(
+    japanese.units.slice(0, 4).map((unit) => unit.title),
+    ['A1 · 文字与发音', 'A1 · 基础沟通', 'A1 · 自我与人物', 'A1 · 饮食与点餐'],
+  );
+  const introduction = findCurriculumItem(japanese, 'JP-A1-L03-01')!;
+  assert.equal(introduction.step!.title, '能进行基础自我介绍并询问他人信息');
+  assert.equal(introduction.step!.course, 'IRODORI Starter A1');
+  assert.equal(introduction.step!.lesson, 'Lesson 3');
+  assert.deepEqual(introduction.step!.canDos, ['08', '10']);
+  assert.ok(
+    introduction.sources.every((source) => /Lesson 3/.test(source.locator)),
+  );
+  const personalDetails = findCurriculumItem(japanese, 'JP-A1-L03-02')!;
+  assert.equal(personalDetails.step!.title, '能填写名卡和基础个人资料');
+  assert.deepEqual(personalDetails.step!.canDos, ['09', '11']);
+  assert.notEqual(personalDetails.id, introduction.id);
+  assert.equal(steps.at(-1)!.lesson, 'Lesson 18');
+  assert.equal(steps.at(-1)!.course, 'IRODORI 初级2 A2');
+});
+
+void test('Japanese legacy lesson progress initializes ability conservatively and remains editable', () => {
+  let state = ensureLearning(freshState());
+  const direction = state.learning!.directions.find(
+    (value) => value.curriculumId === 'japanese',
+  )!;
+  state = command(state, 'route.select', {
+    directionId: direction.id,
+    itemId: 'JP-A1-L03-02',
+  });
+  const oldUnit = state.learning!.units.at(-1)!;
+  oldUnit.name = '第3课·自我介绍与个人资料｜读写与应用';
+  oldUnit.contact = 'seen';
+  oldUnit.completionParts = ['lesson'];
+  oldUnit.completedAt = '2026-09-01T00:00:00.000Z';
+  const currentDirection = state.learning!.directions.find(
+    (value) => value.id === direction.id,
+  )!;
+  currentDirection.currentUnitId = oldUnit.id;
+
+  const related = curriculumUnitStates(
+    state.learning!,
+    currentDirection,
+    'JP-A1-L03-02',
+  );
+  assert.deepEqual(related, [oldUnit]);
+  assert.equal(japaneseAbilityStatusFor(related), 'basic');
+  assert.equal(
+    japaneseAbilityStatusFor(
+      curriculumUnitStates(state.learning!, currentDirection, 'JP-A1-L03-01'),
+    ),
+    'not-started',
+  );
+
+  const beforeCount = state.learning!.units.length;
+  state = command(state, 'route.select', {
+    directionId: direction.id,
+    itemId: 'JP-A1-L03-02',
+  });
+  assert.equal(state.learning!.units.length, beforeCount);
+  assert.equal(
+    state.learning!.directions.find((value) => value.id === direction.id)!
+      .currentUnitId,
+    oldUnit.id,
+  );
+  assert.equal(
+    state.learning!.units.at(-1)!.name,
+    'A1 · 自我与人物 / 能填写名卡和基础个人资料',
+  );
+
+  state = command(state, 'ability.update', {
+    directionId: direction.id,
+    itemId: 'JP-A1-L03-02',
+    status: 'learning',
+    blocker: '听力反应慢',
+    evidence: '能完成姓名和籍贯介绍',
+  });
+  const updated = state.learning!.units.at(-1)!;
+  assert.equal(updated.abilityStatus, 'learning');
+  assert.equal(updated.blocker, '听力反应慢');
+  assert.equal(updated.evidence, '能完成姓名和籍贯介绍');
+  assert.equal(updated.completedAt, '2026-09-01T00:00:00.000Z');
+  assert.equal(japaneseAbilityStatusFor(updated), 'learning');
 });
 
 void test('catalog attachment is repeatable, preserves existing direction IDs and every personal state field', () => {

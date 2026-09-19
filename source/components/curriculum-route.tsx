@@ -4,9 +4,12 @@ import { BookOpen, ArrowUpRight, Check, Map } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { PdfOpenButton } from './pdf-open-button';
+import { JapaneseAbilityEditor } from './japanese-abilities';
 import type { Actions } from './study-app';
 import type { StudyState } from '@/lib/model';
 import {
+  abilityStatusLabels,
+  japaneseAbilityStatusFor,
   masteryLabels,
   unitCompletionProgress,
   type Direction,
@@ -17,6 +20,7 @@ import {
   curriculumSourceHref,
   resolveCurriculumSource,
   curriculumUnitState,
+  curriculumUnitStates,
   currentCurriculumItem,
   type Curriculum,
   type CurriculumSource,
@@ -152,15 +156,15 @@ function Step({
   onRecord,
 }: Props & { step: CurriculumStep; index: number }) {
   const w = state.learning!;
+  const relatedUnits = curriculumUnitStates(w, d, step.id);
   const saved = curriculumUnitState(w, d, step.id);
   const current = currentCurriculumItem(w, d)?.id === step.id;
   const currentSaved = !!saved && saved.id === d.currentUnitId;
   const completion = unitCompletionProgress(saved, d);
-  const legacyUnits = w.units.filter(
-    (u) =>
-      u.directionId === d.id &&
-      !!u.curriculumItemId &&
-      step.legacyIds?.includes(u.curriculumItemId),
+  const japanese = d.curriculumId === 'japanese';
+  const abilityStatus = japaneseAbilityStatusFor(relatedUnits);
+  const legacyUnits = relatedUnits.filter(
+    (unit) => unit.curriculumItemId !== step.id,
   );
   const unitIds = new Set([
     ...(saved ? [saved.id] : []),
@@ -182,7 +186,7 @@ function Step({
   };
   return (
     <details
-      className={`curriculum-step ${current ? 'is-current' : ''} ${completion.complete ? 'is-complete' : ''}`}
+      className={`curriculum-step ${current ? 'is-current' : ''} ${!japanese && completion.complete ? 'is-complete' : ''}`}
       data-step-id={step.id}
       open={current || undefined}
     >
@@ -194,34 +198,63 @@ function Step({
           {step.title}
           <small>
             {step.optional ? '选学 · ' : ''}
+            {japanese && step.lesson ? `${step.lesson} · ` : ''}
             {current ? '当前学习 · ' : ''}
-            {completion.complete
-              ? '已完成 · '
-              : completion.done > 0
-                ? '已完成 ' + completion.done + '/' + completion.total + ' · '
-                : saved?.contact === 'seen'
-                  ? '已接触 · '
-                  : ''}
-            {saved
-              ? masteryLabels[saved.mastery]
-              : legacyUnits.length
-                ? '整节未判断'
-                : '尚未记录'}
+            {japanese ? (
+              abilityStatusLabels[abilityStatus]
+            ) : (
+              <>
+                {completion.complete
+                  ? '已完成 · '
+                  : completion.done > 0
+                    ? `已完成 ${completion.done}/${completion.total} · `
+                    : saved?.contact === 'seen'
+                      ? '已接触 · '
+                      : ''}
+                {saved
+                  ? masteryLabels[saved.mastery]
+                  : legacyUnits.length
+                    ? '整节未判断'
+                    : '尚未记录'}
+              </>
+            )}
             {count > 0 ? ` · ${count} 条记录` : ''}
           </small>
         </span>
-        {(current || completion.complete) && (
+        {(current || (!japanese && completion.complete)) && (
           <Check
             size={18}
-            className={completion.complete ? 'step-complete-icon' : undefined}
+            className={
+              !japanese && completion.complete
+                ? 'step-complete-icon'
+                : undefined
+            }
           />
         )}
       </summary>
       <div className="curriculum-step-body">
-        {step.group && <p className="hint">所属章节：{step.group}</p>}
+        {step.group && (
+          <p className="hint">
+            {japanese ? '能力分类' : '所属章节'}：{step.group}
+          </p>
+        )}
+        {japanese && step.course && (
+          <div className="japanese-source-map">
+            <span>学习来源</span>
+            <strong>{step.course}</strong>
+            <p>
+              {step.lesson}
+              {step.canDos?.length
+                ? ` · ${step.canDos.map((code) => `Can-do ${code}`).join(' / ')}`
+                : ' · 文字与发音准备'}
+            </p>
+          </div>
+        )}
         {legacyUnits.length > 0 && (
           <p className="hint">
-            旧小节的记录和掌握判断已保留；整节掌握程度单独记录。
+            {japanese
+              ? '原教材步骤的进度和记录已保留，并汇总到这个能力节点。'
+              : '旧小节的记录和掌握判断已保留；整节掌握程度单独记录。'}
           </p>
         )}
         <p>
@@ -229,28 +262,55 @@ function Step({
           {step.action}
         </p>
         <Sources sources={step.sources} state={state} />
-        <p>
-          <strong>完成标准：</strong>
-          {step.done}
-        </p>
+        {japanese && step.targets?.length ? (
+          <div className="japanese-targets">
+            <strong>掌握目标</strong>
+            <ul>
+              {step.targets.map((target, targetIndex) => (
+                <li key={`${step.id}:target:${targetIndex}`}>{target}</li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p>
+            <strong>完成标准：</strong>
+            {step.done}
+          </p>
+        )}
+        {japanese && !current && (
+          <JapaneseAbilityEditor
+            state={state}
+            d={d}
+            itemId={step.id}
+            actions={actions}
+          />
+        )}
         <div className="button-row">
           <Button
             disabled={actions.busy || currentSaved}
             onClick={() => void select()}
           >
             {currentSaved
-              ? '正在学这一节'
+              ? japanese
+                ? '当前正在练这一能力'
+                : '正在学这一节'
               : current
-                ? '按整节继续学习'
-                : '设为当前小节'}
+                ? japanese
+                  ? '按当前能力继续学习'
+                  : '按整节继续学习'
+                : japanese
+                  ? '设为当前能力'
+                  : '设为当前小节'}
           </Button>
-          <Button
-            variant="outline"
-            disabled={actions.busy}
-            onClick={() => void select(true)}
-          >
-            记录这一节
-          </Button>
+          {!japanese && (
+            <Button
+              variant="outline"
+              disabled={actions.busy}
+              onClick={() => void select(true)}
+            >
+              记录这一节
+            </Button>
+          )}
         </div>
       </div>
     </details>
@@ -275,12 +335,18 @@ function UnitOutline({
         .includes(query),
   );
   if (!steps.length) return null;
-  const completed = unit.steps.filter(
-    (step) =>
-      unitCompletionProgress(
-        curriculumUnitState(props.state.learning!, props.d, step.id),
-        props.d,
-      ).complete,
+  const japanese = props.d.curriculumId === 'japanese';
+  const completed = unit.steps.filter((step) =>
+    japanese
+      ? ['basic', 'fluent'].includes(
+          japaneseAbilityStatusFor(
+            curriculumUnitStates(props.state.learning!, props.d, step.id),
+          ),
+        )
+      : unitCompletionProgress(
+          curriculumUnitState(props.state.learning!, props.d, step.id),
+          props.d,
+        ).complete,
   ).length;
   return (
     <details
@@ -292,9 +358,13 @@ function UnitOutline({
         <BookOpen size={18} />
         <strong>{unit.title}</strong>
         <span>
-          {completed > 0
-            ? completed + '/' + unit.steps.length + ' 节完成'
-            : unit.steps.length + ' 节'}
+          {japanese
+            ? completed > 0
+              ? `${completed}/${unit.steps.length} 项达到基本掌握`
+              : `${unit.steps.length} 项能力`
+            : completed > 0
+              ? `${completed}/${unit.steps.length} 节完成`
+              : `${unit.steps.length} 节`}
         </span>
       </summary>
       <div className="curriculum-unit-body">
@@ -432,6 +502,7 @@ export function CurriculumRoute(props: Props) {
   if (!c) return null;
   const query = search.trim().toLocaleLowerCase();
   const current = currentCurriculumItem(state.learning!, d);
+  const japanese = d.curriculumId === 'japanese';
   return (
     <section
       className="content-panel curriculum-panel"
@@ -439,25 +510,30 @@ export function CurriculumRoute(props: Props) {
     >
       <div className="section-heading">
         <div>
-          <div className="eyebrow">LEARNING PATH</div>
+          <div className="eyebrow">
+            {japanese ? 'ABILITY MAP' : 'LEARNING PATH'}
+          </div>
           <h2>
             <Map size={20} />
-            学习路线
+            {japanese ? '能力节点' : '学习路线'}
           </h2>
         </div>
         <span className="curriculum-count">
           {c.nodes ? `${c.nodes.length} 个节点 · ` : ''}
-          {c.units.length} 个单元 · {curriculumStepCount(c)} 节
+          {c.units.length} 个{japanese ? '能力分类' : '单元'} ·{' '}
+          {curriculumStepCount(c)} {japanese ? '项能力' : '节'}
         </span>
       </div>
       <p className="hint">
-        展开单元查看具体学法与资料位置，选择你现在正在学的一节。学习记录会关联到这节，选择位置不会自动标记掌握。
+        {japanese
+          ? '教材继续按 IRODORI 原顺序学习；这里按能力查看掌握情况，并为同一能力保留可扩展的教材来源。'
+          : '展开单元查看具体学法与资料位置，选择你现在正在学的一节。学习记录会关联到这节，选择位置不会自动标记掌握。'}
       </p>
       <div className="curriculum-toolbar">
         <label className="learning-field">
-          <span>选择当前学习小节</span>
+          <span>{japanese ? '选择当前 IRODORI 位置' : '选择当前学习小节'}</span>
           <select
-            aria-label="选择当前学习小节"
+            aria-label={japanese ? '选择当前 IRODORI 位置' : '选择当前学习小节'}
             disabled={actions.busy}
             value={current?.id ?? ''}
             onChange={(e) => {
@@ -468,12 +544,16 @@ export function CurriculumRoute(props: Props) {
                 });
             }}
           >
-            <option value="">选择已学到的具体位置</option>
+            <option value="">
+              {japanese ? '选择当前 Lesson / 能力' : '选择已学到的具体位置'}
+            </option>
             {c.units.map((u) => (
               <optgroup key={u.id} label={u.title}>
                 {u.steps.map((s, i) => (
                   <option key={s.id} value={s.id}>
-                    第{i + 1}节 · {s.title}
+                    {japanese
+                      ? `${s.lesson ?? ''} · ${s.title}`
+                      : `第${i + 1}节 · ${s.title}`}
                   </option>
                 ))}
               </optgroup>
@@ -494,7 +574,9 @@ export function CurriculumRoute(props: Props) {
           <Input
             id={searchId}
             aria-label="查找路线内容"
-            placeholder="小节、教材章节或主题"
+            placeholder={
+              japanese ? '能力、Lesson 或 Can-do' : '小节、教材章节或主题'
+            }
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
