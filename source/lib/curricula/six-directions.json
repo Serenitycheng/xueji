@@ -2336,6 +2336,12 @@
               "title": "能识读并输入基础平假名",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/introduction/01-001-01-01/",
+                  "locator": "日语导入入口；按站内顺序学习文字、发音、平假名和片假名",
+                  "status": "官网入口已核对"
+                },
+                {
                   "label": "MARUGOTO Plus A1",
                   "url": "https://a1.marugotoweb.jp/en/hiragana.php",
                   "locator": "Hiragana表、Hiragana drill",
@@ -2360,6 +2366,12 @@
               "title": "能识读并输入基础片假名",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/introduction/01-001-01-01/",
+                  "locator": "日语导入入口；按站内顺序学习文字、发音、平假名和片假名",
+                  "status": "官网入口已核对"
+                },
+                {
                   "label": "MARUGOTO Plus A1",
                   "url": "https://a1.marugotoweb.jp/en/hiragana.php",
                   "locator": "页面Katakana入口、Katakana drill",
@@ -2383,6 +2395,12 @@
               "id": "JP-00-03",
               "title": "能辨认长音、促音与拗音",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/introduction/01-001-01-01/",
+                  "locator": "日语导入入口；按站内顺序学习文字、发音、平假名和片假名",
+                  "status": "官网入口已核对"
+                },
                 {
                   "label": "MARUGOTO Plus A1",
                   "url": "https://a1.marugotoweb.jp/en/hiragana.php",
@@ -2416,6 +2434,12 @@
               "id": "JP-A1-L01-01",
               "title": "能在见面与告别时进行礼貌交流",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/01-001-01-01/",
+                  "locator": "Lesson 1 · Can-do 01 / Can-do 02 / Can-do 03",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -2453,6 +2477,12 @@
               "title": "能看懂常见问候和致谢短语",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/01-004-01-01/",
+                  "locator": "Lesson 1 · Can-do 04",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 1 · Can-do 04",
@@ -2484,6 +2514,12 @@
               "id": "JP-A1-L02-01",
               "title": "能在听不懂时请求重复并说明语言能力",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/02-005-01-01/",
+                  "locator": "Lesson 2 · Can-do 05 / Can-do 06",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -2518,6 +2554,12 @@
               "id": "JP-A1-L02-02",
               "title": "能询问不懂事物的日语说法",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/02-007-01-01/",
+                  "locator": "Lesson 2 · Can-do 07",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -2560,6 +2602,12 @@
               "title": "能进行基础自我介绍并询问他人信息",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/03-008-01-01/",
+                  "locator": "Lesson 3 · Can-do 08 / Can-do 10",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 3 · Can-do 08 / Can-do 10",
@@ -2594,6 +2642,12 @@
               "title": "能填写名卡和基础个人资料",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/03-009-01-01/",
+                  "locator": "Lesson 3 · Can-do 09 / Can-do 11",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 3 · Can-do 09 / Can-do 11",
@@ -2627,6 +2681,12 @@
               "id": "JP-A1-L04-01",
               "title": "能听懂并交流家人、住处与年龄",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/04-012-01-01/",
+                  "locator": "Lesson 4 · Can-do 12 / Can-do 13 / Can-do 14",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -2663,6 +2723,12 @@
               "id": "JP-A1-L04-02",
               "title": "能看懂并发布简单人物动态",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/04-015-01-01/",
+                  "locator": "Lesson 4 · Can-do 15",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -2705,6 +2771,12 @@
               "title": "能交流饮食偏好、饮料和早餐习惯",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/05-016-01-01/",
+                  "locator": "Lesson 5 · Can-do 16 / Can-do 17 / Can-do 18 / Can-do 19",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 5 · Can-do 16 / Can-do 17 / Can-do 18 / Can-do 19",
@@ -2743,6 +2815,12 @@
               "title": "能发布带说明的食物照片",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/05-020-01-01/",
+                  "locator": "Lesson 5 · Can-do 20",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 5 · Can-do 20",
@@ -2774,6 +2852,12 @@
               "id": "JP-A1-L06-01",
               "title": "能看懂菜单并选择餐食",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/06-021-01-01/",
+                  "locator": "Lesson 6 · Can-do 21 / Can-do 23 / Can-do 25",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -2810,6 +2894,12 @@
               "id": "JP-A1-L06-02",
               "title": "能在餐饮店完成点餐与需求表达",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/06-022-01-01/",
+                  "locator": "Lesson 6 · Can-do 22 / Can-do 24",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -2854,6 +2944,12 @@
               "title": "能介绍房间、设施与居住情况",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/07-026-01-01/",
+                  "locator": "Lesson 7 · Can-do 26 / Can-do 27 / Can-do 28 / Can-do 29",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 7 · Can-do 26 / Can-do 27 / Can-do 28 / Can-do 29",
@@ -2892,6 +2988,12 @@
               "title": "能看懂常见家电操作标识",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/07-030-01-01/",
+                  "locator": "Lesson 7 · Can-do 30",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 7 · Can-do 30",
@@ -2923,6 +3025,12 @@
               "id": "JP-A1-L08-01",
               "title": "能询问人物和物品的位置",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/08-031-01-01/",
+                  "locator": "Lesson 8 · Can-do 31 / Can-do 32 / Can-do 33",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -2959,6 +3067,12 @@
               "id": "JP-A1-L08-02",
               "title": "能看懂房间和场所标识",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/08-034-01-01/",
+                  "locator": "Lesson 8 · Can-do 34",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -3001,6 +3115,12 @@
               "title": "能听懂并表达作息与日程",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/09-035-01-01/",
+                  "locator": "Lesson 9 · Can-do 35 / Can-do 36",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 9 · Can-do 35 / Can-do 36",
@@ -3034,6 +3154,12 @@
               "id": "JP-A1-L09-02",
               "title": "能看懂日程并协调时间",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/09-037-01-01/",
+                  "locator": "Lesson 9 · Can-do 37 / Can-do 38",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -3069,6 +3195,12 @@
               "title": "能理解工作指示并确认关键信息",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/10-039-01-01/",
+                  "locator": "Lesson 10 · Can-do 39 / Can-do 40",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 10 · Can-do 39 / Can-do 40",
@@ -3102,6 +3234,12 @@
               "id": "JP-A1-L10-02",
               "title": "能看懂工作便条清单并借用物品",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/10-041-01-01/",
+                  "locator": "Lesson 10 · Can-do 41 / Can-do 42 / Can-do 43",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -3148,6 +3286,12 @@
               "title": "能谈论爱好与休息日活动",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/11-044-01-01/",
+                  "locator": "Lesson 11 · Can-do 44 / Can-do 45 / Can-do 46",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 11 · Can-do 44 / Can-do 45 / Can-do 46",
@@ -3184,6 +3328,12 @@
               "title": "能看懂并撰写简短个人介绍",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/11-047-01-01/",
+                  "locator": "Lesson 11 · Can-do 47",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 11 · Can-do 47",
@@ -3215,6 +3365,12 @@
               "id": "JP-A1-L12-01",
               "title": "能看懂活动信息并询问参加意愿",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/12-048-01-01/",
+                  "locator": "Lesson 12 · Can-do 48 / Can-do 49",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -3249,6 +3405,12 @@
               "id": "JP-A1-L12-02",
               "title": "能发出邀请并回复时间安排",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/12-050-01-01/",
+                  "locator": "Lesson 12 · Can-do 50 / Can-do 51",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -3293,6 +3455,12 @@
               "title": "能确认交通路线、报站与出行时间",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/13-052-01-01/",
+                  "locator": "Lesson 13 · Can-do 52 / Can-do 53 / Can-do 54",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 13 · Can-do 52 / Can-do 53 / Can-do 54",
@@ -3329,6 +3497,12 @@
               "title": "能问路并看懂车站标识",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/13-055-01-01/",
+                  "locator": "Lesson 13 · Can-do 55 / Can-do 56",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 13 · Can-do 55 / Can-do 56",
@@ -3363,6 +3537,12 @@
               "title": "能询问并说明所在位置",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/14-057-01-01/",
+                  "locator": "Lesson 14 · Can-do 57 / Can-do 58",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 14 · Can-do 57 / Can-do 58",
@@ -3396,6 +3576,12 @@
               "id": "JP-A1-L14-02",
               "title": "能听懂场所介绍并看懂营业信息",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/14-059-01-01/",
+                  "locator": "Lesson 14 · Can-do 59 / Can-do 60",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -3440,6 +3626,12 @@
               "title": "能询问商品位置并看懂楼层指南",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/15-061-01-01/",
+                  "locator": "Lesson 15 · Can-do 61 / Can-do 62 / Can-do 63",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 15 · Can-do 61 / Can-do 62 / Can-do 63",
@@ -3476,6 +3668,12 @@
               "title": "能评价商品并理解商场标识",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/15-064-01-01/",
+                  "locator": "Lesson 15 · Can-do 64 / Can-do 65",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 15 · Can-do 64 / Can-do 65",
@@ -3510,6 +3708,12 @@
               "title": "能听懂并询问商品价格",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/16-066-01-01/",
+                  "locator": "Lesson 16 · Can-do 66 / Can-do 67",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 16 · Can-do 66 / Can-do 67",
@@ -3543,6 +3747,12 @@
               "id": "JP-A1-L16-02",
               "title": "能表达购买数量并应对收银询问",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/16-068-01-01/",
+                  "locator": "Lesson 16 · Can-do 68 / Can-do 69 / Can-do 70",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -3589,6 +3799,12 @@
               "title": "能谈论休息日经历与感想",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/17-071-01-01/",
+                  "locator": "Lesson 17 · Can-do 71 / Can-do 72",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 17 · Can-do 71 / Can-do 72",
@@ -3622,6 +3838,12 @@
               "id": "JP-A1-L17-02",
               "title": "能看懂价格信息并分享外出体验",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/17-073-01-01/",
+                  "locator": "Lesson 17 · Can-do 73 / Can-do 74 / Can-do 75",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -3659,6 +3881,12 @@
               "title": "能交流假期计划和在日愿望",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/18-076-01-01/",
+                  "locator": "Lesson 18 · Can-do 76 / Can-do 77",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
                   "locator": "入门 Lesson 18 · Can-do 76 / Can-do 77",
@@ -3692,6 +3920,12 @@
               "id": "JP-A1-L18-02",
               "title": "能发布并讲述旅行经历与感想",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a1/learning/18-078-01-01/",
+                  "locator": "Lesson 18 · Can-do 78 / Can-do 79",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI入门中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/starter/pdf.php",
@@ -3736,6 +3970,12 @@
               "title": "能与熟人问候并介绍近况",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/01-001-01-01/",
+                  "locator": "Lesson 1 · Can-do 01 / Can-do 02",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 1 · Can-do 01 / Can-do 02",
@@ -3764,6 +4004,12 @@
               "title": "能介绍自己在日本的工作",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/01-003-01-01/",
+                  "locator": "Lesson 1 · Can-do 03",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 1 · Can-do 03",
@@ -3789,6 +4035,12 @@
               "id": "JP-A2-1-L02-01",
               "title": "能谈论爱好和休息日",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/02-004-01-01/",
+                  "locator": "Lesson 2 · Can-do 04 / Can-do 05",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -3817,6 +4069,12 @@
               "id": "JP-A2-1-L02-02",
               "title": "能读写个人爱好与生活介绍",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/02-006-01-01/",
+                  "locator": "Lesson 2 · Can-do 06 / Can-do 07",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -3855,6 +4113,12 @@
               "title": "能理解并介绍本国季节特点",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/03-008-01-01/",
+                  "locator": "Lesson 3 · Can-do 08 / Can-do 09",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 3 · Can-do 08 / Can-do 09",
@@ -3883,6 +4147,12 @@
               "title": "能表达喜欢的季节并说明理由",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/03-010-01-01/",
+                  "locator": "Lesson 3 · Can-do 10",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 3 · Can-do 10",
@@ -3908,6 +4178,12 @@
               "id": "JP-A2-1-L04-01",
               "title": "能在问候中谈论天气并听懂预报",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/04-011-01-01/",
+                  "locator": "Lesson 4 · Can-do 11 / Can-do 12",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -3936,6 +4212,12 @@
               "id": "JP-A2-1-L04-02",
               "title": "能看懂天气相关动态",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/04-013-01-01/",
+                  "locator": "Lesson 4 · Can-do 13",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -3972,6 +4254,12 @@
               "title": "能谈论居住城市并询问推荐地点",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/05-014-01-01/",
+                  "locator": "Lesson 5 · Can-do 14 / Can-do 15",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 5 · Can-do 14 / Can-do 15",
@@ -4000,6 +4288,12 @@
               "title": "能从城市介绍中获取地点信息",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/05-016-01-01/",
+                  "locator": "Lesson 5 · Can-do 16",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 5 · Can-do 16",
@@ -4025,6 +4319,12 @@
               "id": "JP-A2-1-L06-01",
               "title": "能当面或通过电话问路",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/06-017-01-01/",
+                  "locator": "Lesson 6 · Can-do 17 / Can-do 18",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4053,6 +4353,12 @@
               "id": "JP-A2-1-L06-02",
               "title": "能为驾车者说明前往目的地的路线",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/06-019-01-01/",
+                  "locator": "Lesson 6 · Can-do 19",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4089,6 +4395,12 @@
               "title": "能协商并确认碰面时间地点",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/07-020-01-01/",
+                  "locator": "Lesson 7 · Can-do 20 / Can-do 21",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 7 · Can-do 20 / Can-do 21",
@@ -4116,6 +4428,12 @@
               "id": "JP-A2-1-L07-02",
               "title": "能看懂并发送迟到联络",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/07-022-01-01/",
+                  "locator": "Lesson 7 · Can-do 22 / Can-do 23",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4145,6 +4463,12 @@
               "title": "能根据经历和爱好发出邀请",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/08-024-01-01/",
+                  "locator": "Lesson 8 · Can-do 24",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 8 · Can-do 24",
@@ -4170,6 +4494,12 @@
               "id": "JP-A2-1-L08-02",
               "title": "能商量外出安排并表达活动感想",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/08-025-01-01/",
+                  "locator": "Lesson 8 · Can-do 25 / Can-do 26",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4208,6 +4538,12 @@
               "title": "能介绍日语学习经历和感想",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/09-027-01-01/",
+                  "locator": "Lesson 9 · Can-do 27 / Can-do 28",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 9 · Can-do 27 / Can-do 28",
@@ -4236,6 +4572,12 @@
               "title": "能在不懂日语时求助并查找学习建议",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/09-029-01-01/",
+                  "locator": "Lesson 9 · Can-do 29 / Can-do 30",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 9 · Can-do 29 / Can-do 30",
@@ -4263,6 +4605,12 @@
               "id": "JP-A2-1-L10-01",
               "title": "能查找并咨询日语学习班",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/10-031-01-01/",
+                  "locator": "Lesson 10 · Can-do 31 / Can-do 32 / Can-do 33",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4293,6 +4641,12 @@
               "id": "JP-A2-1-L10-02",
               "title": "能说明自己的学习经历与意愿",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/10-034-01-01/",
+                  "locator": "Lesson 10 · Can-do 34",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4329,6 +4683,12 @@
               "title": "能协商聚会准备和采购分工",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/11-035-01-01/",
+                  "locator": "Lesson 11 · Can-do 35 / Can-do 36",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 11 · Can-do 35 / Can-do 36",
@@ -4357,6 +4717,12 @@
               "title": "能询问并确认食品成分与期限",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/11-037-01-01/",
+                  "locator": "Lesson 11 · Can-do 37 / Can-do 38",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 11 · Can-do 37 / Can-do 38",
@@ -4384,6 +4750,12 @@
               "id": "JP-A2-1-L12-01",
               "title": "能描述食物印象、味道与材料",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/12-039-01-01/",
+                  "locator": "Lesson 12 · Can-do 39 / Can-do 40 / Can-do 41",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4414,6 +4786,12 @@
               "id": "JP-A2-1-L12-02",
               "title": "能看懂方便食品的制作方法",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/12-042-01-01/",
+                  "locator": "Lesson 12 · Can-do 42",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4450,6 +4828,12 @@
               "title": "能说明工作困难与进度",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/13-043-01-01/",
+                  "locator": "Lesson 13 · Can-do 43 / Can-do 44",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 13 · Can-do 43 / Can-do 44",
@@ -4477,6 +4861,12 @@
               "id": "JP-A2-1-L13-02",
               "title": "能理解设备操作、工作指示与沟通邮件",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/13-045-01-01/",
+                  "locator": "Lesson 13 · Can-do 45 / Can-do 46 / Can-do 47",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4508,6 +4898,12 @@
               "title": "能打电话请假、迟到并征求许可",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/14-048-01-01/",
+                  "locator": "Lesson 14 · Can-do 48 / Can-do 49 / Can-do 50",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 14 · Can-do 48 / Can-do 49 / Can-do 50",
@@ -4537,6 +4933,12 @@
               "id": "JP-A2-1-L14-02",
               "title": "能询问请假文件的填写方法",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/14-051-01-01/",
+                  "locator": "Lesson 14 · Can-do 51",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4573,6 +4975,12 @@
               "title": "能在医院说明症状并理解医嘱",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/15-052-01-01/",
+                  "locator": "Lesson 15 · Can-do 52 / Can-do 53",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 15 · Can-do 52 / Can-do 53",
@@ -4600,6 +5008,12 @@
               "id": "JP-A2-1-L15-02",
               "title": "能填写问诊单并理解药品用法",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/15-054-01-01/",
+                  "locator": "Lesson 15 · Can-do 54 / Can-do 55 / Can-do 56",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4631,6 +5045,12 @@
               "title": "能交流健康建议与生活习惯",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/16-057-01-01/",
+                  "locator": "Lesson 16 · Can-do 57 / Can-do 58",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 16 · Can-do 57 / Can-do 58",
@@ -4658,6 +5078,12 @@
               "id": "JP-A2-1-L16-02",
               "title": "能从新闻与海报获取疾病信息",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/16-059-01-01/",
+                  "locator": "Lesson 16 · Can-do 59 / Can-do 60",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4696,6 +5122,12 @@
               "title": "能在拜访时问候并介绍礼物来历",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/17-061-01-01/",
+                  "locator": "Lesson 17 · Can-do 61 / Can-do 62 / Can-do 63",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 17 · Can-do 61 / Can-do 62 / Can-do 63",
@@ -4726,6 +5158,12 @@
               "title": "能写简单感谢邮件",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/17-064-01-01/",
+                  "locator": "Lesson 17 · Can-do 64",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
                   "locator": "初级1 Lesson 17 · Can-do 64",
@@ -4751,6 +5189,12 @@
               "id": "JP-A2-1-L18-01",
               "title": "能表达祝福并讨论礼物",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/18-065-01-01/",
+                  "locator": "Lesson 18 · Can-do 65 / Can-do 66 / Can-do 67",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4781,6 +5225,12 @@
               "id": "JP-A2-1-L18-02",
               "title": "能看懂并写下祝福内容",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-1/learning/18-068-01-01/",
+                  "locator": "Lesson 18 · Can-do 68 / Can-do 69",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary01/pdf.php",
@@ -4819,6 +5269,12 @@
               "title": "能在单位听懂介绍并进行详细自我介绍",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/01-001-01-01/",
+                  "locator": "Lesson 1 · Can-do 01 / Can-do 02",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 1 · Can-do 01 / Can-do 02",
@@ -4846,6 +5302,12 @@
               "id": "JP-A2-2-L01-02",
               "title": "能介绍故乡并发布自我介绍",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/01-003-01-01/",
+                  "locator": "Lesson 1 · Can-do 03 / Can-do 04",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -4875,6 +5337,12 @@
               "title": "能描述人物外貌、性格与特点",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/02-005-01-01/",
+                  "locator": "Lesson 2 · Can-do 05 / Can-do 06",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 2 · Can-do 05 / Can-do 06",
@@ -4902,6 +5370,12 @@
               "id": "JP-A2-2-L02-02",
               "title": "能介绍喜欢的名人并理解人物访谈",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/02-007-01-01/",
+                  "locator": "Lesson 2 · Can-do 07 / Can-do 08",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -4940,6 +5414,12 @@
               "title": "能看懂菜单并说明饮食限制与点餐需求",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/03-009-01-01/",
+                  "locator": "Lesson 3 · Can-do 09 / Can-do 10 / Can-do 11",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 3 · Can-do 09 / Can-do 10 / Can-do 11",
@@ -4970,6 +5450,12 @@
               "title": "能预约餐厅并看懂优惠信息",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/03-012-01-01/",
+                  "locator": "Lesson 3 · Can-do 12 / Can-do 13",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 3 · Can-do 12 / Can-do 13",
@@ -4997,6 +5483,12 @@
               "id": "JP-A2-2-L04-01",
               "title": "能理解餐厅和菜肴吃法的说明",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/04-014-01-01/",
+                  "locator": "Lesson 4 · Can-do 14 / Can-do 15 / Can-do 16",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5027,6 +5519,12 @@
               "id": "JP-A2-2-L04-02",
               "title": "能介绍本国菜肴并看懂餐厅评价",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/04-017-01-01/",
+                  "locator": "Lesson 4 · Can-do 17 / Can-do 18",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5065,6 +5563,12 @@
               "title": "能听懂旅游地介绍并讨论旅行计划",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/05-019-01-01/",
+                  "locator": "Lesson 5 · Can-do 19 / Can-do 20",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 5 · Can-do 19 / Can-do 20",
@@ -5092,6 +5596,12 @@
               "id": "JP-A2-2-L05-02",
               "title": "能征求旅行建议并看懂网站评价",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/05-021-01-01/",
+                  "locator": "Lesson 5 · Can-do 21 / Can-do 22",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5121,6 +5631,12 @@
               "title": "能看懂交通信息并从广播获取信息",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/06-023-01-01/",
+                  "locator": "Lesson 6 · Can-do 23 / Can-do 25",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 6 · Can-do 23 / Can-do 25",
@@ -5148,6 +5664,12 @@
               "id": "JP-A2-2-L06-02",
               "title": "能介绍旅行计划并分享旅行经历",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/06-024-01-01/",
+                  "locator": "Lesson 6 · Can-do 24 / Can-do 26 / Can-do 27",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5188,6 +5710,12 @@
               "title": "能看懂并听懂地区活动通知",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/07-028-01-01/",
+                  "locator": "Lesson 7 · Can-do 28 / Can-do 30",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 7 · Can-do 28 / Can-do 30",
@@ -5216,6 +5744,12 @@
               "title": "能询问地区活动内容并理解回答",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/07-029-01-01/",
+                  "locator": "Lesson 7 · Can-do 29 / Can-do 31",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 7 · Can-do 29 / Can-do 31",
@@ -5243,6 +5777,12 @@
               "id": "JP-A2-2-L08-01",
               "title": "能在活动现场获取安排与报名信息",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/08-032-01-01/",
+                  "locator": "Lesson 8 · Can-do 32 / Can-do 33 / Can-do 34 / Can-do 35",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5275,6 +5815,12 @@
               "id": "JP-A2-2-L08-02",
               "title": "能看懂并发布活动经历",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/08-036-01-01/",
+                  "locator": "Lesson 8 · Can-do 36 / Can-do 37",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5313,6 +5859,12 @@
               "title": "能听懂并介绍节庆活动与假期经历",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/09-038-01-01/",
+                  "locator": "Lesson 9 · Can-do 38 / Can-do 39 / Can-do 40",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 9 · Can-do 38 / Can-do 39 / Can-do 40",
@@ -5343,6 +5895,12 @@
               "title": "能阅读活动报道并写新年贺卡",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/09-041-01-01/",
+                  "locator": "Lesson 9 · Can-do 41 / Can-do 42",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 9 · Can-do 41 / Can-do 42",
@@ -5371,6 +5929,12 @@
               "title": "能询问并比较礼仪与习惯",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/10-043-01-01/",
+                  "locator": "Lesson 10 · Can-do 43 / Can-do 44",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 10 · Can-do 43 / Can-do 44",
@@ -5398,6 +5962,12 @@
               "id": "JP-A2-2-L10-02",
               "title": "能谈论异文化体验并看懂相关帖子",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/10-045-01-01/",
+                  "locator": "Lesson 10 · Can-do 45 / Can-do 46",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5436,6 +6006,12 @@
               "title": "能在服装店提出需求并处理购物问题",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/11-047-01-01/",
+                  "locator": "Lesson 11 · Can-do 47 / Can-do 48",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 11 · Can-do 47 / Can-do 48",
@@ -5463,6 +6039,12 @@
               "id": "JP-A2-2-L11-02",
               "title": "能描述遗失物并听懂商场广播",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/11-049-01-01/",
+                  "locator": "Lesson 11 · Can-do 49 / Can-do 50",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5492,6 +6074,12 @@
               "title": "能商量购物并使用二手平台购买商品",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/12-051-01-01/",
+                  "locator": "Lesson 12 · Can-do 51 / Can-do 52",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 12 · Can-do 51 / Can-do 52",
@@ -5519,6 +6107,12 @@
               "id": "JP-A2-2-L12-02",
               "title": "能比较商品信息并与店员协商",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/12-053-01-01/",
+                  "locator": "Lesson 12 · Can-do 53 / Can-do 54",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5557,6 +6151,12 @@
               "title": "能听懂公共设施介绍、用法和规则",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/13-055-01-01/",
+                  "locator": "Lesson 13 · Can-do 55 / Can-do 56",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 13 · Can-do 55 / Can-do 56",
@@ -5584,6 +6184,12 @@
               "id": "JP-A2-2-L13-02",
               "title": "能询问并看懂公共设施规则与标识",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/13-057-01-01/",
+                  "locator": "Lesson 13 · Can-do 57 / Can-do 58 / Can-do 59",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5615,6 +6221,12 @@
               "title": "能理解快递、洗衣等生活服务的使用方法",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/14-060-01-01/",
+                  "locator": "Lesson 14 · Can-do 60 / Can-do 61",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 14 · Can-do 60 / Can-do 61",
@@ -5642,6 +6254,12 @@
               "id": "JP-A2-2-L14-02",
               "title": "能表达理发需求并了解面向外国人的服务",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/14-062-01-01/",
+                  "locator": "Lesson 14 · Can-do 62 / Can-do 63",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5680,6 +6298,12 @@
               "title": "能理解环保提醒并交流环保做法",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/15-064-01-01/",
+                  "locator": "Lesson 15 · Can-do 64 / Can-do 65",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 15 · Can-do 64 / Can-do 65",
@@ -5708,6 +6332,12 @@
               "title": "能看懂并询问垃圾分类方法",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/15-066-01-01/",
+                  "locator": "Lesson 15 · Can-do 66 / Can-do 67",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 15 · Can-do 66 / Can-do 67",
@@ -5735,6 +6365,12 @@
               "id": "JP-A2-2-L16-01",
               "title": "能理解灾害信息和防灾指示",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/16-068-01-01/",
+                  "locator": "Lesson 16 · Can-do 68 / Can-do 69 / Can-do 70",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5765,6 +6401,12 @@
               "id": "JP-A2-2-L16-02",
               "title": "能在灾害中获取帮助并看懂防灾手册",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/16-071-01-01/",
+                  "locator": "Lesson 16 · Can-do 71 / Can-do 72",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5803,6 +6445,12 @@
               "title": "能谈论在日生活和工作的变化",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/17-073-01-01/",
+                  "locator": "Lesson 17 · Can-do 73 / Can-do 74",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 17 · Can-do 73 / Can-do 74",
@@ -5831,6 +6479,12 @@
               "title": "能向老师发送近况信息",
               "sources": [
                 {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/17-075-01-01/",
+                  "locator": "Lesson 17 · Can-do 75",
+                  "status": "官网课节直达链接已核对"
+                },
+                {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
                   "locator": "初级2 Lesson 17 · Can-do 75",
@@ -5856,6 +6510,12 @@
               "id": "JP-A2-2-L18-01",
               "title": "能谈论未来梦想并理解经验建议",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/18-076-01-01/",
+                  "locator": "Lesson 18 · Can-do 76 / Can-do 77",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",
@@ -5884,6 +6544,12 @@
               "id": "JP-A2-2-L18-02",
               "title": "能在送别场合表达具体感谢",
               "sources": [
+                {
+                  "label": "IRODORI 在线课程",
+                  "url": "https://www.irodori-online.jpf.go.jp/a2-2/learning/18-078-01-01/",
+                  "locator": "Lesson 18 · Can-do 78",
+                  "status": "官网课节直达链接已核对"
+                },
                 {
                   "label": "IRODORI官方中文教材与音频",
                   "url": "https://www2.jpfbj.cn/irodori/elementary02/pdf.php",

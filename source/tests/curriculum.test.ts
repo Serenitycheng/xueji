@@ -98,6 +98,35 @@ void test('Japanese route uses durable ability nodes while retaining IRODORI ord
   assert.equal(steps.at(-1)!.course, 'IRODORI 初级2 A2');
 });
 
+void test('Japanese abilities open the matching official IRODORI online lesson first', () => {
+  const japanese = curricula.find(
+    (curriculum) => curriculum.id === 'japanese',
+  )!;
+  const courseSlugs: Record<string, string> = {
+    'IRODORI Starter A1': 'a1',
+    'IRODORI 初级1 A2': 'a2-1',
+    'IRODORI 初级2 A2': 'a2-2',
+  };
+  for (const step of japanese.units.flatMap((unit) => unit.steps)) {
+    const primary = step.sources[0];
+    assert.equal(primary.label, 'IRODORI 在线课程');
+    const url = new URL(primary.url);
+    assert.equal(url.origin, 'https://www.irodori-online.jpf.go.jp');
+    if (step.id.startsWith('JP-00-')) {
+      assert.equal(url.pathname, '/a1/introduction/01-001-01-01/');
+      continue;
+    }
+    const lesson = Number(step.lesson!.replace('Lesson ', ''));
+    const canDo = Number(step.canDos![0]);
+    assert.match(
+      url.pathname,
+      new RegExp(
+        `^/${courseSlugs[step.course!]}/learning/${String(lesson).padStart(2, '0')}-${String(canDo).padStart(3, '0')}-\\d{2}-\\d{2}/$`,
+      ),
+    );
+  }
+});
+
 void test('Japanese legacy lesson progress initializes ability conservatively and remains editable', () => {
   let state = ensureLearning(freshState());
   const direction = state.learning!.directions.find(
