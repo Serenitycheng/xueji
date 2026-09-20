@@ -23,10 +23,10 @@ test('legacy profiles gain development without resetting other data or mutating 
  assert.equal(upgraded.subjects.length,5);
  assert.deepEqual(upgraded.subjects.slice(0,4),before.subjects);
  assert.deepEqual({...upgraded,subjects:before.subjects},before);
- assert.match(upgraded.subjects[4].goal,/打牢.*vibe coding.*系统学习/);
+ assert.match(upgraded.subjects[4].goal,/打牢.*系统复习.*持续项目/);
  assert.equal(upgraded.subjects[4].selectedPlan,undefined);
  assert.equal(upgraded.subjects[4].plans[0].id,'development-foundations-ver2');
- assert.deepEqual(upgraded.subjects[4].plans[0].resources.map(r=>r.resourceId),['development-plan-ver2','bit-python','pro-git']);
+ assert.deepEqual(upgraded.subjects[4].plans[0].resources.map(r=>r.resourceId),['development-plan-ver2','python-docs','pro-git']);
  assert.match(upgraded.subjects[4].plans[0].stages[0],/Python/);
  assert.ok(upgraded.subjects[4].plans[0].resources.every(r=>CATALOG.some(c=>c.id===r.resourceId)));
 });

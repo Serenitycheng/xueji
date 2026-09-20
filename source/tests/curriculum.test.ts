@@ -71,13 +71,13 @@ void test('all six catalogs retain the agreed chapters, lesson IDs and professio
   }
 });
 
-void test('development starts from a project diagnostic without replacing existing node IDs', () => {
+void test('development systematically reviews Python in one project without replacing existing node IDs', () => {
   const development = curricula.find(
     (curriculum) => curriculum.id === 'development',
   )!;
   const python = development.units.find((unit) => unit.id === 'DEV-U01')!;
-  assert.equal(python.title, '01｜Python能力诊断与项目复盘');
-  assert.match(python.goal, /学习记录周报.*已有能力快速通过/);
+  assert.equal(python.title, '01｜Python系统复习与项目实践');
+  assert.match(python.goal, /系统复习.*本地学习资料索引器/);
   assert.deepEqual(
     python.steps.map((step) => step.id),
     Array.from(
@@ -85,17 +85,22 @@ void test('development starts from a project diagnostic without replacing existi
       (_, index) => `DEV-01-${String(index + 1).padStart(2, '0')}`,
     ),
   );
-  assert.match(python.steps[0].action, /60—90分钟.*CSV.*Markdown周报/);
-  assert.match(
-    python.steps[0].done,
-    /独立完成、查资料完成、尚不理解.*真实卡点/,
-  );
+  assert.match(python.steps[0].action, /知识地图.*本地学习资料索引器/);
+  assert.match(python.steps[0].done, /真实资料目录.*知识地图/);
   assert.ok(
     python.steps.every((step) =>
       step.sources.some(
         (source) =>
           source.label === '嵩天等《Python语言程序设计基础》第3版' &&
-          /按实际卡点查阅/.test(source.status),
+          /系统复习主线/.test(source.status),
+      ),
+    ),
+  );
+  assert.ok(
+    python.steps.every((step) =>
+      step.sources.every(
+        (source) =>
+          source.url !== 'https://www.icourse163.org/course/BIT-268001',
       ),
     ),
   );
@@ -585,7 +590,14 @@ void test('current recommendations agree with the route while legacy resource id
     recommended.some(
       (r) =>
         r.subjectId === 'development' &&
-        r.url === 'https://www.icourse163.org/course/BIT-268001',
+        r.url === 'https://docs.python.org/zh-cn/3/tutorial/',
+    ),
+  );
+  assert.ok(
+    recommended.some(
+      (r) =>
+        r.subjectId === 'development' &&
+        r.url === 'https://www.bilibili.com/video/BV113ixBqEcS/',
     ),
   );
   for (const id of [
@@ -594,6 +606,7 @@ void test('current recommendations agree with the route while legacy resource id
     'mit-stats',
     '3b1b',
     'stat110',
+    'bit-python',
   ]) {
     assert.ok(CATALOG.find((r) => r.id === id)?.url);
     assert.ok(!recommended.some((r) => r.id === id));
