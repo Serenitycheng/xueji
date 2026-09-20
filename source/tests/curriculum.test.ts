@@ -71,6 +71,37 @@ void test('all six catalogs retain the agreed chapters, lesson IDs and professio
   }
 });
 
+void test('development starts from a project diagnostic without replacing existing node IDs', () => {
+  const development = curricula.find(
+    (curriculum) => curriculum.id === 'development',
+  )!;
+  const python = development.units.find((unit) => unit.id === 'DEV-U01')!;
+  assert.equal(python.title, '01｜Python能力诊断与项目复盘');
+  assert.match(python.goal, /学习记录周报.*已有能力快速通过/);
+  assert.deepEqual(
+    python.steps.map((step) => step.id),
+    Array.from(
+      { length: 9 },
+      (_, index) => `DEV-01-${String(index + 1).padStart(2, '0')}`,
+    ),
+  );
+  assert.match(python.steps[0].action, /60—90分钟.*CSV.*Markdown周报/);
+  assert.match(
+    python.steps[0].done,
+    /独立完成、查资料完成、尚不理解.*真实卡点/,
+  );
+  assert.ok(
+    python.steps.every((step) =>
+      step.sources.some(
+        (source) =>
+          source.label === '嵩天等《Python语言程序设计基础》第3版' &&
+          /按实际卡点查阅/.test(source.status),
+      ),
+    ),
+  );
+  assert.equal(development.units[1].id, 'DEV-U02');
+});
+
 void test('Japanese route uses durable ability nodes while retaining IRODORI order and source mappings', () => {
   const japanese = curricula.find(
     (curriculum) => curriculum.id === 'japanese',

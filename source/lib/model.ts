@@ -17,8 +17,8 @@ export type StudyState = {learning?:LearningWorkspace;version: 1; subjects: Subj
 export type Snapshot = {state: StudyState; revision: number; hasKey: boolean; usage: {cost: number; calls: number; month: string}; userName: string; updatedAt?: string; appVersion?: string; protocol?: number; schemaVersion?: number};
 export const DEVELOPMENT_SUBJECT: Subject = {
  id:'development',name:'开发',short:'开发',color:'#347ea4',
- goal:'打牢开发基础，现阶段侧重 AI 辅助开发（vibe coding），边做项目边系统学习',
- level:'按《开发学习方案 ver2》从 Python 编程基础与基础工具同步起步；具体掌握情况通过练习评估。网页技术随项目按需补充，AI 拓展分概念与实践推进。',
+ goal:'打牢开发基础，以 vibe coding 小项目诊断已有能力，再按真实卡点系统学习',
+ level:'已经学过 Python，先用学习记录周报评估实际掌握；已有能力检查后直接通过，薄弱部分结合第3版教材按需复习。网页技术随项目补充，AI 拓展分概念与实践推进。',
  deadline:'',paused:false,plans:[developmentLearningPlan()]
 };
 export const SUBJECTS: Subject[] = [
