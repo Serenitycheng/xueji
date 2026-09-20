@@ -85,21 +85,25 @@ void test('development systematically reviews Python in one project without repl
       (_, index) => `DEV-01-${String(index + 1).padStart(2, '0')}`,
     ),
   );
-  assert.match(python.steps[0].action, /知识地图.*本地学习资料索引器/);
-  assert.match(python.steps[0].done, /真实资料目录.*知识地图/);
+  assert.match(
+    development.notes[0],
+    /GPT生成提纲.*看教材.*自己回答.*做项目.*GPT复盘/,
+  );
+  assert.match(python.steps[0].action, /资料索引器.*顶层文件/);
+  assert.match(python.steps[0].done, /正常目录、空目录和不存在目录/);
   assert.ok(
-    python.steps.every((step) =>
-      step.sources.some(
-        (source) =>
-          source.label === '嵩天等《Python语言程序设计基础》第3版' &&
-          /系统复习主线/.test(source.status),
-      ),
+    python.steps.every(
+      (step) =>
+        step.sources[0].label === '嵩天等《Python语言程序设计基础》第3版' &&
+        /系统复习主线/.test(step.sources[0].status),
     ),
   );
+  assert.ok(python.steps.every((step) => step.sources.length <= 3));
   assert.ok(
     python.steps.every((step) =>
       step.sources.every(
         (source) =>
+          source.url !== '/api/development-plan' &&
           source.url !== 'https://www.icourse163.org/course/BIT-268001',
       ),
     ),

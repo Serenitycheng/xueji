@@ -11,6 +11,7 @@ import {
   abilityStatusLabels,
   japaneseAbilityStatusFor,
   masteryLabels,
+  obsidianLink,
   unitCompletionProgress,
   type Direction,
 } from '@/lib/learning';
@@ -38,12 +39,14 @@ type Props = {
 function Sources({
   sources,
   state,
+  compact = false,
 }: {
   sources: CurriculumSource[];
   state: StudyState;
+  compact?: boolean;
 }) {
   return (
-    <ul className="curriculum-sources">
+    <ul className={`curriculum-sources${compact ? ' is-compact' : ''}`}>
       {sources.map((source, i) => {
         const s = resolveCurriculumSource(source, state.materials);
         const href = curriculumSourceHref(s);
@@ -55,8 +58,10 @@ function Sources({
             <div>
               <strong>{s.label}</strong>
               <p className="source-location">{s.locator}</p>
-              <small>{s.status}</small>
-              {s.fileName && <p className="hint">原方案：{s.fileName}</p>}
+              {!compact && <small>{s.status}</small>}
+              {!compact && s.fileName && (
+                <p className="hint">原方案：{s.fileName}</p>
+              )}
               {missing && (
                 <p className="hint">
                   {s.materialFileNames ? (
@@ -113,36 +118,119 @@ function Sources({
   );
 }
 
+function DevelopmentNodeFlow({
+  action,
+  done,
+  sources,
+  state,
+}: {
+  action: string;
+  done: string;
+  sources: CurriculumSource[];
+  state: StudyState;
+}) {
+  const [primary, ...supporting] = sources;
+  return (
+    <ol className="development-workflow">
+      <li>
+        <span>1</span>
+        <div>
+          <strong>GPT 生成提纲</strong>
+          <p>按模板列出本节 3—5 个关键问题，先不展开答案。</p>
+          <a
+            className="text-link development-template-link"
+            href={obsidianLink('obsidian vault', '模板/开发-节点学习模板')}
+          >
+            打开节点模板
+          </a>
+        </div>
+      </li>
+      <li>
+        <span>2</span>
+        <div>
+          <strong>看教材</strong>
+          <p>带着提纲阅读本节范围，只补充关键概念和例子。</p>
+          {primary && <Sources sources={[primary]} state={state} compact />}
+          {supporting.length > 0 && (
+            <details className="development-workflow-support">
+              <summary>卡住时再查补充资料</summary>
+              <Sources sources={supporting} state={state} compact />
+            </details>
+          )}
+        </div>
+      </li>
+      <li>
+        <span>3</span>
+        <div>
+          <strong>自己回答</strong>
+          <p>合上教材，用自己的话回答提纲，并标出一个不确定点。</p>
+        </div>
+      </li>
+      <li>
+        <span>4</span>
+        <div>
+          <strong>做项目</strong>
+          <p>{action}</p>
+        </div>
+      </li>
+      <li>
+        <span>5</span>
+        <div>
+          <strong>GPT 复盘</strong>
+          <p>提交回答、代码和运行结果，让 GPT 纠错并整理回本节笔记。</p>
+          <p className="development-workflow-done">
+            <strong>完成判断：</strong>
+            {done}
+          </p>
+        </div>
+      </li>
+    </ol>
+  );
+}
+
 export function CurrentCurriculumLesson({
   state,
   d,
 }: Pick<Props, 'state' | 'd'>) {
   const item = currentCurriculumItem(state.learning!, d);
   if (!item) return null;
+  const developmentFlow =
+    d.curriculumId === 'development' && item.id.startsWith('DEV-01-');
   return (
     <div className="current-lesson-guide">
-      <div className="lesson-guide-grid">
-        <section className="lesson-guide-card">
-          <span className="lesson-guide-label">本节任务</span>
-          <p>{item.scope}</p>
-        </section>
-        {item.endCondition && (
-          <section className="lesson-guide-card is-goal">
-            <span className="lesson-guide-label">完成标准</span>
-            <p>{item.endCondition}</p>
+      {developmentFlow ? (
+        <DevelopmentNodeFlow
+          action={item.scope}
+          done={item.endCondition}
+          sources={item.sources}
+          state={state}
+        />
+      ) : (
+        <>
+          <div className="lesson-guide-grid">
+            <section className="lesson-guide-card">
+              <span className="lesson-guide-label">本节任务</span>
+              <p>{item.scope}</p>
+            </section>
+            {item.endCondition && (
+              <section className="lesson-guide-card is-goal">
+                <span className="lesson-guide-label">完成标准</span>
+                <p>{item.endCondition}</p>
+              </section>
+            )}
+          </div>
+          <section className="lesson-resource-section">
+            <h4 className="lesson-subheading">学习资料</h4>
+            <Sources sources={item.sources} state={state} />
           </section>
-        )}
-      </div>
+        </>
+      )}
       {item.node && (
         <p className="hint">
           这个节点暂未拆分课节。原方案教材：{item.node.materials}
           。可先在这里记录学习位置。
         </p>
       )}
-      <section className="lesson-resource-section">
-        <h4 className="lesson-subheading">学习资料</h4>
-        <Sources sources={item.sources} state={state} />
-      </section>
     </div>
   );
 }
@@ -162,6 +250,8 @@ function Step({
   const currentSaved = !!saved && saved.id === d.currentUnitId;
   const completion = unitCompletionProgress(saved, d);
   const japanese = d.curriculumId === 'japanese';
+  const developmentFlow =
+    d.curriculumId === 'development' && step.id.startsWith('DEV-01-');
   const abilityStatus = japaneseAbilityStatusFor(relatedUnits);
   const legacyUnits = relatedUnits.filter(
     (unit) => unit.curriculumItemId !== step.id,
@@ -257,11 +347,22 @@ function Step({
               : '旧小节的记录和掌握判断已保留；整节掌握程度单独记录。'}
           </p>
         )}
-        <p>
-          <strong>怎么学：</strong>
-          {step.action}
-        </p>
-        <Sources sources={step.sources} state={state} />
+        {developmentFlow ? (
+          <DevelopmentNodeFlow
+            action={step.action}
+            done={step.done}
+            sources={step.sources}
+            state={state}
+          />
+        ) : (
+          <>
+            <p>
+              <strong>怎么学：</strong>
+              {step.action}
+            </p>
+            <Sources sources={step.sources} state={state} />
+          </>
+        )}
         {japanese && step.targets?.length ? (
           <div className="japanese-targets">
             <strong>掌握目标</strong>
@@ -271,12 +372,12 @@ function Step({
               ))}
             </ul>
           </div>
-        ) : (
+        ) : !developmentFlow ? (
           <p>
             <strong>完成标准：</strong>
             {step.done}
           </p>
-        )}
+        ) : null}
         {japanese && !current && (
           <JapaneseAbilityEditor
             state={state}

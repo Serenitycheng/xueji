@@ -211,6 +211,80 @@
   font-size: 13px;
   padding: 6px 0;
 }
+.development-workflow {
+  margin: 2px 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+.development-workflow > li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+.development-workflow > li > span {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 9%, var(--card));
+  font-size: 12px;
+  font-weight: 700;
+}
+.development-workflow > li > div {
+  min-width: 0;
+}
+.development-workflow > li > div > strong {
+  font-size: 14px;
+}
+.development-workflow p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.development-template-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 13px;
+}
+.curriculum-sources.is-compact {
+  margin: 8px 0 0;
+  gap: 6px;
+}
+.curriculum-sources.is-compact > li {
+  padding: 9px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.curriculum-sources.is-compact .source-location {
+  margin: 3px 0 0;
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.development-workflow-support {
+  margin-top: 7px;
+}
+.development-workflow-support > summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+.development-workflow-done {
+  margin-top: 7px !important;
+  color: var(--muted-foreground);
+  font-size: 13px !important;
+}
+.development-workflow-done > strong {
+  color: var(--foreground);
+}
+
 .pdf-open-control {
   display: inline-flex;
   align-items: center;
