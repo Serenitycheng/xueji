@@ -11,7 +11,7 @@ import {textbookStages,textbookRouteResult} from '../lib/textbook-routes';
 test('textbook routes use recorded order and compare genuinely different resource sets',()=>{
  const state=initialState();const book={id:'book',name:'教材.pdf',subjectId:'linear',kind:'pdf',status:'ready',size:100,textLength:100,excerpt:'',createdAt:'',analysis:{overview:'',firstStep:'',warnings:[],processor:'codex',processedAt:'',topics:[{title:'第一章：线性方程组',fromPage:9,toPage:46,prerequisites:[]},{title:'第二章：矩阵',fromPage:47,toPage:88,prerequisites:[]},{title:'第三章：向量空间',fromPage:89,toPage:148,prerequisites:[]}]}} as const;
  state.materials=[structuredClone(book) as any];const stages=textbookStages(state.materials[0]);assert.match(stages[0],/线性方程组/);assert.match(stages[1],/47–88/);
- const result=textbookRouteResult(state,state.subjects[0],'initial')!;assert.equal(result.plans.length,2);assert.deepEqual(result.plans.map(p=>p.resources.map(r=>r.resourceId)),[['book'],['book','bit-linear']]);assert.ok(result.plans.every(p=>p.resources[0].resourceId==='book'));assert.deepEqual(result.plans[0].stages,stages);
+ const result=textbookRouteResult(state,state.subjects[0],'initial')!;assert.equal(result.plans.length,2);assert.deepEqual(result.plans.map(p=>p.resources.map(r=>r.resourceId)),[['book'],['book','songhao-linear-3']]);assert.ok(result.plans.every(p=>p.resources[0].resourceId==='book'));assert.deepEqual(result.plans[0].stages,stages);
 });
 test('route chapter references are allowed only when the primary textbook supports them',()=>{
  const source={id:'book',subjectId:'linear',analysis:{topics:[{title:'第一章 线性方程组',fromPage:9,toPage:46},{title:'第二章 矩阵',fromPage:47,toPage:88}]}};

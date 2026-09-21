@@ -71,6 +71,30 @@ void test('all six catalogs retain the agreed chapters, lesson IDs and professio
   }
 });
 
+void test('linear algebra uses the current Bilibili course without changing its 44 section IDs', () => {
+  const linear = curricula.find((curriculum) => curriculum.id === 'linear')!;
+  const steps = linear.units.flatMap((unit) => unit.steps);
+  assert.equal(steps.length, 44);
+  assert.ok(
+    steps.every((step) =>
+      step.sources.some(
+        (source) =>
+          source.label === '宋浩老师｜线性代数3.0（B站）' &&
+          source.url.startsWith('https://www.bilibili.com/video/BV1d7wAzsE8V/'),
+      ),
+    ),
+  );
+  assert.ok(
+    steps.every((step) =>
+      step.sources.every(
+        (source) =>
+          !source.url.includes('icourse163.org/course/BIT-32001') &&
+          !source.label.includes('北京理工大学'),
+      ),
+    ),
+  );
+});
+
 void test('development systematically reviews Python in one project without replacing existing node IDs', () => {
   const development = curricula.find(
     (curriculum) => curriculum.id === 'development',
@@ -575,7 +599,7 @@ void test('current recommendations agree with the route while legacy resource id
   const recommended = CATALOG.filter((r) => r.recommended !== false);
   assert.deepEqual(
     recommended.filter((r) => r.subjectId === 'linear').map((r) => r.url),
-    ['https://www.icourse163.org/course/BIT-32001'],
+    ['https://www.bilibili.com/video/BV1d7wAzsE8V/'],
   );
   assert.ok(
     recommended.some(
