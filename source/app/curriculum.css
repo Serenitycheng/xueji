@@ -13,6 +13,39 @@
   color: var(--primary);
   white-space: nowrap;
 }
+.development-path {
+  border-left: 2px solid var(--primary);
+  padding-left: 14px;
+  margin: 16px 0 4px;
+}
+.development-path p {
+  display: flex;
+  gap: 12px;
+  margin: 6px 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.development-path strong {
+  flex: 0 0 7em;
+}
+.development-path span {
+  color: var(--muted-foreground);
+}
+.development-track {
+  margin-top: 28px;
+}
+.development-track h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+@media (max-width: 640px) {
+  .development-path p {
+    display: block;
+  }
+  .development-path strong {
+    margin-right: 8px;
+  }
+}
 .curriculum-toolbar {
   display: grid;
   grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);

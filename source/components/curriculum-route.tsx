@@ -604,6 +604,18 @@ export function CurriculumRoute(props: Props) {
   const query = search.trim().toLocaleLowerCase();
   const current = currentCurriculumItem(state.learning!, d);
   const japanese = d.curriculumId === 'japanese';
+  const development = d.curriculumId === 'development';
+  const developmentGroups = development
+    ? c.units.reduce<{ name: string; units: CurriculumUnit[] }[]>(
+        (groups, unit) => {
+          const last = groups.at(-1);
+          if (last?.name === unit.branch) last.units.push(unit);
+          else groups.push({ name: unit.branch, units: [unit] });
+          return groups;
+        },
+        [],
+      )
+    : [];
   return (
     <section
       className="content-panel curriculum-panel"
@@ -616,7 +628,11 @@ export function CurriculumRoute(props: Props) {
           </div>
           <h2>
             <Map size={20} />
-            {japanese ? '能力节点' : '学习路线'}
+            {japanese
+              ? '能力节点'
+              : development
+                ? 'AI 与开发 · 三条线'
+                : '学习路线'}
           </h2>
         </div>
         <span className="curriculum-count">
@@ -628,8 +644,28 @@ export function CurriculumRoute(props: Props) {
       <p className="hint">
         {japanese
           ? '教材继续按 IRODORI 原顺序学习；这里按能力查看掌握情况，并为同一能力保留可扩展的教材来源。'
-          : '展开单元查看具体学法与资料位置，选择你现在正在学的一节。学习记录会关联到这节，选择位置不会自动标记掌握。'}
+          : development
+            ? '流程与 AI 认知先并行过第一遍 → 重点补开发基础 → 回到 AI 做第二遍实践。按项目需要可提前查看任意节点。'
+            : '展开单元查看具体学法与资料位置，选择你现在正在学的一节。学习记录会关联到这节，选择位置不会自动标记掌握。'}
       </p>
+      {development && (
+        <div className="development-path" aria-label="开发学习的三条线">
+          <p>
+            <strong>开发流程线</strong>
+            <span>先学做项目的方法，之后持续用于真实改动。</span>
+          </p>
+          <p>
+            <strong>AI认知线</strong>
+            <span>先理解模型、Agent 与评估；有基础后再动手实现。</span>
+          </p>
+          <p>
+            <strong>开发基础线</strong>
+            <span>
+              Python＋工具同步 → 运行原理 → 算法 → 网络 → 数据库 → 软件工程。
+            </span>
+          </p>
+        </div>
+      )}
       <div className="curriculum-toolbar">
         <label className="learning-field">
           <span>{japanese ? '选择当前 IRODORI 位置' : '选择当前学习小节'}</span>
@@ -694,6 +730,26 @@ export function CurriculumRoute(props: Props) {
       </details>
       {c.nodes ? (
         <ProfessionalMap {...props} curriculum={c} query={query} />
+      ) : development ? (
+        <div className="curriculum-outline">
+          {developmentGroups.map((group) => (
+            <section
+              className="development-track"
+              key={group.name}
+              aria-label={group.name}
+            >
+              <h3>{group.name}</h3>
+              {group.units.map((unit) => (
+                <UnitOutline
+                  key={unit.id}
+                  {...props}
+                  unit={unit}
+                  query={query}
+                />
+              ))}
+            </section>
+          ))}
+        </div>
       ) : (
         <div className="curriculum-outline">
           {c.units.map((unit) => (

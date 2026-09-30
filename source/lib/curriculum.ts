@@ -1,4 +1,5 @@
 import data from './curricula/six-directions.json';
+import { extendDevelopmentCurriculum } from './curricula/development-lines';
 import type { Direction, LearningWorkspace, Unit } from './learning';
 import type { Material } from './model';
 
@@ -58,7 +59,11 @@ export type Curriculum = {
   extensions?: string[];
   resourceNote?: string;
 };
-export const curricula: Curriculum[] = data.subjects;
+export const curricula: Curriculum[] = data.subjects.map((curriculum) =>
+  curriculum.id === 'development'
+    ? extendDevelopmentCurriculum(curriculum)
+    : curriculum,
+);
 export const curriculumVersion = data.version;
 export function getCurriculum(id?: string) {
   return curricula.find((c) => c.id === id);
@@ -105,7 +110,7 @@ export function findCurriculumItem(c: Curriculum | undefined, id?: string) {
 
 const aliases: Record<string, string[]> = {
   professional: ['专业学习', '专业', '会计金融商学经济学'],
-  development: ['开发', '开发学习', '编程', '编程学习'],
+  development: ['开发', '开发学习', 'AI与开发', '编程', '编程学习'],
   japanese: ['日语', '日语学习'],
   photo: ['摄影', '摄影学习'],
   stats: ['概率论与数理统计', '概率论', '概率统计', '概率与统计'],

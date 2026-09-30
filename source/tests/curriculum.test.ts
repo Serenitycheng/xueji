@@ -36,7 +36,7 @@ void test('all six catalogs retain the agreed chapters, lesson IDs and professio
     curricula.map((c) => [c.id, c.units.length, curriculumStepCount(c)]),
     [
       ['professional', 4, 16],
-      ['development', 11, 57],
+      ['development', 13, 71],
       ['japanese', 28, 111],
       ['photo', 8, 27],
       ['stats', 10, 37],
@@ -109,9 +109,10 @@ void test('development systematically reviews Python in one project without repl
       (_, index) => `DEV-01-${String(index + 1).padStart(2, '0')}`,
     ),
   );
-  assert.match(
-    development.notes[0],
-    /GPT生成提纲.*看教材.*自己回答.*做项目.*GPT复盘/,
+  assert.ok(
+    development.notes.some((note) =>
+      /GPT生成提纲.*看教材.*自己回答.*做项目.*GPT复盘/.test(note),
+    ),
   );
   assert.match(python.steps[0].action, /资料索引器.*顶层文件/);
   assert.match(python.steps[0].done, /正常目录、空目录和不存在目录/);
@@ -132,7 +133,51 @@ void test('development systematically reviews Python in one project without repl
       ),
     ),
   );
-  assert.equal(development.units[1].id, 'DEV-U02');
+  assert.deepEqual(
+    development.units.map((unit) => unit.id),
+    [
+      'DEV-UPROCESS',
+      'DEV-UAIMAP',
+      'DEV-U01',
+      'DEV-U03',
+      'DEV-U02',
+      'DEV-U04',
+      'DEV-U05',
+      'DEV-U06',
+      'DEV-U07',
+      'DEV-UWEB',
+      'DEV-U08',
+      'DEV-U09A',
+      'DEV-U09B',
+    ],
+  );
+  assert.deepEqual(
+    development.units.slice(0, 2).map((unit) => unit.steps.length),
+    [8, 6],
+  );
+  assert.deepEqual(
+    [...new Set(development.units.map((unit) => unit.branch))],
+    ['开发流程线', 'AI认知线 · 第一遍', '开发基础线', 'AI认知线 · 第二遍'],
+  );
+  assert.ok(
+    development.units[1].steps[0].sources.some((source) =>
+      source.url.includes('bilibili.com/video/'),
+    ),
+  );
+  assert.ok(
+    development.units
+      .slice(0, 2)
+      .flatMap((unit) => unit.steps)
+      .every((step) => step.sources[0].url.startsWith('https://')),
+  );
+  assert.ok(
+    development.units
+      .slice(2)
+      .flatMap((unit) => unit.steps)
+      .every((step) =>
+        step.sources.some((source) => source.url !== '/api/development-plan'),
+      ),
+  );
 });
 
 void test('Japanese route uses durable ability nodes while retaining IRODORI order and source mappings', () => {
