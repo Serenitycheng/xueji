@@ -119,7 +119,12 @@ export function DirectionCard({
   const unit = w.units.find((u) => u.id === d.currentUnitId),
     curriculumItem = currentCurriculumItem(w, d),
     action = w.actions.find((a) => a.id === d.currentActionId),
-    last = w.records.filter((r) => r.directionId === d.id).at(-1);
+    last = w.records.filter((r) => r.directionId === d.id).at(-1),
+    lastResult = w.records
+      .filter((r) => r.directionId === d.id && r.result)
+      .at(-1)?.result,
+    currentContent = curriculumItem?.step?.title ?? unit?.name,
+    curriculum = getCurriculum(d.curriculumId);
   return (
     <article className="learning-card">
       <div className="learning-card-top">
@@ -129,37 +134,44 @@ export function DirectionCard({
         </span>
         {d.origin === 'legacy' && <small>沿用旧档案</small>}
       </div>
-      <h2>{d.name}</h2>
-      {getCurriculum(d.curriculumId) && (
-        <p className="hint">
-          路线已就绪 · {curriculumStepCount(getCurriculum(d.curriculumId)!)}{' '}
-          个具体小节
-        </p>
-      )}
+      <div className="learning-card-heading">
+        <h2>{d.name}</h2>
+        {curriculum && (
+          <p className="hint">
+            学习路线 · {curriculumStepCount(curriculum)} 节
+          </p>
+        )}
+      </div>
       <dl>
         <dt>当前内容</dt>
-        <dd>
-          {curriculumItem?.step?.title ??
-            unit?.name ??
+        <dd className={currentContent ? 'current-content' : 'empty-value'}>
+          {currentContent ??
             (d.curriculumId
               ? '从路线中选择当前正在学的小节'
               : '尚未确定，可以直接写下当前内容')}
         </dd>
         <dt>上次停点</dt>
-        <dd>
-          {w.records.filter((r) => r.directionId === d.id && r.result).at(-1)
-            ?.result || '还没有停点记录'}
+        <dd className={lastResult ? undefined : 'empty-value'}>
+          {lastResult || '还没有停点记录'}
         </dd>
         <dt>{d.kind === 'reading' ? '正在思考' : '当前卡点'}</dt>
-        <dd>{unit?.blocker || '尚未记录'}</dd>
+        <dd className={unit?.blocker ? undefined : 'empty-value'}>
+          {unit?.blocker || '尚未记录'}
+        </dd>
       </dl>
       <div className="next-step">
-        <small>已保存的下一步</small>
-        <p>{action?.title ?? '下一步尚未确定'}</p>
+        <small>下一步</small>
+        <p className={action?.title ? undefined : 'empty-value'}>
+          {action?.title ?? '下一步尚未确定'}
+        </p>
         {action?.start && <span>从 {action.start} 开始</span>}
         {last?.nextMode === 'keep' && <small>上次记录未更新下一步</small>}
       </div>
-      <Button onClick={() => open(d.id)}>
+      <Button
+        variant="ghost"
+        className="learning-continue"
+        onClick={() => open(d.id)}
+      >
         继续学习
         <ArrowRight size={16} />
       </Button>
@@ -187,14 +199,14 @@ export function LearningHome({ state, actions, open }: Props) {
       Number(b.id === recent) - Number(a.id === recent),
   );
   return (
-    <>
+    <section className="learning-home" aria-labelledby="learning-home-title">
       <div className="page-heading">
         <div>
           <div className="eyebrow">PICK UP WHERE YOU LEFT OFF</div>
-          <h1>继续学习</h1>
+          <h1 id="learning-home-title">继续学习</h1>
           <p>找到上次的起点，把下一步留给下次的自己。</p>
         </div>
-        <Button onClick={() => actions.navigate('routes')}>
+        <Button variant="outline" onClick={() => actions.navigate('routes')}>
           <Plus />
           新建学习方向
         </Button>
@@ -218,14 +230,16 @@ export function LearningHome({ state, actions, open }: Props) {
         </section>
       ) : (
         <>
-          <p className="hint">进行中的方向 · {active.length}</p>
+          <p className="hint home-direction-count">
+            进行中的方向 · {active.length}
+          </p>
           <div className="learning-grid">
             {sorted.slice(0, 6).map((d) => (
               <DirectionCard key={d.id} d={d} w={w} open={open} />
             ))}
           </div>
           {sorted.length > 6 && (
-            <details>
+            <details className="home-more-directions">
               <summary>其他 {sorted.length - 6} 个进行中的方向</summary>
               <div className="learning-grid">
                 {sorted.slice(6).map((d) => (
@@ -244,7 +258,7 @@ export function LearningHome({ state, actions, open }: Props) {
           </Button>
         </div>
       )}
-    </>
+    </section>
   );
 }
 export function DirectionsView({ state, actions, open }: Props) {
