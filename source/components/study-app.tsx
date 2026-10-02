@@ -139,6 +139,7 @@ export default function StudyApp() {
     d = w.directions.find((d) => d.id === directionId);
   return (
     <SidebarProvider
+      className={view === 'today' ? 'learning-home-shell' : undefined}
       style={{ '--sidebar-width': '232px' } as CSSProperties}
       onFocusCapture={(e) => {
         if (

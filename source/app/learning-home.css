@@ -1,0 +1,224 @@
+/* The paper treatment stays on the home page; learning views keep their layout. */
+.learning-home-shell {
+  --background: #f5f3ee;
+  --foreground: #302e2b;
+  --card: #fffefa;
+  --primary: #5b5f81;
+  --primary-foreground: #fff;
+  --secondary: #eeedf3;
+  --secondary-foreground: #505473;
+  --muted-foreground: #777269;
+  --border: #e3ded5;
+  --sidebar: #fcfaf6;
+  --sidebar-foreground: #595750;
+  --sidebar-accent: #eeedf3;
+  --sidebar-accent-foreground: #505473;
+  --sidebar-border: #e3ded5;
+  color: var(--foreground);
+  background: var(--background);
+  font-family:
+    'Microsoft YaHei UI', 'PingFang SC', 'Noto Sans CJK SC', system-ui,
+    sans-serif;
+}
+
+.learning-home-shell .topbar {
+  background: var(--sidebar);
+  border-color: var(--border);
+}
+
+.learning-home-shell .brand strong,
+.learning-home :is(h1, h2) {
+  font-family:
+    'Noto Serif CJK SC', 'Songti SC', 'STSong', 'SimSun', Georgia, serif;
+  letter-spacing: 0;
+}
+
+.learning-home-shell .brand-symbol {
+  background: var(--primary);
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.learning-home-shell .brand strong span {
+  font-family: 'Microsoft YaHei UI', system-ui, sans-serif;
+}
+
+.learning-home {
+  padding-bottom: 40px;
+}
+
+.learning-home .page-heading {
+  align-items: flex-end;
+  padding-bottom: 26px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.learning-home .page-heading h1 {
+  margin: 8px 0 10px;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.learning-home .page-heading p {
+  line-height: 1.75;
+}
+
+.learning-home .eyebrow {
+  color: var(--muted-foreground);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.learning-home .home-direction-count {
+  margin: 0 0 16px;
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+
+.learning-home .learning-grid {
+  gap: 24px;
+}
+
+.learning-home .learning-card {
+  gap: 20px;
+  padding: 26px 28px 20px;
+  border-radius: 11px;
+  box-shadow: 0 3px 0 rgb(81 67 45 / 3%);
+}
+
+.learning-home .learning-card-top {
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+
+.learning-home .learning-card-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.learning-home .learning-card h2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.learning-home .learning-card-heading .hint {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+
+.learning-home .learning-card dl {
+  grid-template-columns: 76px minmax(0, 1fr);
+  gap: 12px 14px;
+  line-height: 1.75;
+}
+
+.learning-home .learning-card dt {
+  color: var(--muted-foreground);
+  font-size: 13px;
+}
+
+.learning-home .current-content {
+  font-weight: 600;
+}
+
+.learning-home .next-step {
+  gap: 7px;
+  margin-top: 2px;
+  padding: 16px 0 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  line-height: 1.75;
+}
+
+.learning-home .next-step small {
+  color: var(--muted-foreground);
+  font-size: 12px;
+}
+
+.learning-home .next-step p {
+  color: var(--foreground);
+  font-size: 15px;
+}
+
+.learning-home .empty-value,
+.learning-home .next-step .empty-value {
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+
+.learning-home .learning-continue {
+  min-height: 40px;
+  margin-left: -12px;
+  padding-inline: 12px;
+  color: var(--primary);
+  font-size: 14px;
+}
+
+.learning-home .learning-continue:hover {
+  background: var(--secondary);
+}
+
+.learning-home .home-more-directions {
+  margin-top: 24px;
+}
+
+.learning-home .home-more-directions summary {
+  margin-bottom: 16px;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dark .learning-home-shell {
+  --background: #222320;
+  --foreground: #eeece6;
+  --card: #2b2c28;
+  --primary: #b4b7db;
+  --primary-foreground: #24243c;
+  --secondary: #373743;
+  --secondary-foreground: #d3d5ec;
+  --muted-foreground: #b0aca2;
+  --border: #42433c;
+  --sidebar: #272824;
+  --sidebar-foreground: #d6d3cc;
+  --sidebar-accent: #373743;
+  --sidebar-accent-foreground: #d3d5ec;
+  --sidebar-border: #42433c;
+}
+
+@media (max-width: 900px) {
+  .learning-home .page-heading {
+    align-items: flex-start;
+  }
+
+  .learning-home .page-heading h1 {
+    font-size: 30px;
+  }
+
+  .learning-home .learning-card {
+    padding: 22px 22px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .learning-home .page-heading {
+    flex-direction: column;
+    gap: 18px;
+    padding-bottom: 22px;
+  }
+
+  .learning-home .learning-card dl {
+    grid-template-columns: 64px minmax(0, 1fr);
+    column-gap: 12px;
+  }
+
+  .learning-home .learning-card h2 {
+    font-size: 22px;
+  }
+}
