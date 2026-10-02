@@ -18,6 +18,7 @@ import {
   Code2,
 } from 'lucide-react';
 import { Button } from './ui/button';
+import { PageColorPicker } from './appearance';
 import {
   SidebarProvider,
   Sidebar,
@@ -277,22 +278,25 @@ export default function StudyApp() {
                       : '设置'))}
             </strong>
           </div>
-          <Button
-            variant="ghost"
-            className="sync-indicator"
-            onClick={() => navigate('cloud')}
-          >
-            <Cloud size={15} />
-            {busy
-              ? '正在保存'
-              : sync.drafts.length
-                ? '本机修改待确认'
-                : !sync.online
-                  ? '离线 · 本机缓存'
-                  : sync.cloudAhead
-                    ? '云端有新内容'
-                    : '已连接云端'}
-          </Button>
+          <div className="topbar-actions">
+            <PageColorPicker />
+            <Button
+              variant="ghost"
+              className="sync-indicator"
+              onClick={() => navigate('cloud')}
+            >
+              <Cloud size={15} />
+              {busy
+                ? '正在保存'
+                : sync.drafts.length
+                  ? '本机修改待确认'
+                  : !sync.online
+                    ? '离线 · 本机缓存'
+                    : sync.cloudAhead
+                      ? '云端有新内容'
+                      : '已连接云端'}
+            </Button>
+          </div>
         </header>
         <main className="main-content">
           {(sync.drafts.length > 0 || sync.cloudAhead) && view !== 'cloud' && (

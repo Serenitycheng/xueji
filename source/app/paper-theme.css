@@ -1,0 +1,509 @@
+.paper-theme {
+  --page-tone: #80674d;
+  --page-ink: #80674d;
+  --font-ui:
+    'Microsoft YaHei UI', 'PingFang SC', 'Noto Sans CJK SC', system-ui,
+    sans-serif;
+  --font-title:
+    'Noto Serif CJK SC', 'Songti SC', 'STSong', 'SimSun', Georgia, serif;
+  --background: color-mix(in srgb, var(--page-tone) 5%, #f5f2ec);
+  --foreground: #302d28;
+  --card: color-mix(in srgb, var(--page-tone) 1%, #fffefa);
+  --primary: var(--page-ink);
+  --primary-foreground: #fff;
+  --secondary: color-mix(in srgb, var(--page-tone) 11%, #faf7f0);
+  --muted: color-mix(in srgb, var(--page-tone) 5%, #faf7f0);
+  --muted-foreground: #706a61;
+  --border: color-mix(in srgb, var(--page-tone) 17%, #e6dfd5);
+  --sidebar: color-mix(in srgb, var(--page-tone) 5%, #fcfaf6);
+}
+
+.paper-theme.dark {
+  --background: color-mix(in srgb, var(--page-tone) 7%, #222320);
+  --foreground: #eeece6;
+  --card: color-mix(in srgb, var(--page-tone) 5%, #2b2c28);
+  --primary: color-mix(in srgb, var(--page-tone) 30%, #faf3e9);
+  --primary-foreground: #222320;
+  --secondary: color-mix(in srgb, var(--page-tone) 20%, #30312d);
+  --muted: color-mix(in srgb, var(--page-tone) 10%, #30312d);
+  --muted-foreground: #b0aca2;
+  --border: color-mix(in srgb, var(--page-tone) 15%, #42433c);
+  --sidebar: color-mix(in srgb, var(--page-tone) 6%, #272824);
+}
+
+.paper-theme body {
+  font-family: var(--font-ui);
+  color: var(--foreground);
+  background: var(--background);
+}
+
+.paper-theme :is(button, input, textarea, select) {
+  font-family: inherit;
+}
+
+.paper-theme
+  :is(
+    h1,
+    h2,
+    h3,
+    h4,
+    .brand strong,
+    [data-slot='dialog-title'],
+    [data-slot='alert-dialog-title'],
+    [data-slot='sheet-title'],
+    [data-slot='popover-title']
+  ) {
+  font-family: var(--font-title);
+  letter-spacing: 0;
+}
+
+.paper-theme .page-heading {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.paper-theme .page-heading h1 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.paper-theme .page-heading p {
+  line-height: 1.75;
+}
+
+.paper-theme
+  :is(
+    .content-panel,
+    .learning-card,
+    .japanese-dashboard > section,
+    .japanese-route-card,
+    .login-card
+  ) {
+  border-radius: 11px;
+  border-color: var(--border);
+  background: var(--card);
+  box-shadow: 0 3px 0 rgb(81 67 45 / 3%);
+}
+
+.paper-theme
+  :is(
+    .curriculum-unit,
+    .curriculum-node,
+    .lesson-guide-card,
+    .lesson-state-card
+  ) {
+  border-radius: 9px;
+}
+
+.paper-theme
+  :is(
+    [data-slot='dialog-content'],
+    [data-slot='alert-dialog-content'],
+    [data-slot='popover-content'],
+    [data-slot='sheet-content']
+  ) {
+  border-color: var(--border);
+  color: var(--foreground);
+  background: var(--card);
+}
+
+.paper-theme .wide-dialog {
+  border-radius: 11px !important;
+}
+
+.paper-theme .brand-symbol {
+  border-radius: 10px;
+  color: var(--primary-foreground);
+  box-shadow: none;
+}
+
+.paper-theme .brand strong span {
+  font-family: var(--font-ui);
+}
+
+.paper-theme .topbar {
+  background: var(--sidebar);
+}
+
+.paper-theme
+  :is(
+    .eyebrow,
+    .brand strong span,
+    [data-slot='sidebar-group-label'],
+    [data-slot='sidebar-menu-button'],
+    .sidebar-note,
+    .settings-nav,
+    .profile small,
+    .breadcrumb,
+    .learning-card-top,
+    .learning-card dt,
+    .learning-context dt,
+    .next-step small,
+    .direction-title span,
+    .reference-row p,
+    .unit-row small,
+    .reference-target,
+    summary,
+    .learning-judgment,
+    .material-name small,
+    [data-slot='table-head'],
+    .panel-description,
+    .security-note,
+    .budget-amount small,
+    .data-note,
+    .material-analysis small,
+    .app-footer,
+    .course-card-head,
+    .course-card small,
+    .goal-summary span,
+    .inline-note,
+    .plan-number,
+    .plan-description,
+    .plan-resources p,
+    .task-time,
+    .task-goal,
+    .task-resource,
+    .task-status,
+    .task-kind,
+    .stat-block > span,
+    .stat-block p,
+    .stat-block strong small,
+    .search-field svg,
+    .catalog-card > p,
+    .upload-zone span,
+    .connection-pill,
+    .week-budget > div > span,
+    .week-budget > div > small,
+    .week-budget strong small,
+    .rest-days label,
+    .count-label,
+    .csv-preview small,
+    .override-list span,
+    .override-list p,
+    .history-row p,
+    .log-list > div,
+    .calendar-day span,
+    .calendar-axis,
+    .calendar-course small,
+    .activity-chart span,
+    .activity-chart small,
+    .subject-progress-list span,
+    .subject-progress-list small,
+    .task-sheet [data-slot='sheet-description'],
+    .task-sheet-top > span:last-child,
+    .task-resource-block p,
+    .step-checklist small,
+    .answer-explanation
+  ) {
+  color: var(--muted-foreground);
+}
+
+.paper-theme
+  :is(
+    .breadcrumb strong,
+    .next-step p,
+    .goal-summary p,
+    .stage-list li,
+    .history-row strong,
+    .step-checklist label,
+    .upload-zone strong,
+    .csv-preview span
+  ) {
+  color: var(--foreground);
+}
+
+.paper-theme
+  :is(
+    .file-symbol,
+    .settings-icon,
+    .empty-icon,
+    .mini-icon,
+    .avatar,
+    .catalog-actions a,
+    .development-plan-note a,
+    .task-resource-block > div
+  ) {
+  color: var(--primary);
+}
+
+.paper-theme
+  :is(
+    .avatar,
+    .file-symbol,
+    .settings-icon,
+    .setup-icon,
+    .coach-panel,
+    .orbit-center,
+    .section-heading h2 span,
+    .current-unit,
+    .next-action,
+    .week-budget > div.is-today,
+    .stage-list li > span
+  ) {
+  background: var(--secondary);
+}
+
+.paper-theme
+  :is(
+    .comparison pre,
+    .version-preview,
+    .copy-preview,
+    .rule-suggestion,
+    .ratio-field,
+    .task-resource-block,
+    .defer-form,
+    .history-mark,
+    .activity-track,
+    .budget-bar,
+    .plan-card.chosen,
+    .development-plan-note
+  ) {
+  background: var(--muted);
+}
+
+.paper-theme
+  :is(
+    .direction-row,
+    .unit-row,
+    .reference-row,
+    .record-row,
+    .history-row,
+    .draft-row,
+    .learning-field select,
+    .development-plan-note,
+    .calendar-day,
+    .calendar-column,
+    .calendar-course,
+    .upload-zone,
+    .empty-state,
+    .learning-empty,
+    .focus-orbit:before
+  ) {
+  border-color: var(--border);
+}
+
+.paper-theme
+  :is(.weekly-calendar select, .calendar-course, .coach-panel button) {
+  color: var(--foreground);
+  background-color: var(--card);
+}
+
+.paper-theme .calendar-column {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 63px,
+    var(--border) 63px,
+    var(--border) 64px
+  );
+}
+
+.paper-theme :is(.upload-zone, .empty-state) {
+  color: var(--primary);
+  background: var(--card);
+}
+
+.paper-theme .calendar-today {
+  background-color: var(--secondary);
+}
+
+.paper-theme .next-step {
+  border-left-color: var(--primary);
+  background: var(--muted);
+  line-height: 1.75;
+}
+
+.paper-theme .learning-grid {
+  gap: 24px;
+}
+
+.paper-theme .learning-card {
+  padding: 26px 28px 20px;
+  gap: 20px;
+}
+
+.paper-theme .learning-card-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.paper-theme .learning-card h2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.paper-theme .learning-card-heading .hint {
+  margin: 0;
+}
+
+.paper-theme .learning-card dl {
+  gap: 12px 14px;
+  line-height: 1.75;
+}
+
+.paper-theme .current-content {
+  font-weight: 600;
+}
+
+.paper-theme .learning-card .next-step {
+  margin-top: 2px;
+  padding: 16px 0 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+}
+
+.paper-theme .empty-value,
+.paper-theme .next-step .empty-value {
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+
+.paper-theme .learning-continue {
+  min-height: 40px;
+  margin-left: -12px;
+  color: var(--primary);
+}
+
+.paper-theme .home-direction-count {
+  margin-bottom: 16px;
+}
+
+.home-more-directions {
+  margin-top: 24px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.paper-theme .breadcrumb {
+  min-width: 0;
+}
+
+.paper-theme .breadcrumb strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-color-trigger {
+  color: var(--muted-foreground);
+}
+
+.page-color-panel {
+  width: 280px;
+  max-width: calc(100vw - 28px);
+  padding: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgb(48 45 40 / 10%);
+}
+
+.page-color-panel [data-slot='popover-description'] {
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.paper-color-options {
+  display: flex;
+  gap: 6px;
+  margin: 6px 0;
+  padding: 0;
+  border: 0;
+}
+
+.paper-color-options button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(48 45 40 / 10%);
+  border-radius: 50%;
+  color: #fff;
+}
+
+.paper-color-options button[aria-pressed='true'] {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.paper-color-options button:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 3px;
+}
+
+.paper-custom-color {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.paper-custom-color input {
+  width: 42px;
+  height: 30px;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  cursor: pointer;
+}
+
+.paper-theme .login-page {
+  position: relative;
+  background: var(--background);
+}
+
+.login-appearance {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.paper-theme .login-card {
+  box-shadow: 0 8px 30px rgb(48 45 40 / 5%);
+}
+
+@media (max-width: 900px) {
+  .paper-theme .learning-card {
+    padding: 22px 22px 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .paper-theme .page-heading h1 {
+    font-size: 27px;
+  }
+
+  .page-color-trigger span {
+    display: none;
+  }
+
+  .topbar-actions {
+    gap: 0;
+  }
+
+  .paper-theme .topbar {
+    gap: 10px;
+  }
+
+  .paper-theme .learning-card h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 380px) {
+  .topbar-actions .sync-indicator {
+    font-size: 0;
+    padding-inline: 8px;
+  }
+}
