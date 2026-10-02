@@ -16,6 +16,7 @@ import {
   Languages,
   Camera,
   Code2,
+  GraduationCap,
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { PageColorPicker } from './appearance';
@@ -55,6 +56,9 @@ export const subjectIcons = {
   photo: Camera,
   development: Code2,
 };
+const directionIcons = new Map(
+  Object.entries({ ...subjectIcons, professional: GraduationCap }),
+);
 export type Actions = {
   run: (
     op: string,
@@ -169,6 +173,7 @@ export default function StudyApp() {
                 <SidebarMenuItem key={n.id}>
                   <SidebarMenuButton
                     isActive={view === n.id}
+                    aria-current={view === n.id ? 'page' : undefined}
                     onClick={() => navigate(n.id)}
                     className="nav-item"
                   >
@@ -188,17 +193,27 @@ export default function StudyApp() {
               {w.directions
                 .filter((d) => d.status === 'active')
                 .slice(0, 8)
-                .map((d) => (
-                  <SidebarMenuItem key={d.id}>
-                    <SidebarMenuButton
-                      isActive={view === 'learn' && directionId === d.id}
-                      onClick={() => open(d.id)}
-                    >
-                      <BookOpen />
-                      <span>{d.name}</span>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
+                .map((d) => {
+                  const Icon =
+                    directionIcons.get(d.curriculumId ?? '') ??
+                    (d.kind === 'course' ? GraduationCap : BookOpen);
+                  return (
+                    <SidebarMenuItem key={d.id}>
+                      <SidebarMenuButton
+                        isActive={view === 'learn' && directionId === d.id}
+                        aria-current={
+                          view === 'learn' && directionId === d.id
+                            ? 'page'
+                            : undefined
+                        }
+                        onClick={() => open(d.id)}
+                      >
+                        <Icon />
+                        <span>{d.name}</span>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  );
+                })}
               {w.directions.filter((d) => d.status === 'active').length > 8 && (
                 <SidebarMenuItem>
                   <SidebarMenuButton onClick={() => navigate('routes')}>
@@ -208,19 +223,12 @@ export default function StudyApp() {
               )}
             </SidebarMenu>
           </SidebarGroup>
-          <div className="sidebar-note">
-            <span className="eyebrow">ONE STEP AT A TIME</span>
-            <p>
-              留下一个起点，
-              <br />
-              下次从容接上。
-            </p>
-          </div>
         </SidebarContent>
         <SidebarFooter>
           <Button
             variant="ghost"
-            className="settings-nav"
+            className={`settings-nav${view === 'settings' ? ' is-active' : ''}`}
+            aria-current={view === 'settings' ? 'page' : undefined}
             onClick={() => navigate('settings')}
           >
             <Settings size={18} />
@@ -228,7 +236,8 @@ export default function StudyApp() {
           </Button>
           <Button
             variant="ghost"
-            className="settings-nav"
+            className={`settings-nav${view === 'cloud' ? ' is-active' : ''}`}
+            aria-current={view === 'cloud' ? 'page' : undefined}
             onClick={() => navigate('cloud')}
           >
             <Cloud size={18} />

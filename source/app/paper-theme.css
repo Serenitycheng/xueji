@@ -2,11 +2,11 @@
   --page-tone: #80674d;
   --page-ink: #80674d;
   --font-ui:
-    'Microsoft YaHei UI', 'PingFang SC', 'Noto Sans CJK SC', system-ui,
-    sans-serif;
+    'Noto Sans SC', 'Microsoft YaHei UI', 'PingFang SC', 'Noto Sans CJK SC',
+    system-ui, sans-serif;
   --font-title:
-    'Noto Serif CJK SC', 'Songti SC', 'STSong', 'SimSun', Georgia, serif;
-  --background: color-mix(in srgb, var(--page-tone) 5%, #f5f2ec);
+    'Noto Serif SC', 'Noto Serif CJK SC', 'Songti SC', 'SimSun', Georgia, serif;
+  --background: color-mix(in srgb, var(--page-tone) 3%, #f7f6f2);
   --foreground: #302d28;
   --card: color-mix(in srgb, var(--page-tone) 1%, #fffefa);
   --primary: var(--page-ink);
@@ -14,8 +14,8 @@
   --secondary: color-mix(in srgb, var(--page-tone) 11%, #faf7f0);
   --muted: color-mix(in srgb, var(--page-tone) 5%, #faf7f0);
   --muted-foreground: #706a61;
-  --border: color-mix(in srgb, var(--page-tone) 17%, #e6dfd5);
-  --sidebar: color-mix(in srgb, var(--page-tone) 5%, #fcfaf6);
+  --border: color-mix(in srgb, var(--page-tone) 12%, #e7e5dd);
+  --sidebar: color-mix(in srgb, var(--page-tone) 6%, #f0efea);
 }
 
 .paper-theme.dark {
@@ -58,15 +58,16 @@
 }
 
 .paper-theme .page-heading {
-  padding-bottom: 24px;
+  padding-bottom: 22px;
+  margin-bottom: 24px;
   border-bottom: 1px solid var(--border);
 }
 
 .paper-theme .page-heading h1 {
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 1.45;
-  margin-bottom: 8px;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 10px;
 }
 
 .paper-theme .page-heading p {
@@ -84,7 +85,7 @@
   border-radius: 11px;
   border-color: var(--border);
   background: var(--card);
-  box-shadow: 0 3px 0 rgb(81 67 45 / 3%);
+  box-shadow: none;
 }
 
 .paper-theme
@@ -113,18 +114,193 @@
   border-radius: 11px !important;
 }
 
+.paper-theme .brand {
+  height: 88px;
+  flex-shrink: 0;
+  padding: 22px 24px;
+  gap: 12px;
+}
+
 .paper-theme .brand-symbol {
-  border-radius: 10px;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
   color: var(--primary-foreground);
   box-shadow: none;
 }
 
+.paper-theme .brand strong {
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
 .paper-theme .brand strong span {
   font-family: var(--font-ui);
+  font-size: 8px;
+  letter-spacing: 2px;
+  margin-top: 5px;
 }
 
 .paper-theme .topbar {
-  background: var(--sidebar);
+  height: 64px;
+  padding-inline: 36px;
+  background: transparent;
+}
+
+.paper-theme [data-slot='sidebar-content'] {
+  gap: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.paper-theme [data-slot='sidebar-group'] {
+  padding: 8px 14px;
+}
+
+.paper-theme [data-slot='sidebar-group-label'] {
+  height: auto;
+  min-height: 24px;
+  padding: 0 12px;
+  margin-bottom: 6px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.paper-theme [data-slot='sidebar-menu'] {
+  gap: 3px;
+}
+
+.paper-theme [data-slot='sidebar-menu-button'] {
+  position: relative;
+  height: 40px;
+  padding: 10px 12px;
+  gap: 10px;
+  border-radius: 7px;
+  font-size: 13px;
+}
+
+.paper-theme [data-slot='sidebar-menu-button'] > svg {
+  width: 17px;
+  height: 17px;
+  stroke-width: 1.6;
+}
+
+.paper-theme [data-slot='sidebar-menu-button'][data-active='true'] {
+  color: var(--primary);
+  background: var(--secondary);
+  font-weight: 600;
+}
+
+.paper-theme [data-slot='sidebar-menu-button'][data-active='true']::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  bottom: 11px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--primary);
+}
+
+.paper-theme [data-slot='sidebar-footer'] {
+  padding: 12px 14px 16px;
+  gap: 4px;
+}
+
+.paper-theme .settings-nav {
+  min-height: 36px;
+  padding: 8px 12px;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.paper-theme .settings-nav.is-active {
+  color: var(--primary);
+}
+
+.paper-theme .profile {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 14px 4px 0;
+}
+
+.paper-theme .profile > div {
+  min-width: 0;
+}
+
+.paper-theme .profile strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.paper-theme .profile small {
+  font-size: 10px;
+  margin-top: 3px;
+}
+
+.paper-theme .profile .avatar {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+}
+
+.paper-theme .profile > button {
+  padding-inline: 6px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+.paper-theme .main-content {
+  max-width: 1380px;
+  padding: 34px 36px 0;
+}
+
+.paper-theme .eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.paper-theme .learning-context {
+  gap: 24px;
+}
+
+.paper-theme .lesson-header h2 {
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.paper-theme .lesson-guide-grid {
+  gap: 24px;
+  padding: 2px 0 8px;
+}
+
+.paper-theme .lesson-guide-card {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.paper-theme .lesson-guide-card.is-goal {
+  padding-left: 24px;
+  border-left: 1px solid var(--border);
+}
+
+.paper-theme :is(.lesson-subheading, .lesson-completion-heading h3) {
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+
+.paper-theme .lesson-state-card {
+  border: 0;
+  padding: 14px 16px;
+  background: var(--muted);
 }
 
 .paper-theme
@@ -316,12 +492,12 @@
 }
 
 .paper-theme .learning-grid {
-  gap: 24px;
+  gap: 20px;
 }
 
 .paper-theme .learning-card {
-  padding: 26px 28px 20px;
-  gap: 20px;
+  padding: 24px 26px 18px;
+  gap: 16px;
 }
 
 .paper-theme .learning-card-heading {
@@ -331,7 +507,7 @@
 
 .paper-theme .learning-card h2 {
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.4;
 }
 
@@ -340,7 +516,7 @@
 }
 
 .paper-theme .learning-card dl {
-  gap: 12px 14px;
+  gap: 9px 14px;
   line-height: 1.75;
 }
 
@@ -355,6 +531,10 @@
   border-top: 1px solid var(--border);
   border-radius: 0;
   background: transparent;
+}
+
+.paper-theme .learning-card .next-step p {
+  font-size: 15px;
 }
 
 .paper-theme .empty-value,
@@ -474,12 +654,31 @@
 }
 
 @media (max-width: 900px) {
+  .paper-theme .main-content {
+    padding: 28px 24px 0;
+  }
+
   .paper-theme .learning-card {
     padding: 22px 22px 16px;
   }
 }
 
 @media (max-width: 767px) {
+  .paper-theme .main-content {
+    padding: 24px 18px 0;
+  }
+
+  .paper-theme .lesson-guide-card.is-goal {
+    border: 0;
+    padding: 14px 16px;
+    border-radius: 7px;
+    background: var(--muted);
+  }
+
+  .paper-theme .lesson-guide-grid {
+    gap: 16px;
+  }
+
   .paper-theme .page-heading h1 {
     font-size: 27px;
   }
@@ -493,6 +692,8 @@
   }
 
   .paper-theme .topbar {
+    height: 58px;
+    padding-inline: 18px;
     gap: 10px;
   }
 
