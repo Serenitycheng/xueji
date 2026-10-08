@@ -64,6 +64,7 @@ export type Unit = {
   origin: 'manual' | 'legacy-route' | 'curriculum';
   curriculumItemId?: string;
   completionParts?: CompletionPart[];
+  completed?: boolean;
   completedAt?: string;
   abilityStatus?: AbilityStatus;
   updatedAt: string;
@@ -133,20 +134,61 @@ export const evidenceLabels: Record<Evidence, string> = {
   teacher: '教师反馈',
 };
 export function completionPartsFor(
-  d: Pick<Direction, 'curriculumId'>,
+  _d: Pick<Direction, 'curriculumId'>,
 ): CompletionPart[] {
-  return d.curriculumId === 'stats' || d.curriculumId === 'linear'
-    ? stagedCompletionParts.map((part) => part.id)
-    : ['lesson'];
+  return ['lesson'];
 }
 export function unitCompletionProgress(
-  u: Pick<Unit, 'completionParts'> | undefined,
+  u:
+    | Pick<
+        Unit,
+        'completionParts' | 'completed' | 'completedAt' | 'abilityStatus'
+      >
+    | undefined,
   d: Pick<Direction, 'curriculumId'>,
 ) {
   const parts = completionPartsFor(d);
   const saved = new Set(u?.completionParts ?? []);
-  const done = parts.filter((part) => saved.has(part)).length;
-  return { parts, done, total: parts.length, complete: done === parts.length };
+  const legacyMathComplete =
+    (d.curriculumId === 'stats' || d.curriculumId === 'linear') &&
+    stagedCompletionParts.every((part) => saved.has(part.id));
+  const legacyAbilityComplete =
+    d.curriculumId === 'japanese' &&
+    (u?.abilityStatus === 'basic' || u?.abilityStatus === 'fluent');
+  const complete =
+    u?.completed ??
+    (!!u?.completedAt ||
+      saved.has('lesson') ||
+      legacyMathComplete ||
+      legacyAbilityComplete);
+  return { parts, done: complete ? 1 : 0, total: 1, complete };
+}
+export function curriculumCompletionProgress(
+  w: LearningWorkspace,
+  d: Direction,
+  itemId: string,
+) {
+  const related = curriculumUnitStates(w, d, itemId);
+  const states =
+    d.curriculumId === 'japanese'
+      ? related
+      : related.filter((unit) => unit.curriculumItemId === itemId);
+  const explicit = states
+    .filter((unit) => unit.completed !== undefined)
+    .toSorted((a, b) => a.updatedAt.localeCompare(b.updatedAt))
+    .at(-1);
+  if (explicit) return unitCompletionProgress(explicit, d);
+  if (d.curriculumId === 'japanese') {
+    const status = japaneseAbilityStatusFor(states);
+    return unitCompletionProgress(
+      { completed: status === 'basic' || status === 'fluent' },
+      d,
+    );
+  }
+  return unitCompletionProgress(
+    states.find((unit) => unit.curriculumItemId === itemId),
+    d,
+  );
 }
 export function japaneseAbilityStatusFor(
   value: readonly Unit[] | Unit | undefined,
@@ -247,6 +289,8 @@ export function validateLearning(w: LearningWorkspace) {
     japaneseAbilityStatuses.map((status) => status.id),
   );
   for (const u of w.units) {
+    if (u.completed !== undefined && typeof u.completed !== 'boolean')
+      throw new Error('STUDY_INVALID_LEARNING_COMPLETION');
     if (
       u.completionParts !== undefined &&
       (!Array.isArray(u.completionParts) ||
@@ -425,6 +469,50 @@ export function applyLearning(
     if (!u) throw new LearningError('找不到这个方向中的单元。');
     return u;
   };
+  const getRouteUnit = (d: Direction, itemId: unknown) => {
+    const item = findCurriculumItem(
+      getCurriculum(d.curriculumId),
+      str(itemId, 100),
+    );
+    if (!item)
+      throw new LearningError('找不到这个方向中的路线小节，请刷新后重试。');
+    const related =
+      d.curriculumId === 'japanese'
+        ? curriculumUnitStates(w, d, item.id)
+        : w.units.filter(
+            (unit) =>
+              unit.directionId === d.id && unit.curriculumItemId === item.id,
+          );
+    let u =
+      related.find((unit) => unit.id === d.currentUnitId) ??
+      related.find((unit) => unit.curriculumItemId === item.id) ??
+      related.at(-1);
+    if (!u) {
+      u = {
+        id: curriculumUnitId(d.id, item.id),
+        directionId: d.id,
+        name: item.name,
+        scope: item.scope,
+        endCondition: item.endCondition,
+        contact: 'unseen',
+        mastery: 'unknown',
+        evidence: '',
+        blocker: '',
+        gap: '',
+        archived: false,
+        origin: 'curriculum',
+        curriculumItemId: item.id,
+        updatedAt: now,
+      };
+      w.units.push(u);
+    } else {
+      u.name = item.name;
+      u.scope = item.scope;
+      u.endCondition = item.endCondition;
+    }
+    u.archived = false;
+    return u;
+  };
   const makeAction = (
     d: Direction,
     values: Record<string, unknown>,
@@ -466,47 +554,7 @@ export function applyLearning(
     });
   } else if (op === 'learning.route.select') {
     const d = getDirection();
-    const item = findCurriculumItem(
-      getCurriculum(d.curriculumId),
-      str(input.itemId, 100),
-    );
-    if (!item)
-      throw new LearningError('找不到这个方向中的路线小节，请刷新后重试。');
-    const related =
-      d.curriculumId === 'japanese'
-        ? curriculumUnitStates(w, d, item.id)
-        : w.units.filter(
-            (unit) =>
-              unit.directionId === d.id && unit.curriculumItemId === item.id,
-          );
-    let u =
-      related.find((unit) => unit.id === d.currentUnitId) ??
-      related.find((unit) => unit.curriculumItemId === item.id) ??
-      related.at(-1);
-    if (!u) {
-      u = {
-        id: curriculumUnitId(d.id, item.id),
-        directionId: d.id,
-        name: item.name,
-        scope: item.scope,
-        endCondition: item.endCondition,
-        contact: 'unseen',
-        mastery: 'unknown',
-        evidence: '',
-        blocker: '',
-        gap: '',
-        archived: false,
-        origin: 'curriculum',
-        curriculumItemId: item.id,
-        updatedAt: now,
-      };
-      w.units.push(u);
-    } else {
-      u.name = item.name;
-      u.scope = item.scope;
-      u.endCondition = item.endCondition;
-    }
-    u.archived = false;
+    const u = getRouteUnit(d, input.itemId);
     d.currentUnitId = u.id;
     d.updatedAt = now;
     message = '已保存当前学习位置';
@@ -640,32 +688,26 @@ export function applyLearning(
     message = '能力状态已保存';
   } else if (op === 'learning.unit.completion') {
     const d = getDirection(),
-      u = getUnit(d, input.unitId ?? d.currentUnitId);
-    if (!u) throw new LearningError('请先选择当前学习小节。');
-    const allowed = completionPartsFor(d);
-    const part = choice(
-      input.part ?? (allowed.length === 1 ? 'lesson' : ''),
-      allowed,
-    );
+      u =
+        input.itemId !== undefined
+          ? getRouteUnit(d, input.itemId)
+          : getUnit(d, input.unitId ?? d.currentUnitId);
+    if (!u) throw new LearningError('请选择要标记的小节。');
+    if (input.part !== undefined && input.part !== 'lesson')
+      throw new LearningError('完成方式已调整为整节完成，请刷新页面。');
     if (input.completed !== undefined && typeof input.completed !== 'boolean')
       throw new LearningError('请选择有效的完成状态。');
     const completed = input.completed !== false;
-    const saved = new Set(
-      (u.completionParts ?? []).filter((value) => allowed.includes(value)),
-    );
-    if (completed) saved.add(part);
-    else saved.delete(part);
-    u.completionParts = allowed.filter((value) => saved.has(value));
-    u.completedAt =
-      u.completionParts.length === allowed.length ? now : undefined;
+    const saved = new Set(u.completionParts ?? []);
+    if (completed) saved.add('lesson');
+    else saved.delete('lesson');
+    u.completionParts = [...saved];
+    u.completed = completed;
+    u.completedAt = completed ? (u.completedAt ?? now) : undefined;
     if (completed) u.contact = 'seen';
     u.updatedAt = now;
     d.updatedAt = now;
-    message = completed
-      ? u.completedAt
-        ? '本节已完成，掌握判断保持原状'
-        : '本节进度已保存，掌握判断保持原状'
-      : '已取消这一完成项，掌握判断保持原状';
+    message = completed ? '已标记完成' : '已取消完成';
   } else if (op === 'learning.action.save') {
     const d = getDirection();
     if (input.clear === true) {

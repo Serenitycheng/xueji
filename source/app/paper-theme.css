@@ -6,20 +6,20 @@
     system-ui, sans-serif;
   --font-title:
     'Noto Serif SC', 'Noto Serif CJK SC', 'Songti SC', 'SimSun', Georgia, serif;
-  --background: color-mix(in srgb, var(--page-tone) 3%, #f7f6f2);
+  --background: color-mix(in srgb, var(--page-tone) 18%, #f6f6f1);
   --foreground: #302d28;
-  --card: color-mix(in srgb, var(--page-tone) 1%, #fffefa);
+  --card: color-mix(in srgb, var(--page-tone) 3%, #fffefa);
   --primary: var(--page-ink);
   --primary-foreground: #fff;
   --secondary: color-mix(in srgb, var(--page-tone) 11%, #faf7f0);
   --muted: color-mix(in srgb, var(--page-tone) 5%, #faf7f0);
   --muted-foreground: #706a61;
   --border: color-mix(in srgb, var(--page-tone) 12%, #e7e5dd);
-  --sidebar: color-mix(in srgb, var(--page-tone) 6%, #f0efea);
+  --sidebar: color-mix(in srgb, var(--page-tone) 12%, #f0efea);
 }
 
 .paper-theme.dark {
-  --background: color-mix(in srgb, var(--page-tone) 7%, #222320);
+  --background: color-mix(in srgb, var(--page-tone) 12%, #222320);
   --foreground: #eeece6;
   --card: color-mix(in srgb, var(--page-tone) 5%, #2b2c28);
   --primary: color-mix(in srgb, var(--page-tone) 30%, #faf3e9);
@@ -28,7 +28,7 @@
   --muted: color-mix(in srgb, var(--page-tone) 10%, #30312d);
   --muted-foreground: #b0aca2;
   --border: color-mix(in srgb, var(--page-tone) 15%, #42433c);
-  --sidebar: color-mix(in srgb, var(--page-tone) 6%, #272824);
+  --sidebar: color-mix(in srgb, var(--page-tone) 12%, #272824);
 }
 
 .paper-theme body {
@@ -264,6 +264,90 @@
 .paper-theme .eyebrow {
   font-size: 11px;
   letter-spacing: 0.06em;
+}
+
+.paper-theme .current-learning-position {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.paper-theme .current-learning-position > span {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+.paper-theme .current-learning-position > strong {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+.paper-theme :is(.curriculum-step-row, .curriculum-node-row) {
+  position: relative;
+}
+
+.paper-theme .curriculum-step {
+  margin-top: 8px;
+}
+
+.paper-theme .curriculum-step > summary {
+  min-height: 58px;
+  padding: 14px 104px 14px 8px;
+}
+
+.paper-theme .curriculum-node > summary {
+  padding-right: 104px;
+}
+
+.paper-theme :is(.curriculum-step, .curriculum-node) > summary::after {
+  display: none;
+}
+
+.paper-theme .step-disclosure {
+  flex-shrink: 0;
+  color: var(--muted-foreground);
+}
+
+.paper-theme
+  :is(.curriculum-step, .curriculum-node)[open]
+  > summary
+  .step-disclosure {
+  transform: rotate(180deg);
+}
+
+.paper-theme .lesson-complete-toggle {
+  min-height: 32px;
+  height: 32px;
+  width: 80px;
+  padding-inline: 8px;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.paper-theme
+  :is(.curriculum-step-row, .curriculum-node-row)
+  > .lesson-complete-toggle {
+  position: absolute;
+  right: 8px;
+  top: 13px;
+}
+
+.paper-theme .lesson-complete-toggle[aria-pressed='true'] {
+  color: var(--primary);
+  background: var(--secondary);
+  border: 1px solid var(--border);
 }
 
 .paper-theme .learning-context {
@@ -664,6 +748,19 @@
 }
 
 @media (max-width: 767px) {
+  .paper-theme .curriculum-panel {
+    padding: 20px 16px;
+  }
+
+  .paper-theme :is(.curriculum-unit-body, .curriculum-node-body) {
+    padding-inline: 8px;
+  }
+
+  .paper-theme .current-learning-position {
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
   .paper-theme .main-content {
     padding: 24px 18px 0;
   }

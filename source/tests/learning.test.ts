@@ -16,6 +16,8 @@ import {
   validateLearning,
   completionPartsFor,
   unitCompletionProgress,
+  curriculumCompletionProgress,
+  stagedCompletionParts,
 } from '../lib/learning';
 import { getCurriculum } from '../lib/curriculum';
 import { readStoredState } from '../lib/data-protection';
@@ -72,7 +74,7 @@ test('A06 A08 A09 contact, unknown and self assessment are independent', () => {
   assert.equal(s.learning!.units[0].evidenceType, 'self');
   assert.equal(s.learning!.records.at(-1)!.previousMastery, 'unknown');
 });
-test('lesson completion is independent, with four required parts only for stats and linear algebra', () => {
+void test('every lesson has one independent completion state', () => {
   const setupResult = setup();
   let s = setupResult.s;
   const id = setupResult.id;
@@ -92,7 +94,75 @@ test('lesson completion is independent, with four required parts only for stats 
   });
   assert.equal(s.learning!.units[0].completedAt, undefined);
 
-  s = ensureLearning(freshState());
+  assert.equal(s.learning!.units[0].completed, false);
+  assert.equal(
+    unitCompletionProgress(s.learning!.units[0], s.learning!.directions[0])
+      .complete,
+    false,
+  );
+  for (const curriculumId of [
+    'linear',
+    'stats',
+    'japanese',
+    'photo',
+    'development',
+    'professional',
+  ])
+    assert.deepEqual(completionPartsFor({ curriculumId }), ['lesson']);
+});
+void test('a curriculum lesson or professional node can be completed without selecting a current lesson', () => {
+  for (const curriculumId of [
+    'linear',
+    'stats',
+    'japanese',
+    'photo',
+    'development',
+    'professional',
+  ]) {
+    const original = ensureLearning(freshState());
+    const d = original.learning!.directions.find(
+      (d) => d.curriculumId === curriculumId,
+    )!;
+    const c = getCurriculum(curriculumId)!;
+    const itemId = c.nodes?.[0].id ?? c.units[0].steps[0].id;
+    const completed = command(original, 'unit.completion', {
+      directionId: d.id,
+      itemId,
+      completed: true,
+    });
+    const savedDirection = completed.learning!.directions.find(
+      (direction) => direction.id === d.id,
+    )!;
+    assert.equal(savedDirection.currentUnitId, undefined);
+    assert.equal(savedDirection.currentActionId, undefined);
+    assert.equal(completed.learning!.units.length, 1);
+    assert.equal(completed.learning!.units[0].mastery, 'unknown');
+    assert.equal(
+      curriculumCompletionProgress(completed.learning!, savedDirection, itemId)
+        .complete,
+      true,
+    );
+    const repeated = command(completed, 'unit.completion', {
+      directionId: d.id,
+      itemId,
+      completed: true,
+    });
+    assert.equal(repeated.learning!.units.length, 1);
+    assert.equal(
+      repeated.learning!.units[0].completedAt,
+      completed.learning!.units[0].completedAt,
+    );
+    const restored = readStoredState(JSON.stringify(repeated));
+    assert.equal(
+      curriculumCompletionProgress(restored.learning!, savedDirection, itemId)
+        .complete,
+      true,
+    );
+    assert.equal(original.learning!.units.length, 0);
+  }
+});
+void test('completing another lesson preserves the current position, next action and learning records', () => {
+  let s = ensureLearning(freshState());
   const stats = s.learning!.directions.find(
     (direction) => direction.curriculumId === 'stats',
   )!;
@@ -104,32 +174,144 @@ test('lesson completion is independent, with four required parts only for stats 
   const unitId = s.learning!.directions.find(
     (d) => d.id === stats.id,
   )!.currentUnitId!;
-  const parts = completionPartsFor(stats);
-  assert.equal(parts.length, 4);
-  for (const part of parts.slice(0, 3))
-    s = command(s, 'unit.completion', {
-      directionId: stats.id,
-      unitId,
-      part,
-    });
-  let unit = s.learning!.units.find((item) => item.id === unitId)!;
-  assert.deepEqual(unitCompletionProgress(unit, stats), {
-    parts,
-    done: 3,
-    total: 4,
-    complete: false,
+  s = command(s, 'action.save', {
+    directionId: stats.id,
+    title: '明天继续本节练习',
   });
-  assert.equal(unit.completedAt, undefined);
+  s = command(s, 'record.save', {
+    directionId: stats.id,
+    result: '已看完定义',
+  });
+  const before = structuredClone(s);
+  const other = getCurriculum('stats')!.units[0].steps[1];
   s = command(s, 'unit.completion', {
     directionId: stats.id,
-    unitId,
-    part: parts[3],
+    itemId: other.id,
+    completed: true,
   });
-  unit = s.learning!.units.find((item) => item.id === unitId)!;
-  assert.equal(unitCompletionProgress(unit, stats).complete, true);
-  assert.ok(unit.completedAt);
-  assert.equal(unit.contact, 'seen');
-  assert.equal(unit.mastery, 'unknown');
+  assert.equal(
+    s.learning!.directions.find((d) => d.id === stats.id)!.currentUnitId,
+    unitId,
+  );
+  assert.equal(
+    s.learning!.directions.find((d) => d.id === stats.id)!.currentActionId,
+    before.learning!.directions.find((d) => d.id === stats.id)!.currentActionId,
+  );
+  assert.deepEqual(s.learning!.records, before.learning!.records);
+  assert.deepEqual(s.learning!.actions, before.learning!.actions);
+  assert.deepEqual(
+    s.learning!.units.find((u) => u.id === unitId),
+    before.learning!.units.find((u) => u.id === unitId),
+  );
+  assert.equal(
+    curriculumCompletionProgress(s.learning!, stats, other.id).complete,
+    true,
+  );
+});
+void test('legacy four-part math completion is retained but partial work is not promoted', () => {
+  let s = ensureLearning(freshState());
+  const d = s.learning!.directions.find((d) => d.curriculumId === 'linear')!;
+  const itemId = getCurriculum('linear')!.units[0].steps[0].id;
+  s = command(s, 'route.select', { directionId: d.id, itemId });
+  const unit = s.learning!.units[0];
+  const oldParts = stagedCompletionParts.map((part) => part.id);
+  unit.completionParts = oldParts.slice(0, 3);
+  assert.equal(
+    curriculumCompletionProgress(s.learning!, d, itemId).complete,
+    false,
+  );
+  unit.completionParts = [...oldParts];
+  assert.equal(
+    curriculumCompletionProgress(s.learning!, d, itemId).complete,
+    true,
+  );
+  s = command(s, 'unit.completion', {
+    directionId: d.id,
+    itemId,
+    completed: false,
+  });
+  assert.equal(
+    curriculumCompletionProgress(s.learning!, d, itemId).complete,
+    false,
+  );
+  assert.deepEqual(s.learning!.units[0].completionParts, oldParts);
+  const restored = readStoredState(JSON.stringify(s));
+  assert.equal(
+    curriculumCompletionProgress(restored.learning!, d, itemId).complete,
+    false,
+  );
+});
+void test('Japanese completion can be cancelled without deleting ability judgments or changing lesson position', () => {
+  let s = ensureLearning(freshState());
+  const d = s.learning!.directions.find((d) => d.curriculumId === 'japanese')!;
+  const itemId = getCurriculum('japanese')!.units[0].steps[0].id;
+  s = command(s, 'ability.update', {
+    directionId: d.id,
+    itemId,
+    status: 'basic',
+    evidence: '可以独立回答',
+    blocker: '语速较慢',
+  });
+  const before = structuredClone(s.learning!.units[0]);
+  assert.equal(
+    curriculumCompletionProgress(s.learning!, d, itemId).complete,
+    true,
+  );
+  s = command(s, 'unit.completion', {
+    directionId: d.id,
+    itemId,
+    completed: false,
+  });
+  assert.equal(
+    curriculumCompletionProgress(s.learning!, d, itemId).complete,
+    false,
+  );
+  for (const key of [
+    'abilityStatus',
+    'evidence',
+    'blocker',
+    'mastery',
+  ] as const)
+    assert.equal(s.learning!.units[0][key], before[key]);
+  assert.equal(
+    s.learning!.directions.find((direction) => direction.id === d.id)!
+      .currentUnitId,
+    undefined,
+  );
+  s = command(s, 'unit.completion', {
+    directionId: d.id,
+    itemId,
+    completed: true,
+  });
+  assert.equal(
+    curriculumCompletionProgress(s.learning!, d, itemId).complete,
+    true,
+  );
+});
+void test('invalid or cross-direction completion requests are rejected without changing state', () => {
+  const s = ensureLearning(freshState());
+  const d = s.learning!.directions.find((d) => d.curriculumId === 'stats')!;
+  const itemId = getCurriculum('stats')!.units[0].steps[0].id;
+  const before = structuredClone(s);
+  for (const invalid of [
+    { itemId: 'missing' },
+    { itemId: getCurriculum('japanese')!.units[0].steps[0].id },
+    { itemId, completed: 'yes' },
+    { itemId, part: 'qa' },
+    { unitId: 'not-in-this-direction' },
+  ]) {
+    assert.throws(() =>
+      command(s, 'unit.completion', { directionId: d.id, ...invalid }),
+    );
+    assert.deepEqual(s, before);
+  }
+  const { s: corrupt } = setup();
+  (corrupt.learning!.units[0] as unknown as { completed: string }).completed =
+    'yes';
+  assert.throws(
+    () => validateLearning(corrupt.learning!),
+    /STUDY_INVALID_LEARNING_COMPLETION/,
+  );
 });
 test('A10 A11 missing next step preserves confirmed action, explicit clear is distinct', () => {
   let { s, id } = setup();

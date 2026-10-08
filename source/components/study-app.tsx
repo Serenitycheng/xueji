@@ -120,6 +120,7 @@ export default function StudyApp() {
     sync.finishEditing();
     setView(v);
     history.replaceState(null, '', '#' + v);
+    window.dispatchEvent(new PopStateEvent('popstate'));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   const open = (id: string) => {
@@ -127,6 +128,7 @@ export default function StudyApp() {
     setDirectionId(id);
     setView('learn');
     history.replaceState(null, '', '#learn/' + encodeURIComponent(id));
+    window.dispatchEvent(new PopStateEvent('popstate'));
     try {
       localStorage.setItem('xuexu-last-direction', id);
     } catch {}

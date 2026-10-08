@@ -1,18 +1,14 @@
 'use client';
 import { useId, useState } from 'react';
-import { BookOpen, ArrowUpRight, Check, Map } from 'lucide-react';
-import { Button } from './ui/button';
+import { BookOpen, ArrowUpRight, ChevronDown, Map } from 'lucide-react';
 import { Input } from './ui/input';
 import { PdfOpenButton } from './pdf-open-button';
-import { JapaneseAbilityEditor } from './japanese-abilities';
+import { LessonCompletion } from './lesson-completion';
 import type { Actions } from './study-app';
 import type { StudyState } from '@/lib/model';
 import {
-  abilityStatusLabels,
-  japaneseAbilityStatusFor,
-  masteryLabels,
   obsidianLink,
-  unitCompletionProgress,
+  curriculumCompletionProgress,
   type Direction,
 } from '@/lib/learning';
 import {
@@ -20,8 +16,6 @@ import {
   curriculumStepCount,
   curriculumSourceHref,
   resolveCurriculumSource,
-  curriculumUnitState,
-  curriculumUnitStates,
   currentCurriculumItem,
   type Curriculum,
   type CurriculumSource,
@@ -33,7 +27,6 @@ type Props = {
   state: StudyState;
   d: Direction;
   actions: Actions;
-  onRecord: () => void;
 };
 
 function Sources({
@@ -188,233 +181,104 @@ function DevelopmentNodeFlow({
   );
 }
 
-export function CurrentCurriculumLesson({
-  state,
-  d,
-}: Pick<Props, 'state' | 'd'>) {
-  const item = currentCurriculumItem(state.learning!, d);
-  if (!item) return null;
-  const developmentFlow =
-    d.curriculumId === 'development' && item.id.startsWith('DEV-01-');
-  return (
-    <div className="current-lesson-guide">
-      {developmentFlow ? (
-        <DevelopmentNodeFlow
-          action={item.scope}
-          done={item.endCondition}
-          sources={item.sources}
-          state={state}
-        />
-      ) : (
-        <>
-          <div className="lesson-guide-grid">
-            <section className="lesson-guide-card">
-              <span className="lesson-guide-label">本节任务</span>
-              <p>{item.scope}</p>
-            </section>
-            {item.endCondition && (
-              <section className="lesson-guide-card is-goal">
-                <span className="lesson-guide-label">完成标准</span>
-                <p>{item.endCondition}</p>
-              </section>
-            )}
-          </div>
-          <section className="lesson-resource-section">
-            <h4 className="lesson-subheading">学习资料</h4>
-            <Sources sources={item.sources} state={state} />
-          </section>
-        </>
-      )}
-      {item.node && (
-        <p className="hint">
-          这个节点暂未拆分课节。原方案教材：{item.node.materials}
-          。可先在这里记录学习位置。
-        </p>
-      )}
-    </div>
-  );
-}
-
 function Step({
   step,
   index,
   state,
   d,
   actions,
-  onRecord,
 }: Props & { step: CurriculumStep; index: number }) {
-  const w = state.learning!;
-  const relatedUnits = curriculumUnitStates(w, d, step.id);
-  const saved = curriculumUnitState(w, d, step.id);
-  const current = currentCurriculumItem(w, d)?.id === step.id;
-  const currentSaved = !!saved && saved.id === d.currentUnitId;
-  const completion = unitCompletionProgress(saved, d);
+  const current = currentCurriculumItem(state.learning!, d)?.id === step.id;
+  const completion = curriculumCompletionProgress(state.learning!, d, step.id);
   const japanese = d.curriculumId === 'japanese';
   const developmentFlow =
     d.curriculumId === 'development' && step.id.startsWith('DEV-01-');
-  const abilityStatus = japaneseAbilityStatusFor(relatedUnits);
-  const legacyUnits = relatedUnits.filter(
-    (unit) => unit.curriculumItemId !== step.id,
-  );
-  const unitIds = new Set([
-    ...(saved ? [saved.id] : []),
-    ...legacyUnits.map((u) => u.id),
-  ]);
-  const count = w.records.filter(
-    (r) => r.unitId && unitIds.has(r.unitId),
-  ).length;
-  const select = async (record = false) => {
-    if (currentSaved) {
-      if (record) onRecord();
-      return;
-    }
-    const result = await actions.run('learning.route.select', {
-      directionId: d.id,
-      itemId: step.id,
-    });
-    if (result && record) onRecord();
-  };
   return (
-    <details
-      className={`curriculum-step ${current ? 'is-current' : ''} ${!japanese && completion.complete ? 'is-complete' : ''}`}
-      data-step-id={step.id}
-      open={current || undefined}
-    >
-      <summary>
-        <span className="step-number">
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <span className="step-title">
-          {step.title}
-          <small>
-            {step.optional ? '选学 · ' : ''}
-            {japanese && step.lesson ? `${step.lesson} · ` : ''}
-            {current ? '当前学习 · ' : ''}
-            {japanese ? (
-              abilityStatusLabels[abilityStatus]
-            ) : (
-              <>
-                {completion.complete
-                  ? '已完成 · '
-                  : completion.done > 0
-                    ? `已完成 ${completion.done}/${completion.total} · `
-                    : saved?.contact === 'seen'
-                      ? '已接触 · '
-                      : ''}
-                {saved
-                  ? masteryLabels[saved.mastery]
-                  : legacyUnits.length
-                    ? '整节未判断'
-                    : '尚未记录'}
-              </>
+    <div className="curriculum-step-row" data-step-id={step.id}>
+      <details className={'curriculum-step' + (current ? ' is-current' : '')}>
+        <summary>
+          <span className="step-number">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <span className="step-title">
+            {step.title}
+            {(step.optional || current || (japanese && step.lesson)) && (
+              <small>
+                {[
+                  step.optional ? '选学' : '',
+                  japanese ? step.lesson : '',
+                  current ? '当前小节' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' · ')}
+              </small>
             )}
-            {count > 0 ? ` · ${count} 条记录` : ''}
-          </small>
-        </span>
-        {(current || (!japanese && completion.complete)) && (
-          <Check
-            size={18}
-            className={
-              !japanese && completion.complete
-                ? 'step-complete-icon'
-                : undefined
-            }
+          </span>
+          <ChevronDown
+            size={15}
+            className="step-disclosure"
+            aria-hidden="true"
           />
-        )}
-      </summary>
-      <div className="curriculum-step-body">
-        {step.group && (
-          <p className="hint">
-            {japanese ? '能力分类' : '所属章节'}：{step.group}
-          </p>
-        )}
-        {japanese && step.course && (
-          <div className="japanese-source-map">
-            <span>学习来源</span>
-            <strong>{step.course}</strong>
-            <p>
-              {step.lesson}
-              {step.canDos?.length
-                ? ` · ${step.canDos.map((code) => `Can-do ${code}`).join(' / ')}`
-                : ' · 文字与发音准备'}
+        </summary>
+        <div className="curriculum-step-body">
+          {step.group && (
+            <p className="hint">
+              {japanese ? '能力分类' : '所属章节'}：{step.group}
             </p>
-          </div>
-        )}
-        {legacyUnits.length > 0 && (
-          <p className="hint">
-            {japanese
-              ? '原教材步骤的进度和记录已保留，并汇总到这个能力节点。'
-              : '旧小节的记录和掌握判断已保留；整节掌握程度单独记录。'}
-          </p>
-        )}
-        {developmentFlow ? (
-          <DevelopmentNodeFlow
-            action={step.action}
-            done={step.done}
-            sources={step.sources}
-            state={state}
-          />
-        ) : (
-          <>
-            <p>
-              <strong>怎么学：</strong>
-              {step.action}
-            </p>
-            <Sources sources={step.sources} state={state} />
-          </>
-        )}
-        {japanese && step.targets?.length ? (
-          <div className="japanese-targets">
-            <strong>掌握目标</strong>
-            <ul>
-              {step.targets.map((target, targetIndex) => (
-                <li key={`${step.id}:target:${targetIndex}`}>{target}</li>
-              ))}
-            </ul>
-          </div>
-        ) : !developmentFlow ? (
-          <p>
-            <strong>完成标准：</strong>
-            {step.done}
-          </p>
-        ) : null}
-        {japanese && !current && (
-          <JapaneseAbilityEditor
-            state={state}
-            d={d}
-            itemId={step.id}
-            actions={actions}
-          />
-        )}
-        <div className="button-row">
-          <Button
-            disabled={actions.busy || currentSaved}
-            onClick={() => void select()}
-          >
-            {currentSaved
-              ? japanese
-                ? '当前正在练这一能力'
-                : '正在学这一节'
-              : current
-                ? japanese
-                  ? '按当前能力继续学习'
-                  : '按整节继续学习'
-                : japanese
-                  ? '设为当前能力'
-                  : '设为当前小节'}
-          </Button>
-          {!japanese && (
-            <Button
-              variant="outline"
-              disabled={actions.busy}
-              onClick={() => void select(true)}
-            >
-              记录这一节
-            </Button>
           )}
+          {japanese && step.course && (
+            <div className="japanese-source-map">
+              <span>学习来源</span>
+              <strong>{step.course}</strong>
+              <p>
+                {step.lesson}
+                {step.canDos?.length
+                  ? ' · Can-do ' + step.canDos.join(' / ')
+                  : ''}
+              </p>
+            </div>
+          )}
+          {developmentFlow ? (
+            <DevelopmentNodeFlow
+              action={step.action}
+              done={step.done}
+              sources={step.sources}
+              state={state}
+            />
+          ) : (
+            <>
+              <p>
+                <strong>怎么学：</strong>
+                {step.action}
+              </p>
+              <Sources sources={step.sources} state={state} />
+            </>
+          )}
+          {japanese && step.targets?.length ? (
+            <div className="japanese-targets">
+              <strong>掌握目标</strong>
+              <ul>
+                {step.targets.map((target, i) => (
+                  <li key={i}>{target}</li>
+                ))}
+              </ul>
+            </div>
+          ) : !developmentFlow ? (
+            <p>
+              <strong>完成标准：</strong>
+              {step.done}
+            </p>
+          ) : null}
         </div>
-      </div>
-    </details>
+      </details>
+      <LessonCompletion
+        title={step.title}
+        completed={completion.complete}
+        directionId={d.id}
+        itemId={step.id}
+        actions={actions}
+      />
+    </div>
   );
 }
 
@@ -436,18 +300,10 @@ function UnitOutline({
         .includes(query),
   );
   if (!steps.length) return null;
-  const japanese = props.d.curriculumId === 'japanese';
-  const completed = unit.steps.filter((step) =>
-    japanese
-      ? ['basic', 'fluent'].includes(
-          japaneseAbilityStatusFor(
-            curriculumUnitStates(props.state.learning!, props.d, step.id),
-          ),
-        )
-      : unitCompletionProgress(
-          curriculumUnitState(props.state.learning!, props.d, step.id),
-          props.d,
-        ).complete,
+  const completed = unit.steps.filter(
+    (step) =>
+      curriculumCompletionProgress(props.state.learning!, props.d, step.id)
+        .complete,
   ).length;
   return (
     <details
@@ -459,13 +315,9 @@ function UnitOutline({
         <BookOpen size={18} />
         <strong>{unit.title}</strong>
         <span>
-          {japanese
-            ? completed > 0
-              ? `${completed}/${unit.steps.length} 项达到基本掌握`
-              : `${unit.steps.length} 项能力`
-            : completed > 0
-              ? `${completed}/${unit.steps.length} 节完成`
-              : `${unit.steps.length} 节`}
+          {completed > 0
+            ? `${completed}/${unit.steps.length} 节完成`
+            : `${unit.steps.length} 节`}
         </span>
       </summary>
       <div className="curriculum-unit-body">
@@ -493,10 +345,6 @@ function ProfessionalMap({
   const branches = [...new Set(nodes.map((n) => n.branch))];
   return (
     <div className="professional-map">
-      <p className="hint">
-        完整保留 31 个核心节点。05「会计基础与会计循环」已展开为 4 个单元、16
-        节；其余节点保留目标、先修关系和原方案教材。
-      </p>
       {branches.map((branch) => {
         const visible = nodes.filter(
           (n) =>
@@ -512,65 +360,59 @@ function ProfessionalMap({
           <section className="curriculum-branch" key={branch}>
             <h3>{branch}</h3>
             {visible.map((n) => {
-              const saved = curriculumUnitState(
+              const current =
+                currentCurriculumItem(props.state.learning!, props.d)?.id ===
+                n.id;
+              const completion = curriculumCompletionProgress(
                 props.state.learning!,
                 props.d,
                 n.id,
               );
-              const current = !!saved && saved.id === props.d.currentUnitId;
               return (
-                <details
-                  className="curriculum-node"
+                <div
+                  className="curriculum-node-row"
                   key={n.id}
                   data-node-id={n.id}
-                  open={n.expanded || current || !!query}
                 >
-                  <summary>
-                    <span className="node-number">{n.id.slice(3)}</span>
-                    <strong>{n.title}</strong>
-                    <small>
+                  <details
+                    className="curriculum-node"
+                    open={n.expanded || !!query}
+                  >
+                    <summary>
+                      <span className="node-number">{n.id.slice(3)}</span>
+                      <strong>{n.title}</strong>
+                      {current && <small>当前节点</small>}
+                      <ChevronDown
+                        size={15}
+                        className="step-disclosure"
+                        aria-hidden="true"
+                      />
+                    </summary>
+                    <div className="curriculum-node-body">
+                      <p>{n.goal}</p>
+                      <p className="hint">先修：{n.prerequisites}</p>
+                      <p>教材与资料：{n.materials}</p>
+                      <p className="hint">原方案 PDF 第 {n.planPage} 页</p>
                       {n.expanded
-                        ? '已展开课节'
-                        : current
-                          ? '当前节点'
-                          : '保留节点'}
-                    </small>
-                  </summary>
-                  <div className="curriculum-node-body">
-                    <p>{n.goal}</p>
-                    <p className="hint">先修：{n.prerequisites}</p>
-                    <p>教材与资料：{n.materials}</p>
-                    <p className="hint">原方案 PDF 第 {n.planPage} 页</p>
-                    {n.expanded ? (
-                      curriculum.units.map((unit) => (
-                        <UnitOutline
-                          key={unit.id}
-                          {...props}
-                          unit={unit}
-                          query={query}
-                        />
-                      ))
-                    ) : (
-                      <>
-                        <p className="hint">
-                          课节路径待后续展开，可先记录这个节点的学习位置。
-                        </p>
-                        <Button
-                          variant="outline"
-                          disabled={props.actions.busy || current}
-                          onClick={() =>
-                            void props.actions.run('learning.route.select', {
-                              directionId: props.d.id,
-                              itemId: n.id,
-                            })
-                          }
-                        >
-                          {current ? '当前节点' : '设为当前节点'}
-                        </Button>
-                      </>
-                    )}
-                  </div>
-                </details>
+                        ? curriculum.units.map((unit) => (
+                            <UnitOutline
+                              key={unit.id}
+                              {...props}
+                              unit={unit}
+                              query={query}
+                            />
+                          ))
+                        : null}
+                    </div>
+                  </details>
+                  <LessonCompletion
+                    title={n.title}
+                    completed={completion.complete}
+                    directionId={props.d.id}
+                    itemId={n.id}
+                    actions={props.actions}
+                  />
+                </div>
               );
             })}
           </section>
@@ -623,16 +465,13 @@ export function CurriculumRoute(props: Props) {
     >
       <div className="section-heading">
         <div>
-          <div className="eyebrow">
-            {japanese ? 'ABILITY MAP' : 'LEARNING PATH'}
-          </div>
           <h2>
             <Map size={20} />
             {japanese
               ? '能力节点'
               : development
                 ? 'AI 与开发 · 三条线'
-                : '学习路线'}
+                : '学习目录'}
           </h2>
         </div>
         <span className="curriculum-count">
@@ -641,13 +480,15 @@ export function CurriculumRoute(props: Props) {
           {curriculumStepCount(c)} {japanese ? '项能力' : '节'}
         </span>
       </div>
-      <p className="hint">
-        {japanese
-          ? '教材继续按 IRODORI 原顺序学习；这里按能力查看掌握情况，并为同一能力保留可扩展的教材来源。'
-          : development
-            ? '流程与 AI 认知先并行过第一遍 → 重点补开发基础 → 回到 AI 做第二遍实践。按项目需要可提前查看任意节点。'
-            : '展开单元查看具体学法与资料位置，选择你现在正在学的一节。学习记录会关联到这节，选择位置不会自动标记掌握。'}
-      </p>
+      {(japanese || development) && (
+        <p className="hint">
+          {japanese
+            ? '教材继续按 IRODORI 原顺序学习；这里按能力查看掌握情况，并为同一能力保留可扩展的教材来源。'
+            : development
+              ? '流程与 AI 认知先并行过第一遍 → 重点补开发基础 → 回到 AI 做第二遍实践。按项目需要可提前查看任意节点。'
+              : ''}
+        </p>
+      )}
       {development && (
         <div className="development-path" aria-label="开发学习的三条线">
           <p>
@@ -719,15 +560,6 @@ export function CurriculumRoute(props: Props) {
           />
         </label>
       </div>
-      <details className="curriculum-notes">
-        <summary>路线安排与资料说明</summary>
-        <ul>
-          {c.notes.map((n) => (
-            <li key={n}>{n}</li>
-          ))}
-        </ul>
-        {c.resourceNote && <p>{c.resourceNote}</p>}
-      </details>
       {c.nodes ? (
         <ProfessionalMap {...props} curriculum={c} query={query} />
       ) : development ? (
