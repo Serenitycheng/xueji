@@ -1,50 +1,55 @@
-# 学迹（原名学序） — 项目与恢复备份
+# 学迹
 
-当前应用名为“学迹”，版本 0.6.1。最新功能、运行与 Git 发布流程见 [应用 README](source/README.md)。以下保留 2026-09-09 的恢复快照说明，其中的部署、文件数量与数据统计反映备份当时状态。
+学迹（原名学序）是个人学习工作台：记录学到哪里、卡在哪里，以及下一步做什么。当前应用版本为 0.6.1；更名沿用已有账号、路线、记录与草稿。
 
-本次恢复基于 2026-09-09 仍可访问的 Vercel 部署、数据服务和原始 Git 文件。目标仓库保持私有：Serenitycheng/xuexu-recovery。
+## 现有能力与边界
 
-## 当前线上版本
+- 六个学习方向的分层路线、具体小节、教材与课程位置；记录停点、卡点、学习结果和下一步。
+- 资料、网页、本地路径与笔记索引；学习回看、方向暂停与归档。基础学习流程无需 AI。
+- 云端版本、内容历史、保存回执和冲突保护；未提交的学习记录可保留为本机草稿。
+- PDF、PPTX、DOCX、TXT、Markdown 与课程链接导入。资料处理需电脑处理器；扫描件 OCR、公式和复杂图表仍需核对原件。视频链接不会自动取得全部正文。
+- 旧课表、任务与计划保留在旧记录中；当前学习工作台不自动生成全日排程。复制行动到序流只复制摘要，不自动创建外部任务。
+- 仅供个人使用，无公开注册。尚无完全离线启动的 PWA；本机草稿不等于云端保存成功。AI 局部建议与跨工具自动同步不属于当前已启用能力。
 
-`source/` 是当前生产部署的原始源码和素材，共 **149 个文件**。部署 ID：`dpl_39k1imZJj4juSoCe4pmoY5CXW6VA`。文件均与 Vercel 文件 ID（原内容 SHA-1）逐个核对，同时记录 SHA-256。`docs/vercel-source-manifest.json` 保存完整清单及空目录信息。历史版本单独存放。
+## 技术栈与运行
 
-## 数据和附件
+Next.js 16、React 19、TypeScript；Neon PostgreSQL、Drizzle、Vercel 私有 Blob，服务端使用签名会话与加密配置。
 
-数据库最新导出位于 `data/cloud-2026-09-09/`。PostgreSQL 使用只读、可重复读事务导出，结构、约束、索引、序列、视图和策略也已保存。加密业务配置保持原密文。
+需要 Node.js 22.13+ 与 npm。应用在 `source/`，从仓库根目录执行：
 
-- drizzle.__drizzle_migrations：4 行。
-- public.study_ai_calls：18 行。
-- public.study_ai_locks：0 行。
-- public.study_history：19 行。
-- public.study_login_attempts：1 行。
-- public.study_material_jobs：2 行。
-- public.study_material_pages：0 行。
-- public.study_profiles：1 行。
-- public.study_receipts：22 行。
-- public.study_secrets：1 行。
+```powershell
+cd source
+npm ci
+# 先配置自己的开发数据库与环境变量，再应用迁移
+npm run db:migrate
+npm run dev
+```
 
-全部 7 个对象，共 156275428 字节，按原路径保存，逐文件 SHA-256 已验证。
+默认访问 `http://localhost:3000`。验证与生产运行：
 
-## 历史版本
+```powershell
+node scripts/test.mjs
+node scripts/test-learning-local.mjs
+npx tsc --noEmit
+npm run lint
+npm run build
+npm start
+```
 
-- xuexu-study：10 个仍保留的部署。
+迁移只能在已确认的目标数据库执行。不要将恢复快照回灌到现有学习库。
 
-legacy/chatgpt-sites-2026-09-07/ 保存 Sites 历史源码 105 个文件、3 个 Git 提交，以及旧数据库 3 条 study_profiles；其余 3 张旧表为空。
+## 环境变量与部署
 
-## 文件位置与核验
+在 `source/.env.local` 或 Vercel 配置以下服务端变量：
 
-- `source/`：当前生产版本的全部已上传项目文件。
-- `data/cloud-2026-09-09/`：最新业务数据快照和数据库结构。
-- `attachments/files/`：附件原路径副本（存在附件时）；`attachments/manifest.json` 记录全量清单和哈希。
-- `history/vercel/`：Vercel 仍保留的历史部署源码、素材及各版本文件清单。
-- `legacy/`：原始 Git/Sites 历史、可验证 bundle 与源码。
-- 原有 ZIP、分卷和 `SHA256SUMS.txt` 原样保留。`recovered/` 是这些早期备份的展开副本，其中源码曾不完整，以 `source/` 为当前版本。
-- `VERIFY.py` 校验本次整个仓库；运行 `python VERIFY.py`。`RESTORE.py`（如存在）仅用于旧的初始压缩包。
+- `DATABASE_URL`：PostgreSQL 连接。
+- `BLOB_READ_WRITE_TOKEN`：私有原文件存储。
+- `STUDY_ENCRYPTION_KEY`：32 字节随机密钥的 Base64 表示。
+- `SESSION_SECRET`：至少 32 字符的会话密钥。
+- `STUDY_PASSWORD_HASH`：`salt:hash` 格式的 scrypt 密码哈希。
 
-## 恢复边界与运行配置
+可选电脑处理器使用 `STUDY_SITE_URL`、`STUDY_HTTPS_PROXY`；使用前核对目标站点。AI 连接由应用加密保存，不需要把 API Key 写进 README。
 
-本仓库保存上述来源当前实际保留且可读取的内容。已删除的部署、未上传的本机文件、未同步的浏览器本地状态不在这些来源中，无法据此断言它们已恢复。Vercel 历史清单包含失败构建仍保存的源码。
+已有 Vercel 项目名为 `xuexu-study`。Git 部署使用 `main`，Root Directory 为 `source`；`source/vercel.json` 的 `node scripts/vercel-build.mjs` 先准备资源、构建，仅正式环境执行待应用的前向迁移。部署前备份真实数据与附件，部署后核对提交及结果；预览与本地构建不自动迁移数据库。
 
-服务密钥、访问令牌、浏览器 Cookie、登录会话未提交。北京项目中误上传的浏览器凭据目录已排除，并在部署清单中记录。环境变量名称和作用域见 `docs/environment-variable-names.json`；重新运行需通过原服务账号重新配置密钥，Vercel 的 sensitive 值不能读取。学序已加密配置保留原密文，解密仍依赖原环境中的加密密钥。
-
-站点未重新部署，业务数据库及原项目内容未改动。数据库和附件为导出时的快照，不包含导出后新写入的业务数据。
+详见[应用说明](source/README.md)、[资料处理与学习流程](source/docs/learning-flow-030.md)和[学习路线说明](source/docs/六方向学习路线接入说明.md)。`archive/recovery/` 保存历史源码、数据库与附件，包含私有内容；这些快照不代表当前线上数据，公开前需要单独审查。
