@@ -176,7 +176,6 @@ export function LearningHome({ state, actions, open }: Props) {
         <div>
           <div className="eyebrow">PICK UP WHERE YOU LEFT OFF</div>
           <h1 id="learning-home-title">继续学习</h1>
-          <p>找到上次的起点，把下一步留给下次的自己。</p>
         </div>
         <Button variant="outline" onClick={() => actions.navigate('routes')}>
           <Plus />
@@ -187,7 +186,6 @@ export function LearningHome({ state, actions, open }: Props) {
         <section className="learning-empty">
           <BookOpen size={32} />
           <h2>建立第一个学习方向</h2>
-          <p>只需要一个名称。材料、路线和 AI 都可以稍后再准备。</p>
           <Button onClick={() => actions.navigate('routes')}>
             建立学习方向
           </Button>
@@ -195,7 +193,6 @@ export function LearningHome({ state, actions, open }: Props) {
       ) : !active.length ? (
         <section className="learning-empty">
           <h2>当前没有进行中的方向</h2>
-          <p>原有记录和下一步仍在，准备好时再恢复。</p>
           <Button onClick={() => actions.navigate('routes')}>
             查看暂停和归档的方向
           </Button>
@@ -242,7 +239,6 @@ export function DirectionsView({ state, actions, open }: Props) {
       <div className="page-heading">
         <div>
           <h1>学习方向</h1>
-          <p>课程、技能或持续探索的问题，都从一个小起点开始。</p>
         </div>
       </div>
       <form
@@ -391,12 +387,12 @@ export function ReferenceEntry({
           {r.primary ? '主材料 · ' : ''}
           {r.name}
         </strong>
-        <p>{r.location || r.purpose || '位置与用途可稍后补充'}</p>
+        {(r.location || r.purpose) && <p>{r.location || r.purpose}</p>}
         {r.location && r.purpose && <p className="hint">{r.purpose}</p>}
         {r.kind === 'local' && <p className="hint">此路径仅适用于相应设备</p>}
         {r.kind === 'note' && (
           <p className="hint">
-            需要本机安装对应应用并存在该笔记；打不开时可复制路径。学迹未读取笔记正文。
+            打不开时，可复制路径到笔记应用。
           </p>
         )}
         <small className="reference-target">{r.target}</small>
@@ -586,7 +582,7 @@ function RecordForm({
       >
         <p className="hint">
           {d.name} · {u?.name ?? '尚未设置单元'}
-          {correction ? ' · 修正最近记录，原记录继续保留' : ''}
+          {correction ? ' · 修正最近记录' : ''}
         </p>
         <Field label="本次做到哪里／发生了什么">
           <Textarea
@@ -939,7 +935,6 @@ export function LearningReview({ state, actions, open }: Props) {
       <div className="page-heading">
         <div>
           <h1>学习回看</h1>
-          <p>看见发生过什么，以及还没解决的问题。</p>
         </div>
         <Button variant="outline" onClick={() => actions.navigate('legacy')}>
           查看旧记录与计划
@@ -1001,7 +996,7 @@ export function LearningReview({ state, actions, open }: Props) {
         <h2>学习记录 · {rows.length}</h2>
         {!rows.length && (
           <p>
-            还没有这个范围内的学习记录。旧任务与反馈在“旧记录与计划”中完整保留。
+            暂无学习记录。
           </p>
         )}
         {rows.map((r) => (
@@ -1012,9 +1007,9 @@ export function LearningReview({ state, actions, open }: Props) {
               </strong>
               <small>{stamp(r.createdAt)}</small>
             </div>
-            {r.correctsId && <small>修正记录 · 原记录保留供对照</small>}
+            {r.correctsId && <small>修正记录</small>}
             {w.records.some((x) => x.correctsId === r.id) && (
-              <p className="hint">这条记录已有修正，请以上方后续修正为准。</p>
+              <p className="hint">此记录已修正。</p>
             )}
             <p>{r.result || '记录了状态或接续调整'}</p>
             {r.contact && (
@@ -1080,7 +1075,6 @@ export function LegacyView({
       <div className="page-heading">
         <div>
           <h1>旧记录与计划</h1>
-          <p>原始内容保留供查看与导出，不参与新版掌握判断或时间安排。</p>
         </div>
         <a
           className="resource-open"
@@ -1092,9 +1086,6 @@ export function LegacyView({
       </div>
       <section className="content-panel">
         <h2>待关联历史任务 · {state.tasks.length}</h2>
-        <p className="hint">
-          没有可靠单元对应关系的任务保留在这里；完成只表示历史执行信息。
-        </p>
         {state.tasks.map((t) => (
           <details key={t.id}>
             <summary>
@@ -1146,7 +1137,7 @@ export function LegacyView({
           查看旧附件与资料
         </Button>
         <p className="hint">
-          导出包含状态、旧记录及附件清单；不包含附件本体、资料全文或密钥。
+          备份不含附件文件和资料全文。
         </p>
       </section>
     </>

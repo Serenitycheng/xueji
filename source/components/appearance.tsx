@@ -13,7 +13,6 @@ import { Button } from './ui/button';
 import {
   Popover,
   PopoverContent,
-  PopoverDescription,
   PopoverTitle,
   PopoverTrigger,
 } from './ui/popover';
@@ -131,9 +130,6 @@ export function PageColorPicker() {
       </PopoverTrigger>
       <PopoverContent align="end" className="page-color-panel">
         <PopoverTitle>页面颜色</PopoverTitle>
-        <PopoverDescription>
-          为当前页面选一个颜色，会自动记住。
-        </PopoverDescription>
         <fieldset className="paper-color-options" aria-label="预设页面颜色">
           {paperTones.map((tone) => (
             <button

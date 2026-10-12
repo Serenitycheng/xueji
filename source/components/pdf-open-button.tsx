@@ -159,8 +159,7 @@ export function PdfOpenButton({
             </p>
           )}
           <p className="hint">
-            默认使用 PDF-XChange
-            Editor。首次使用时，浏览器可能会询问是否允许打开本机应用。
+            若浏览器提示，请允许打开本机应用。
           </p>
           <div className="pdf-open-fallback-actions">
             <Button

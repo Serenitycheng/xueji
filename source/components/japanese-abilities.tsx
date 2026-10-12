@@ -328,7 +328,7 @@ export function JapaneseDashboard({
             ))}
           </ul>
         ) : (
-          <p>尚未记录明显薄弱点；只在确实遇到问题时补充即可。</p>
+          <p>暂无薄弱点记录。</p>
         )}
       </section>
     </section>

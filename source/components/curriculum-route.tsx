@@ -483,9 +483,9 @@ export function CurriculumRoute(props: Props) {
       {(japanese || development) && (
         <p className="hint">
           {japanese
-            ? '教材继续按 IRODORI 原顺序学习；这里按能力查看掌握情况，并为同一能力保留可扩展的教材来源。'
+            ? '按 IRODORI 教材顺序学习。'
             : development
-              ? '流程与 AI 认知先并行过第一遍 → 重点补开发基础 → 回到 AI 做第二遍实践。按项目需要可提前查看任意节点。'
+              ? '开发流程与 AI 认知第一遍 → 开发基础 → AI 实践第二遍。'
               : ''}
         </p>
       )}
