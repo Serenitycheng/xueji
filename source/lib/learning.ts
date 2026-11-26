@@ -575,6 +575,10 @@ export function applyLearning(
       ]);
       if (status === 'completed' && input.confirm !== true)
         throw new LearningError('请确认这个方向已完成。');
+      if (status !== d.status) {
+        if (status === 'archived') message = '已归档学习方向';
+        else if (d.status === 'archived') message = '已恢复学习方向';
+      }
       d.status = status;
     }
     if (input.pinned !== undefined) d.pinned = input.pinned === true;

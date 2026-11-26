@@ -37,7 +37,7 @@ const statuses = {
   active: '进行中',
   paused: '暂停',
   completed: '完成',
-  archived: '归档',
+  archived: '已归档',
 };
 function Choice({
   label,
@@ -230,6 +230,31 @@ export function LearningHome({ state, actions, open }: Props) {
     </section>
   );
 }
+function DirectionArchiveButton({
+  direction,
+  actions,
+}: {
+  direction: Direction;
+  actions: Actions;
+}) {
+  const archived = direction.status === 'archived';
+  const label = archived ? '恢复学习' : '归档';
+  return (
+    <Button
+      variant="ghost"
+      aria-label={`${label} ${direction.name}`}
+      disabled={actions.busy || actions.hasDraft}
+      onClick={() =>
+        void actions.run('learning.direction.update', {
+          directionId: direction.id,
+          status: archived ? 'active' : 'archived',
+        })
+      }
+    >
+      {label}
+    </Button>
+  );
+}
 export function DirectionsView({ state, actions, open }: Props) {
   const w = state.learning!,
     [name, setName] = useState(''),
@@ -333,6 +358,7 @@ export function DirectionsView({ state, actions, open }: Props) {
                     <Button variant="outline" onClick={() => open(d.id)}>
                       查看与调整
                     </Button>
+                    <DirectionArchiveButton direction={d} actions={actions} />
                   </div>
                 </div>
               ))}
@@ -745,6 +771,7 @@ export function DirectionDetail({
             学习方向
           </button>
           <h1>{d.name}</h1>
+          {d.status === 'archived' && <p className="hint">已归档</p>}
         </div>
         <div className="button-row">
           <Button
@@ -765,6 +792,7 @@ export function DirectionDetail({
             <Pin />
             {d.pinned ? '取消置顶' : '置顶'}
           </Button>
+          <DirectionArchiveButton direction={d} actions={actions} />
         </div>
       </div>
       <div className="current-learning-position" aria-label="当前小节">
