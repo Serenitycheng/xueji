@@ -5,7 +5,7 @@
 ## 1. 先确认事实
 
 - 唯一日常开发仓库：`D:\projects\xueji`；应用目录：`source/`。恢复资料集中在 `archive/recovery/`，不要把历史副本当成待合并开发分支。
-- 接手续做时 `main` 与本地的 `origin/main` 同在 `23532ae`，工作区干净。该合并提交保留了 `ebf9005` 的文案精简与 `92fb781` 的产品说明。远端实时状态未核实。
+- 本轮接续时 `main` 与本地保存的 `origin/main` 同在 `1e2280c`（支持归档和恢复学习方向）。新版设计文档和开发路线实现在本地，尚未提交。远端实时状态未核实。
 - Git 远端：`https://github.com/Serenitycheng/xueji.git`。常用站点：`https://xuexu-study.vercel.app`。本轮未核实 Vercel 发布，不能把 Git 提交或本地 build 视为线上已更新。
 
 ## 2. 定位与架构
@@ -27,7 +27,8 @@
 - **视觉**：全站纸页字体和克制层次；七种低饱和预设及自定义色。页面背景、侧栏与卡片随所选色变化；hash 导航后立即切换对应页面颜色。保持手机可操作，避免新增复杂面板。
 - **课程结构**：线代保留 44 节、B站主课程；概率统计按 `1.1` 层级组织（37 节），不回退为 `1.1.1`，补充课程采用宋浩较新版 B站资源。其他方向不跟随概率拆并。
 - **日语**：用能力节点表达，但保留 L1/L2 等课程进度和教材映射；已接入 Irodori 线上实际课页。方便后续扩展教材，不堆砌能力标签或重复完成按钮。
-- **开发**：三条线为开发流程、AI认知、开发基础；流程线结合真实项目，AI认知分遍推进，Python 是已有基础后的系统梳理与项目练习，不恢复北理 MOOC 零基础路线。节点流程沿用“GPT提纲 → 看教材 → 自己回答 → 项目练习 → 复盘”，模板与资源入口随节点提供。
+- **开发**：以 [开发学习全流程](开发学习全流程.md) 为设计依据。A 计算机科学与软件工程、B AI 原理与研究、C AI 应用工程共 20 个单元、90 节。M0—M4 按成果推进并复用同一套小节进度。小节显示知识、可跳转的先修、实践、教材定位和验收，可记录停点及下一步。先修用于引导，可诊断或按需回补。
+- **开发兼容**：71 个旧小节保留原 `DEV-*` ID、资源和完成状态，在“旧路线与进度”查看对应新版小节。映射用于导航与复核，不替用户标记新版完成。方向、单元、资料、学习记录、下一步和历史快照沿用原数据结构，无需数据库迁移。
 - **资源与笔记**：优先合适的国内/近年资源，B站重要；保留已定课程和稳定节点 ID，不能因新会话重排路线。指定 Python 教材、原方案与旧路线兼容保留。Obsidian 位于 `D:\document\obsidian vault`，需操作时再核对对应笔记路径，不覆盖课堂原笔记。
 - **PDF**：默认直接调 PDF-XChange Editor 的 `pxce:`，其他方式作备用；服务端签发约 5 分钟、仅该文件有效的授权并保留 PDF 页序。浏览器/Windows 的外部应用确认无法由网页完全取消；本地批注不会自动写回云端原件。
 
@@ -37,7 +38,7 @@
 
 - 页面与完成按钮：`source/components/{study-app,learning-workspace,curriculum-route,lesson-completion}.tsx`。
 - 主题：`source/app/{globals,paper-theme,curriculum}.css`、`source/components/appearance.tsx`、`source/lib/appearance.ts`。
-- 学习状态/完成兼容：`source/lib/learning.ts`；目录结构/映射：`source/lib/curriculum.ts`、`source/lib/curricula/six-directions.json`；开发三线：`source/lib/curricula/development-lines.ts`、`source/lib/development-curriculum.ts`。
+- 学习状态/完成兼容：`source/lib/learning.ts`；目录结构/映射：`source/lib/curriculum.ts`、`source/lib/curricula/six-directions.json`；新版开发课表与里程碑：`source/lib/curricula/development-roadmap.json`；旧课与对应索引：`source/lib/curricula/development-lines.ts`。
 - 保存链路：`source/app/api/study/route.ts`、`source/lib/{server,commands,data-protection,client-store,use-cloud-sync,versions}.ts`；认证：`source/lib/session.ts`、`source/app/api/auth/route.ts`。
 - PDF：`source/components/pdf-open-button.tsx`、`source/lib/{pdf-open,pdf-open-ticket}.ts`、`source/app/api/pdf-open/route.ts`；处理器：`source/scripts/{study-device,local-extract,codex-analysis}.mjs`。
 - 数据库：`source/db/vercel-schema.ts`、`source/drizzle-vercel/`（至 `0005_learning_workspace.sql`）；部署：`source/vercel.json`、`source/scripts/{vercel-build,migrate}.mjs`。
@@ -81,6 +82,7 @@ node node_modules/next/dist/bin/next start
 
 **验证证据分层**：
 
+- 新版开发路线（2026-11-26）：74 项逻辑测试、改动文件 lint、隔离数据库 API 检查和 Webpack 生产构建通过。测试覆盖里程碑引用、先修无环、资源字段、旧节点映射与进度保存。1440px 和 320px 本地浏览器使用隔离 PGlite 验证旧进度、M0—M4、先修跳转、设置当前、完成/取消、记录停点与刷新，未连接线上数据。
 - 方向归档（2026-11-26）：72 项逻辑测试、TypeScript 和改动文件 lint 通过。1440px 手动方向与 320px 内置线代方向均通过列表和详情归档、查看、刷新、恢复与数据保留检查。模拟保存失败时方向仍在原列表。浏览器使用隔离数据并调用真实状态命令处理逻辑，未访问线上数据库。
 - 文案精简验证（2026-10-12）：72 项逻辑测试通过；TypeScript 检查通过；六个现代组件 lint 通过；另六个组件使用同一基础配置与精简前的 `31763d7` 比较，18 项既有 lint 问题无新增。
 - 本轮真实本地页面验收通过：桌面 7 个工作台页面与 6 个学习方向；390/320px 的工作台及线代学习页；登录、资料上传与恢复弹窗、完成/取消及刷新保留、当前位置不变、页面配色、保存失败提示。无浏览器异常。使用隔离测试数据和 API，未调用真实数据库、上传服务或学习处理器。

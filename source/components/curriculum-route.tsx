@@ -1,6 +1,11 @@
 'use client';
 import { useId, useState } from 'react';
-import { BookOpen, ArrowUpRight, ChevronDown, Map } from 'lucide-react';
+import {
+  BookOpen,
+  ArrowUpRight,
+  ChevronDown,
+  Map as MapIcon,
+} from 'lucide-react';
 import { Input } from './ui/input';
 import { PdfOpenButton } from './pdf-open-button';
 import { LessonCompletion } from './lesson-completion';
@@ -17,6 +22,7 @@ import {
   curriculumSourceHref,
   resolveCurriculumSource,
   currentCurriculumItem,
+  curriculumSteps,
   type Curriculum,
   type CurriculumSource,
   type CurriculumStep,
@@ -28,6 +34,41 @@ type Props = {
   d: Direction;
   actions: Actions;
 };
+type DevelopmentNavigation = {
+  jump: (id: string) => void;
+  titles: Map<string, string>;
+  legacyMapping: Partial<Record<string, string[]>>;
+  researchTopics: NonNullable<Curriculum['development']>['researchTopics'];
+};
+const developmentTracks = {
+  A: 'A｜计算机科学与软件工程',
+  B: 'B｜人工智能原理与研究',
+  C: 'C｜AI 应用工程',
+};
+
+function StepLinks({
+  ids,
+  navigation,
+}: {
+  ids: string[];
+  navigation: DevelopmentNavigation;
+}) {
+  return (
+    <span className="development-step-links">
+      {ids.map((id) => (
+        <button
+          className="text-link"
+          key={id}
+          type="button"
+          aria-label={`查看 ${id} ${navigation.titles.get(id) ?? ''}`}
+          onClick={() => navigation.jump(id)}
+        >
+          {id}
+        </button>
+      ))}
+    </span>
+  );
+}
 
 function Sources({
   sources,
@@ -187,18 +228,32 @@ function Step({
   state,
   d,
   actions,
-}: Props & { step: CurriculumStep; index: number }) {
+  navigation,
+  showDetails,
+}: Props & {
+  step: CurriculumStep;
+  index: number;
+  navigation?: DevelopmentNavigation;
+  showDetails: boolean;
+}) {
   const current = currentCurriculumItem(state.learning!, d)?.id === step.id;
   const completion = curriculumCompletionProgress(state.learning!, d, step.id);
   const japanese = d.curriculumId === 'japanese';
   const developmentFlow =
     d.curriculumId === 'development' && step.id.startsWith('DEV-01-');
+  const related = navigation?.legacyMapping[step.id];
+  const researchTopics = navigation?.researchTopics.filter((topic) =>
+    topic.steps.includes(step.id),
+  );
   return (
     <div className="curriculum-step-row" data-step-id={step.id}>
-      <details className={'curriculum-step' + (current ? ' is-current' : '')}>
+      <details
+        className={'curriculum-step' + (current ? ' is-current' : '')}
+        open={showDetails || undefined}
+      >
         <summary>
           <span className="step-number">
-            {String(index + 1).padStart(2, '0')}
+            {step.knowledge ? step.id : String(index + 1).padStart(2, '0')}
           </span>
           <span className="step-title">
             {step.title}
@@ -221,6 +276,25 @@ function Step({
           />
         </summary>
         <div className="curriculum-step-body">
+          {step.knowledge && navigation && (
+            <>
+              <p>
+                <strong>知识：</strong>
+                {step.knowledge}
+              </p>
+              <div className="hint">
+                先修：
+                {step.prerequisiteIds?.length ? (
+                  <StepLinks
+                    ids={step.prerequisiteIds}
+                    navigation={navigation}
+                  />
+                ) : (
+                  '可直接开始'
+                )}
+              </div>
+            </>
+          )}
           {step.group && (
             <p className="hint">
               {japanese ? '能力分类' : '所属章节'}：{step.group}
@@ -248,7 +322,7 @@ function Step({
           ) : (
             <>
               <p>
-                <strong>怎么学：</strong>
+                <strong>{step.knowledge ? '任务与实践：' : '怎么学：'}</strong>
                 {step.action}
               </p>
               <Sources sources={step.sources} state={state} />
@@ -269,6 +343,33 @@ function Step({
               {step.done}
             </p>
           ) : null}
+          {navigation && related && (
+            <div className="hint">
+              对应新版：
+              <StepLinks ids={related} navigation={navigation} />
+            </div>
+          )}
+          {!!researchTopics?.length && (
+            <p className="hint">
+              研究回看：
+              {researchTopics.map((topic) => topic.question).join('／')}
+            </p>
+          )}
+          {navigation && !current && (
+            <button
+              type="button"
+              className="text-link"
+              disabled={actions.busy || actions.hasDraft}
+              onClick={() =>
+                void actions.run('learning.route.select', {
+                  directionId: d.id,
+                  itemId: step.id,
+                })
+              }
+            >
+              设为当前小节
+            </button>
+          )}
         </div>
       </details>
       <LessonCompletion
@@ -282,25 +383,38 @@ function Step({
   );
 }
 
+function matchesStep(step: CurriculumStep, query: string) {
+  return `${step.knowledge ? step.id + ' ' + step.knowledge + ' ' : ''}${step.title} ${step.group ?? ''} ${step.topics?.join(' ') ?? ''} ${step.sources.map((r) => `${r.label} ${r.locator}`).join(' ')}`
+    .toLocaleLowerCase()
+    .includes(query);
+}
+
 function UnitOutline({
   unit,
   query,
+  navigation,
+  stepIds,
   ...props
-}: Props & { unit: CurriculumUnit; query: string }) {
+}: Props & {
+  unit: CurriculumUnit;
+  query: string;
+  navigation?: DevelopmentNavigation;
+  stepIds?: Set<string>;
+}) {
   const current = currentCurriculumItem(props.state.learning!, props.d);
   const unitMatches = `${unit.title} ${unit.goal}`
     .toLocaleLowerCase()
     .includes(query);
   const steps = unit.steps.filter(
     (s) =>
-      !query ||
-      unitMatches ||
-      `${s.title} ${s.group ?? ''} ${s.topics?.join(' ') ?? ''} ${s.sources.map((r) => `${r.label} ${r.locator}`).join(' ')}`
-        .toLocaleLowerCase()
-        .includes(query),
+      (!stepIds || stepIds.has(s.id)) &&
+      (!query || unitMatches || matchesStep(s, query)),
   );
   if (!steps.length) return null;
-  const completed = unit.steps.filter(
+  const progressSteps = stepIds
+    ? unit.steps.filter((s) => stepIds.has(s.id))
+    : unit.steps;
+  const completed = progressSteps.filter(
     (step) =>
       curriculumCompletionProgress(props.state.learning!, props.d, step.id)
         .complete,
@@ -316,19 +430,29 @@ function UnitOutline({
         <strong>{unit.title}</strong>
         <span>
           {completed > 0
-            ? `${completed}/${unit.steps.length} 节完成`
-            : `${unit.steps.length} 节`}
+            ? `${completed}/${progressSteps.length} 节完成`
+            : `${progressSteps.length} 节`}
         </span>
       </summary>
       <div className="curriculum-unit-body">
         <p>{unit.goal}</p>
-        <p className="hint">先修：{unit.prerequisites || '可从这里开始'}</p>
+        {(unit.prerequisites || !navigation) && (
+          <p className="hint">先修：{unit.prerequisites || '可从这里开始'}</p>
+        )}
+        {unit.evidence && (
+          <p>
+            <strong>阶段验收：</strong>
+            {unit.evidence}
+          </p>
+        )}
         {steps.map((step) => (
           <Step
             key={step.id}
             {...props}
             step={step}
             index={unit.steps.indexOf(step)}
+            navigation={navigation}
+            showDetails={!!navigation && query === step.id.toLowerCase()}
           />
         ))}
       </div>
@@ -440,24 +564,43 @@ function ProfessionalMap({
 export function CurriculumRoute(props: Props) {
   const { state, d, actions } = props;
   const [search, setSearch] = useState('');
+  const [routeView, setRouteView] = useState<string>();
   const searchId = useId();
   const c = getCurriculum(d.curriculumId);
   if (!c) return null;
   const query = search.trim().toLocaleLowerCase();
   const current = currentCurriculumItem(state.learning!, d);
   const japanese = d.curriculumId === 'japanese';
-  const development = d.curriculumId === 'development';
-  const developmentGroups = development
-    ? c.units.reduce<{ name: string; units: CurriculumUnit[] }[]>(
-        (groups, unit) => {
-          const last = groups.at(-1);
-          if (last?.name === unit.branch) last.units.push(unit);
-          else groups.push({ name: unit.branch, units: [unit] });
-          return groups;
-        },
-        [],
+  const development = c.development;
+  const view =
+    routeView ?? (current?.id.startsWith('DEV-') ? 'legacy' : 'knowledge');
+  const milestone = development?.milestones.find((phase) => phase.id === view);
+  const entries = development ? curriculumSteps(c) : [];
+  const scope = milestone
+    ? new Set(Object.values(milestone.lanes).flat())
+    : undefined;
+  const stageSteps = scope
+    ? entries.filter(
+        ({ unit, step }) => scope.has(unit.id) || scope.has(step.id),
       )
-    : [];
+    : undefined;
+  const stageIds = stageSteps && new Set(stageSteps.map(({ step }) => step.id));
+  const stageCompleted = stageSteps?.filter(
+    ({ step }) =>
+      curriculumCompletionProgress(state.learning!, d, step.id).complete,
+  ).length;
+  const outlineUnits =
+    view === 'legacy' && development ? development.legacyUnits : c.units;
+  const navigation: DevelopmentNavigation | undefined = development && {
+    titles: new Map(entries.map(({ step }) => [step.id, step.title])),
+    legacyMapping: development.legacyMapping,
+    researchTopics: development.researchTopics,
+    jump(id) {
+      setRouteView('knowledge');
+      setSearch(id);
+      document.getElementById(searchId)?.focus();
+    },
+  };
   return (
     <section
       className="content-panel curriculum-panel"
@@ -466,12 +609,8 @@ export function CurriculumRoute(props: Props) {
       <div className="section-heading">
         <div>
           <h2>
-            <Map size={20} />
-            {japanese
-              ? '能力节点'
-              : development
-                ? 'AI 与开发 · 三条线'
-                : '学习目录'}
+            <MapIcon size={20} />
+            {japanese ? '能力节点' : development ? '开发学习路线' : '学习目录'}
           </h2>
         </div>
         <span className="curriculum-count">
@@ -480,58 +619,115 @@ export function CurriculumRoute(props: Props) {
           {curriculumStepCount(c)} {japanese ? '项能力' : '节'}
         </span>
       </div>
-      {(japanese || development) && (
-        <p className="hint">
-          {japanese
-            ? '按 IRODORI 教材顺序学习。'
-            : development
-              ? '开发流程与 AI 认知第一遍 → 开发基础 → AI 实践第二遍。'
-              : ''}
-        </p>
-      )}
+      {japanese && <p className="hint">按 IRODORI 教材顺序学习。</p>}
       {development && (
-        <div className="development-path" aria-label="开发学习的三条线">
+        <label className="learning-field development-view">
+          <span>路线视图</span>
+          <select
+            value={view}
+            onChange={(e) => {
+              setSearch('');
+              setRouteView(e.target.value);
+            }}
+          >
+            <option value="knowledge">A / B / C 知识目录</option>
+            {development.milestones.map((phase) => (
+              <option key={phase.id} value={phase.id}>
+                {phase.id} · {phase.title}
+              </option>
+            ))}
+            <option value="legacy">旧路线与进度</option>
+          </select>
+        </label>
+      )}
+      {milestone && (
+        <div className="development-checkpoint">
+          <h3>
+            {milestone.id} · {milestone.title}{' '}
+            <small>
+              {stageCompleted}/{stageSteps?.length} 节完成
+            </small>
+          </h3>
+          <p>{milestone.task}</p>
           <p>
-            <strong>开发流程线</strong>
-            <span>先学做项目的方法，之后持续用于真实改动。</span>
-          </p>
-          <p>
-            <strong>AI认知线</strong>
-            <span>先理解模型、Agent 与评估；有基础后再动手实现。</span>
-          </p>
-          <p>
-            <strong>开发基础线</strong>
-            <span>
-              Python＋工具同步 → 运行原理 → 算法 → 网络 → 数据库 → 软件工程。
-            </span>
+            <strong>阶段证据：</strong>
+            {milestone.evidence}
           </p>
         </div>
+      )}
+      {development && navigation && view === 'knowledge' && (
+        <details className="curriculum-notes">
+          <summary>学习方法、项目与研究问题</summary>
+          <ul>
+            {c.notes.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+            <li>
+              每次 30—60
+              分钟。先预测，再独立从阅读、追踪做到修改、实现与设计。每节保留关键概念、能解释的代码或示意，以及一次验证结果。
+            </li>
+            <li>
+              序流练收支和 Web，Lecture Studio
+              练本地任务和并发，学迹练保存和版本冲突，Kurisu 与 Sinefine
+              用于迁移。AI 实验沿 Notebook N0—N5 持续推进。
+            </li>
+            {development.researchTopics.map((topic) => (
+              <li key={topic.question}>
+                {topic.question}{' '}
+                <StepLinks ids={topic.steps} navigation={navigation} />
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+      {development && view === 'legacy' && (
+        <p className="hint">
+          旧小节保留原完成状态。可从详情查看对应新版小节并按新验收复核。
+        </p>
       )}
       <div className="curriculum-toolbar">
         <label className="learning-field">
           <span>{japanese ? '选择当前 IRODORI 位置' : '选择当前学习小节'}</span>
           <select
             aria-label={japanese ? '选择当前 IRODORI 位置' : '选择当前学习小节'}
-            disabled={actions.busy}
+            disabled={actions.busy || (development && actions.hasDraft)}
             value={current?.id ?? ''}
-            onChange={(e) => {
-              if (e.target.value)
-                void actions.run('learning.route.select', {
-                  directionId: d.id,
-                  itemId: e.target.value,
-                });
+            onChange={async (e) => {
+              const itemId = e.target.value;
+              if (!itemId) return;
+              const result = await actions.run('learning.route.select', {
+                directionId: d.id,
+                itemId,
+              });
+              if (result && development) {
+                const legacyItem = itemId.startsWith('DEV-');
+                if (
+                  legacyItem !== (view === 'legacy') ||
+                  (stageIds && !stageIds.has(itemId))
+                ) {
+                  setSearch('');
+                  setRouteView(legacyItem ? 'legacy' : 'knowledge');
+                }
+              }
             }}
           >
             <option value="">
               {japanese ? '选择当前 Lesson / 能力' : '选择已学到的具体位置'}
             </option>
-            {c.units.map((u) => (
-              <optgroup key={u.id} label={u.title}>
+            {[...c.units, ...(development?.legacyUnits ?? [])].map((u) => (
+              <optgroup
+                key={u.id}
+                label={
+                  u.id.startsWith('DEV-') ? '旧路线 · ' + u.title : u.title
+                }
+              >
                 {u.steps.map((s, i) => (
                   <option key={s.id} value={s.id}>
-                    {japanese
-                      ? `${s.lesson ?? ''} · ${s.title}`
-                      : `第${i + 1}节 · ${s.title}`}
+                    {s.knowledge
+                      ? `${s.id} · ${s.title}`
+                      : japanese
+                        ? `${s.lesson ?? ''} · ${s.title}`
+                        : `第${i + 1}节 · ${s.title}`}
                   </option>
                 ))}
               </optgroup>
@@ -562,43 +758,60 @@ export function CurriculumRoute(props: Props) {
       </div>
       {c.nodes ? (
         <ProfessionalMap {...props} curriculum={c} query={query} />
-      ) : development ? (
+      ) : development && view !== 'legacy' ? (
         <div className="curriculum-outline">
-          {developmentGroups.map((group) => (
-            <section
-              className="development-track"
-              key={group.name}
-              aria-label={group.name}
-            >
-              <h3>{group.name}</h3>
-              {group.units.map((unit) => (
-                <UnitOutline
-                  key={unit.id}
-                  {...props}
-                  unit={unit}
-                  query={query}
-                />
-              ))}
-            </section>
-          ))}
+          {Object.entries(developmentTracks)
+            .filter(([key]) =>
+              outlineUnits.some(
+                (u) =>
+                  u.branch === key &&
+                  (!stageIds || u.steps.some((step) => stageIds.has(step.id))),
+              ),
+            )
+            .map(([key, name]) => (
+              <section
+                className="development-track"
+                key={key}
+                aria-label={name}
+              >
+                <h3>{name}</h3>
+                {outlineUnits
+                  .filter((unit) => unit.branch === key)
+                  .map((unit) => (
+                    <UnitOutline
+                      key={unit.id}
+                      {...props}
+                      unit={unit}
+                      query={query}
+                      navigation={navigation}
+                      stepIds={stageIds}
+                    />
+                  ))}
+              </section>
+            ))}
         </div>
       ) : (
         <div className="curriculum-outline">
-          {c.units.map((unit) => (
-            <UnitOutline key={unit.id} {...props} unit={unit} query={query} />
+          {outlineUnits.map((unit) => (
+            <UnitOutline
+              key={unit.id}
+              {...props}
+              unit={unit}
+              query={query}
+              navigation={navigation}
+            />
           ))}
         </div>
       )}
       {query &&
         !c.nodes &&
-        !c.units.some(
-          (u) =>
-            `${u.title} ${u.goal}`.toLocaleLowerCase().includes(query) ||
-            u.steps.some((s) =>
-              `${s.title} ${s.group ?? ''} ${s.topics?.join(' ') ?? ''} ${s.sources.map((r) => `${r.label} ${r.locator}`).join(' ')}`
-                .toLocaleLowerCase()
-                .includes(query),
-            ),
+        !outlineUnits.some((u) =>
+          u.steps.some(
+            (s) =>
+              (!stageIds || stageIds.has(s.id)) &&
+              (`${u.title} ${u.goal}`.toLocaleLowerCase().includes(query) ||
+                matchesStep(s, query)),
+          ),
         ) && <p className="hint">没有找到对应小节，请换一个关键词。</p>}
     </section>
   );

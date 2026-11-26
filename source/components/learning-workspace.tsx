@@ -758,6 +758,8 @@ export function DirectionDetail({
   const [editing, setEditing] = useState(false);
   const [edit, setEdit] = useState(d);
   const [unitForm, setUnitForm] = useState<{ unitId?: string; name: string }>();
+  const [recordUnitId, setRecordUnitId] = useState<string>();
+  const recordingUnit = units.find((unit) => unit.id === recordUnitId);
   const patch = (data: Record<string, unknown>) =>
     actions.run('learning.direction.update', { directionId: d.id, ...data });
   return (
@@ -799,9 +801,21 @@ export function DirectionDetail({
         <span>当前小节</span>
         <strong>
           {item?.step?.lesson ? item.step.lesson + ' · ' : ''}
+          {item?.step?.knowledge ? item.id + ' · ' : ''}
           {item?.step?.title ?? item?.node?.title ?? current?.name ?? '未设置'}
         </strong>
       </div>
+      {d.curriculumId === 'development' && current?.curriculumItemId && (
+        <div className="button-row">
+          <Button
+            variant="outline"
+            disabled={actions.busy || actions.hasDraft}
+            onClick={() => setRecordUnitId(current.id)}
+          >
+            记录当前小节
+          </Button>
+        </div>
+      )}
       <CurriculumRoute state={state} d={d} actions={actions} />
       {!d.curriculumId && (
         <section className="content-panel learning-section">
@@ -898,6 +912,26 @@ export function DirectionDetail({
           </div>
         </DialogContent>
       </Dialog>
+      {recordingUnit && (
+        <Dialog
+          open
+          onOpenChange={(open) => !open && setRecordUnitId(undefined)}
+        >
+          <DialogContent className="wide-dialog">
+            <DialogHeader>
+              <DialogTitle>记录学习停点</DialogTitle>
+            </DialogHeader>
+            <RecordForm
+              key={recordingUnit.id}
+              d={d}
+              u={recordingUnit}
+              w={w}
+              actions={actions}
+              onDone={() => setRecordUnitId(undefined)}
+            />
+          </DialogContent>
+        </Dialog>
+      )}
       <Dialog
         open={!!unitForm}
         onOpenChange={(open) => !open && setUnitForm(undefined)}

@@ -10,11 +10,13 @@ import {
   curriculumUnitId,
   curriculumUnitState,
   curriculumUnitStates,
+  curriculumSteps,
 } from '../lib/curriculum';
 import {
   ensureLearning,
   applyLearning,
   copyActionText,
+  curriculumCompletionProgress,
   japaneseAbilityStatusFor,
 } from '../lib/learning';
 import {
@@ -36,7 +38,7 @@ void test('all six catalogs retain the agreed chapters, lesson IDs and professio
     curricula.map((c) => [c.id, c.units.length, curriculumStepCount(c)]),
     [
       ['professional', 4, 16],
-      ['development', 13, 71],
+      ['development', 20, 90],
       ['japanese', 28, 111],
       ['photo', 8, 27],
       ['stats', 10, 37],
@@ -95,11 +97,12 @@ void test('linear algebra uses the current Bilibili course without changing its 
   );
 });
 
-void test('development systematically reviews Python in one project without replacing existing node IDs', () => {
+void test('retired development outline keeps all original node IDs and resources', () => {
   const development = curricula.find(
     (curriculum) => curriculum.id === 'development',
   )!;
-  const python = development.units.find((unit) => unit.id === 'DEV-U01')!;
+  const units = development.development!.legacyUnits;
+  const python = units.find((unit) => unit.id === 'DEV-U01')!;
   assert.equal(python.title, '01｜Python系统复习与项目实践');
   assert.match(python.goal, /系统复习.*本地学习资料索引器/);
   assert.deepEqual(
@@ -107,11 +110,6 @@ void test('development systematically reviews Python in one project without repl
     Array.from(
       { length: 9 },
       (_, index) => `DEV-01-${String(index + 1).padStart(2, '0')}`,
-    ),
-  );
-  assert.ok(
-    development.notes.some((note) =>
-      /GPT生成提纲.*看教材.*自己回答.*做项目.*GPT复盘/.test(note),
     ),
   );
   assert.match(python.steps[0].action, /资料索引器.*顶层文件/);
@@ -134,7 +132,7 @@ void test('development systematically reviews Python in one project without repl
     ),
   );
   assert.deepEqual(
-    development.units.map((unit) => unit.id),
+    units.map((unit) => unit.id),
     [
       'DEV-UPROCESS',
       'DEV-UAIMAP',
@@ -152,31 +150,233 @@ void test('development systematically reviews Python in one project without repl
     ],
   );
   assert.deepEqual(
-    development.units.slice(0, 2).map((unit) => unit.steps.length),
+    units.slice(0, 2).map((unit) => unit.steps.length),
     [8, 6],
   );
   assert.deepEqual(
-    [...new Set(development.units.map((unit) => unit.branch))],
+    [...new Set(units.map((unit) => unit.branch))],
     ['开发流程线', 'AI认知线 · 第一遍', '开发基础线', 'AI认知线 · 第二遍'],
   );
   assert.ok(
-    development.units[1].steps[0].sources.some((source) =>
+    units[1].steps[0].sources.some((source) =>
       source.url.includes('bilibili.com/video/'),
     ),
   );
   assert.ok(
-    development.units
+    units
       .slice(0, 2)
       .flatMap((unit) => unit.steps)
       .every((step) => step.sources[0].url.startsWith('https://')),
   );
   assert.ok(
-    development.units
+    units
       .slice(2)
       .flatMap((unit) => unit.steps)
       .every((step) =>
         step.sources.some((source) => source.url !== '/api/development-plan'),
       ),
+  );
+});
+
+void test('development milestones cover the new knowledge index and prerequisite graph', () => {
+  const catalog = curricula.find((c) => c.id === 'development')!;
+  const { milestones, legacyUnits, legacyMapping, researchTopics } =
+    catalog.development!;
+  assert.deepEqual(
+    milestones.map(({ id }) => id),
+    ['M0', 'M1', 'M2', 'M3', 'M4'],
+  );
+  assert.deepEqual(
+    catalog.units.map(({ id }) => id),
+    [
+      'A00',
+      'A01',
+      'A02',
+      'A03',
+      'A04',
+      'A05',
+      'A06',
+      'A07',
+      'B00',
+      'B01',
+      'B02',
+      'B03',
+      'B04',
+      'B05',
+      'B06',
+      'B07',
+      'C01',
+      'C02',
+      'C03',
+      'C04',
+    ],
+  );
+  const entries = curriculumSteps(catalog);
+  const steps = new Map(entries.map(({ step }) => [step.id, step]));
+  const covered = new Set<string>();
+  for (const phase of milestones) {
+    assert.ok(phase.task && phase.evidence);
+    for (const [lane, ids] of Object.entries(phase.lanes)) {
+      for (const id of ids) {
+        const hits = entries.filter(
+          ({ unit, step }) => unit.id === id || step.id === id,
+        );
+        assert.ok(hits.length, `${phase.id}: nonexistent ${id}`);
+        for (const { unit, step } of hits) {
+          assert.equal(unit.branch, lane);
+          for (const dependency of step.prerequisiteIds ?? []) {
+            assert.ok(
+              covered.has(dependency) ||
+                Object.values(phase.lanes)
+                  .flat()
+                  .some(
+                    (key) =>
+                      key === dependency ||
+                      (steps.has(dependency) &&
+                        key === dependency.split('.')[0]),
+                  ),
+              `${phase.id}: ${step.id} requires a later step (${dependency})`,
+            );
+          }
+          covered.add(step.id);
+        }
+      }
+    }
+  }
+  assert.equal(covered.size, steps.size);
+  const checked = new Set<string>();
+  function check(id: string, path: string[] = []) {
+    assert.ok(steps.has(id), `missing prerequisite ${id}`);
+    assert.ok(
+      !path.includes(id),
+      `prerequisite cycle ${[...path, id].join(' → ')}`,
+    );
+    if (checked.has(id)) return;
+    for (const next of steps.get(id)!.prerequisiteIds ?? [])
+      check(next, [...path, id]);
+    checked.add(id);
+  }
+  for (const [id, step] of steps) {
+    check(id);
+    assert.ok(step.knowledge && step.action && step.done);
+    assert.ok(
+      step.sources.length &&
+        step.sources.every(
+          (source) =>
+            source.locator &&
+            (curriculumSourceHref(source) ||
+              (source.pdfPage && source.materialFileNames?.length)),
+        ),
+      id,
+    );
+  }
+  for (const topic of researchTopics)
+    assert.ok(topic.steps.every((id) => steps.has(id)));
+  const oldIds = legacyUnits.flatMap(({ steps }) => steps.map(({ id }) => id));
+  assert.equal(oldIds.length, 71);
+  assert.deepEqual(Object.keys(legacyMapping).sort(), oldIds.sort());
+  for (const id of oldIds) {
+    assert.equal(findCurriculumItem(catalog, id)?.id, id);
+    assert.ok(
+      legacyMapping[id]?.length &&
+        legacyMapping[id]?.every((target) => steps.has(target)),
+      id,
+    );
+  }
+  const first = steps.get('A01.1')!;
+  assert.ok(
+    first.sources.some(
+      (source) => source.pdfPage === 68 && source.locator.includes('104—135'),
+    ),
+  );
+  assert.ok(
+    steps
+      .get('B01.0')!
+      .sources.some((source) => /NumPy、pandas/.test(source.locator)),
+  );
+  assert.ok(
+    steps
+      .get('B03.4')!
+      .sources.some((source) => /Save & Load Model/.test(source.locator)),
+  );
+  assert.deepEqual(steps.get('C04.1')!.prerequisiteIds, [
+    'C02.2',
+    'C03.2',
+    'A07.1',
+    'A07.2',
+    'B02.4',
+    'B02.6',
+    'B06.4',
+  ]);
+});
+
+void test('new development progress preserves old current position, notes, references and explicit completion', () => {
+  let state = ensureLearning(freshState());
+  const directionId = state.learning!.directions.find(
+    (d) => d.curriculumId === 'development',
+  )!.id;
+  const oldId = 'DEV-01-01';
+  const newId = 'A01.1';
+  state = command(state, 'route.select', { directionId, itemId: oldId });
+  const oldUnitId = curriculumUnitId(directionId, oldId);
+  state = command(state, 'unit.completion', {
+    directionId,
+    itemId: oldId,
+    completed: true,
+  });
+  state = command(state, 'record.save', {
+    directionId,
+    unitId: oldUnitId,
+    result: '旧索引器读到了目录',
+    nextMode: 'replace',
+    nextTitle: '下一次检查资料路径',
+  });
+  state = command(state, 'reference.save', {
+    directionId,
+    unitId: oldUnitId,
+    name: '旧教材',
+    kind: 'note',
+    target: '开发/原笔记',
+  });
+  state = readStoredState(JSON.stringify(state));
+  const before = structuredClone(state.learning!);
+  const direction = () =>
+    state.learning!.directions.find((d) => d.id === directionId)!;
+  assert.equal(currentCurriculumItem(state.learning!, direction())?.id, oldId);
+  const complete = (id: string) =>
+    curriculumCompletionProgress(state.learning!, direction(), id).complete;
+  assert.equal(complete(oldId), true);
+  assert.equal(complete(newId), false);
+  state = command(state, 'unit.completion', {
+    directionId,
+    itemId: newId,
+    completed: true,
+  });
+  state = command(state, 'unit.completion', {
+    directionId,
+    itemId: newId,
+    completed: true,
+  });
+  assert.equal(
+    state.learning!.units.filter((u) => u.curriculumItemId === newId).length,
+    1,
+  );
+  assert.equal(direction().currentUnitId, oldUnitId);
+  state = command(state, 'unit.completion', {
+    directionId,
+    itemId: newId,
+    completed: false,
+  });
+  state = command(state, 'route.select', { directionId, itemId: newId });
+  state = readStoredState(JSON.stringify(state));
+  assert.equal(currentCurriculumItem(state.learning!, direction())?.id, newId);
+  assert.equal(complete(oldId), true);
+  assert.equal(complete(newId), false);
+  for (const key of ['records', 'references', 'actions'] as const)
+    assert.deepEqual(state.learning![key], before[key]);
+  assert.deepEqual(
+    state.learning!.units.find((u) => u.id === oldUnitId),
+    before.units[0],
   );
 });
 

@@ -29,6 +29,8 @@ export type CurriculumStep = {
   lesson?: string;
   canDos?: string[];
   targets?: string[];
+  knowledge?: string;
+  prerequisiteIds?: string[];
 };
 export type CurriculumUnit = {
   id: string;
@@ -37,6 +39,14 @@ export type CurriculumUnit = {
   prerequisites: string;
   branch: string;
   steps: CurriculumStep[];
+  evidence?: string;
+};
+export type DevelopmentMilestone = {
+  id: string;
+  title: string;
+  task: string;
+  evidence: string;
+  lanes: Record<'A' | 'B' | 'C', string[]>;
 };
 export type CurriculumNode = {
   id: string;
@@ -58,6 +68,12 @@ export type Curriculum = {
   branchPaths?: string[];
   extensions?: string[];
   resourceNote?: string;
+  development?: {
+    milestones: DevelopmentMilestone[];
+    legacyUnits: CurriculumUnit[];
+    legacyMapping: Partial<Record<string, string[]>>;
+    researchTopics: { question: string; steps: string[] }[];
+  };
 };
 export const curricula: Curriculum[] = data.subjects.map((curriculum) =>
   curriculum.id === 'development'
@@ -76,7 +92,11 @@ export function curriculumSteps(c: Curriculum) {
 }
 export function findCurriculumItem(c: Curriculum | undefined, id?: string) {
   if (!c || !id) return;
-  for (const unit of c.units) {
+  const units =
+    id.startsWith('DEV-') && c.development
+      ? c.development.legacyUnits
+      : c.units;
+  for (const unit of units) {
     const index = unit.steps.findIndex(
       (s) => s.id === id || s.legacyIds?.includes(id),
     );
@@ -84,8 +104,9 @@ export function findCurriculumItem(c: Curriculum | undefined, id?: string) {
       const step = unit.steps[index];
       return {
         id: step.id,
-        name:
-          c.id === 'japanese'
+        name: step.knowledge
+          ? `${step.id} · ${step.title}`
+          : c.id === 'japanese'
             ? `${unit.title} / ${step.title}`
             : `${unit.title} / 第${index + 1}节 · ${step.title}`,
         scope: step.action,

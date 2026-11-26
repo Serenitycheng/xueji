@@ -4,6 +4,7 @@ import type {
   CurriculumStep,
   CurriculumUnit,
 } from '../curriculum';
+import roadmap from './development-roadmap.json';
 
 function source(
   label: string,
@@ -227,6 +228,99 @@ const foundationOrder = [
   'DEV-UWEB',
 ];
 const secondPassOrder = ['DEV-U08', 'DEV-U09A', 'DEV-U09B'];
+// Related topics are navigation links. A broader lesson needs its own verification.
+const legacyMapping: Record<string, string[]> = {
+  'DEV-PROC-01': ['A00.1'],
+  'DEV-PROC-02': ['A00.1', 'A06.4'],
+  'DEV-PROC-03': ['A00.2', 'A06.1', 'A06.4'],
+  'DEV-PROC-04': ['A00.4', 'A07.3'],
+  'DEV-PROC-05': ['A00.2', 'A06.4'],
+  'DEV-PROC-06': ['A07.2'],
+  'DEV-PROC-07': ['A07.6'],
+  'DEV-PROC-08': ['A00.1', 'A07.6'],
+  'DEV-AI-01': ['B00.1', 'B00.2'],
+  'DEV-AI-02': ['B00.2', 'B04.1'],
+  'DEV-AI-03': ['B00.1', 'C02.1', 'C03.1'],
+  'DEV-AI-04': ['B00.3', 'B06.4', 'B06.5'],
+  'DEV-AI-05': ['B07.1', 'B07.3'],
+  'DEV-AI-06': ['B00.4', 'B07.1'],
+  'DEV-01-01': ['A01.1'],
+  'DEV-01-02': ['A01.2'],
+  'DEV-01-03': ['A01.2', 'A02.3'],
+  'DEV-01-04': ['A01.1', 'A02.1'],
+  'DEV-01-05': ['A01.2', 'A01.3'],
+  'DEV-01-06': ['A01.4'],
+  'DEV-01-07': ['A01.5'],
+  'DEV-01-08': ['A01.3'],
+  'DEV-01-09': ['A00.3', 'A07.1', 'A07.2'],
+  'DEV-02-01': ['A03.1'],
+  'DEV-02-02': ['A01.5', 'A03.1', 'A03.2'],
+  'DEV-02-03': ['A03.2', 'A03.5'],
+  'DEV-02-04': ['A01.1', 'A03.5'],
+  'DEV-02-05': ['A03.3', 'A03.4'],
+  'DEV-03-01': ['A01.5', 'A07.1'],
+  'DEV-03-02': ['A01.5', 'A07.3'],
+  'DEV-03-03': ['A00.4', 'A07.3'],
+  'DEV-03-04': ['A00.4', 'A07.3'],
+  'DEV-03-05': ['A07.3'],
+  'DEV-03-06': ['A01.5', 'A07.3'],
+  'DEV-04-01': ['A02.0', 'A02.2', 'A02.3'],
+  'DEV-04-02': ['A02.1'],
+  'DEV-04-03': ['A02.1'],
+  'DEV-04-04': ['A02.3'],
+  'DEV-04-05': ['A02.4'],
+  'DEV-04-06': ['A02.4'],
+  'DEV-05-01': ['A04.1'],
+  'DEV-05-02': ['A04.1', 'A04.4'],
+  'DEV-05-03': ['A04.4'],
+  'DEV-05-04': ['A04.4', 'A04.5', 'A07.6'],
+  'DEV-06-01': ['A05.2'],
+  'DEV-06-02': ['A05.1', 'A05.2'],
+  'DEV-06-03': ['A05.1'],
+  'DEV-06-04': ['A05.2'],
+  'DEV-06-05': ['A05.2', 'A05.3'],
+  'DEV-06-06': ['A05.4', 'A05.5'],
+  'DEV-07-01': ['A06.1', 'A06.4'],
+  'DEV-07-02': ['A04.2', 'A04.3'],
+  'DEV-07-03': ['A01.4', 'A04.5', 'A07.5'],
+  'DEV-07-04': ['A07.1', 'A07.2'],
+  'DEV-07-05': ['A07.6'],
+  'DEV-WEB-01': ['A04.2'],
+  'DEV-WEB-02': ['A01.1', 'A01.4'],
+  'DEV-WEB-03': ['A04.3'],
+  'DEV-08-01': ['B01.0', 'B02.1'],
+  'DEV-08-02': ['B02.4'],
+  'DEV-08-03': ['B02.2', 'B02.3', 'B02.6'],
+  'DEV-08-04': ['B01.1', 'B03.1', 'B03.4', 'B05.5'],
+  'DEV-09A-01': ['B00.2', 'B04.2'],
+  'DEV-09A-02': ['C01.1'],
+  'DEV-09A-03': ['C01.1', 'C01.2'],
+  'DEV-09A-04': ['C01.2'],
+  'DEV-09B-01': ['C02.1', 'C02.2'],
+  'DEV-09B-02': ['C03.1'],
+  'DEV-09B-03': ['C03.2'],
+  'DEV-09B-04': ['C03.1'],
+  'DEV-09B-05': ['C04.1', 'C04.2'],
+};
+const researchTopics = [
+  {
+    question: '推理模型为何在某些任务更强？',
+    steps: ['B01.2', 'B02.6', 'B05.3', 'B05.4', 'B06.1'],
+  },
+  {
+    question: 'MoE 为何扩大容量？',
+    steps: ['A02.2', 'A03.1', 'B03.1', 'B04.5'],
+  },
+  { question: '长上下文为何昂贵？', steps: ['A03.1', 'B04.3', 'B06.2'] },
+  {
+    question: 'Coding Agent 的差异来自什么？',
+    steps: ['B06.4', 'B06.5', 'C03.1', 'C03.2', 'C04.1', 'C04.2'],
+  },
+  {
+    question: '模型跑分能否代表自己的工作？',
+    steps: ['B01.2', 'B02.4', 'B02.6', 'B06.4'],
+  },
+];
 const unitGoals: Record<string, string> = {
   'DEV-U02':
     '理解程序、进程、内存和并发怎样运行，遇到卡顿或状态丢失时能初步定位。',
@@ -268,11 +362,17 @@ export function extendDevelopmentCurriculum(base: Curriculum): Curriculum {
     throw new Error('Unmapped development unit');
   return {
     ...base,
-    goal: '先用开发流程和 AI 认知建立地图，再以 Python 与开发工具为起点补基础，最后回到 AI 应用实践。',
+    goal: '用真实项目独立追踪、修改和验证代码，并以连续实验理解、研究和应用 AI。',
     notes: [
-      '开发流程线和 AI 认知线先并行过第一遍；学到基础后，再学 08→09A→09B。遇到项目问题可以提前查看对应节点，不锁定顺序。',
-      ...base.notes,
+      'M0 从 A00 和 B00 并行，按 M0—M4 的成果推进。A/B/C 是知识索引，先修可诊断、可回补。',
+      '每节先预测，再独立实验，最后记录验证证据。真实项目只读追踪，修改在隔离样例完成。',
     ],
-    units: [...developmentFirstPassUnits, ...existing],
+    units: roadmap.units,
+    development: {
+      milestones: roadmap.milestones,
+      legacyUnits: [...developmentFirstPassUnits, ...existing],
+      legacyMapping,
+      researchTopics,
+    },
   };
 }
